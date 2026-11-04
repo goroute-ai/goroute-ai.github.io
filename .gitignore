@@ -1,0 +1,16 @@
+# Node & Docusaurus
+node_modules/
+.docusaurus/
+build/
+.cache-loader
+.env
+.env.local
+.DS_Store
+
+# Go binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+bin/
