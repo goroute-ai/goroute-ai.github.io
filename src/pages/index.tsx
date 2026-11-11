@@ -156,19 +156,16 @@ export default function Home(): ReactNode {
             <div className="flow-node flow-node--client">
               <span>YOUR APP / CLIENTS</span>
               <strong>Go SDK & HTTP / WS</strong>
-              <small>Port 8080 · Multi-Modal Data Plane</small>
             </div>
             <div className="flow-line"><span>inspect & route</span></div>
             <div className="flow-node flow-node--gateway">
               <span>GOROUTE AI GATEWAY</span>
               <strong>Operator Console & FinOps Engine</strong>
-              <small>Micro-Dollar Ledger · 64-bit Math</small>
             </div>
             <div className="flow-line"><span>upstream dialect</span></div>
             <div className="flow-node flow-node--provider">
               <span>UPSTREAM PROVIDERS</span>
               <strong>Universal Model Integrations</strong>
-              <small>OpenAI · Claude · Gemini · Bedrock · Ollama</small>
             </div>
           </div>
         </section>

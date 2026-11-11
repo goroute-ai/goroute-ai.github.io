@@ -702,25 +702,28 @@ div[class*='codeBlockLines'] {
 }
 
 .flow-node {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  padding: 0.9rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 0.85rem 1.1rem;
   border: 1px solid var(--color-border);
   border-radius: 0.6rem;
   background: var(--ifm-background-surface-color);
 }
 
 .flow-node > span {
-  grid-column: 1 / -1;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.15rem;
   color: var(--color-muted);
   font-size: 0.65rem;
   font-weight: 700;
   letter-spacing: 0.1em;
 }
 
-.flow-node strong { color: var(--color-text-title); font-size: 0.98rem; }
-.flow-node small { align-self: center; color: var(--color-muted); font-size: 0.72rem; }
+.flow-node strong {
+  color: var(--color-text-title);
+  font-size: 0.98rem;
+}
 .flow-node--gateway { border-color: rgba(124, 58, 237, 0.55); background: var(--docs-accent-soft); }
 .flow-line { position: relative; height: 1.55rem; border-left: 1px solid var(--ifm-color-primary); margin-left: 1.65rem; }
 .flow-line span { position: absolute; left: 0.7rem; top: 0.15rem; color: var(--color-muted); font-size: 0.66rem; }
