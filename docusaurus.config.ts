@@ -5,7 +5,7 @@ import { themes as prismThemes } from 'prism-react-renderer';
 const config: Config = {
   title: 'GoRoute AI Gateway',
   tagline: 'Go SDK and self-hosted AI Gateway documentation',
-  favicon: 'img/favicon.svg',
+  favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
   url: process.env.DOCUSAURUS_URL || 'https://goroute-ai.github.io',
@@ -79,8 +79,8 @@ const config: Config = {
       title: 'GoRoute AI Gateway',
       logo: {
         alt: 'GoRoute AI Gateway Logo',
-        src: 'img/logo.png',
-        srcDark: 'img/logo-dark.svg',
+        src: 'img/logo-icon.png',
+        srcDark: 'img/logo-icon.png',
         width: 36,
         height: 36,
       },
