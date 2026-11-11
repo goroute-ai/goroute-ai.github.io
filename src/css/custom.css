@@ -4,7 +4,10 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
-:root {
+:root,
+html,
+html[data-theme='dark'],
+[data-theme='dark'] {
   /* Typography */
   --ifm-font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --ifm-font-family-monospace: 'JetBrains Mono', SFMono-Regular, Menlo, Monaco, Consolas, monospace;
@@ -13,6 +16,7 @@
   --ifm-code-font-size: 88%;
 
   color-scheme: dark;
+  --ifm-color-scheme: dark;
   --ifm-color-primary: #b39aff;
   --ifm-color-primary-dark: #9a79ff;
   --ifm-color-primary-darker: #8059f5;
@@ -21,13 +25,13 @@
   --ifm-color-primary-lighter: #ded4ff;
   --ifm-color-primary-lightest: #eee9ff;
 
-  --ifm-background-color: #09090c;
-  --ifm-background-surface-color: #111116;
-  --ifm-navbar-background-color: rgba(9, 9, 12, 0.88);
-  --ifm-footer-background-color: #0d0d12;
+  --ifm-background-color: #000000 !important;
+  --ifm-background-surface-color: #0c0c0f !important;
+  --ifm-navbar-background-color: rgba(0, 0, 0, 0.88) !important;
+  --ifm-footer-background-color: #000000 !important;
 
-  --color-border: #292933;
-  --color-muted: #a4a4b2;
+  --color-border: #1e1e24;
+  --color-muted: #9696a4;
   --color-text-title: #f5f3ff;
   --color-text-body: #d2d0dc;
 
@@ -36,16 +40,39 @@
   --ifm-navbar-shadow: none;
 }
 
-[data-theme='dark'] {
-  --ifm-navbar-background-color: rgba(9, 9, 12, 0.88);
+/* Base Document Layout - Eliminate 100% height window cutoff and enforce pure black */
+html {
+  min-height: 100%;
+  height: auto !important;
+  background-color: #000000 !important;
+  color-scheme: dark;
+  scrollbar-color: #383842 #000000;
 }
 
-/* Base Document Layout */
-html, body {
-  background-color: var(--ifm-background-color);
+body,
+body[data-theme='dark'] {
+  min-height: 100%;
+  height: auto !important;
+  background-color: #000000 !important;
   color: var(--color-text-body);
   letter-spacing: -0.011em;
   -webkit-font-smoothing: antialiased;
+}
+
+#__docusaurus,
+.main-wrapper {
+  min-height: 100vh;
+  background-color: #000000 !important;
+}
+
+/* Documentation containers, sidebar and wrappers */
+div[class*='docPage'],
+main[class*='docMainContainer'],
+div[class*='docItemContainer'],
+.theme-doc-sidebar-container,
+.theme-doc-markdown,
+.table-of-contents {
+  background-color: #000000 !important;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -260,11 +287,11 @@ tr:last-child td {
 
 .clean-terminal {
   border: 1px solid var(--color-border);
-  background-color: #111116;
+  background-color: #0d0d12;
   border-radius: 8px;
   overflow: hidden;
   font-family: var(--ifm-font-family-monospace);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .clean-terminal-header {
@@ -272,7 +299,7 @@ tr:last-child td {
   align-items: center;
   gap: 6px;
   padding: 0.65rem 1rem;
-  background-color: #17171e;
+  background-color: #141418;
   border-bottom: 1px solid var(--color-border);
 }
 
@@ -294,7 +321,7 @@ tr:last-child td {
   padding: 1.25rem;
   font-size: 0.86rem;
   line-height: 1.6;
-  background-color: #111116;
+  background-color: #0d0d12;
   color: #e8e6f0;
   margin: 0;
   overflow-x: auto;
@@ -454,7 +481,7 @@ div[class*='codeBlockLines'] {
   background:
     radial-gradient(ellipse 72rem 42rem at 78% 4%, rgba(128, 89, 245, 0.14), transparent 68%),
     radial-gradient(ellipse 52rem 34rem at 8% 38%, rgba(44, 167, 192, 0.045), transparent 72%),
-    #09090c;
+    #000000;
   content: '';
   pointer-events: none;
 }
@@ -944,11 +971,11 @@ div[class*='codeBlockLines'] {
   }
 }
 
-/* Dark-only finishing pass: keep every Docusaurus surface on the same palette. */
+/* Dark-only finishing pass: keep every Docusaurus surface on the pure black palette. */
 html {
   color-scheme: dark;
-  background: #09090c;
-  scrollbar-color: #41404d #09090c;
+  background-color: #000000 !important;
+  scrollbar-color: #383842 #000000;
 }
 
 ::selection {
@@ -957,7 +984,7 @@ html {
 }
 
 .navbar {
-  background: var(--ifm-navbar-background-color);
+  background-color: var(--ifm-navbar-background-color) !important;
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.025);
 }
 
@@ -987,17 +1014,22 @@ html {
 .popover,
 .theme-doc-sidebar-container,
 .table-of-contents {
-  background-color: var(--ifm-background-color);
+  background-color: #000000 !important;
 }
 
 .dropdown__menu,
 .navbar-sidebar {
   border: 1px solid var(--color-border);
-  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.42);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.6);
 }
 
 .theme-doc-sidebar-container {
-  background-image: linear-gradient(180deg, rgba(179, 154, 255, 0.025), transparent 18rem);
+  background-image: none !important;
+  border-right: 1px solid var(--color-border) !important;
+}
+
+.theme-doc-sidebar-container [class*='sidebar'] {
+  background-color: #000000 !important;
 }
 
 .theme-doc-markdown code,
@@ -1017,16 +1049,17 @@ html {
 
 .theme-doc-markdown pre,
 div[class*='codeBlockContainer'] {
-  background: #101015;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2) !important;
+  background-color: #0d0d12 !important;
+  border: 1px solid var(--color-border);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3) !important;
 }
 
 .theme-doc-markdown th {
-  background: #17171f;
+  background: #141418;
 }
 
 .theme-doc-markdown tr:nth-child(even) td {
-  background: rgba(255, 255, 255, 0.018);
+  background: rgba(255, 255, 255, 0.015);
 }
 
 .alert--info {
@@ -1038,12 +1071,12 @@ div[class*='codeBlockContainer'] {
 .clean-terminal,
 .clean-terminal-body {
   border-color: var(--color-border);
-  background: #101015;
+  background: #0d0d12;
   color: #e8e6f0;
 }
 
 .clean-terminal-header {
-  background: #17171f;
+  background: #141418;
   border-color: var(--color-border);
 }
 
@@ -1051,10 +1084,12 @@ div[class*='codeBlockContainer'] {
   color: var(--color-muted);
 }
 
-.footer.footer--dark {
+.footer.footer--dark,
+.footer {
   background:
     radial-gradient(ellipse at 50% 0, rgba(128, 89, 245,  0.07), transparent 55%),
-    #0d0d12;
+    #000000 !important;
+  border-top: 1px solid var(--color-border);
   color: var(--color-muted);
 }
 
