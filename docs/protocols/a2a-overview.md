@@ -87,28 +87,25 @@ GoRoute AI Gateway implements the **Subscribe-First SSE Protocol** (`internal/a2
 
 ```mermaid
 sequenceDiagram
-    autonumber
-    actor Client as Subscriber Client
+    participant Client as Subscriber Client
     participant GW as Gateway SSE Handler
-    participant Redis as Redis Pub/Sub (gw:a2a:events:{taskID})
-    participant DB as PostgreSQL (a2a_task_events)
+    participant Redis as Redis Pub/Sub
+    participant DB as PostgreSQL (a2a_events)
 
-    Client->>GW: GET /tasks/{id}:subscribe?after_seq=4
+    Client->>GW: 1. GET /tasks/{id}:subscribe?after_seq=4
     Note over GW: 1. Subscribe to Redis FIRST
-    GW->>Redis: Subscribe(gw:a2a:events:{taskID})
-    GW-->>Client: HTTP 200 text/event-stream (: connected)
-    
+    GW->>Redis: 2. Subscribe(gw:a2a:events:{id})
+    GW-->>Client: 3. HTTP 200 text/event-stream
     Note over GW: 2. Backfill Historical Events
-    GW->>DB: ListEvents(taskID, after_seq > 4)
-    DB-->>GW: Historical Events (seq 5, 6)
-    GW-->>Client: SSE id: 5, id: 6
-    
-    Note over GW: 3. Drain Live Buffer & Gap Detection
-    Redis-->>GW: Live Event (seq 8) [Detected Gap: 7 missing!]
-    GW->>DB: Fetch Missing Gap (seq 7)
-    DB-->>GW: Event 7
-    GW-->>Client: SSE id: 7
-    GW-->>Client: SSE id: 8
+    GW->>DB: 4. ListEvents(taskID, seq > 4)
+    DB-->>GW: 5. Historical Events (seq 5, 6)
+    GW-->>Client: 6. SSE id: 5, id: 6
+    Note over GW: 3. Gap Detection & Backfill
+    Redis-->>GW: 7. Live Event (seq 8) [Gap: seq 7 missing]
+    GW->>DB: 8. Fetch Missing Gap (seq 7)
+    DB-->>GW: 9. Event 7 Payload
+    GW-->>Client: 10. SSE id: 7
+    GW-->>Client: 11. SSE id: 8
 ```
 
 ### Key Stream Resiliency Features:

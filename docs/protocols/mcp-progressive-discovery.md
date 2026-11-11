@@ -22,28 +22,24 @@ GoRoute AI Gateway solves this challenge through **MCP Progressive Tool Discover
 
 ```mermaid
 sequenceDiagram
-    autonumber
-    actor User as Client / Agent
+    participant User as Client / Agent
     participant GW as GoRoute AI Gateway
     participant Redis as Redis Fabric (L2)
     participant Upstream as Upstream MCP Server
 
-    User->>GW: GET /v1/goroute/mcp/registry
-    GW-->>User: Lightweight Feed (Name, Description, tool_hdl_...)
-
-    Note over User: Agent determines it needs a database query tool
-    User->>GW: POST /v1/chat/completions (meta-tool search_tools)
-    GW-->>User: Compact Matches with Opaque Handles
-
-    User->>GW: POST /mcp (get_tool_schema with tool_hdl_abc123...)
-    GW->>Redis: Resolve Handle & Verify Hash
-    Redis-->>GW: Verified Handle Record
-    GW-->>User: Full Input JSON Schema
-
-    User->>GW: POST /mcp (Call hydrated tool with arguments)
-    GW->>Upstream: Execute Tool Call
-    Upstream-->>GW: Result Payload
-    GW-->>User: Tool Execution Response
+    User->>GW: 1. GET /v1/goroute/mcp/registry
+    GW-->>User: 2. Lightweight Feed (Name & tool_hdl)
+    Note over User: Agent selects required tool
+    User->>GW: 3. POST /v1/chat/completions (search_tools)
+    GW-->>User: 4. Compact Matches with Opaque Handles
+    User->>GW: 5. POST /mcp (get_tool_schema)
+    GW->>Redis: 6. Resolve Handle & Verify Hash
+    Redis-->>GW: 7. Verified Handle Record
+    GW-->>User: 8. Full Input JSON Schema
+    User->>GW: 9. POST /mcp (Execute tool call)
+    GW->>Upstream: 10. Forward Tool Invocation
+    Upstream-->>GW: 11. Tool Result Payload
+    GW-->>User: 12. Execution Response
 ```
 
 Instead of sending full schemas upfront, the gateway supplies the LLM with two lightweight meta-tools (`search_tools` and `get_tool_schema`), allowing the agent to discover and hydrate only the exact schemas required for the immediate task.

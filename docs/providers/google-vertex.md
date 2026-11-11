@@ -21,17 +21,16 @@ Vertex AI requires an **OAuth2 Bearer access token** scoped to `https://www.goog
 
 ```mermaid
 sequenceDiagram
-    autonumber
     participant GW as GoRoute AI Gateway
-    participant OAuth as Google OAuth2 (oauth2.googleapis.com)
-    participant Vertex as Vertex AI Endpoint ({region}-aiplatform.googleapis.com)
+    participant OAuth as Google OAuth2
+    participant Vertex as Vertex AI Endpoint
 
-    Note over GW: Loads GCP Service Account JSON
-    GW->>OAuth: POST /token (RS256 Signed Assertion JWT)
-    OAuth-->>GW: Access Token (Bearer ya29... expires in 3600s)
-    Note over GW: Caches token with sync.RWMutex
-    GW->>Vertex: POST :generateContent (Authorization: Bearer ya29...)
-    Vertex-->>GW: Model Response / SSE Stream
+    GW->>GW: 1. Load GCP Service Account JSON
+    GW->>OAuth: 2. POST /token (Signed Assertion JWT)
+    OAuth-->>GW: 3. Access Token (Bearer ya29... expires 3600s)
+    GW->>GW: 4. Cache Token (sync.RWMutex)
+    GW->>Vertex: 5. POST :generateContent (Bearer ya29...)
+    Vertex-->>GW: 6. Model Response / SSE Stream
 ```
 
 ### Supported Credential Formats

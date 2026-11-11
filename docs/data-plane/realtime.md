@@ -32,20 +32,23 @@ GoRoute utilizes [`nhooyr.io/websocket`](https://github.com/nhooyr/websocket) fo
 
 ```mermaid
 sequenceDiagram
-    autonumber
-    Client ->> Gateway: GET /v1/realtime?model=gpt-4o-realtime-preview<br/>Upgrade: websocket, Sec-WebSocket-Protocol: realtime
-    Note over Gateway: Authenticate Virtual Key & Check Model RBAC
-    Gateway ->> Client: HTTP 101 Switching Protocols
-    Note over Gateway: Hijack TCP Connection into full-duplex session
-    Gateway -->> Client: ServerEvent: session.created
-    loop Full-Duplex Interaction Loop
-        Client ->> Gateway: ClientEvent: conversation.item.create / response.create
-        Gateway ->> Upstream LLM: Stream Realtime Frames
-        Upstream LLM -->> Gateway: Raw Tokens / Audio Deltas
-        Gateway -->> Client: ServerEvent: response.text.delta / response.audio.delta
+    participant Client
+    participant GW as GoRoute AI Gateway
+    participant LLM as Upstream Realtime Engine
+
+    Client->>GW: 1. GET /v1/realtime (WebSocket Upgrade)
+    Note over GW: Authenticate Key & Model RBAC
+    GW->>Client: 2. HTTP 101 Switching Protocols
+    Note over GW: Hijack TCP Connection
+    GW-->>Client: 3. ServerEvent: session.created
+    loop Full-Duplex Stream Loop
+        Client->>GW: 4. ClientEvent: response.create
+        GW->>LLM: 5. Stream Realtime Audio Frames
+        LLM-->>GW: 6. Raw Tokens / Audio Deltas
+        GW-->>Client: 7. ServerEvent: audio.delta
     end
-    Client ->> Gateway: WebSocket Close (StatusNormalClosure)
-    Note over Gateway: Enqueue atomic SpendEvent to FinOps Ledger
+    Client->>GW: 8. WebSocket Close
+    Note over GW: Enqueue SpendEvent to FinOps Ledger
 ```
 
 1. **In-Flight Authentication**: Handshake requests pass through `auth.DataPlaneMiddleware`, verifying the virtual key and validating model access permissions before the TCP connection is hijacked.

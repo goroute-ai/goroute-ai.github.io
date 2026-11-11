@@ -39,16 +39,20 @@ GoRoute solves this with **Zero-Memory Disk Spooling**:
 
 ```mermaid
 sequenceDiagram
-    autonumber
-    Client ->> Gateway: POST /v1/audio/transcriptions (Multipart Form, max 25MB)
-    Note over Gateway: Spool stream directly to disk<br/>(gw-audio-*.tmp, 0600 mode)
-    Gateway ->> Upstream Provider A: Stream from disk spool
-    Upstream Provider A -->> Gateway: HTTP 503 Service Unavailable
-    Note over Gateway: Rewind file descriptor to offset 0 (Zero GC)
-    Gateway ->> Upstream Provider B (Fallback): Re-stream identical spool
-    Upstream Provider B -->> Gateway: HTTP 200 OK (Transcription JSON)
-    Note over Gateway: Unlink & remove spool file immediately
-    Gateway -->> Client: Return Transcript + Telemetry Headers
+    participant Client
+    participant GW as GoRoute AI Gateway
+    participant ProvA as Primary Provider (STT)
+    participant ProvB as Fallback Provider (STT)
+
+    Client->>GW: 1. POST /v1/audio/transcriptions (Multipart 25MB)
+    GW->>GW: 2. Spool stream to disk (gw-audio-*.tmp)
+    GW->>ProvA: 3. Stream from disk spool
+    ProvA-->>GW: 4. HTTP 503 Service Unavailable
+    GW->>GW: 5. Rewind file descriptor (Seek 0, Zero GC)
+    GW->>ProvB: 6. Re-stream from disk spool
+    ProvB-->>GW: 7. HTTP 200 OK (Transcription JSON)
+    GW->>GW: 8. Unlink & remove spool file
+    GW-->>Client: 9. Return Transcript + Telemetry
 ```
 
 1. **Disk Spooling**: Incoming multipart files are written directly to a temporary file (`gw-audio-*.tmp`) in chunks using `io.Copy`.

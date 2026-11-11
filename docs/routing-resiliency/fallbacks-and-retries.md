@@ -9,18 +9,22 @@ When cloud AI providers experience regional outages, rate limits (HTTP 429), or 
 
 ```mermaid
 sequenceDiagram
-    autonumber
-    Client ->> Gateway: POST /v1/chat/completions (model: "prod-chat")
-    Note over Gateway: Attempt 1: Target Primary (OpenAI GPT-4o)
-    Gateway ->> OpenAI: Forward Request
-    OpenAI -->> Gateway: HTTP 503 Service Unavailable
-    Note over Gateway: Jittered Exponential Backoff (50ms)
-    Gateway ->> OpenAI: Intra-Group Retry #2
-    OpenAI -->> Gateway: HTTP 503 Service Unavailable
-    Note over Gateway: Trip Circuit Breaker & Activate Fallback: "backup-claude"
-    Gateway ->> Anthropic: Forward Request to Claude Sonnet 4
-    Anthropic -->> Gateway: HTTP 200 OK (Content Stream)
-    Gateway -->> Client: HTTP 200 OK (X-Gateway-Fallback: true)
+    participant Client
+    participant GW as GoRoute AI Gateway
+    participant OpenAI as Primary (GPT-4o)
+    participant Claude as Backup (Claude 3.5)
+
+    Client->>GW: 1. POST /v1/chat/completions (model: "prod-chat")
+    Note over GW: Attempt 1: Route to Primary
+    GW->>OpenAI: 2. Forward Request
+    OpenAI-->>GW: 3. HTTP 503 Service Unavailable
+    Note over GW: Jittered Backoff (50ms)
+    GW->>OpenAI: 4. Intra-Group Retry #2
+    OpenAI-->>GW: 5. HTTP 503 Service Unavailable
+    Note over GW: Trip Circuit Breaker & Failover
+    GW->>Claude: 6. Fallback Request
+    Claude-->>GW: 7. HTTP 200 OK (Stream)
+    GW-->>Client: 8. HTTP 200 OK (X-Gateway-Fallback: true)
 ```
 
 ---

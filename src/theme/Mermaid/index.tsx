@@ -11,12 +11,37 @@ const GOROUTE_THEME = {
   line: '#12C2EA',
   accent: '#7C3AED',
   muted: '#9CA3AF',
+  surface: '#0D1117',
+  border: '#30363D',
 };
+
+function preprocessDiagram(input: string): string {
+  if (!input) return input;
+  const trimmed = input.trim();
+  if (!/^sequenceDiagram/i.test(trimmed)) {
+    return input;
+  }
+
+  const lines = input.split('\n');
+  const processedLines: string[] = [];
+
+  for (const line of lines) {
+    const l = line.trim();
+    // Filter out autonumber directive which is unparsed by beautiful-mermaid
+    if (l === 'autonumber') {
+      continue;
+    }
+    processedLines.push(line);
+  }
+
+  return processedLines.join('\n');
+}
 
 function BeautifulMermaidRenderer({ value }: Props): ReactNode {
   const svgHtml = useMemo(() => {
     try {
-      return renderMermaidSVG(value, GOROUTE_THEME);
+      const processed = preprocessDiagram(value);
+      return renderMermaidSVG(processed, GOROUTE_THEME);
     } catch (err) {
       console.error('Error rendering diagram with beautiful-mermaid:', err);
       return null;

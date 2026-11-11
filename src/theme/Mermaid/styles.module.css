@@ -26,3 +26,92 @@
   height: auto;
   display: block;
 }
+
+/* ==========================================================================
+   Sequence Diagram Custom Enhancements
+   ========================================================================== */
+
+/* Elevated Participant / Actor Cards */
+.container svg .actor rect {
+  rx: 6px;
+  ry: 6px;
+  fill: #0d1117;
+  stroke: #30363d;
+  stroke-width: 1.5px;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.45));
+}
+
+.container svg .actor text {
+  font-family: var(--ifm-font-family-base), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 600;
+  fill: #f3f4f6;
+  font-size: 13px;
+  letter-spacing: -0.01em;
+}
+
+/* Lifelines */
+.container svg .lifeline {
+  stroke: rgba(255, 255, 255, 0.16);
+  stroke-width: 1px;
+  stroke-dasharray: 4 4;
+}
+
+/* Outbound and Return Messages */
+.container svg .message line,
+.container svg .message polyline {
+  stroke: #12C2EA;
+  stroke-width: 1.5px;
+}
+
+/* Dashed return arrows */
+.container svg .message line[stroke-dasharray],
+.container svg .message polyline[stroke-dasharray] {
+  stroke: #a78bfa;
+}
+
+/* Message labels */
+.container svg .message text {
+  font-family: var(--ifm-font-family-monospace), SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 11.5px;
+  font-weight: 500;
+  fill: #e2e8f0;
+}
+
+/* Architectural Notes */
+.container svg .note polygon {
+  fill: #161824;
+  stroke: #7c3aed;
+  stroke-width: 1px;
+  filter: drop-shadow(0 2px 6px rgba(124, 58, 237, 0.18));
+}
+
+.container svg .note text {
+  font-family: var(--ifm-font-family-base), -apple-system, BlinkMacSystemFont, sans-serif;
+  fill: #f1f5f9;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+/* Block Containers (loop, alt, opt) */
+.container svg .block rect:first-child {
+  stroke: #4f46e5;
+  stroke-width: 1px;
+  stroke-dasharray: 4 4;
+  fill: rgba(79, 70, 229, 0.04);
+  rx: 6px;
+  ry: 6px;
+}
+
+.container svg .block rect:nth-child(2) {
+  fill: #1e1b4b;
+  stroke: #6366f1;
+  rx: 4px;
+  ry: 4px;
+}
+
+.container svg .block text {
+  font-family: var(--ifm-font-family-base), -apple-system, BlinkMacSystemFont, sans-serif;
+  fill: #c7d2fe;
+  font-weight: 600;
+  font-size: 11px;
+}

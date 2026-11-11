@@ -13,17 +13,16 @@ In this guide, you will initialize the GoRoute AI Gateway in-process with a sing
 
 ```mermaid
 sequenceDiagram
-    autonumber
-    actor Caller as Go Application
+    participant Caller as Go Application
     participant GW as GoRoute AI Gateway (In-Process)
     participant Provider as Upstream LLM / Mock Engine
 
-    Caller->>GW: gateway.New(WithModelList(...))
-    Note over GW: Embedded server boots in under 2ms
-    Caller->>GW: gw.Chat(ctx, "gpt-4o-mini", "Hello!")
-    GW->>Provider: Forward Canonical Request
-    Provider-->>GW: Return Completion
-    GW-->>Caller: *gateway.ChatResult (Content, Cost, Latency)
+    Caller->>GW: 1. gateway.New(WithModelList(...))
+    Note over GW: Embedded server boots in < 2ms
+    Caller->>GW: 2. gw.Chat(ctx, "gpt-4o-mini", "Hello!")
+    GW->>Provider: 3. Forward Canonical Request
+    Provider-->>GW: 4. Return Completion
+    GW-->>Caller: 5. *gateway.ChatResult (Content, Cost, Latency)
 ```
 
 ---

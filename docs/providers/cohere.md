@@ -28,16 +28,15 @@ GoRoute implements native rerank handling in `internal/server/handlers_rerank.go
 
 ```mermaid
 sequenceDiagram
-    autonumber
     participant App as RAG Application
     participant GW as GoRoute AI Gateway
     participant Cohere as Cohere API (/v2/rerank)
 
-    App->>GW: POST /v1/rerank (query, documents[], top_n)
-    GW->>Cohere: POST /v2/rerank (Bearer COHERE_API_KEY)
-    Cohere-->>GW: Results (relevance_score, index, meta.billed_units.search_units)
-    Note over GW: FinOps Ledger records micro-dollars per search unit
-    GW-->>App: 200 OK (X-Gateway-Cost-Micros header + ranked results)
+    App->>GW: 1. POST /v1/rerank (query, documents, top_n)
+    GW->>Cohere: 2. POST /v2/rerank (Bearer Key)
+    Cohere-->>GW: 3. Results (relevance scores & billed units)
+    Note over GW: FinOps Ledger records micro-dollars
+    GW-->>App: 4. HTTP 200 OK (Cost Header + Results)
 ```
 
 ### Request & Response Schema

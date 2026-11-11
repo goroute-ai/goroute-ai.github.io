@@ -33,13 +33,17 @@ The gateway transparently translates between Anthropic's message format and cano
 
 ```mermaid
 sequenceDiagram
-    autonumber
-    Client ->> Gateway: POST /v1/messages (Anthropic Spec)
-    Note over Gateway: 1. Extract System Blocks<br/>2. Map Thinking / Budget<br/>3. Consolidate Alternating Turns<br/>4. Normalize input_schema -> parameters
-    Gateway ->> Upstream LLM: Canonical Inference Dispatch
-    Upstream LLM -->> Gateway: Canonical Response / Stream
-    Note over Gateway: Translate to Anthropic Event Model<br/>(message_start, content_block_delta, etc.)
-    Gateway -->> Client: Anthropic Format Response
+    participant Client
+    participant GW as GoRoute AI Gateway
+    participant LLM as Upstream LLM (Claude)
+
+    Client->>GW: 1. POST /v1/messages (Anthropic Spec)
+    Note over GW: Extract System Blocks & Thinking Budget
+    Note over GW: Consolidate Alternating Turns & Schema
+    GW->>LLM: 2. Canonical Inference Dispatch
+    LLM-->>GW: 3. Canonical Response / Stream
+    Note over GW: Translate to Anthropic Event Model
+    GW-->>Client: 4. Anthropic Format Response
 ```
 
 ### Key Translation Mechanics

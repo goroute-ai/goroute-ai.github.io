@@ -33,16 +33,20 @@ GoRoute AI Gateway implements OpenAI-compatible stateful file management to supp
 
 ```mermaid
 sequenceDiagram
-    autonumber
-    Client ->> Gateway: POST /v1/files (multipart/form-data, purpose="batch")
-    Note over Gateway: Auth & Org Isolation Check (VirtualKey Context)
-    Gateway ->> Disk Storage: Stream chunks to 0600 file descriptor
-    Gateway ->> SHA-256 Hasher: io.MultiWriter computes SHA-256 concurrently
-    Note over Gateway: Zero Heap Buffering: Streamed in 32KB chunks
-    Disk Storage -->> Gateway: Sync file to disk (0700 dir / 0600 mode)
-    Gateway ->> PostgreSQL: INSERT INTO files (id, org_id, content_sha256, ...)
-    PostgreSQL -->> Gateway: Commit OK
-    Gateway -->> Client: HTTP 201 Created (CanonicalFile JSON)
+    participant Client
+    participant GW as GoRoute AI Gateway
+    participant Disk as Local Disk (0600 mode)
+    participant Hasher as SHA-256 Digest
+    participant DB as PostgreSQL
+
+    Client->>GW: 1. POST /v1/files (multipart/form-data)
+    Note over GW: Auth & Tenant Isolation Check
+    GW->>Disk: 2. Stream chunk to file descriptor
+    GW->>Hasher: 3. io.MultiWriter feeds SHA-256
+    Disk-->>GW: 4. Sync file to disk (0700 dir)
+    GW->>DB: 5. INSERT INTO files (id, org_id, sha256)
+    DB-->>GW: 6. Commit OK
+    GW-->>Client: 7. HTTP 201 Created (File JSON)
 ```
 
 ### Security & Integrity Controls

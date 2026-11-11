@@ -19,20 +19,25 @@ The client receives the final completed response in a **single HTTP turn**, elim
 
 ```mermaid
 sequenceDiagram
-    autonumber
-    Client ->> Gateway: POST /v1/chat/completions (Prompt + Tools)
-    Note over Gateway: Enter ToolLoopOrchestrator (CumulativeTimeout: 60s)
-    Gateway ->> Upstream LLM: Turn 1: Forward Prompt & Tool Definitions
-    Upstream LLM -->> Gateway: Assistant ToolCall: calculate_tax({amount: 250})
-    Note over Gateway: Intercept MCP ToolCall (Do NOT return to client)
-    Gateway ->> MCP Tool Hub: Execute Tool (PerToolTimeout: 10s, MaxBytes: 512KB)
-    MCP Tool Hub -->> Gateway: Tool Result: {tax: 20.62}
-    Note over Gateway: Append Tool Result to Message Context
-    Gateway ->> Upstream LLM: Turn 2: Feed Tool Output (Role: tool)
-    Upstream LLM -->> Gateway: Final Synthesized Answer: "The tax is $20.62."
-    Note over Gateway: Consolidate Multi-Turn Token Usage
-    Gateway ->> FinOps Ledger: Commit Atomic SpendEvent (Anti-Double-Billing)
-    Gateway -->> Client: HTTP 200 OK (Final Synthesized Content)
+    participant Client
+    participant GW as GoRoute AI Gateway
+    participant LLM as Upstream LLM
+    participant MCP as MCP Tool Hub
+    participant Ledger as FinOps Ledger
+
+    Client->>GW: 1. POST /v1/chat/completions (Prompt + Tools)
+    Note over GW: Enter ToolLoop (Timeout: 60s)
+    GW->>LLM: 2. Forward Prompt & Tool Definitions
+    LLM-->>GW: 3. ToolCall: calculate_tax(amount: 250)
+    Note over GW: Intercept MCP ToolCall in memory
+    GW->>MCP: 4. Execute Tool (PerToolTimeout: 10s)
+    MCP-->>GW: 5. Tool Result: {tax: 20.62}
+    Note over GW: Append Tool Result to Message Context
+    GW->>LLM: 6. Feed Tool Output (Role: tool)
+    LLM-->>GW: 7. Synthesized: "The tax is $20.62."
+    Note over GW: Consolidate Multi-Turn Token Usage
+    GW->>Ledger: 8. Commit Atomic SpendEvent
+    GW-->>Client: 9. HTTP 200 OK (Final Synthesized Content)
 ```
 
 ---
