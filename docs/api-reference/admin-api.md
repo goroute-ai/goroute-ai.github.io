@@ -741,4 +741,4 @@ curl "http://localhost:8080/admin/v1/audit/logs?org_id=org_acme&limit=10" \
 
 - Explore the [Operator Web UI Guide](/docs/operations/operator-ui) to manage these resources visually.
 - Review [Virtual Keys & FinOps](/docs/finops-and-security/virtual-keys) for enterprise governance patterns.
-- Read [Exact-Match Caching](/docs/caching-and-limits/exact-match-cache) to optimize gateway hit ratios.
+- Read [Exact-Match Caching](/docs/finops-and-security/exact-match-cache) to optimize gateway hit ratios.

@@ -86,11 +86,6 @@ const config: Config = {
       },
       items: [
         {
-          href: '/docs/getting-started/quickstart-sdk',
-          position: 'left',
-          label: 'Quickstart',
-        },
-        {
           type: 'docSidebar',
           sidebarId: 'docsSidebar',
           position: 'left',
@@ -98,9 +93,15 @@ const config: Config = {
         },
         {
           type: 'docSidebar',
+          sidebarId: 'sdkSidebar',
+          position: 'left',
+          label: 'Go SDK',
+        },
+        {
+          type: 'docSidebar',
           sidebarId: 'apiSidebar',
           position: 'left',
-          label: 'API',
+          label: 'API Reference',
         },
         {
           type: 'docSidebar',

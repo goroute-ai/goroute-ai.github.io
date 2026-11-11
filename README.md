@@ -77,8 +77,7 @@ goroute-ai.github.io/
 │   ├── getting-started/        # Overview, Benchmarks, Quickstarts (SDK, CLI, Docker)
 │   ├── data-plane/             # Chat, Embeddings, Models, Tools & Autonomous Agent Loop
 │   ├── routing-resiliency/     # Complexity Classifier, EWMA Balancer, Circuit Breakers
-│   ├── finops-and-security/    # Micro-Dollar Ledger, Virtual Keys, RBAC, SSRF Protection
-│   ├── caching-and-limits/     # Sliding-Window Rate Limiting, Preflight Tokenizer, Exact Cache
+│   ├── finops-and-security/    # Micro-Dollar Ledger, Virtual Keys, RBAC, SSRF, Cache & Rate Limiting
 │   ├── demos/                  # Step-by-step guides for the 6 progressive Go examples
 │   ├── providers/              # Integration guides (Gemini, Claude, OpenAI, Mistral, Ollama)
 │   ├── protocols/              # MCP Virtual Hub & Agent-to-Agent (A2A v1.0) specs

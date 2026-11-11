@@ -1,54 +1,68 @@
 import type { SidebarsConfig } from '@docusaurus/plugin-content-docs';
 
 const sidebars: SidebarsConfig = {
+  // Main documentation guides: Architecture, Data Plane, Providers, Traffic, FinOps, Protocols, Operations
   docsSidebar: [
     {
       type: 'category',
-      label: 'Start here',
+      label: 'Getting Started',
       collapsed: false,
       items: [
-        'getting-started/learning-path',
         'getting-started/overview',
         'getting-started/quickstart-sdk',
-        'getting-started/quickstart-cli',
         'getting-started/quickstart-docker',
+        'getting-started/quickstart-cli',
         'getting-started/architecture',
+        'getting-started/learning-path',
       ],
     },
     {
       type: 'category',
-      label: 'Operator Console',
-      collapsed: false,
-      items: [
-        'operations/operator-ui',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Multi-Modal Data Plane',
+      label: 'Data Plane Routes',
       collapsed: true,
       items: [
-        'data-plane/chat-completions',
-        'data-plane/rerank',
-        'data-plane/moderations',
-        'data-plane/completions',
-        'data-plane/messages',
-        'data-plane/tokenize',
-        'data-plane/audio',
-        'data-plane/images',
-        'data-plane/embeddings',
-        'data-plane/files',
-        'data-plane/batches',
-        'data-plane/responses',
-        'data-plane/realtime',
-        'data-plane/model-management',
-        'data-plane/tool-calling',
-        'data-plane/autonomous-tool-loop',
+        {
+          type: 'category',
+          label: 'Text & Chat Generation',
+          collapsed: false,
+          items: [
+            'data-plane/chat-completions',
+            'data-plane/messages',
+            'data-plane/completions',
+            'data-plane/tool-calling',
+            'data-plane/autonomous-tool-loop',
+            'data-plane/model-management',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Multi-Modal & Media',
+          collapsed: false,
+          items: [
+            'data-plane/embeddings',
+            'data-plane/rerank',
+            'data-plane/audio',
+            'data-plane/images',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Streaming & Async',
+          collapsed: false,
+          items: [
+            'data-plane/realtime',
+            'data-plane/files',
+            'data-plane/batches',
+            'data-plane/responses',
+            'data-plane/moderations',
+            'data-plane/tokenize',
+          ],
+        },
       ],
     },
     {
       type: 'category',
-      label: 'Provider Integrations',
+      label: 'Providers & Dialects',
       collapsed: true,
       items: [
         'providers/overview',
@@ -81,48 +95,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'Go SDK',
-      collapsed: true,
-      items: [
-        'sdk/overview',
-        'sdk/client-configuration',
-        'sdk/chat-and-streaming',
-        'sdk/virtual-keys-and-finops',
-        'sdk/mcp-and-a2a',
-        'sdk/go-sdk-reference',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Agentic Protocols',
-      collapsed: true,
-      items: [
-        {
-          type: 'category',
-          label: 'MCP',
-          collapsed: false,
-          items: [
-            'protocols/mcp-overview',
-            'protocols/mcp-hub-and-rest',
-            'protocols/mcp-progressive-discovery',
-            'protocols/mcp-stdio-sandboxing',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'A2A',
-          collapsed: false,
-          items: [
-            'protocols/a2a-overview',
-            'protocols/a2a-agent-cards',
-            'protocols/a2a-bridge-and-grpc',
-          ],
-        },
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Routing & Resiliency',
+      label: 'Traffic & Resiliency',
       collapsed: true,
       items: [
         'routing-resiliency/complexity-classifier',
@@ -141,16 +114,45 @@ const sidebars: SidebarsConfig = {
         'finops-and-security/rbac-and-vault',
         'finops-and-security/guardrails',
         'finops-and-security/ssrf-and-network',
-        'caching-and-limits/sliding-window-ratelimit',
-        'caching-and-limits/preflight-tokenizer',
-        'caching-and-limits/exact-match-cache',
+        'finops-and-security/sliding-window-ratelimit',
+        'finops-and-security/preflight-tokenizer',
+        'finops-and-security/exact-match-cache',
       ],
     },
     {
       type: 'category',
-      label: 'Operations & Runbooks',
+      label: 'Agent Protocols',
       collapsed: true,
       items: [
+        {
+          type: 'category',
+          label: 'Model Context Protocol (MCP)',
+          collapsed: false,
+          items: [
+            'protocols/mcp-overview',
+            'protocols/mcp-hub-and-rest',
+            'protocols/mcp-progressive-discovery',
+            'protocols/mcp-stdio-sandboxing',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Agent-to-Agent (A2A)',
+          collapsed: false,
+          items: [
+            'protocols/a2a-overview',
+            'protocols/a2a-agent-cards',
+            'protocols/a2a-bridge-and-grpc',
+          ],
+        },
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Operations & Web UI',
+      collapsed: true,
+      items: [
+        'operations/operator-ui',
         'operations/configuration',
         'operations/deployment-and-storage',
         'operations/observability',
@@ -160,7 +162,24 @@ const sidebars: SidebarsConfig = {
     },
   ],
 
-  // Interactive Progressive Demos
+  // Dedicated Go SDK Handbook & Reference
+  sdkSidebar: [
+    {
+      type: 'category',
+      label: 'Go SDK Handbook',
+      collapsed: false,
+      items: [
+        'sdk/overview',
+        'sdk/client-configuration',
+        'sdk/chat-and-streaming',
+        'sdk/virtual-keys-and-finops',
+        'sdk/mcp-and-a2a',
+        'sdk/go-sdk-reference',
+      ],
+    },
+  ],
+
+  // Interactive Progressive Demos (26 runnable Go examples)
   demosSidebar: [
     'demos/overview',
     {
@@ -226,13 +245,20 @@ const sidebars: SidebarsConfig = {
     },
   ],
 
-  // Written REST API guides
+  // REST & Protocol Specifications
   apiSidebar: [
-    'api-reference/overview',
-    'api-reference/gateway-api',
-    'api-reference/admin-api',
-    'api-reference/mcp-api',
-    'api-reference/a2a-api',
+    {
+      type: 'category',
+      label: 'API Reference',
+      collapsed: false,
+      items: [
+        'api-reference/overview',
+        'api-reference/gateway-api',
+        'api-reference/admin-api',
+        'api-reference/mcp-api',
+        'api-reference/a2a-api',
+      ],
+    },
   ],
 };
 

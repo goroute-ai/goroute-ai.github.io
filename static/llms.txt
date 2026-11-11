@@ -74,9 +74,9 @@ GoRoute AI Gateway is a production-grade, high-performance AI gateway and Go SDK
 - [RBAC & Encrypted Vault](https://goroute-ai.github.io/ai-gateway-go-docs/docs/finops-and-security/rbac-and-vault): Role-based access control and AES-256-GCM upstream credential storage.
 - [Guardrails & Safety](https://goroute-ai.github.io/ai-gateway-go-docs/docs/finops-and-security/guardrails): Pre-execution regex filters, PII redaction, and policy enforcement.
 - [SSRF & Network Hardening](https://goroute-ai.github.io/ai-gateway-go-docs/docs/finops-and-security/ssrf-and-network): Private IP blocking and egress transport enforcement.
-- [Sliding-Window Rate Limiting](https://goroute-ai.github.io/ai-gateway-go-docs/docs/caching-and-limits/sliding-window-ratelimit): Redis-backed sliding log limiters for RPM and TPM.
-- [Preflight Tokenizer](https://goroute-ai.github.io/ai-gateway-go-docs/docs/caching-and-limits/preflight-tokenizer): In-process BPE token estimation preventing upstream overflow errors.
-- [Exact-Match Cache](https://goroute-ai.github.io/ai-gateway-go-docs/docs/caching-and-limits/exact-match-cache): SHA-256 response caching saving 100% of compute cost on duplicate prompts.
+- [Sliding-Window Rate Limiting](https://goroute-ai.github.io/ai-gateway-go-docs/docs/finops-and-security/sliding-window-ratelimit): Redis-backed sliding log limiters for RPM and TPM.
+- [Preflight Tokenizer](https://goroute-ai.github.io/ai-gateway-go-docs/docs/finops-and-security/preflight-tokenizer): In-process BPE token estimation preventing upstream overflow errors.
+- [Exact-Match Cache](https://goroute-ai.github.io/ai-gateway-go-docs/docs/finops-and-security/exact-match-cache): SHA-256 response caching saving 100% of compute cost on duplicate prompts.
 
 ## 9. Operations & Runbooks
 - [Configuration Reference](https://goroute-ai.github.io/ai-gateway-go-docs/docs/operations/configuration): YAML schema, environment overrides, and secret substitution.

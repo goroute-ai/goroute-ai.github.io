@@ -191,4 +191,4 @@ docker compose -f deployments/docker-compose.yml down -v
 
 - Consult the [Operator UI Runbook](/docs/operations/operator-ui) for administration workflows.
 - Explore the [Admin Control Plane API](/docs/api-reference/admin-api) for automated provisioning.
-- Learn about [Distributed Rate Limiting](/docs/caching-and-limits/sliding-window-ratelimit) using Redis Lua scripts.
+- Learn about [Distributed Rate Limiting](/docs/finops-and-security/sliding-window-ratelimit) using Redis Lua scripts.
