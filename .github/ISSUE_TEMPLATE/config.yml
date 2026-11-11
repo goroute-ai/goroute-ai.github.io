@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: "💬 GoRoute Community & Discussions"
+    url: "https://github.com/goroute-ai/ai-gateway-go/discussions"
+    about: "Ask questions, share implementations, or discuss architecture with the GoRoute community."
+  - name: "🚨 Report a Security Vulnerability"
+    url: "https://github.com/goroute-ai/goroute-ai.github.io/security/advisories/new"
+    about: "Report security vulnerabilities or credential issues privately."
