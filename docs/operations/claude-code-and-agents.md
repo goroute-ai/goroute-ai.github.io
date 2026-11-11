@@ -22,13 +22,13 @@ The root `CLAUDE.md` file serves as the immediate instruction entrypoint for Cla
 
 ```mermaid
 graph TD
-    Root["CLAUDE.md &lt; 100 Lines<br/>(Immediate Context)"]
+    Root["CLAUDE.md: Under 100 Lines<br/>(Immediate Context)"]
     Root --> Inv1["1. Micro-Dollar FinOps (Integer Arithmetic)"]
     Root --> Inv2["2. SSRF & Egress Protection (internal/security/network)"]
     Root --> Inv3["3. Fail-Closed 4-Layer RBAC (Org/Team/User/Key)"]
     Root --> Inv4["4. AES-256-GCM Credential Vault"]
     Root --> Inv5["5. Contract-Guided Specs (OpenAPI 3.1 & Protos)"]
-    Root --> Inv6["6. Single-Binary Embedded UI (&lt; 400 KB Budget)"]
+    Root --> Inv6["6. Single-Binary Embedded UI (Under 400 KB Budget)"]
     Root --> Inv7["7. Immutable Model Pricing Audit History"]
 ```
 

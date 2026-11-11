@@ -18,10 +18,10 @@ flowchart TD
     end
 
     subgraph Gateway["GoRoute AI Gateway Hub"]
-        DualBinding["Dual Ingress Binding<br/>(HTTP+JSON &amp; JSON-RPC 2.0)"]
+        DualBinding["Dual Ingress Binding<br/>(HTTP+JSON & JSON-RPC 2.0)"]
         TaskRouter["A2A Task Router Service"]
         StreamSub["Subscribe-First SSE Engine<br/>(Monotonic Event Sequences)"]
-        Outbox["Transactional Outbox Worker<br/>(DLQ &amp; Exponential Backoff)"]
+        Outbox["Transactional Outbox Worker<br/>(DLQ & Exponential Backoff)"]
     end
 
     subgraph Upstream["Target Agent Network"]
@@ -138,8 +138,8 @@ flowchart LR
     Claim --> HTTPPost
     HTTPPost --> RetryLogic
     RetryLogic -->|Yes| MarkSent["Status: SENT"]
-    RetryLogic -->|No &lt; 5 Retries| Backoff["Exponential Backoff<br/>100ms * 2^attempt"]
-    RetryLogic -->|No &gt;= 5 Retries| DLQ["Status: DEAD_LETTER (DLQ)"]
+    RetryLogic -->|"No (under 5 retries)"| Backoff["Exponential Backoff<br/>100ms * 2^attempt"]
+    RetryLogic -->|"No (max retries exceeded)"| DLQ["Status: DEAD_LETTER (DLQ)"]
     
     MarkSent --> DB
     Backoff --> DB

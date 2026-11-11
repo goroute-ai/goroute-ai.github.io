@@ -10,7 +10,7 @@ GoRoute AI Gateway implements a dual-boundary security architecture ensuring cry
 ```mermaid
 graph TD
     Client["Client Token<br/>(Virtual Key sk-gw-...)"] --> Gateway["GoRoute AI Gateway<br/>(Dual-Boundary Isolation)"]
-    Gateway --> RBAC["4-Layer RBAC Gatekeeper<br/>(Org &gt; Team &gt; Role &gt; Key)"]
+    Gateway --> RBAC["4-Layer RBAC Gatekeeper<br/>(Org → Team → Role → Key)"]
     RBAC --> Vault["AES-256-GCM Key Vault<br/>(AEAD Envelope Cryptography)"]
     Vault --> Decrypted["Decrypted Upstream Secret<br/>(Only in Ephemeral RAM)"]
     Decrypted --> Provider["AI Provider API<br/>(OpenAI, Claude, Gemini)"]

@@ -10,7 +10,7 @@ GoRoute AI Gateway is the first enterprise AI data plane with native, multi-vers
 
 ```mermaid
 graph TD
-    Client["Client / Agent<br/>(Claude Code, Cursor, Custom Agent)"] --> Gateway["GoRoute AI Gateway<br/>(Virtual Hub POST /mcp &amp; REST /mcp-rest)"]
+    Client["Client / Agent<br/>(Claude Code, Cursor, Custom Agent)"] --> Gateway["GoRoute AI Gateway<br/>(Virtual Hub POST /mcp & REST /mcp-rest)"]
     
     Gateway --> Upstream1["Remote MCP Server A<br/>(Streamable HTTP 2026-07-28 Stateless)"]
     Gateway --> Upstream2["Legacy MCP Server B<br/>(HTTP-SSE 2025-11-25 Stateful)"]

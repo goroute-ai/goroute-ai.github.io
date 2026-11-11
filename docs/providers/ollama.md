@@ -20,10 +20,10 @@ GoRoute implements native stream transcoding in `internal/adapter/ollama/adapter
 
 ```mermaid
 flowchart LR
-    Client["Client / Application"] -->|POST /v1/chat/completions\n(Accept: text/event-stream)| GW["GoRoute AI Gateway"]
-    GW -->|POST /api/chat\n(stream: true)| Ollama["Ollama Daemon\n(:11434)"]
-    Ollama -->|NDJSON Lines\n{"message":{"content":"..."},"done":false}| GW
-    GW -->|Standard OpenAI SSE\ndata: {"choices":[{"delta":{"content":"..."}}]}| Client
+    Client["Client / Application"] -->|"POST /v1/chat/completions (SSE)"| GW["GoRoute AI Gateway"]
+    GW -->|"POST /api/chat (stream)"| Ollama["Ollama Daemon (:11434)"]
+    Ollama -->|"NDJSON Lines"| GW
+    GW -->|"Standard OpenAI SSE"| Client
 ```
 
 When Ollama indicates stream completion (`done: true`), GoRoute captures `prompt_eval_count` and `eval_count` and attaches a final standard `usage` object to the SSE stream before emitting `data: [DONE]`.

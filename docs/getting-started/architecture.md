@@ -43,15 +43,15 @@ Every inference request traversing GoRoute undergoes a deterministic 10-step lif
 
 ```mermaid
 graph TD
-    Client["Client Request<br/>(OpenAI SDK / Go SDK / cURL)"] --> Auth["1. Auth &amp; Vault<br/>(SHA-256 Virtual Key, 4-Layer RBAC)"]
+    Client["Client Request<br/>(OpenAI SDK / Go SDK / cURL)"] --> Auth["1. Auth and Vault<br/>(SHA-256 Virtual Key, 4-Layer RBAC)"]
     Auth --> RL["2. Distributed Rate Limiter<br/>(Redis Lua Sliding Window RPM/TPM)"]
     RL --> Cache{"3. Exact Cache<br/>(Deterministic SHA-256)?"}
     Cache -- "Cache HIT" --> Response["4. Return Cached Response<br/>(0.05ms Fast Path)"]
-    Cache -- "Cache MISS" --> Router["5. Stage 1 Heuristic Classifier<br/>(&lt;0.1ms Zero-LLM Fast vs Reasoning)"]
+    Cache -- "Cache MISS" --> Router["5. Stage 1 Heuristic Classifier<br/>(Sub-0.1ms Zero-LLM Fast vs Reasoning)"]
     Router --> Balancer["6. Stage 2 EWMA Load Balancer<br/>(5 Lock-Free Algorithms)"]
     Balancer --> CB["7. 3-State Circuit Breakers<br/>(Healthy / Half-Open / Open)"]
     CB --> Adapter["8. Wire Protocol Normalization<br/>(Gemini, Claude, OpenAI, Mistral, Ollama)"]
-    Adapter --> Upstream["9. Model Execution &amp; SSE Stream"]
+    Adapter --> Upstream["9. Model Execution and SSE Stream"]
     Upstream --> FinOps["10. Asynchronous FinOps Ledger<br/>(Integer Micro-Dollars, pgx.Batch)"]
     FinOps --> Response
 ```

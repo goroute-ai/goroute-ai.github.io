@@ -23,19 +23,19 @@ flowchart TD
     Index --> MCP["MCP Virtual Hub<br/>(/mcp, /mcp-rest)"]
     Index --> A2A["A2A Protocol Service<br/>(/a2a/v1/*, gRPC)"]
 
-    DP --> DP1["Chat, Completions &amp; Reasoning"]
-    DP --> DP2["Audio, Images, Embeddings &amp; Rerank"]
-    DP --> DP3["Stateful Files, Batches &amp; Realtime"]
+    DP --> DP1["Chat, Completions and Reasoning"]
+    DP --> DP2["Audio, Images, Embeddings and Rerank"]
+    DP --> DP3["Stateful Files, Batches and Realtime"]
 
-    Admin --> AD1["Orgs, Teams, Users &amp; Virtual Keys"]
-    Admin --> AD2["Credentials Vault, Deployments &amp; Pricing"]
-    Admin --> AD3["FinOps Ledgers, Guardrails &amp; Health Probes"]
+    Admin --> AD1["Orgs, Teams, Users and Virtual Keys"]
+    Admin --> AD2["Credentials Vault, Deployments and Pricing"]
+    Admin --> AD3["FinOps Ledgers, Guardrails and Health Probes"]
 
-    MCP --> M1["tools/list Aggregator &amp; tools/call"]
-    MCP --> M2["Plain REST Bridge &amp; Progressive Handles"]
+    MCP --> M1["tools/list Aggregator and tools/call"]
+    MCP --> M2["Plain REST Bridge and Progressive Handles"]
 
-    A2A --> A1["Signed Agent Cards &amp; Message Dispatch"]
-    A2A --> A2["SSE Task Streams, Native gRPC &amp; Bridge"]
+    A2A --> A1["Signed Agent Cards and Message Dispatch"]
+    A2A --> A2["SSE Task Streams, Native gRPC and Bridge"]
 ```
 
 | Specification Guide | Endpoints Base | Core Coverage |

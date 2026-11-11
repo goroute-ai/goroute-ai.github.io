@@ -10,13 +10,13 @@ This guide provides root-cause diagnostic workflows and operational recovery run
 
 ```mermaid
 flowchart TD
-    Error["Client Encounters Error Response"] --> CheckCode{"Check HTTP Status &amp; Error Code"}
+    Error["Client Encounters Error Response"] --> CheckCode{"Check HTTP Status & Error Code"}
     
-    CheckCode -->|HTTP 402| Budget["Budget Exceeded (budget_exceeded_error)<br/>→ Runbook 1: Adjust Spend Limits"]
-    CheckCode -->|HTTP 429| RateLimit["Rate Limited (rate_limit_error)<br/>→ Runbook 2: Sliding-Window Quota / Leases"]
-    CheckCode -->|HTTP 403 / 502 SSRF| NetworkBlock["SSRF or Private Network Block<br/>→ Runbook 3: Network Policy &amp; CIDRs"]
-    CheckCode -->|HTTP 502 / 503| CircuitBreaker["Circuit Breaker Tripped (OPEN)<br/>→ Runbook 4: Cooldown &amp; Probing"]
-    CheckCode -->|HTTP 401 / 403 Auth| RBAC["Auth / Permission Error<br/>→ Runbook 5: 4-Layer RBAC &amp; Keys"]
+    CheckCode -->|"HTTP 402"| Budget["Budget Exceeded (budget_exceeded_error)<br/>→ Runbook 1: Adjust Spend Limits"]
+    CheckCode -->|"HTTP 429"| RateLimit["Rate Limited (rate_limit_error)<br/>→ Runbook 2: Sliding-Window Quota / Leases"]
+    CheckCode -->|"HTTP 403 / 502 SSRF"| NetworkBlock["SSRF or Private Network Block<br/>→ Runbook 3: Network Policy & CIDRs"]
+    CheckCode -->|"HTTP 502 / 503"| CircuitBreaker["Circuit Breaker Tripped (OPEN)<br/>→ Runbook 4: Cooldown & Probing"]
+    CheckCode -->|"HTTP 401 / 403 Auth"| RBAC["Auth / Permission Error<br/>→ Runbook 5: 4-Layer RBAC & Keys"]
 ```
 
 ---

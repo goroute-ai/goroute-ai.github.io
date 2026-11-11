@@ -70,12 +70,12 @@ Authenticate using your Master Admin Key (`GATEWAY_MASTER_ADMIN_KEY`). The Opera
 ```mermaid
 flowchart LR
     Client["Client Request<br/>(OpenAI SDK / cURL / MCP)"] --> Ingress["GoRoute Gateway<br/>(:8080)"]
-    Ingress --> Auth["Virtual Key Auth<br/>&amp; 4-Layer RBAC"]
+    Ingress --> Auth["Virtual Key Auth<br/>and 4-Layer RBAC"]
     Auth --> Limiter["Redis Lua Limiter<br/>(Sliding RPM / TPM)"]
     Limiter --> Cache{"Exact Cache<br/>(SHA-256 HIT?)"}
-    Cache -- HIT --> Resp["Immediate Response<br/>(&lt;0.05ms)"]
+    Cache -- HIT --> Resp["Immediate Response<br/>(0.05ms)"]
     Cache -- MISS --> Router["Two-Stage Router<br/>(Classifier + Balancer)"]
-    Router --> Circuit["Circuit Breaker<br/>&amp; Fallback Cascade"]
+    Router --> Circuit["Circuit Breaker<br/>and Fallback Cascade"]
     Circuit --> Provider["Winning Provider<br/>(OpenAI, Claude, Gemini, etc.)"]
     Provider --> Ledger["FinOps Ledger<br/>(Micro-Dollar Accounting)"]
     Ledger --> Resp

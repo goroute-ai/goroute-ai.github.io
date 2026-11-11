@@ -19,7 +19,7 @@ sequenceDiagram
     participant Provider as Upstream LLM / Mock Engine
 
     Caller->>GW: gateway.New(WithModelList(...))
-    Note over GW: Embedded server boots in &lt; 2ms
+    Note over GW: Embedded server boots in under 2ms
     Caller->>GW: gw.Chat(ctx, "gpt-4o-mini", "Hello!")
     GW->>Provider: Forward Canonical Request
     Provider-->>GW: Return Completion

@@ -24,7 +24,7 @@ flowchart TD
     end
 
     subgraph Storage["Clustered Persistence Layer"]
-        PG[("PostgreSQL 16+<br/>(16 Persistent Tables &amp; Migrations)")]
+        PG[("PostgreSQL 16+<br/>(16 Persistent Tables & Migrations)")]
         Redis[("Redis 7+<br/>(L2 Caching, Rate Limiting, Pub/Sub)")]
     end
 

@@ -38,7 +38,7 @@ flowchart TD
 
     SPA -->|HTTP Requests| ChiRouter
     ChiRouter -->|Hashed Asset Request| EmbedFS
-    ChiRouter -->|Client Route (e.g. /ui/finops)| HTML5Fallback
+    ChiRouter -->|"Client Route: /ui/finops"| HTML5Fallback
     SPA -->|Inference Stream| DataPlane
     SPA -->|Admin Ops & Metrics| ControlPlane
 ```

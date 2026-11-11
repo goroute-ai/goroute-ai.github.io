@@ -164,8 +164,8 @@ Each entry in `model_list` defines:
 ```mermaid
 flowchart TD
     Client["Client Request: model: 'gpt-4o'"] --> Primary["Primary Group: gpt-4o<br/>(openai/gpt-4o)"]
-    Primary -->|HTTP 429 / 5xx &amp; Retries Exhausted| FB1["Fallback 1: claude-3-5-sonnet<br/>(anthropic/claude-3-5-sonnet)"]
-    FB1 -->|HTTP 429 / 5xx &amp; Retries Exhausted| FB2["Fallback 2: gemini-2.5-pro<br/>(gemini/gemini-2.5-pro)"]
+    Primary -->|"HTTP 429 / 5xx & Retries Exhausted"| FB1["Fallback 1: claude-3-5-sonnet<br/>(anthropic/claude-3-5-sonnet)"]
+    FB1 -->|"HTTP 429 / 5xx & Retries Exhausted"| FB2["Fallback 2: gemini-2.5-pro<br/>(gemini/gemini-2.5-pro)"]
     FB2 -->|Success| Response["200 OK (X-Gateway-Provider: gemini)"]
 ```
 

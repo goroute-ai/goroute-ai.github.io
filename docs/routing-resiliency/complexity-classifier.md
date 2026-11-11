@@ -9,10 +9,10 @@ When clients request `model: "auto"`, GoRoute AI Gateway evaluates the prompt us
 
 ```mermaid
 graph TD
-    Prompt["Incoming Prompt (model: 'auto')"] --> Stage1["Stage 1 Heuristic Classifier<br/>(&lt; 0.1ms Execution)"]
-    Stage1 --> Signals{"Complexity Signals:<br/>Context Length, Code Markers,<br/>Math &amp; Multi-Step Reasoning"}
-    Signals -- "Complexity &lt; 0.40" --> Fast["Fast Tier Alias ('fast')<br/>(Gemini 2.5 Flash, GPT-4o-mini)<br/>Low Cost, 50-100 tok/s"]
-    Signals -- "Complexity &gt;= 0.40" --> Reasoning["Reasoning Tier Alias ('reasoning')<br/>(Claude Sonnet 4, o1, o3-mini)<br/>Deep Analysis, Advanced Math/Code"]
+    Prompt["Incoming Prompt (model: 'auto')"] --> Stage1["Stage 1 Heuristic Classifier<br/>(Sub-0.1ms Execution)"]
+    Stage1 --> Signals{"Complexity Signals:<br/>Context Length, Code Markers,<br/>Math and Multi-Step Reasoning"}
+    Signals -- "Complexity < 0.40" --> Fast["Fast Tier Alias ('fast')<br/>(Gemini 2.5 Flash, GPT-4o-mini)<br/>Low Cost, 50-100 tok/s"]
+    Signals -- "Complexity >= 0.40" --> Reasoning["Reasoning Tier Alias ('reasoning')<br/>(Claude Sonnet 4, o1, o3-mini)<br/>Deep Analysis, Advanced Math/Code"]
 ```
 
 ---
