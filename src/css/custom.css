@@ -731,36 +731,6 @@ div[class*='codeBlockLines'] {
   }
 }
 
-.home-more {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  overflow: hidden;
-  border: 1px solid var(--color-border);
-  border-radius: 0.85rem;
-  background: var(--ifm-background-surface-color);
-}
-
-.home-more > div { display: grid; grid-template-columns: 2.5rem 1fr auto; align-items: center; gap: 0.8rem; padding: 1.15rem 1.3rem; }
-.home-more > div:nth-child(odd) { border-right: 1px solid var(--color-border); }
-.home-more > div:nth-child(n+3) { border-top: 1px solid var(--color-border); }
-.home-more__icon { display: grid; width: 2.35rem; height: 2.35rem; place-items: center; border-radius: 0.55rem; background: var(--docs-accent-soft); color: var(--ifm-color-primary); font-family: var(--ifm-font-family-monospace); font-size: 0.85rem; font-weight: 700; }
-.home-more strong,.home-more small { display: block; }
-.home-more strong { color: var(--color-text-title); font-size: 0.88rem; }
-.home-more small { margin-top: 0.15rem; color: var(--color-muted); font-size: 0.76rem; }
-.home-more a { padding: 0.35rem; font-size: 1.1rem; }
-
-.explorer-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin: 1.5rem 0 2.5rem; }
-.explorer-card { padding: 1.4rem; border: 1px solid var(--color-border); border-radius: 0.8rem; background: var(--ifm-background-surface-color); }
-.explorer-card h2 { margin: 0 0 0.65rem; border: 0; padding: 0; font-size: 1.25rem; }
-.explorer-card p:not(.home-eyebrow) { color: var(--color-muted); font-size: 0.9rem; line-height: 1.65; }
-.explorer-card .button { display: inline-flex; margin-top: 0.5rem; border-radius: 0.55rem; font-size: 0.86rem; }
-.explorer-card .button--secondary { color: var(--color-text-title); border-color: var(--color-border); background: transparent; }
-
-@media (max-width: 900px) {
-  .home-hero { grid-template-columns: 1fr; }
-  .home-hero__diagram { max-width: 560px; width: 100%; }
-}
-
 @media (max-width: 650px) {
   .home-page { width: min(100% - 1.25rem, 1180px); padding-top: 1rem; }
   .home-hero { gap: 2rem; padding: 1.4rem; border-radius: 0.85rem; }
@@ -771,10 +741,7 @@ div[class*='codeBlockLines'] {
   .home-section-heading { align-items: start; flex-direction: column; gap: 0.75rem; }
   .home-path-grid { grid-template-columns: 1fr; }
   .home-path-card { min-height: 0; }
-  .home-more { grid-template-columns: 1fr; }
   .explorer-grid { grid-template-columns: 1fr; }
-  .home-more > div:nth-child(odd) { border-right: 0; }
-  .home-more > div:nth-child(n+2) { border-top: 1px solid var(--color-border); }
 }
 
 @media (prefers-reduced-motion: reduce) {

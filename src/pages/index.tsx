@@ -11,15 +11,15 @@ const pillars = [
     label: 'Explore Operator UI',
   },
   {
-    badge: 'DATA PLANE · 21 ROUTES',
-    title: '21 Multi-Modal Routes',
+    badge: 'DATA PLANE · UNIFIED',
+    title: 'Multi-Modal Data Plane',
     text: 'Chat completions, rerank, moderations, messages with thinking blocks, fast tokenization, audio STT/TTS, image generation, files, batches, and realtime WebSockets.',
     link: '/docs/data-plane/chat-completions',
     label: 'Browse Data Plane',
   },
   {
-    badge: 'ECOSYSTEM · 42 ADAPTERS',
-    title: '42 Provider Integrations',
+    badge: 'ECOSYSTEM · ADAPTERS',
+    title: 'Provider Ecosystem',
     text: 'Native drivers for OpenAI, Anthropic Claude, Google Gemini, AWS Bedrock, Google Vertex AI, Azure OpenAI, Cohere, Mistral, Ollama, plus universal OpenAI-compatible engines.',
     link: '/docs/providers/overview',
     label: 'View Providers',
@@ -68,7 +68,7 @@ export default function Home(): ReactNode {
   return (
     <Layout
       title="GoRoute AI Gateway · Go SDK, Standalone Proxy & Operator Console"
-      description="Production-grade AI gateway for Go. 21 multi-modal data plane routes, 42 provider dialects, embedded Operator Web UI (/ui/), and micro-dollar FinOps."
+      description="Production-grade AI gateway for Go. Unified multi-modal routing, native provider adapters, embedded Operator Web UI (/ui/), and micro-dollar FinOps."
     >
       <main className="home-page">
         <section className="home-hero">
@@ -76,9 +76,7 @@ export default function Home(): ReactNode {
             <p className="home-eyebrow">GoRoute AI Gateway · Enterprise AI Infrastructure</p>
             <h1>Build your AI integration in Go.</h1>
             <p className="home-hero__lead">
-              Embed the gateway in your Go application, or run it as a standalone high-performance proxy.
-              Unify <strong>21 multi-modal data plane routes</strong> across <strong>42 provider dialects</strong>,
-              inspect real-time traffic in the <strong>Operator Web UI (/ui/)</strong>, and enforce sub-cent <strong>micro-dollar FinOps</strong>.
+              Embed the gateway directly in your Go services with zero external network overhead, or deploy it as a standalone high-performance proxy with real-time observability and sub-cent FinOps accounting.
             </p>
             <div className="home-actions">
               <Link className="button button--primary button--lg" to="/docs/getting-started/quickstart-sdk">
@@ -100,7 +98,7 @@ export default function Home(): ReactNode {
             <div className="flow-node flow-node--client">
               <span>YOUR APP / CLIENTS</span>
               <strong>Go SDK & HTTP / WS</strong>
-              <small>Port 8080 · 21 Multi-Modal Routes</small>
+              <small>Port 8080 · Multi-Modal Data Plane</small>
             </div>
             <div className="flow-line"><span>inspect & route</span></div>
             <div className="flow-node flow-node--gateway">
@@ -111,7 +109,7 @@ export default function Home(): ReactNode {
             <div className="flow-line"><span>upstream dialect</span></div>
             <div className="flow-node flow-node--provider">
               <span>UPSTREAM PROVIDERS</span>
-              <strong>42 Model Integrations</strong>
+              <strong>Universal Model Integrations</strong>
               <small>OpenAI · Claude · Gemini · Bedrock · Ollama</small>
             </div>
           </div>
@@ -155,15 +153,6 @@ export default function Home(): ReactNode {
               </article>
             ))}
           </div>
-        </section>
-
-        <section className="home-more" aria-label="More documentation">
-          <div><span className="home-more__icon">{`{ }`}</span><span><strong>Go SDK</strong><small>Embedding, configuration, chat streaming, and types</small></span><Link to="/docs/sdk/overview" aria-label="Explore Go SDK documentation">→</Link></div>
-          <div><span className="home-more__icon">◈</span><span><strong>Operator Web UI</strong><small>Cluster metrics, key vault, and catalog at /ui/</small></span><Link to="/docs/operations/operator-ui" aria-label="Explore Operator UI">→</Link></div>
-          <div><span className="home-more__icon">⚡</span><span><strong>21 Data Plane Routes</strong><small>Chat, rerank, audio, images, files, and realtime</small></span><Link to="/docs/data-plane/chat-completions" aria-label="Explore Data Plane">→</Link></div>
-          <div><span className="home-more__icon">↗</span><span><strong>42 Providers</strong><small>Dedicated cloud, local Ollama, and OpenAI-compatible</small></span><Link to="/docs/providers/overview" aria-label="Explore provider documentation">→</Link></div>
-          <div><span className="home-more__icon">⌘</span><span><strong>Micro-Dollar FinOps</strong><small>Virtual keys, 64-bit ledger, and token caching</small></span><Link to="/docs/finops-and-security/micro-dollar-ledger" aria-label="Explore FinOps documentation">→</Link></div>
-          <div><span className="home-more__icon">⌕</span><span><strong>26 Runnable Demos</strong><small>Complete Go examples for routing, MCP, and failover</small></span><Link to="/docs/demos/overview" aria-label="Explore examples">→</Link></div>
         </section>
       </main>
     </Layout>
