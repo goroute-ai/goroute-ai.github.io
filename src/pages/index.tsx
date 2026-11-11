@@ -1,33 +1,33 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useState } from 'react';
 import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
 
 const pillars = [
   {
     badge: 'GUI CONSOLE · PORT 8080',
-    title: 'Operator Web UI',
-    text: 'Zero-dependency browser dashboard served directly at /ui/. Live cluster telemetry, API key management, pricing catalog sync, deployment health, and ledger audits.',
+    title: 'Operator Console',
+    text: 'Zero-dependency browser dashboard for live cluster telemetry, virtual key management, and financial audits.',
     link: '/docs/operations/operator-ui',
-    label: 'Explore Operator UI',
+    label: 'Explore Operator Console',
   },
   {
     badge: 'DATA PLANE · UNIFIED',
     title: 'Multi-Modal Data Plane',
-    text: 'Chat completions, rerank, moderations, messages with thinking blocks, fast tokenization, audio STT/TTS, image generation, files, batches, and realtime WebSockets.',
+    text: 'High-throughput unified routing for chat, audio transcription, image synthesis, and realtime WebSockets.',
     link: '/docs/data-plane/chat-completions',
     label: 'Browse Data Plane',
   },
   {
     badge: 'ECOSYSTEM · ADAPTERS',
     title: 'Provider Ecosystem',
-    text: 'Native drivers for OpenAI, Anthropic Claude, Google Gemini, AWS Bedrock, Google Vertex AI, Azure OpenAI, Cohere, Mistral, Ollama, plus universal OpenAI-compatible engines.',
+    text: 'Native zero-overhead adapters for dedicated cloud providers, local Ollama, and OpenAI-compatible engines.',
     link: '/docs/providers/overview',
     label: 'View Providers',
   },
   {
     badge: 'FINOPS · SUB-CENT ACCURACY',
     title: 'Micro-Dollar FinOps',
-    text: 'High-precision 64-bit micro-dollar accounting ($0.000001). Tenant virtual keys, hard/soft budget caps, sliding-window rate limiters, exact-match cache, and SSRF guardrails.',
+    text: '64-bit micro-dollar accounting with tenant virtual keys, spend caps, rate limiting, and response caching.',
     link: '/docs/finops-and-security/micro-dollar-ledger',
     label: 'FinOps Architecture',
   },
@@ -36,33 +36,91 @@ const pillars = [
 const paths = [
   {
     number: '01',
+    badge: 'EMBEDDED GO LIBRARY',
     title: 'Embed with the Go SDK',
-    text: 'Add the gateway to your Go service with zero external network overhead, unified types, and resilient streaming.',
+    summary: 'Direct in-process integration for Go backend services needing zero network proxy overhead.',
+    topics: [
+      'Installation & pkg/gateway setup',
+      'Client options, context & timeouts',
+      'Chat completions & streaming iterators',
+    ],
     link: '/docs/getting-started/quickstart-sdk',
-    label: 'Start with the SDK',
+    label: 'Go SDK Quickstart',
   },
   {
     number: '02',
-    title: 'Run Standalone & Operator UI',
-    text: 'Deploy the standalone Go binary or Docker Compose stack, complete with the Operator Web UI at http://localhost:8080/ui/.',
-    link: '/docs/getting-started/quickstart-cli',
-    label: 'Deployment options',
+    badge: 'CONTAINER & CLUSTER',
+    title: 'Deploy Standalone Proxy',
+    summary: 'Containerized deployment with the embedded Operator Console and state storage.',
+    topics: [
+      'Docker Compose & single binary CLI',
+      'Operator Console visual management',
+      'PostgreSQL & Redis state storage',
+    ],
+    link: '/docs/getting-started/quickstart-docker',
+    label: 'Deployment Options',
   },
   {
     number: '03',
-    title: 'Explore Multi-Modal Routes',
-    text: 'Use standardized endpoints for text completions, audio transcription, image synthesis, batch queues, and realtime audio.',
+    badge: 'UNIFIED ENDPOINTS',
+    title: 'Multi-Modal Data Plane',
+    summary: 'Standardized HTTP and WebSocket routes across any upstream AI provider dialect.',
+    topics: [
+      'Chat completions & thinking blocks',
+      'Speech STT/TTS & image generation',
+      'Realtime WebSocket data plane',
+    ],
     link: '/docs/data-plane/chat-completions',
-    label: 'Browse route guides',
+    label: 'Explore Routes',
   },
   {
     number: '04',
-    title: 'Work with the API & Protocols',
-    text: 'Reference specifications for inference routes, admin control plane, MCP tools, and A2A multi-agent networks.',
-    link: '/docs/api-reference/overview',
-    label: 'Browse API guides',
+    badge: 'RUNNABLE EXAMPLES',
+    title: 'Interactive Demos & Protocols',
+    summary: 'Complete Go code recipes for resilient traffic routing, MCP tools, and agent networks.',
+    topics: [
+      '26 runnable atomic Go demonstrations',
+      'EWMA balancers & circuit breakers',
+      'MCP Virtual Hub & A2A agent network',
+    ],
+    link: '/docs/demos/overview',
+    label: 'View Code Demos',
   },
 ];
+
+function CopyInstallButton(): ReactNode {
+  const [copied, setCopied] = useState(false);
+  const command = 'curl -fsSL https://raw.githubusercontent.com/goroute-ai/ai-gateway-go/main/install.sh | bash';
+
+  const handleCopy = () => {
+    if (typeof navigator !== 'undefined' && navigator.clipboard) {
+      navigator.clipboard.writeText(command);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
+  };
+
+  return (
+    <button
+      type="button"
+      className="home-code-hint__copy"
+      onClick={handleCopy}
+      aria-label={copied ? 'Copied!' : 'Copy install command'}
+      title={copied ? 'Copied!' : 'Copy to clipboard'}
+    >
+      {copied ? (
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      ) : (
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+      )}
+    </button>
+  );
+}
 
 export default function Home(): ReactNode {
   return (
@@ -83,15 +141,15 @@ export default function Home(): ReactNode {
                 Start with the Go SDK <span aria-hidden="true">→</span>
               </Link>
               <Link className="button button--secondary button--lg" to="/docs/operations/operator-ui">
-                Operator Console (/ui/)
-              </Link>
-              <Link className="button button--secondary button--lg" to="/docs/getting-started/architecture">
-                Architecture
+                Operator Console
               </Link>
             </div>
             <div className="home-code-hint">
-              <span className="home-code-hint__prompt">$</span>
-              <code>curl -fsSL https://raw.githubusercontent.com/goroute-ai/ai-gateway-go/main/install.sh | bash</code>
+              <div className="home-code-hint__content">
+                <span className="home-code-hint__prompt">$</span>
+                <code>curl -fsSL https://raw.githubusercontent.com/goroute-ai/ai-gateway-go/main/install.sh | bash</code>
+              </div>
+              <CopyInstallButton />
             </div>
           </div>
           <div className="home-hero__diagram" aria-label="Request flow from Go application through GoRoute to an AI provider">
@@ -103,8 +161,8 @@ export default function Home(): ReactNode {
             <div className="flow-line"><span>inspect & route</span></div>
             <div className="flow-node flow-node--gateway">
               <span>GOROUTE AI GATEWAY</span>
-              <strong>Operator UI & FinOps Engine</strong>
-              <small>/ui/ · Micro-Dollar Ledger · 64-bit Math</small>
+              <strong>Operator Console & FinOps Engine</strong>
+              <small>Micro-Dollar Ledger · 64-bit Math</small>
             </div>
             <div className="flow-line"><span>upstream dialect</span></div>
             <div className="flow-node flow-node--provider">
@@ -146,10 +204,23 @@ export default function Home(): ReactNode {
           <div className="home-path-grid">
             {paths.map((path) => (
               <article className="home-path-card" key={path.number}>
-                <span className="home-path-card__number">{path.number}</span>
+                <div className="home-path-card__header">
+                  <span className="home-path-card__number">{path.number}</span>
+                  <span className="home-path-card__badge">{path.badge}</span>
+                </div>
                 <h3>{path.title}</h3>
-                <p>{path.text}</p>
-                <Link to={path.link}>{path.label} <span aria-hidden="true">→</span></Link>
+                <p className="home-path-card__summary">{path.summary}</p>
+                <ul className="home-path-card__topics">
+                  {path.topics.map((topic) => (
+                    <li key={topic}>
+                      <span className="home-path-card__bullet" aria-hidden="true">›</span>
+                      <span>{topic}</span>
+                    </li>
+                  ))}
+                </ul>
+                <Link className="home-path-card__cta" to={path.link}>
+                  {path.label} <span aria-hidden="true">→</span>
+                </Link>
               </article>
             ))}
           </div>

@@ -30,6 +30,9 @@ const config: Config = {
     },
   },
   themes: ['@docusaurus/theme-mermaid'],
+  clientModules: [
+    require.resolve('./src/clientModules/d3-transition.ts'),
+  ],
 
   presets: [
     [
@@ -90,6 +93,11 @@ const config: Config = {
           sidebarId: 'docsSidebar',
           position: 'left',
           label: 'Guides',
+        },
+        {
+          to: '/docs/getting-started/architecture',
+          position: 'left',
+          label: 'Architecture',
         },
         {
           type: 'docSidebar',
