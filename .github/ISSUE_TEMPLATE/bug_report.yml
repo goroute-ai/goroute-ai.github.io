@@ -1,0 +1,31 @@
+name: "🐛 Documentation Bug / Error"
+description: Report an inaccurate code snippet, typo, or broken link.
+title: "[Bug]: "
+labels: ["bug", "documentation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping keep GoRoute AI Gateway documentation accurate and up to date!
+  - type: input
+    id: doc-url
+    attributes:
+      label: Page URL or File Path
+      description: The path or URL of the page containing the error (e.g. `/docs/data-plane/rerank` or `docs/providers/aws-bedrock.md`).
+      placeholder: "e.g. docs/data-plane/audio.md"
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the Inaccuracy or Issue
+      description: What is incorrect, unclear, or broken?
+    validations:
+      required: true
+  - type: textarea
+    id: suggested-fix
+    attributes:
+      label: Suggested Fix or Correction
+      description: How should this be updated or fixed?
+    validations:
+      required: false

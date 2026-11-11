@@ -1,0 +1,30 @@
+name: "📖 Documentation Request / Improvement"
+description: Propose a new guide, tutorial, architecture diagram, or provider section.
+title: "[Docs]: "
+labels: ["enhancement", "documentation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Have an idea for a new tutorial, provider recipe, or operational runbook? Let us know!
+  - type: input
+    id: topic
+    attributes:
+      label: Proposed Topic / Title
+      placeholder: "e.g. End-to-End Kubernetes Helm Deployment Guide"
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Target Audience & Goals
+      description: Who will benefit from this guide, and what problem does it solve?
+    validations:
+      required: true
+  - type: textarea
+    id: outline
+    attributes:
+      label: Proposed Outline or Key Sections
+      placeholder: "1. Prerequisites\n2. Architecture\n3. Walkthrough\n4. Troubleshooting"
+    validations:
+      required: false
