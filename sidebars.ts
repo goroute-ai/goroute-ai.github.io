@@ -12,7 +12,11 @@ const sidebars: SidebarsConfig = {
         'getting-started/quickstart-sdk',
         'getting-started/quickstart-docker',
         'getting-started/quickstart-cli',
-        'getting-started/architecture',
+        {
+          type: 'link',
+          label: 'System Architecture',
+          href: '/docs/getting-started/architecture',
+        },
         'getting-started/learning-path',
       ],
     },
@@ -158,6 +162,50 @@ const sidebars: SidebarsConfig = {
         'operations/observability',
         'operations/troubleshooting',
         'operations/claude-code-and-agents',
+      ],
+    },
+  ],
+
+  // Dedicated Architecture Section
+  architectureSidebar: [
+    {
+      type: 'category',
+      label: 'Core Architecture',
+      collapsed: false,
+      items: [
+        'getting-started/architecture',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Architectural Topologies',
+      collapsed: false,
+      items: [
+        {
+          type: 'link',
+          label: 'Deployment & Storage Topologies',
+          href: '/docs/operations/deployment-and-storage',
+        },
+        {
+          type: 'link',
+          label: 'Traffic Routing & Load Balancing',
+          href: '/docs/routing-resiliency/load-balancing',
+        },
+        {
+          type: 'link',
+          label: 'FinOps & Micro-Dollar Ledger',
+          href: '/docs/finops-and-security/micro-dollar-ledger',
+        },
+        {
+          type: 'link',
+          label: 'Agent Protocol Hub (MCP & A2A)',
+          href: '/docs/protocols/a2a-overview',
+        },
+        {
+          type: 'link',
+          label: 'Embedded Operator UI Console',
+          href: '/docs/operations/operator-ui',
+        },
       ],
     },
   ],

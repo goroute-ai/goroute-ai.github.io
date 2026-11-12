@@ -1,11 +1,11 @@
 import React, { useMemo, type ReactNode } from 'react';
 import ErrorBoundary from '@docusaurus/ErrorBoundary';
-import { ErrorBoundaryErrorMessageFallback } from '@docusaurus/theme-common';
+import { ErrorBoundaryErrorMessageFallback, useColorMode } from '@docusaurus/theme-common';
 import type { Props } from '@theme/Mermaid';
 import { renderMermaidSVG } from 'beautiful-mermaid';
 import styles from './styles.module.css';
 
-const GOROUTE_THEME = {
+const GOROUTE_THEME_DARK = {
   bg: '#000000',
   fg: '#E5E7EB',
   line: '#12C2EA',
@@ -13,6 +13,16 @@ const GOROUTE_THEME = {
   muted: '#9CA3AF',
   surface: '#0D1117',
   border: '#30363D',
+};
+
+const GOROUTE_THEME_LIGHT = {
+  bg: '#ffffff',
+  fg: '#0f172a',
+  line: '#0284c7',
+  accent: '#7c3aed',
+  muted: '#64748b',
+  surface: '#f8fafc',
+  border: '#cbd5e1',
 };
 
 function preprocessDiagram(input: string): string {
@@ -38,15 +48,18 @@ function preprocessDiagram(input: string): string {
 }
 
 function BeautifulMermaidRenderer({ value }: Props): ReactNode {
+  const { colorMode } = useColorMode();
+  const theme = colorMode === 'light' ? GOROUTE_THEME_LIGHT : GOROUTE_THEME_DARK;
+
   const svgHtml = useMemo(() => {
     try {
       const processed = preprocessDiagram(value);
-      return renderMermaidSVG(processed, GOROUTE_THEME);
+      return renderMermaidSVG(processed, theme);
     } catch (err) {
       console.error('Error rendering diagram with beautiful-mermaid:', err);
       return null;
     }
-  }, [value]);
+  }, [value, theme]);
 
   if (!svgHtml) {
     return null;

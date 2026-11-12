@@ -69,11 +69,11 @@ const config: Config = {
     image: 'img/logo.png',
     colorMode: {
       defaultMode: 'dark',
-      disableSwitch: true,
+      disableSwitch: false,
       respectPrefersColorScheme: false,
     },
     mermaid: {
-      theme: { light: 'dark', dark: 'dark' },
+      theme: { light: 'default', dark: 'dark' },
       options: {
         fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
       },
@@ -95,7 +95,8 @@ const config: Config = {
           label: 'Guides',
         },
         {
-          to: '/docs/getting-started/architecture',
+          type: 'docSidebar',
+          sidebarId: 'architectureSidebar',
           position: 'left',
           label: 'Architecture',
         },
@@ -131,7 +132,7 @@ const config: Config = {
       copyright: `Copyright © ${new Date().getFullYear()} GoRoute AI Gateway. Built in 100% Pure Go. Licensed under Apache 2.0.`,
     },
     prism: {
-      theme: prismThemes.dracula,
+      theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
       additionalLanguages: ['bash', 'json', 'yaml', 'go', 'python', 'typescript', 'sql', 'protobuf'],
     },

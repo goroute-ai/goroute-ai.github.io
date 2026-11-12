@@ -12,6 +12,11 @@
   scrollbar-width: thin;
 }
 
+:global([data-theme='light']) .container {
+  background: #ffffff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
 .container::-webkit-scrollbar {
   height: 6px;
 }
@@ -28,7 +33,7 @@
 }
 
 /* ==========================================================================
-   Sequence Diagram Custom Enhancements
+   Sequence Diagram Custom Enhancements (Dark Theme - Default)
    ========================================================================== */
 
 /* Elevated Participant / Actor Cards */
@@ -114,4 +119,60 @@
   fill: #c7d2fe;
   font-weight: 600;
   font-size: 11px;
+}
+
+/* ==========================================================================
+   Sequence Diagram Light Theme Adaptations
+   ========================================================================== */
+
+:global([data-theme='light']) .container svg .actor rect {
+  fill: #f8fafc;
+  stroke: #cbd5e1;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.06));
+}
+
+:global([data-theme='light']) .container svg .actor text {
+  fill: #0f172a;
+}
+
+:global([data-theme='light']) .container svg .lifeline {
+  stroke: #cbd5e1;
+}
+
+:global([data-theme='light']) .container svg .message line,
+:global([data-theme='light']) .container svg .message polyline {
+  stroke: #0284c7;
+}
+
+:global([data-theme='light']) .container svg .message line[stroke-dasharray],
+:global([data-theme='light']) .container svg .message polyline[stroke-dasharray] {
+  stroke: #7c3aed;
+}
+
+:global([data-theme='light']) .container svg .message text {
+  fill: #334155;
+}
+
+:global([data-theme='light']) .container svg .note polygon {
+  fill: #faf5ff;
+  stroke: #7c3aed;
+  filter: drop-shadow(0 2px 6px rgba(124, 58, 237, 0.12));
+}
+
+:global([data-theme='light']) .container svg .note text {
+  fill: #4c1d95;
+}
+
+:global([data-theme='light']) .container svg .block rect:first-child {
+  stroke: #7c3aed;
+  fill: rgba(124, 58, 237, 0.03);
+}
+
+:global([data-theme='light']) .container svg .block rect:nth-child(2) {
+  fill: #ede9fe;
+  stroke: #6d28d9;
+}
+
+:global([data-theme='light']) .container svg .block text {
+  fill: #3730a3;
 }
