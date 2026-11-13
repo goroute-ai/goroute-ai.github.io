@@ -22,13 +22,14 @@ graph TD
 
 ## 1. Deterministic Hashing Key
 
-To guarantee tenant isolation and safety, the cache key is constructed using a cryptographic SHA-256 digest over normalized request fields:
+To guarantee tenant isolation and output correctness, the cache key is constructed using a cryptographic SHA-256 digest over all canonical output-affecting request fields (organization, model, messages, system prompt, tools, sampling/output parameters, and `extra_body`):
 
 ```text
-CacheKey = SHA256(OrgID || Model || SystemPrompt || Messages || Tools)
+CacheKey = SHA256(OrgID || Epoch || CanonicalRequestFields)
 ```
 
 - **Tenant Isolation**: An identical prompt submitted by Org A will never be returned to Org B.
+- **Cross-Replica Invalidation Epochs**: Calling `POST /admin/v1/cache/invalidate` increments a Redis-backed organization invalidation epoch (`{org:<org_id>}` hash-tagged) so cached entries are invalidated immediately across all gateway replicas.
 - **Deterministic Only**: Requests with `temperature > 0.0` or non-zero randomness bypass the cache to preserve LLM creativity and variance.
 
 ---

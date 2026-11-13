@@ -44,9 +44,9 @@ flowchart TD
 
 ## 1. Prometheus Metrics Scraper (`GET /metrics`)
 
-The gateway exposes a dedicated, unauthenticated Prometheus scraper endpoint at `GET /metrics` formatted according to Prometheus exposition specification 0.0.4.
+The gateway exposes a protected Prometheus scraper endpoint at `GET /metrics` formatted according to Prometheus exposition specification 0.0.4. Requests require the Master Admin Key via `Authorization: Bearer <MASTER_ADMIN_KEY>`.
 
-Metrics are maintained in-memory using an efficient fixed-size reservoir sampler (1,024 samples) with zero lock contention on the hot path.
+Metrics are maintained in-memory using Vitter Algorithm R uniform reservoir sampling (`1,024` samples) and omit per-deployment labels to keep metric cardinality bounded.
 
 ### Exported Metrics Catalog
 
@@ -66,8 +66,11 @@ Metrics are maintained in-memory using an efficient fixed-size reservoir sampler
 | `gateway_provider_errors_total` | Counter | `provider` | Upstream failure count segmented by provider. |
 | `gateway_provider_latency_p95_ms` | Gauge | `provider` | P95 upstream round-trip latency segmented by provider. |
 | `gateway_provider_spend_micros_total`| Counter | `provider` | Cumulative spend in integer micro-dollars (10^-6 USD) per provider. |
-| `gateway_deployment_requests_total` | Counter | `deployment_id`, `name`, `provider` | Requests routed to specific provider model deployments. |
-| `gateway_deployment_errors_total` | Counter | `deployment_id`, `name`, `provider` | Upstream failures per individual deployment. |
+
+### Optional OTLP/HTTP Tracing & Structured Log Scrubbing
+
+- **OTLP Distributed Tracing**: Configure `tracing.otlp_endpoint` (and optional `tracing.headers`) to export OpenTelemetry spans with `gen_ai.*` attributes through the outbound SSRF network policy.
+- **Structured Log Scrubbing**: `internal/logger/scrub.go` (`ScrubSecrets`) masks API keys, bearer tokens, and credential patterns across structured `slog` fields before logs are emitted.
 
 ### Sample Scraper Output
 
@@ -254,7 +257,7 @@ spec:
     spec:
       containers:
         - name: gateway
-          image: ghcr.io/goroute-ai/ai-gateway:v1.3.0
+          image: ghcr.io/goroute-ai/ai-gateway:v1.5.0
           ports:
             - containerPort: 8080
               name: http

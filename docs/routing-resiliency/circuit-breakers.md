@@ -36,6 +36,14 @@ When the cooldown timer expires, the breaker transitions to **HALF-OPEN**.
 
 ---
 
+## Cluster-Wide Redis Coordination
+
+When running multiple gateway replicas behind a load balancer with Redis configured:
+- **Shared Failure State**: Deployment failure counts and open states are synchronized via Redis so all replicas isolate an unhealthy upstream together.
+- **Half-Open Probe Leases**: Replicas coordinate half-open canary probes through a Redis lease so only a single pod sends a probe request when cooldown expires, preventing probe storms.
+
+---
+
 ## Configuration (`configs/config.yaml`)
 
 ```yaml

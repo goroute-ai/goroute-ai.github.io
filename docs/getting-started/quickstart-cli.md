@@ -28,7 +28,7 @@ curl -fsSL https://raw.githubusercontent.com/goroute-ai/ai-gateway-go/main/insta
 To install a specific release version:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/goroute-ai/ai-gateway-go/main/install.sh | bash -s -- v1.3.0
+curl -fsSL https://raw.githubusercontent.com/goroute-ai/ai-gateway-go/main/install.sh | bash -s -- v1.5.0
 ```
 
 Verify the installation:

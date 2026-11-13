@@ -18,7 +18,7 @@ Use the Go SDK to run an embedded gateway in your Go process or connect to a gat
 From your Go module:
 
 ```bash
-go get github.com/goroute-ai/ai-gateway-go/pkg/gateway@v1.0.0
+go get github.com/goroute-ai/ai-gateway-go/pkg/gateway@v1.5.0
 ```
 
 Set a provider key if you want to send requests to a real provider:

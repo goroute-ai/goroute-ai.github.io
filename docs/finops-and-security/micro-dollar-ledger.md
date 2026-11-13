@@ -12,7 +12,14 @@ The gateway represents calculated cost as integer micro-dollars: `1 USD = 1,000,
 
 For a model with pricing metadata, the implementation accounts for non-cached prompt tokens, cached prompt tokens, regular completion tokens, and reasoning tokens. Each rate is expressed in micro-dollars per million tokens. The total numerator is divided by one million with ceiling division so a non-zero priced request does not round down to zero.
 
-The gateway returns cost telemetry on inference responses and records spend events for later queries. If a model has no pricing record, the calculator returns zero; verify catalogue pricing before relying on spend totals for chargeback.
+The gateway returns cost telemetry on inference responses and records spend events for later queries. If a model has no pricing record, the calculator returns zero cost and surfaces `unpriced_requests` and `unpriced_tokens` in spend summaries (`/admin/v1/spend/summary`) so unpriced usage is never silently hidden.
+
+## Durable Outbox, Budget Reservations & Period Rollover
+
+- **Pre-Dispatch Upper-Bound Reservations & Lease Renewal**: Before dispatching upstream, the gateway reserves an upper-bound micro-dollar budget in Redis and renews the reservation lease for long-running or streaming requests.
+- **Durable Postgres Spend Event Outbox**: Spend events are persisted through a retryable PostgreSQL outbox (`0008_add_spend_event_outbox.up.sql`) and reconciled idempotently in Redis by event ID (`gw:spend:applied:{org}`), preventing double-counting on retries.
+- **Unified Modality Budget Gating**: Chat, embeddings, audio, and image requests share unified budget gating with request-sized modality estimates.
+- **Automatic Budget Period Rollover**: `ResetExpiredBudgets` advances expired budget windows, synchronizes entity `spent_micros` in PostgreSQL (`0011_budget_reset_outbox.up.sql`), and clears corresponding Redis spend counters.
 
 ## Spend persistence
 

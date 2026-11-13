@@ -29,6 +29,13 @@ Unlike fixed-window counters that permit 2x traffic bursts across window boundar
 
 ---
 
+## Redis Cluster, Hash Tags & Fail-Closed Behavior
+
+- **Redis Cluster & Sentinel (`UniversalClient`)**: `RedisFabric` supports standalone Redis (`storage.redis_addr`), Redis Cluster (`storage.redis_addrs`), and Redis Sentinel (`storage.redis_master_name`). Multi-key Lua scripts use `{org:<org_id>}` hash tags so all keys for an organization map to the same Redis Cluster slot.
+- **Fail-Closed Quota Enforcement**: When distributed Redis quota state is unavailable or exceeds `rate_limit.redis_timeout`, the limiter fails closed rather than allowing unbounded traffic.
+
+---
+
 ## HTTP 429 Rate Limit Response
 
 When quota is exceeded, GoRoute returns an informative HTTP 429 response:

@@ -23,10 +23,10 @@ Install the latest precompiled GoRoute binary for your OS (macOS, Linux, Windows
 curl -fsSL https://raw.githubusercontent.com/goroute-ai/ai-gateway-go/main/install.sh | bash
 ```
 
-To install a specific version pin (such as `v1.3.0`):
+To install a specific version pin (such as `v1.5.0`):
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/goroute-ai/ai-gateway-go/main/install.sh | bash -s -- v1.3.0
+curl -fsSL https://raw.githubusercontent.com/goroute-ai/ai-gateway-go/main/install.sh | bash -s -- v1.5.0
 ```
 
 > [!TIP]
@@ -56,7 +56,7 @@ http://localhost:8080/ui/
 
 Authenticate using your Master Admin Key (`GATEWAY_MASTER_ADMIN_KEY`). The Operator UI provides real-time access to:
 - **Streaming Chat Playground**: Test model groups, dynamic routes, and reasoning parameters with live token metrics.
-- **Model Catalogue & Routing**: Inspect 4,627+ global models, configure aliases (`fast`, `reasoning`), and tune load balancers.
+- **Model Catalogue & Routing**: Inspect the models available to your deployment, configure aliases (`fast`, `reasoning`), and tune load balancers. Model availability depends on provider access, catalog sync, organization policy, and key permissions.
 - **Virtual API Keys**: Issue tenant-scoped keys with RPM/TPM rate limits, budget caps, and model allowlists.
 - **FinOps Ledger**: Monitor micro-dollar expenditure, token breakdowns, and team cost attribution.
 - **Guardrails Simulator**: Interactively evaluate regex PII redaction and secret scanning rules without model invocations.

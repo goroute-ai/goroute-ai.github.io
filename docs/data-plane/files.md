@@ -23,8 +23,10 @@ GoRoute AI Gateway implements OpenAI-compatible stateful file management to supp
 | `/v1/files/{file_id}/content` | `GET` | Binary Stream | Download raw binary or text file contents. |
 | `/v1/files/{file_id}` | `DELETE`| Deletion Status | Permanently delete file from database and disk storage. |
 
-- **Authentication**: `Bearer sk-gw-...` (Virtual Key or Master Admin Key)
-- **Max Upload Limit**: `512 MB` (enforced via `http.MaxBytesReader`)
+- **Authentication**: `Bearer sk-gw-...` (Virtual Key identity required)
+- **Max Upload Limit**: `512 MB` per file (enforced via `http.MaxBytesReader`)
+- **Per-Organization Storage Quota**: `5 GiB` default (`server.max_file_storage_bytes_per_org` / `GATEWAY_MAX_FILE_STORAGE_BYTES_PER_ORG`; returns `HTTP 413 storage_quota_exceeded` when exceeded)
+- **Upload Concurrency Limit**: `8` concurrent uploads default (`server.max_concurrent_file_uploads` / `GATEWAY_MAX_CONCURRENT_FILE_UPLOADS`; returns `HTTP 429 upload_concurrency_limit` when saturated)
 - **Default Storage Path**: Configured via `GOROUTE_FILES_DIR` or defaults to `/tmp/goroute-files`
 
 ---
@@ -55,8 +57,10 @@ sequenceDiagram
    The gateway daemon creates its storage root with directory permissions `0700` (`drwx------`) and all uploaded blobs with file permissions `0600` (`-rw-------`). Unprivileged local system processes cannot read or modify tenant files.
 2. **Streaming Cryptographic Hashing**:
    Rather than buffering up to 512 MB in memory to calculate hashes, GoRoute utilizes an `io.MultiWriter(dst, hasher)` that writes to disk while concurrently streaming bytes into a SHA-256 digest engine.
-3. **Multi-Tenant Boundary**:
-   Every database query filters by `WHERE org_id = $1`. Tenants cannot read, download, or delete files belonging to another organization, preventing cross-tenant leakage.
+3. **Multi-Tenant Boundary & Quotas**:
+   Every database query filters by `WHERE org_id = $1`. Tenants cannot read, download, or delete files belonging to another organization. Before writing to disk, the gateway tracks both persisted organization byte totals and in-flight upload reservations so concurrent uploads cannot race past `server.max_file_storage_bytes_per_org`.
+4. **Multipart Spill Cleanup**:
+   Temporary multipart spill files created during `ParseMultipartForm` are explicitly removed via `defer r.MultipartForm.RemoveAll()` on both success and error paths.
 
 ---
 

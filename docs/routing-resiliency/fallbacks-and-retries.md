@@ -44,6 +44,10 @@ router:
   max_retry_delay: 2s
 ```
 
+- **Streaming Pre-First-Token Retries**: Streaming endpoints (`/v1/chat/completions`, `/v1/messages`, `/v1/responses`) apply exponential backoff retries if an upstream fails *before* emitting the first output token, then stream directly once bytes begin flowing.
+- **Multi-Modal Reliability**: `ExecuteEmbeddings` (`/v1/embeddings`) and audio/image endpoints share the same retry, circuit-breaker, and fallback pipeline as chat completions.
+- **Bounded Fallback Graph Traversal**: Fallback group chains enforce explicit cycle detection and maximum depth limits to prevent infinite failover loops.
+
 ---
 
 ## 2. Declarative Cross-Provider Fallback Chains

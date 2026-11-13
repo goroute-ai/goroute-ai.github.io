@@ -27,7 +27,18 @@ graph TD
    - `team_admin`: Manage team keys, view team spend, adjust team rate limits.
    - `developer`: Execute chat completions, stream tokens, call permitted MCP tools.
    - `service_account`: High-throughput machine-to-machine integrations.
-4. **Key-Level Allowlists (`AllowedModels`)**: Restricts individual keys to specific models or aliases (e.g. key `sk-gw-123` can only execute `gemini-2.5-flash`).
+4. **Key-Level Allowlists (`AllowedModels`) & Fail-Closed Team Allowlists**: Restricts individual keys and teams to specific models, MCP servers, A2A agents, and client apps (`allowed_models`, `allowed_mcp_servers`, `allowed_a2a_agents`, `allowed_client_apps` persisted in PostgreSQL). Team lookup errors fail closed rather than falling back to permissive defaults.
+
+---
+
+## 1a. Control-Plane Operator RBAC & Inbound JWT/OIDC
+
+Control-plane endpoints (`/admin/v1/*`) enforce separate operator authorization from data-plane virtual keys:
+- **Operator Roles**: `platform_admin` (full cross-organization administration, required for master admin key), `org_admin` (scoped to a single organization), and `org_viewer` (read-only access within a single organization).
+- **Inbound JWT/OIDC**: Operators can authenticate with signed HMAC/OIDC JWTs alongside the Master Admin Key (`platform_admin`).
+- **Data-Plane Isolation**: The Master Admin Key cannot be used as a fallback credential on data-plane inference routes (`/v1/*`).
+- **Production Secret Validation**: When `server.environment`, `ENV`, or `GATEWAY_ENV` is set to `production` (or `prod`), startup fails immediately if `auth.master_admin_key`, `auth.master_encryption_key`, or `auth.jwt_secret` retains a default value.
+- **HTTP Security Headers & CORS**: `SecurityHeadersMiddleware` sets `X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`, `Content-Security-Policy`, and opt-in `Strict-Transport-Security` (`server.enable_hsts`), while `CORSMiddleware` disables cross-origin headers unless `server.cors_allowed_origins` is explicitly configured.
 
 ---
 

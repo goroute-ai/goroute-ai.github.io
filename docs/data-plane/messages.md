@@ -26,6 +26,7 @@ The gateway transparently translates between Anthropic's message format and cano
   - `/anthropic/v1/messages/count_tokens` (Anthropic count_tokens wire spec)
 - **Authentication**: `Bearer sk-gw-...` or `x-api-key: sk-gw-...`
 - **Content-Type**: `application/json`
+- **Error Format**: Errors on Anthropic routes return native Anthropic error envelopes (`{"type":"error","error":{"type":"...","message":"..."}}`).
 
 ---
 

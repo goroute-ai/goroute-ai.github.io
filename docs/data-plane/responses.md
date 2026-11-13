@@ -47,6 +47,8 @@ GoRoute AI Gateway supports OpenAI's next-generation **Responses API** (`POST /v
 | `input` | string \| object[] | **Yes** | User input string or array of prior conversation message objects. |
 | `temperature` | float | No | Sampling temperature between `0.0` and `2.0`. |
 | `max_output_tokens` | integer | No | Maximum token ceiling for generated output items. |
+| `tools` | array | No | Function/tool definitions forwarded to the selected upstream provider. |
+| `extra_body` | object | No | Provider-specific parameters merged without clobbering core request fields. |
 | `stream` | boolean | No | When `true`, streams incremental lifecycle events via SSE. |
 
 ### Synchronous Response Schema (`CanonicalResponseOutput`)

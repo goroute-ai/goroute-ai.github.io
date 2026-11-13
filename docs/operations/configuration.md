@@ -68,6 +68,12 @@ The table below documents every configurable parameter across all gateway subsys
 | :--- | :--- | :--- | :--- |
 | `server.host` | — | `"0.0.0.0"` | **Server**: HTTP network bind address. |
 | `server.port` | `GATEWAY_PORT` | `8080` | **Server**: HTTP listen port (`1`–`65535`). |
+| `server.grpc_port` | `GATEWAY_GRPC_PORT` | `0` | **Server**: Optional A2A gRPC listen port (`0` disables gRPC). |
+| `server.cors_allowed_origins` | — | `[]` | **Security**: Allowed CORS origins (empty disables CORS headers). |
+| `server.cors_allow_credentials` | — | `false` | **Security**: Enables `Access-Control-Allow-Credentials` (disallowed with `*`). |
+| `server.enable_hsts` | — | `false` | **Security**: Emits `Strict-Transport-Security` header on responses. |
+| `server.max_file_storage_bytes_per_org` | `GATEWAY_MAX_FILE_STORAGE_BYTES_PER_ORG` | `5368709120` | **Files**: Per-org storage quota in bytes (`5 GiB` default; `0` = unlimited). |
+| `server.max_concurrent_file_uploads` | `GATEWAY_MAX_CONCURRENT_FILE_UPLOADS` | `8` | **Files**: Maximum concurrent `/v1/files` uploads (`0` = unlimited). |
 | `server.read_timeout` | — | `30s` | **Server**: Maximum duration for reading the entire request body. |
 | `server.write_timeout` | — | `300s` | **Server**: Maximum duration before timing out writes (sized for reasoning streams). |
 | `server.idle_timeout` | — | `120s` | **Server**: Maximum time to wait for the next request when keep-alives are enabled. |
@@ -77,7 +83,10 @@ The table below documents every configurable parameter across all gateway subsys
 | `logging.add_source` | `GATEWAY_LOG_ADD_SOURCE` | `false` | **Logging**: Annotates log lines with source `file:line` for developer debugging. |
 | `storage.mode` | `GATEWAY_STORAGE_MODE` | `"memory"` | **Storage**: Repository backend: `"memory"` or `"postgres"`. |
 | `storage.postgres_dsn` | `GATEWAY_POSTGRES_DSN` | `""` | **Storage**: PostgreSQL connection DSN (`postgres://user:pass@host:5432/db`). |
-| `storage.redis_addr` | `GATEWAY_REDIS_ADDR` | `"localhost:6379"` | **Storage**: Redis host:port for L2 auth caching, Lua rate limits, and pub/sub. |
+| `storage.redis_addr` | `GATEWAY_REDIS_ADDR` | `"localhost:6379"` | **Storage**: Standalone Redis host:port for L2 auth caching, Lua rate limits, and pub/sub. |
+| `storage.redis_addrs` | `GATEWAY_REDIS_ADDRS` | `[]` | **Storage**: Comma-separated Redis Cluster or Sentinel seed nodes. |
+| `storage.redis_master_name` | `GATEWAY_REDIS_MASTER_NAME` | `""` | **Storage**: Redis Sentinel master name. |
+| `tracing.otlp_endpoint` | — | `""` | **Observability**: Optional OTLP/HTTP traces URL (empty disables export). |
 | `storage.redis_pass` | `GATEWAY_REDIS_PASS` | `""` | **Storage**: Optional Redis authentication password. |
 | `storage.redis_db` | — | `0` | **Storage**: Redis logical database index (`0`–`15`). |
 | `auth.master_admin_key` | `GATEWAY_MASTER_ADMIN_KEY` | *(auto-generated)* | **Auth**: Master Bearer token for `/admin/v1/*` control plane APIs. |
