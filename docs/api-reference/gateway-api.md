@@ -1,12 +1,12 @@
 ---
 title: Gateway Data Plane API Reference
 sidebar_position: 2
-description: Comprehensive reference for all 21 GoRoute AI Gateway data plane routes, request/response schemas, reasoning normalization, and telemetry headers.
+description: Comprehensive reference for all 23 primary GoRoute AI Gateway /v1 data plane paths (26 HTTP operations), request/response schemas, reasoning normalization, and telemetry headers.
 ---
 
 # Gateway Data Plane API Reference
 
-GoRoute AI Gateway exposes an OpenAI-compatible data plane supporting 21 multi-modal and agentic routes across 42+ upstream model providers. All routes execute with sub-2ms gateway overhead, automated circuit breaking, cross-provider fallbacks, and real-time micro-dollar accounting.
+GoRoute AI Gateway exposes an OpenAI-compatible data plane supporting **23 primary `/v1` paths (26 HTTP operations)** across **73 `ProviderType` profiles** (plus `CustomOpenAICompatible`). All routes execute with sub-2ms gateway overhead, automated circuit breaking, cross-provider fallbacks, and real-time micro-dollar accounting.
 
 > [!NOTE]
 > All data plane routes accept standard OpenAI SDKs (Python, TypeScript, Go) and raw HTTP clients. Set your client `base_url` to `http://localhost:8080/v1` and supply a Virtual API Key (`sk-gw-...`) via the `Authorization` header.
@@ -44,12 +44,12 @@ In addition to logical aliases (`fast`, `reasoning`), GoRoute allows clients to 
 - **Layer 2 Provider Subscription Check**: The caller's organization must have an active subscription for the target provider.
 - **Layer 3 Model Policy Check**: The requested model must not be disabled by the organization's model availability policy.
 - **Tenant Credential Isolation**: The organization must have an active credential for the target provider stored in the vault. Host environment variables are never leaked across tenant boundaries.
-- **Dynamic Catalogue Provisioning**: If the model is not yet in the tenant's database catalogue, GoRoute dynamically imports it from the embedded 4,627-model catalogue with active lifecycle status.
+- **Catalog Provisioning**: The gateway may provision model records from its catalog when needed. Catalog contents and discovery behavior depend on the gateway build and configuration; a provider-side model ID is not automatically available to every tenant or key.
 - **Fail-Closed Boundary**: If repository queries fail or the model is unconfigured/unauthorized, GoRoute fails closed and returns `HTTP 404 model_group_not_found` (explicit model requests never silently fall back to unrelated tenant model groups).
 
 ---
 
-## Summary of All 21 Data Plane Routes
+## Summary of All 23 Primary `/v1` Data Plane Paths (26 HTTP Operations)
 
 | HTTP Method | Route | Description |
 | :--- | :--- | :--- |
@@ -250,7 +250,7 @@ curl -X POST http://localhost:8080/v1/embeddings \
 
 ## 4. Model Catalogue Inventory (`GET /v1/models`)
 
-Returns the tenant-filtered inventory of models accessible to the caller's Virtual API Key, evaluated against the 4-layer model access control hierarchy. Includes tri-state capabilities and micro-dollar pricing metadata.
+Returns the tenant-filtered inventory of models accessible to the caller's Virtual API Key, evaluated against the 4-layer model access control hierarchy. Use this endpoint to check which model IDs are exposed to your caller. Provider catalogs change over time, and this response is deployment-specific; it is not a universal list of all models offered by upstream providers. The response may include capability and pricing metadata where available.
 
 ### cURL Request
 
@@ -259,7 +259,9 @@ curl -X GET http://localhost:8080/v1/models \
   -H "Authorization: Bearer sk-gw-prod-7f9a2b8c4d1e"
 ```
 
-### Response (`HTTP 200 OK`)
+### Illustrative response (`HTTP 200 OK`)
+
+The model and pricing values below are sample data, not a current provider catalog or an availability guarantee.
 
 ```json
 {

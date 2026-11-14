@@ -1,12 +1,14 @@
 ---
 title: Google Cloud Vertex AI
 sidebar_position: 6
-description: Native Google Cloud Vertex AI adapter with Service Account auth, OAuth2 token caching, and Gemini models.
+description: Google Cloud Vertex AI provider integration with Service Account auth, OAuth2 token caching, and Gemini models.
 ---
 
 # Google Cloud Vertex AI
 
 GoRoute provides a native enterprise adapter for **Google Cloud Vertex AI** (`internal/adapter/vertex/`), enabling organizations to consume Google's Gemini models through their existing Google Cloud Platform (GCP) enterprise agreements, VPC Service Controls, and IAM role hierarchies.
+
+Model availability and IDs on Vertex AI can differ from Google AI Studio. The model identifiers in the examples below are illustrative, not a complete or guaranteed-current support list. Check [Vertex AI's model documentation](https://cloud.google.com/vertex-ai/generative-ai/docs/learn/models) and confirm the models exposed to your caller with [`GET /v1/models`](/docs/api-reference/gateway-api#4-model-catalogue-inventory-get-v1models).
 
 The Vertex AI adapter directly communicates with the Vertex AI Platform REST endpoints:
 ```text
@@ -78,15 +80,9 @@ Supported regional endpoints include `us-central1`, `us-east4`, `us-west1`, `eur
 
 ---
 
-## Supported Models
+## Model availability
 
-| Model Name | Vertex AI Model Identifier | Modality | Max Context |
-| :--- | :--- | :--- | :--- |
-| **Gemini 2.5 Flash** | `gemini-2.5-flash` | Text, Code, Vision, Audio, Tools | 1,048,576 tokens |
-| **Gemini 1.5 Pro** | `gemini-1.5-pro` | Text, Code, Vision, Audio, Reasoning | 2,097,152 tokens |
-| **Gemini 1.5 Flash** | `gemini-1.5-flash` | Fast Multimodal, Vision, Audio | 1,048,576 tokens |
-| **Gemini 1.5 Flash-8B**| `gemini-1.5-flash-8b` | High-frequency, cost-sensitive | 1,048,576 tokens |
-| **Text Embedding 004**| `text-embedding-004` | Dense vector embeddings (768d) | 2,048 tokens |
+Vertex AI publishes model IDs and regional availability in its [current model catalog](https://cloud.google.com/vertex-ai/generative-ai/docs/learn/models). Use that catalog to select a provider-side ID, then check the gateway inventory to confirm it is exposed to your key. The model ID placeholder in the configuration below is intentional: Vertex AI IDs can differ from Google AI Studio and change over time.
 
 ---
 
@@ -96,25 +92,25 @@ Add your Vertex AI deployments to `configs/config.yaml`:
 
 ```yaml
 model_list:
-  # Gemini 2.5 Flash on Vertex AI (us-central1)
+  # Replace the placeholder with a current Vertex AI model ID exposed by your gateway
   - model_name: vertex-gemini-flash
     model_params:
-      model: vertex/gemini-2.5-flash
+      model: vertex/<model-id-from-vertex-catalog>
       api_key: os.environ/GCP_VERTEX_SA_KEY
       # Optional explicit base URL override:
       # api_base: "https://us-central1-aiplatform.googleapis.com"
 
-  # Gemini 1.5 Pro on Vertex AI (europe-west4)
+  # The provider model ID and region must be available to your Vertex AI project
   - model_name: vertex-gemini-pro-eu
     model_params:
-      model: vertex/gemini-1.5-pro
+      model: vertex/<model-id-from-vertex-catalog>
       api_key: os.environ/GCP_VERTEX_SA_KEY
       api_base: "https://europe-west4-aiplatform.googleapis.com"
 
   # Vertex AI Text Embeddings
   - model_name: vertex-embed
     model_params:
-      model: vertex/text-embedding-004
+      model: vertex/<embedding-model-id-from-vertex-catalog>
       api_key: os.environ/GCP_VERTEX_SA_KEY
 ```
 

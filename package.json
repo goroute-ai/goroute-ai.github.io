@@ -5,7 +5,10 @@
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
+    "prebuild": "node scripts/generate-llms.mjs",
     "build": "docusaurus build",
+    "generate:llms": "node scripts/generate-llms.mjs",
+    "check:docs": "node scripts/check-docs.mjs",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",

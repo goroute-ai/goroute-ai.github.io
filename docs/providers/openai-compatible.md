@@ -8,7 +8,7 @@ description: Comprehensive guide to the certified OpenAI-compatible dialect prof
 
 The modern AI ecosystem standardizes heavily on the OpenAI REST protocol (`POST /v1/chat/completions`, `POST /v1/embeddings`, `GET /v1/models`). However, individual vendors exhibit subtle dialect variations: differences in parameter naming (`max_completion_tokens` vs `max_tokens`), reasoning stream extraction (`delta.reasoning_content`), strict temperature limits, and custom HTTP authentication headers.
 
-GoRoute includes a dedicated, certified **OpenAI-Compatible Dialect Engine** (`internal/adapter/openaicompat/`) containing 30+ pre-certified dialect profiles covering all 42 domain providers registered in `AllProviders()` (`internal/domain/inference.go`).
+GoRoute includes a dedicated, certified **OpenAI-Compatible Dialect Engine** (`internal/adapter/openaicompat/`) containing **60+ pre-certified built-in and extended dialect profiles** (`builtin_profiles.go` and `extended_profiles.go`) as part of the **73 `ProviderType` profiles** registered in `AllProviders()` (`internal/domain/inference.go`), plus `CustomOpenAICompatible` for custom endpoints.
 
 ---
 
@@ -37,14 +37,15 @@ flowchart TD
 
 1. **Parameter Translation**: Maps non-standard parameters dynamically (e.g. converting `max_completion_tokens` to `max_tokens` for providers that reject the newer OpenAI property).
 2. **Reasoning Content Extraction (`ExtractReasoningDelta`)**: Intercepts streaming chunks containing extended thinking tokens (e.g., DeepSeek R1, Grok, SambaNova) and exposes them uniformly via `delta.reasoning_content`.
-3. **Dialect Constraints**: Automatically clamps or removes invalid parameters based on model family (e.g., stripping `temperature` and `top_p` for reasoning models like DeepSeek-R1 or Groq distill).
-4. **Zero-Latency Model Discovery**: Handles `GET /models` probes dynamically when `SupportsListModels: true`.
+3. **Dialect Constraints**: Automatically clamps or removes invalid parameters based on model family (e.g., stripping `temperature` and `top_p` for reasoning models like DeepSeek-R1 or Groq distill, or stripping `stream_options` when `SupportsStreamOptions` is `false`).
+4. **Operation Enforcement (`SupportedOperations`)**: Profiles can declare explicit `ProviderOperations` (`Chat`, `Completion`, `Responses`, `Embeddings`, `Rerank`, etc.) enforced by `OperationSupportChecker` before dispatch.
+5. **Zero-Latency Model Discovery**: Handles `GET /models` probes dynamically when `SupportsListModels: true`.
 
 ---
 
 ## Certified Provider Catalog
 
-The 42 domain providers supported across GoRoute are grouped into 8 specialized categories:
+The 73 `ProviderType` profiles supported across GoRoute (spanning native adapters and 60+ built-in/extended OpenAI-compatible profiles in `builtin_profiles.go` and `extended_profiles.go`, plus `CustomOpenAICompatible`) include the following core dialect categories:
 
 ### 1. Ultra-Fast Wafer-Scale & Hardware Acceleration
 

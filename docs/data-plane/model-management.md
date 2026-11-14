@@ -50,7 +50,7 @@ flowchart TD
 ### Layer Breakdown
 
 1. **Layer 1: Global Model Catalogue (`GlobalModel`)**:
-   Tracks the platform-wide catalog of all discovered, preview, active, and deprecated models across all supported providers. Validates token limits, supported modalities, and pricing provenance.
+   Tracks model records known to this gateway deployment, including discovered and manually registered models. Catalog contents and lifecycle status can change as provider catalogs and discovery settings change. The catalog is not a promise that every upstream model is compatible with every route or enabled for every tenant.
 2. **Layer 2: Organization Provider Subscriptions (`OrgProviderSubscription`)**:
    Enterprise vendor gating. An organization controls which upstream providers (`openai`, `anthropic`, `gemini`, `cohere`) are permitted for use by its developers and teams. Supports `auto_enable_new` to automatically adopt new models discovered from an approved vendor.
 3. **Layer 3: Organization Model Policy Overrides (`OrgModelPolicy`)**:
@@ -143,7 +143,7 @@ model_list:
   - model_name: reasoning
     routing_strategy: least-busy
     model_params:
-      model: anthropic/claude-sonnet-4-20250514
+      model: anthropic/claude-sonnet-5-5
       api_key: os.environ/ANTHROPIC_API_KEY
       fallbacks: ["backup-reasoning"]
 
@@ -158,7 +158,7 @@ model_list:
 
 ## Listing Available Models (`GET /v1/models`)
 
-Clients can dynamically inspect all configured aliases and permitted models:
+Clients can inspect configured aliases and the models permitted for their key. This tenant-filtered response is the deployment-specific check for available model IDs; it does not enumerate every model offered by an upstream provider:
 
 ```bash
 curl http://localhost:8080/v1/models \

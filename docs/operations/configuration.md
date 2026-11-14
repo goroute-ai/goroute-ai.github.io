@@ -67,6 +67,7 @@ The table below documents every configurable parameter across all gateway subsys
 | YAML Path | Environment Variable Override | Default | Subsystem & Description |
 | :--- | :--- | :--- | :--- |
 | `server.host` | — | `"0.0.0.0"` | **Server**: HTTP network bind address. |
+| `server.environment` | `ENV` / `GATEWAY_ENV` | `"development"` | **Server**: Runtime environment (`"development"`, `"staging"`, `"production"`). Production rejects default secrets. |
 | `server.port` | `GATEWAY_PORT` | `8080` | **Server**: HTTP listen port (`1`–`65535`). |
 | `server.grpc_port` | `GATEWAY_GRPC_PORT` | `0` | **Server**: Optional A2A gRPC listen port (`0` disables gRPC). |
 | `server.cors_allowed_origins` | — | `[]` | **Security**: Allowed CORS origins (empty disables CORS headers). |
@@ -87,9 +88,12 @@ The table below documents every configurable parameter across all gateway subsys
 | `storage.redis_addrs` | `GATEWAY_REDIS_ADDRS` | `[]` | **Storage**: Comma-separated Redis Cluster or Sentinel seed nodes. |
 | `storage.redis_master_name` | `GATEWAY_REDIS_MASTER_NAME` | `""` | **Storage**: Redis Sentinel master name. |
 | `tracing.otlp_endpoint` | — | `""` | **Observability**: Optional OTLP/HTTP traces URL (empty disables export). |
+| `tracing.service_name` | — | `"ai-gateway-go"` | **Observability**: Service name attribute attached to exported OpenTelemetry spans. |
+| `tracing.headers` | — | `{}` | **Observability**: Optional HTTP headers sent with OTLP trace exports (e.g., auth tokens). |
 | `storage.redis_pass` | `GATEWAY_REDIS_PASS` | `""` | **Storage**: Optional Redis authentication password. |
 | `storage.redis_db` | — | `0` | **Storage**: Redis logical database index (`0`–`15`). |
 | `auth.master_admin_key` | `GATEWAY_MASTER_ADMIN_KEY` | *(auto-generated)* | **Auth**: Master Bearer token for `/admin/v1/*` control plane APIs. |
+| `auth.allow_master_key_data_plane` | `GATEWAY_ALLOW_MASTER_KEY_DATA_PLANE` | `false` | **Auth**: Allows master admin key on data-plane routes (disabled by default for security). |
 | `auth.master_encryption_key` | `GATEWAY_MASTER_ENCRYPTION_KEY` | *(auto-generated)* | **Auth**: 64-character hex string (32-byte key) for AES-256-GCM vault encryption. |
 | `auth.jwt_secret` | `GATEWAY_JWT_SECRET` | *(random)* | **Auth**: HMAC secret used for signing internal short-lived JWT tokens. |
 | `auth.default_org_id` | — | `"org_default"` | **Auth**: Primary root organization identifier seeded on initial startup. |

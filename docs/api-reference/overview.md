@@ -4,6 +4,8 @@ sidebar_position: 1
 description: Master API index linking to all GoRoute AI Gateway data plane routes, admin control plane groups, Model Context Protocol, and Agent-to-Agent protocol specifications.
 ---
 
+import EndpointCatalog from '@site/src/components/EndpointCatalog';
+
 # API Reference Index
 
 GoRoute AI Gateway provides a comprehensive API surface combining a high-performance multi-modal data plane, an enterprise administrative control plane, a Model Context Protocol (MCP) virtual hub, and a Linux Foundation Agent-to-Agent (A2A) protocol bridge.
@@ -11,6 +13,14 @@ GoRoute AI Gateway provides a comprehensive API surface combining a high-perform
 > [!NOTE]
 > All data plane, MCP, and A2A routes require a tenant-scoped Virtual API Key passed via `Authorization: Bearer sk-gw-...`.  
 > All administrative control plane routes require the Master Admin Key passed via `Authorization: Bearer $GATEWAY_MASTER_ADMIN_KEY`.
+
+---
+
+## Interactive Endpoint Catalog
+
+Search and filter every HTTP and WebSocket route exposed by GoRoute AI Gateway across `/v1/*`, `/openai/v1/*`, `/anthropic/v1/*`, `/mcp*`, `/a2a/v1/*`, and `/admin/v1/*`.
+
+<EndpointCatalog />
 
 ---
 

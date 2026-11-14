@@ -209,14 +209,14 @@ The landing view provides real-time system observability and operational telemet
 
 An interactive developer testbench for validating models, prompt templates, and streaming reliability without writing code:
 - **Interactive Chat Canvas**: Multi-turn conversational interface supporting `user`, `assistant`, and `system` message sequencing.
-- **Model Switcher**: Direct selection of model groups (e.g., `"fast"`, `"reasoning"`, `"coding"`) or specific provider deployments (`openai/gpt-4o`, `anthropic/claude-3-5-sonnet`, `gemini/gemini-2.5-flash`).
+- **Model Switcher**: Direct selection of model groups (e.g., `"fast"`, `"reasoning"`, `"coding"`) or provider-qualified model IDs. Use the current model inventory for the signed-in key; examples elsewhere in this guide do not define the deployment's available models.
 - **Hyperparameter Controls**: Sliders for temperature ([0.0, 2.0]), max completion tokens, top-p, frequency penalty, and presence penalty.
 - **Real-Time Token-by-Token SSE Stream**: Consumes `text/event-stream` chunks via native Fetch API and Web Streams, rendering live markdown tokens.
 - **Inference Diagnostics**: Real-time display of Time-To-First-Token (TTFT in milliseconds), total generation time, prompt/completion token counts, and micro-dollar cost.
 
 ### View 3: Model Catalogue Browser (`ModelsView.tsx`)
 
-A searchable directory of all frontier LLMs and specialized models registered in the gateway's global catalog:
+A searchable directory of model records registered or discovered in this gateway deployment. It is not a universal or necessarily exhaustive list of provider models; availability to callers is further filtered by organization policies and virtual-key permissions.
 - **4-Layer Governance Visibility**: Inspects the hierarchical model availability status (Global Discovery -> Org Subscription -> Org Policy Override -> Virtual Key allowlist).
 - **Capability Matrix**: Filter models by supported modalities:
   - Streaming, Tool Calling, Vision, Reasoning / Thinking, Structured Outputs (`json_schema`), Dense Embeddings, Reranking, Audio STT / TTS, Stateful Batches, and Realtime WebSockets.

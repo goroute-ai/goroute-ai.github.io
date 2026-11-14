@@ -27,6 +27,9 @@ jobs:
       - name: Run TypeScript Typecheck
         run: npm run typecheck
 
+      - name: Run Docs QA Checks
+        run: npm run check:docs
+
       - name: Build Docusaurus (Verify No Broken Links)
         env:
           DOCUSAURUS_URL: https://goroute-ai.github.io

@@ -1,24 +1,26 @@
 ---
 title: Anthropic Claude
 sidebar_position: 3
-description: Native Anthropic adapter for Claude 3.5 Sonnet, Haiku, Opus with Messages API, extended thinking budgets, and role alternation tool consolidation.
+description: Anthropic provider integration for Claude Messages API, extended thinking, and role alternation tool consolidation.
 ---
 
 # Anthropic Claude
 
-GoRoute provides a native high-performance adapter for **Anthropic** (`internal/adapter/anthropic/`), translating standard OpenAI chat completion and tool calling requests into Anthropic's **Messages API** (`POST /v1/messages`).
+GoRoute provides a native adapter for **Anthropic**, translating standard OpenAI chat completion and tool calling requests into Anthropic's **Messages API** (`POST /v1/messages`). The model IDs below are provider-side examples, not an exhaustive or guaranteed-current list of models supported by every GoRoute deployment. Check [Anthropic's current model status](https://docs.anthropic.com/en/docs/about-claude/model-deprecations) and the [model overview](https://docs.anthropic.com/en/docs/about-claude/models), then confirm which models your key can use with [`GET /v1/models`](/docs/api-reference/gateway-api#4-model-catalogue-inventory-get-v1models).
 
 The adapter natively implements Anthropic-specific protocol requirements—such as extended thinking budgets, strict user/assistant turn alternation, tool use consolidation, and Server-Sent Events (SSE) stream translation.
 
 ---
 
-## Supported Models
+## Representative model IDs
 
-| Model | Anthropic Identifier | Context Window | Max Output Tokens | Modalities |
-| :--- | :--- | :--- | :--- | :--- |
-| **Claude 3.5 Sonnet v2** | `claude-3-5-sonnet-20241022` | 200,000 tokens | 8,192 tokens | Chat, Code, Vision, Tools, Thinking |
-| **Claude 3.5 Haiku** | `claude-3-5-haiku-20241022` | 200,000 tokens | 8,192 tokens | Fast Chat, Code, Tools |
-| **Claude 3 Opus** | `claude-3-opus-20240229` | 200,000 tokens | 4,096 tokens | Deep Analysis, Complex Reasoning |
+| Model family | Example Anthropic identifier |
+| :--- | :--- |
+| Claude Sonnet | `claude-sonnet-5-5` |
+| Claude Opus | `claude-opus-5-5` |
+| Claude Haiku | `claude-haiku-5-5` |
+
+These examples reflect identifiers in Anthropic's provider catalog when this page was updated. Availability, lifecycle status, and feature support can vary; the gateway inventory is the check for a particular deployment and key.
 
 ---
 
@@ -72,7 +74,7 @@ GoRoute's adapter (`internal/adapter/anthropic/adapter.go`) automatically interc
 
 ## Extended Thinking Budgets
 
-Anthropic Claude 3.7 and 3.5 Sonnet support extended thinking, allowing the model to perform chain-of-thought reasoning before outputting its response.
+Anthropic Claude models that support extended thinking can be configured through the normalized reasoning interface, allowing the model to perform chain-of-thought reasoning before outputting its response.
 
 GoRoute normalizes reasoning across providers. When you supply `reasoning_effort` (`"low"`, `"medium"`, `"high"`), GoRoute automatically configures Anthropic's `thinking` block:
 
@@ -101,26 +103,26 @@ Add Anthropic models to `configs/config.yaml`:
 
 ```yaml
 model_list:
-  # Primary: Claude 3.5 Sonnet
-  - model_name: claude-3-5-sonnet
+  # Primary: Claude Sonnet 5.5
+  - model_name: claude-sonnet-5-5
     routing_strategy: least-busy
-    fallbacks: ["claude-3-5-haiku", "gpt-4o"]
+    fallbacks: ["claude-haiku-5-5", "gpt-4o"]
     model_params:
-      model: anthropic/claude-3-5-sonnet-20241022
+      model: anthropic/claude-sonnet-5-5
       api_key: os.environ/ANTHROPIC_API_KEY
       rpm: 2000
       tpm: 400000
 
-  # High-throughput: Claude 3.5 Haiku
-  - model_name: claude-3-5-haiku
+  # High-throughput: Claude Haiku 5.5
+  - model_name: claude-haiku-5-5
     model_params:
-      model: anthropic/claude-3-5-haiku-20241022
+      model: anthropic/claude-haiku-5-5
       api_key: os.environ/ANTHROPIC_API_KEY
 
-  # Deep Reasoning: Claude 3 Opus
-  - model_name: claude-3-opus
+  # Deep Reasoning: Claude Opus 5.5
+  - model_name: claude-opus-5-5
     model_params:
-      model: anthropic/claude-3-opus-20240229
+      model: anthropic/claude-opus-5-5
       api_key: os.environ/ANTHROPIC_API_KEY
 ```
 
@@ -141,7 +143,7 @@ curl -X POST http://localhost:8080/v1/chat/completions \
   -H "Authorization: Bearer your-gateway-virtual-key" \
   -H "Content-Type: application/json" \
   -d '{
-    "model": "claude-3-5-sonnet",
+    "model": "claude-sonnet-5-5",
     "reasoning_effort": "high",
     "messages": [
       {"role": "system", "content": "You are a distributed systems architect."},
@@ -159,7 +161,7 @@ curl -N -X POST http://localhost:8080/v1/chat/completions \
   -H "Authorization: Bearer your-gateway-virtual-key" \
   -H "Content-Type: application/json" \
   -d '{
-    "model": "claude-3-5-sonnet",
+    "model": "claude-sonnet-5-5",
     "messages": [{"role": "user", "content": "Explain how epoll scales differently than select."}],
     "stream": true
   }'
@@ -185,7 +187,7 @@ func main() {
 		gateway.WithModelList(
 			gateway.ModelEntry{
 				ModelName: "claude-chat",
-				Model:     "anthropic/claude-3-5-sonnet-20241022",
+				Model:     "anthropic/claude-sonnet-5-5",
 				APIKey:    "os.environ/ANTHROPIC_API_KEY",
 			},
 		),

@@ -1,0 +1,323 @@
+.catalogRoot {
+  margin: 1.5rem 0 2rem;
+  font-family: var(--ifm-font-family-base);
+}
+
+.statsBar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.statCard {
+  background: var(--ifm-background-surface-color);
+  border: 1px solid var(--color-border);
+  border-radius: var(--ifm-global-radius);
+  padding: 0.75rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.statValue {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--ifm-color-primary);
+  line-height: 1.2;
+}
+
+.statLabel {
+  font-size: 0.78rem;
+  color: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  padding: 1rem;
+  background: var(--ifm-background-surface-color);
+  border: 1px solid var(--color-border);
+  border-radius: var(--ifm-global-radius);
+}
+
+.searchRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.searchInput {
+  flex: 1 1 240px;
+  padding: 0.55rem 0.85rem;
+  font-size: 0.9rem;
+  color: var(--color-text-title);
+  background: var(--ifm-background-color);
+  border: 1px solid var(--color-border);
+  border-radius: 0.45rem;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.searchInput:focus {
+  border-color: var(--ifm-color-primary);
+}
+
+.selectInput {
+  padding: 0.55rem 0.75rem;
+  font-size: 0.85rem;
+  color: var(--color-text-title);
+  background: var(--ifm-background-color);
+  border: 1px solid var(--color-border);
+  border-radius: 0.45rem;
+  outline: none;
+  cursor: pointer;
+}
+
+.selectInput:focus {
+  border-color: var(--ifm-color-primary);
+}
+
+.filterPills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.filterLabel {
+  font-size: 0.78rem;
+  color: var(--color-muted);
+  margin-right: 0.25rem;
+  font-weight: 500;
+}
+
+.pill {
+  padding: 0.28rem 0.65rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  border-radius: 9999px;
+  border: 1px solid var(--color-border);
+  background: var(--ifm-background-color);
+  color: var(--color-text-body);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.pill:hover {
+  border-color: var(--ifm-color-primary);
+  color: var(--ifm-color-primary);
+}
+
+.pillActive {
+  background: var(--docs-accent-soft);
+  border-color: var(--ifm-color-primary);
+  color: var(--ifm-color-primary);
+}
+
+.resultCount {
+  font-size: 0.82rem;
+  color: var(--color-muted);
+  margin-bottom: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.resetBtn {
+  background: none;
+  border: none;
+  color: var(--ifm-color-primary);
+  font-size: 0.82rem;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+  gap: 0.85rem;
+}
+
+.card {
+  background: var(--ifm-background-surface-color);
+  border: 1px solid var(--color-border);
+  border-radius: var(--ifm-global-radius);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  transition: border-color 0.15s ease;
+}
+
+.card:hover {
+  border-color: var(--ifm-color-primary);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.cardTitle {
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--color-text-title);
+  margin: 0;
+}
+
+.codeId {
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.78rem;
+  color: var(--ifm-color-primary);
+  background: var(--docs-accent-soft);
+  padding: 0.15rem 0.45rem;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  border: none;
+  white-space: nowrap;
+}
+
+.tierBadge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.15rem 0.5rem;
+  border-radius: 9999px;
+  border: 1px solid var(--color-border);
+  color: var(--color-muted);
+  white-space: nowrap;
+}
+
+.tierNative {
+  border-color: var(--ifm-color-primary);
+  color: var(--ifm-color-primary);
+  background: var(--docs-accent-soft);
+}
+
+.metaRow {
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.baseUrl {
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.75rem;
+  color: var(--color-text-body);
+  word-break: break-all;
+}
+
+.capList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-top: auto;
+  padding-top: 0.25rem;
+}
+
+.capBadge {
+  font-size: 0.7rem;
+  padding: 0.12rem 0.42rem;
+  border-radius: 0.25rem;
+  background: var(--ifm-background-color);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-body);
+}
+
+.tableWrap {
+  overflow-x: auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--ifm-global-radius);
+  background: var(--ifm-background-surface-color);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0;
+  font-size: 0.86rem;
+}
+
+.table th {
+  text-align: left;
+  padding: 0.65rem 0.85rem;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text-title);
+  font-weight: 600;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  background: var(--ifm-background-color);
+}
+
+.table td {
+  padding: 0.6rem 0.85rem;
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: top;
+  color: var(--color-text-body);
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+.methodBadge {
+  display: inline-block;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.15rem 0.45rem;
+  border-radius: 0.25rem;
+  min-width: 3.6rem;
+  text-align: center;
+}
+
+.methodGET {
+  background: rgba(16, 185, 129, 0.14);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.methodPOST {
+  background: rgba(139, 92, 246, 0.15);
+  color: var(--ifm-color-primary);
+  border: 1px solid rgba(139, 92, 246, 0.35);
+}
+
+.methodDELETE {
+  background: rgba(239, 68, 68, 0.14);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.methodWS {
+  background: rgba(245, 158, 11, 0.14);
+  color: #f59e0b;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.pathCode {
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.82rem;
+  color: var(--color-text-title);
+  word-break: break-word;
+}
+
+.emptyState {
+  padding: 2rem;
+  text-align: center;
+  color: var(--color-muted);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--ifm-global-radius);
+}

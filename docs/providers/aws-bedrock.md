@@ -6,7 +6,7 @@ description: Native AWS Bedrock adapter with SigV4 signing, IAM auth, and Conver
 
 # AWS Bedrock
 
-GoRoute provides a native high-performance adapter for Amazon Web Services (AWS) Bedrock (`internal/adapter/bedrock/`), enabling unified access to leading foundation models—including Anthropic Claude 3.5 Sonnet, Amazon Titan, Amazon Nova, and Meta Llama 3—over AWS's global infrastructure.
+GoRoute provides a native adapter for Amazon Web Services (AWS) Bedrock (`internal/adapter/bedrock/`), enabling unified access to foundation models through AWS's runtime APIs. Model families, IDs, and regional availability change; consult AWS's current catalog and the representative-ID guidance below.
 
 Rather than relying on legacy invocation endpoints, GoRoute leverages the AWS Bedrock **Converse API** (`/model/{model}/converse` and `/model/{model}/converse-stream`). This guarantees uniform multi-turn message structures, standardized tool use schemas, native system prompt injection, and binary AWS EventStream chunk decoding.
 
@@ -59,20 +59,16 @@ If only the Access Key ID is supplied in the credential, GoRoute falls back to a
 
 ---
 
-## Supported Models
+## Representative model IDs
 
-| Foundation Family | Bedrock Model ID | Modality | Max Output |
-| :--- | :--- | :--- | :--- |
-| **Anthropic Claude 3.5 Sonnet v2** | `anthropic.claude-3-5-sonnet-20241022-v2:0` | Chat, Tools, Vision | 8,192 tokens |
-| **Anthropic Claude 3.5 Haiku** | `anthropic.claude-3-5-haiku-20241022-v1:0` | Chat, Tools, Vision | 8,192 tokens |
-| **Anthropic Claude 3 Opus** | `anthropic.claude-3-opus-20240229-v1:0` | Chat, Tools, Vision | 4,096 tokens |
-| **Meta Llama 3.3 70B Instruct** | `meta.llama3-3-70b-instruct-v1:0` | Chat, Tools | 2,048 tokens |
-| **Meta Llama 3.1 405B Instruct** | `meta.llama3-1-405b-instruct-v1:0` | Chat, Tools | 4,096 tokens |
-| **Amazon Nova Pro** | `amazon.nova-pro-v1:0` | Chat, Tools, Multimodal | 5,000 tokens |
-| **Amazon Nova Lite** | `amazon.nova-lite-v1:0` | Chat, Tools, Multimodal | 5,000 tokens |
-| **Amazon Titan Text G1 - Express** | `amazon.titan-text-express-v1` | Text, Chat | 8,192 tokens |
-| **Amazon Titan Embeddings G1 - Text** | `amazon.titan-embed-text-v1` | Embeddings (1536d) | N/A |
-| **Amazon Titan Text Embeddings V2** | `amazon.titan-embed-text-v2:0` | Embeddings (1024d/512d/256d) | N/A |
+This table is illustrative and may lag behind AWS releases. See [AWS Bedrock's current supported model list](https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html) for provider-side IDs, then check [`GET /v1/models`](/docs/api-reference/gateway-api#4-model-catalogue-inventory-get-v1models) to confirm which models are exposed to your gateway key. AWS account access, region, gateway catalog state, and model policies affect availability.
+
+| Foundation Family | Example Bedrock Model ID |
+| :--- | :--- |
+| **Claude Haiku 5.5** | `anthropic.claude-haiku-5-5` |
+| **Claude Sonnet 5.5** | `anthropic.claude-sonnet-5-5` |
+| **Claude Opus 5.5** | `anthropic.claude-opus-5-5` |
+| **Other available model families** | See AWS's live model catalog for current IDs, regions, modalities, and endpoint support. |
 
 > [!IMPORTANT]
 > Make sure your AWS Account has requested and been granted model access in the AWS Bedrock Console for the specific region you target (e.g., `us-east-1` or `us-west-2`).
@@ -85,24 +81,24 @@ Add your Bedrock deployments to `configs/config.yaml`:
 
 ```yaml
 model_list:
-  # Anthropic Claude 3.5 Sonnet on AWS Bedrock
+  # Claude Sonnet 5.5 on AWS Bedrock; confirm region and account access
   - model_name: bedrock-claude
     model_params:
-      model: bedrock/anthropic.claude-3-5-sonnet-20241022-v2:0
+      model: bedrock/anthropic.claude-sonnet-5-5
       api_key: os.environ/AWS_BEDROCK_JSON_CREDENTIALS
       # Alternatively, specify custom endpoint or VPC endpoint:
       # api_base: "https://vpce-0123456789abcdef0.bedrock-runtime.us-east-1.vpce.amazonaws.com"
 
-  # Meta Llama 3.3 70B on AWS Bedrock
+  # Replace this placeholder with an available Bedrock model ID
   - model_name: bedrock-llama
     model_params:
-      model: bedrock/meta.llama3-3-70b-instruct-v1:0
+      model: bedrock/<model-id-from-bedrock-catalog>
       api_key: os.environ/AWS_BEDROCK_KEY_PAIR # e.g. "AKIA...:SECRET..."
 
-  # Amazon Titan Embeddings
+  # Replace this placeholder with an available Bedrock embedding model ID
   - model_name: bedrock-titan-embed
     model_params:
-      model: bedrock/amazon.titan-embed-text-v2:0
+      model: bedrock/<embedding-model-id-from-bedrock-catalog>
       api_key: os.environ/AWS_BEDROCK_JSON_CREDENTIALS
 ```
 
@@ -157,15 +153,15 @@ curl -N -X POST http://localhost:8080/v1/chat/completions \
 ```
 
 ```text
-data: {"id":"bedrock-1731336492","object":"chat.completion.chunk","created":1731336492,"model":"anthropic.claude-3-5-sonnet-20241022-v2:0","choices":[{"index":0,"delta":{"content":"package"},"finish_reason":null}]}
+data: {"id":"bedrock-1731336492","object":"chat.completion.chunk","created":1731336492,"model":"anthropic.claude-sonnet-5-5","choices":[{"index":0,"delta":{"content":"package"},"finish_reason":null}]}
 ...
-data: {"id":"bedrock-1731336492","object":"chat.completion.chunk","created":1731336492,"model":"anthropic.claude-3-5-sonnet-20241022-v2:0","choices":[{"index":0,"delta":{},"finish_reason":"stop"}]}
+data: {"id":"bedrock-1731336492","object":"chat.completion.chunk","created":1731336492,"model":"anthropic.claude-sonnet-5-5","choices":[{"index":0,"delta":{},"finish_reason":"stop"}]}
 data: [DONE]
 ```
 
-### 3. Embeddings via Amazon Titan
+### 3. Embeddings via Amazon Bedrock
 
-Amazon Titan Text Embeddings can be invoked through the unified `/v1/embeddings` endpoint:
+Embedding models available to your AWS account can be invoked through the unified `/v1/embeddings` endpoint. Use an ID from the current Bedrock catalog and gateway inventory:
 
 ```bash
 curl -X POST http://localhost:8080/v1/embeddings \
@@ -197,7 +193,7 @@ func main() {
 		gateway.WithModelList(
 			gateway.ModelEntry{
 				ModelName: "bedrock-claude",
-				Model:     "bedrock/anthropic.claude-3-5-sonnet-20241022-v2:0",
+				Model:     "bedrock/anthropic.claude-sonnet-5-5",
 				APIKey:    "os.environ/AWS_BEDROCK_JSON_CREDENTIALS",
 			},
 		),

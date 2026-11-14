@@ -1,28 +1,30 @@
 ---
 title: OpenAI
 sidebar_position: 2
-description: Native OpenAI provider adapter for GPT-4o, o1, o3, DALL-E, Whisper, TTS, Embeddings, Responses API, and Realtime WebSockets.
+description: OpenAI provider integration for chat, reasoning, images, audio, embeddings, Responses API, and Realtime WebSockets.
 ---
 
 # OpenAI
 
-GoRoute provides a native high-performance adapter for **OpenAI** (`internal/adapter/openai/`), supporting the complete spectrum of OpenAI's frontier modalities: reasoning-optimized flagships (o1, o3, o3-mini), multimodal general-purpose models (GPT-4o, GPT-4o-mini), image generation (DALL-E 2/3), speech transcription and translation (Whisper), speech synthesis (TTS), dense vector embeddings, content moderation, the modern Responses API, and the Realtime WebSocket protocol.
+GoRoute provides a native adapter for **OpenAI**, with gateway routes for chat, embeddings, audio, images, moderation, Responses, and Realtime. Model IDs used in examples are provider-side examples, not an exhaustive or guaranteed-current list of models supported by every GoRoute deployment. OpenAI changes model IDs and endpoint availability over time; check the [OpenAI model catalog](https://developers.openai.com/api/docs/models) and then confirm the IDs exposed to your key with [`GET /v1/models`](/docs/api-reference/gateway-api#4-model-catalogue-inventory-get-v1models).
 
 ---
 
-## Supported Modalities & Route Map
+## Modalities & Route Map
 
-| Modality | Gateway Route | Upstream Engine | Key Models |
-| :--- | :--- | :--- | :--- |
-| **Chat Completions** | `POST /v1/chat/completions` | Standard Chat REST | `gpt-4o`, `gpt-4o-mini` |
-| **Reasoning Models** | `POST /v1/chat/completions` | Reasoning Normalizer | `o1`, `o1-mini`, `o3`, `o3-mini` |
-| **Embeddings** | `POST /v1/embeddings` | Vector Engine | `text-embedding-3-small`, `text-embedding-3-large` |
-| **Audio Transcription** | `POST /v1/audio/transcriptions` | Whisper STT | `whisper-1` |
-| **Audio Speech** | `POST /v1/audio/speech` | TTS Engine | `tts-1`, `tts-1-hd` |
-| **Image Generation** | `POST /v1/images/generations` | DALL-E Engine | `dall-e-3`, `dall-e-2` |
-| **Content Moderation**| `POST /v1/moderations` | Moderation Classifier | `omni-moderation-latest` |
-| **Responses API** | `POST /v1/responses` | Structured Responses | `gpt-4o`, `o3-mini` |
-| **Realtime WebSockets**| `GET /v1/realtime` | Full-Duplex WebSockets | `gpt-4o-realtime-preview` |
+| Modality | Gateway Route | Upstream Engine |
+| :--- | :--- | :--- |
+| **Chat Completions** | `POST /v1/chat/completions` | Standard Chat REST |
+| **Reasoning Models** | `POST /v1/chat/completions` | Reasoning Normalizer |
+| **Embeddings** | `POST /v1/embeddings` | Vector Engine |
+| **Audio Transcription** | `POST /v1/audio/transcriptions` | Audio transcription |
+| **Audio Speech** | `POST /v1/audio/speech` | Speech generation |
+| **Image Generation** | `POST /v1/images/generations` | Image generation |
+| **Content Moderation**| `POST /v1/moderations` | Moderation classifier |
+| **Responses API** | `POST /v1/responses` | Structured Responses |
+| **Realtime WebSockets**| `GET /v1/realtime` | Full-duplex WebSockets |
+
+OpenAI's current catalog includes IDs such as `gpt-6-astra` and `gpt-6.1-sol`; these are provider-side examples only. The model catalog describes endpoint availability per model, so do not assume that every listed model works with Chat Completions or every GoRoute route. Verify provider endpoint compatibility and your tenant-filtered gateway inventory before configuring a deployment.
 
 ---
 

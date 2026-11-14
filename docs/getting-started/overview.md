@@ -6,7 +6,7 @@ description: Understand GoRoute AI Gateway deployment modes, high-performance ar
 
 # GoRoute AI Gateway Overview
 
-GoRoute AI Gateway is a high-throughput, low-overhead enterprise AI control plane and multi-protocol gateway engineered in pure Go. It unifies 42+ upstream model providers and agentic execution standards into an OpenAI-compatible API, a Linux Foundation Agent-to-Agent (A2A v1.0) bridge, and a Model Context Protocol (MCP 2026-07-28) virtual hub.
+GoRoute AI Gateway is a high-throughput, low-overhead enterprise AI control plane and multi-protocol gateway engineered in pure Go. It unifies **73 `ProviderType` profiles** (plus `CustomOpenAICompatible`) and agentic execution standards into an OpenAI-compatible API, a Linux Foundation Agent-to-Agent (A2A v1.0) bridge, and a Model Context Protocol (MCP 2026-07-28) virtual hub.
 
 ![GoRoute AI Gateway Architecture](/img/architecture.png)
 
@@ -93,8 +93,8 @@ Every inference request traversing GoRoute undergoes sub-2ms processing on the h
 
 ## Core Capabilities
 
-- **21 Multi-Modal Data Plane Routes**: Unified endpoints for Chat Completions, Text Completions, Vector Embeddings, Reranking, Moderation, Anthropic Messages, Tokenization, Audio (STT & TTS), Image Generation/Edits/Variations, Stateful Tenant Files, Asynchronous Batches, Responses API, and Realtime WebSockets.
-- **42+ Provider Integrations**: Native support for dedicated cloud providers (OpenAI, Anthropic Claude, Google Gemini, AWS Bedrock, Azure OpenAI, Google Vertex AI, Cohere, Mistral, Ollama) and certified dialect profiles.
+- **23 Primary `/v1` Data Plane Paths (26 HTTP Operations)**: Unified endpoints for Chat Completions, Text Completions, Vector Embeddings, Reranking, Moderation, Anthropic Messages, Tokenization, Audio (STT & TTS), Image Generation/Edits/Variations, Stateful Tenant Files, Asynchronous Batches, Responses API, and Realtime WebSockets.
+- **73 `ProviderType` Profiles**: Native adapters for dedicated cloud providers (OpenAI, Anthropic Claude, Google Gemini, AWS Bedrock, Azure OpenAI, Google Vertex AI, Cohere, Mistral, Ollama), 60+ built-in and extended OpenAI-compatible dialect profiles, and `CustomOpenAICompatible`.
 - **Agentic Protocols Built-In**: Native Model Context Protocol (MCP) virtual hub with tool deduplication and progressive discovery, alongside Linux Foundation Agent-to-Agent (A2A) cryptographic cards, message dispatch, and gRPC streaming.
 - **Enterprise FinOps**: Real-time micro-dollar ledger ($1 = 1,000,000 µ$) with multi-tenant budgeting, spend summaries, and immutable audit logs.
 - **Multi-Tenant Security**: 4-layer access hierarchy (public catalogue → org subscriptions → org model policy → virtual key allowlist) with automated PII masking and secret redaction.

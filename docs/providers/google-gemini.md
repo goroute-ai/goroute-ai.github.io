@@ -1,26 +1,27 @@
 ---
 title: Google Gemini
 sidebar_position: 4
-description: Native Google Gemini adapter for Gemini 2.5 Flash, 1.5 Pro, Imagen, Gemini Audio, and thinking budgets.
+description: Google Gemini provider integration for chat, embeddings, multimodal inputs, image generation, audio, and thinking budgets.
 ---
 
 # Google Gemini
 
 GoRoute provides a native provider adapter for **Google Gemini** (`internal/adapter/gemini/`), translating standard OpenAI chat completion, streaming, embeddings, and tool calling requests into Google's **Gemini REST API** (`generateContent`, `streamGenerateContent`).
 
-The adapter supports Google AI Studio API keys, multimodal audio and image inputs, structured JSON outputs, Imagen image generation, and intelligent thinking budget controls for Gemini 2.5 Flash.
+The adapter supports Google AI Studio API keys, multimodal audio and image inputs, structured JSON outputs, image generation, and reasoning-budget handling. The model IDs shown here are provider-side examples, not an exhaustive or guaranteed-current list of models supported by every GoRoute deployment. Check [Google's current Gemini model list](https://ai.google.dev/gemini-api/docs/models), then confirm which models your key can use with [`GET /v1/models`](/docs/api-reference/gateway-api#4-model-catalogue-inventory-get-v1models).
 
 ---
 
-## Supported Models & Modalities
+## Representative model IDs
 
-| Model | Model Identifier | Max Context | Max Output | Modalities |
-| :--- | :--- | :--- | :--- | :--- |
-| **Gemini 2.5 Flash** | `gemini-2.5-flash` | 1,048,576 tokens | 8,192 tokens | Text, Code, Vision, Audio, Tools, Thinking |
-| **Gemini 1.5 Pro** | `gemini-1.5-pro` | 2,097,152 tokens | 8,192 tokens | Deep Multimodal, Complex Analysis |
-| **Gemini 1.5 Flash** | `gemini-1.5-flash` | 1,048,576 tokens | 8,192 tokens | Ultra-Fast Multimodal, Vision, Audio |
-| **Gemini 1.5 Flash-8B**| `gemini-1.5-flash-8b` | 1,048,576 tokens | 8,192 tokens | High-throughput, Cost-optimized |
-| **Text Embedding 004**| `text-embedding-004` | 2,048 tokens | 768 dimensions | Dense Vector Embeddings |
+| Model family / task | Example Gemini API identifier |
+| :--- | :--- |
+| Gemini Flash | `gemini-3.8-flash` |
+| Gemini Flash (previous generation) | `gemini-2.5-flash` |
+| Text embeddings | `gemini-embedding-001` |
+| Image generation | `gemini-3.1-flash-image` |
+
+These examples refer to the Gemini API catalog. Google AI Studio and Vertex AI can expose different model IDs and availability. An ID listed by Google does not confirm that it is enabled for your GoRoute deployment or compatible with every gateway route; check the gateway inventory and the relevant Google endpoint documentation.
 
 ---
 
@@ -95,26 +96,26 @@ Add Gemini deployments to `configs/config.yaml`:
 
 ```yaml
 model_list:
-  # Primary: Gemini 2.5 Flash
+  # Primary: Gemini Flash example; verify this ID in your gateway inventory first
   - model_name: gemini-fast
     routing_strategy: weighted-shuffle
     fallbacks: ["gemini-pro"]
     model_params:
-      model: gemini/gemini-2.5-flash
+      model: gemini/gemini-3.8-flash
       api_key: os.environ/GEMINI_API_KEY
       rpm: 1000
       tpm: 1000000
 
-  # Heavy Multimodal / Complex Reasoning: Gemini 1.5 Pro
+  # Previous-generation Pro example
   - model_name: gemini-pro
     model_params:
-      model: gemini/gemini-1.5-pro
+      model: gemini/gemini-2.5-pro
       api_key: os.environ/GEMINI_API_KEY
 
   # Gemini Embeddings
   - model_name: gemini-embedding
     model_params:
-      model: gemini/text-embedding-004
+      model: gemini/gemini-embedding-001
       api_key: os.environ/GEMINI_API_KEY
 ```
 

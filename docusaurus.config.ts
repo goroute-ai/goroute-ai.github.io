@@ -16,7 +16,7 @@ const config: Config = {
   trailingSlash: false,
 
   onBrokenLinks: 'throw',
-  onBrokenAnchors: 'warn',
+  onBrokenAnchors: 'throw',
 
   i18n: {
     defaultLocale: 'en',
@@ -114,9 +114,21 @@ const config: Config = {
         },
         {
           type: 'docSidebar',
+          sidebarId: 'integrationsSidebar',
+          position: 'left',
+          label: 'Integrations',
+        },
+        {
+          type: 'docSidebar',
           sidebarId: 'demosSidebar',
           position: 'left',
           label: 'Examples',
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'releaseNotesSidebar',
+          position: 'left',
+          label: 'Release Notes',
         },
         {
           href: 'https://github.com/goroute-ai/ai-gateway-go',

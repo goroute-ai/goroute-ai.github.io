@@ -8,7 +8,9 @@ description: "Comprehensive production guide covering database migrations, 16 pe
 
 GoRoute AI Gateway supports two operational storage modes:
 1. **In-Memory Mode (`storage.mode: memory`)**: Zero external dependencies. Ideal for local unit testing, CI pipelines, and ephemeral container runs. Secrets are kept in-process in an AES-256-GCM vault, but state does not survive process restarts.
-2. **Clustered PostgreSQL + Redis (`storage.mode: postgres`)**: The enterprise production topology. PostgreSQL provides ACID durability for multi-tenant organizations, model catalogs, encrypted credentials, virtual keys, audit trails, stateful files, and asynchronous batch jobs. Redis provides distributed L2 key caching, atomic sliding-window rate limiting, response caching, circuit breaker state, and real-time Pub/Sub streams.
+2. **Clustered PostgreSQL + Redis (`storage.mode: postgres`)**: The enterprise production topology. PostgreSQL provides ACID durability for multi-tenant organizations, model catalogs, encrypted credentials, virtual keys, audit trails, stateful files, and asynchronous batch jobs. Redis (`go-redis` `UniversalClient`) supports standalone, Sentinel (`storage.redis_master_name`), and Cluster (`storage.redis_addrs`) modes for distributed L2 key caching, atomic sliding-window rate limiting, response caching, circuit breaker state, and real-time Pub/Sub streams.
+
+For production Kubernetes deployments using the hardened manifests in `deployments/k8s/`, see the [Kubernetes Kustomize Deployment Guide](/docs/operations/kubernetes-kustomize).
 
 ```mermaid
 flowchart TD
@@ -38,9 +40,9 @@ flowchart TD
 
 ---
 
-## 1. PostgreSQL Schema Migrations (0001 to 0007)
+## 1. PostgreSQL Schema Migrations (0001 to 0012)
 
-The gateway automatically manages its database schema at startup using embedded SQL migration scripts located in `migrations/`. Migrations are applied sequentially inside an atomic transaction.
+The gateway automatically manages its database schema at startup using embedded SQL migration scripts located in `migrations/`. Migrations are applied sequentially inside an atomic transaction (note that `0009` does not exist; numbering advances from `0008` directly to `0010`).
 
 | Migration File | Description | Core Operations |
 | :--- | :--- | :--- |
@@ -50,7 +52,11 @@ The gateway automatically manages its database schema at startup using embedded 
 | **`0004_add_pricing_status.up.sql`** | Pricing Provenance & Azure Fields | Adds `pricing_status`, `pricing_provenance_source`, and `pricing_effective_date` to `global_models` and `spend_logs`. Adds `azure_deployment_name` and `api_version` to `provider_credentials`. Backfills audited seed models. |
 | **`0005_add_model_capabilities.up.sql`** | Persistent Capabilities & Provenance | Adds `capabilities` JSONB column to `global_models` for tri-state capabilities tracking. Adds `pricing_status` and `pricing_provenance_source` to `model_pricing_history`. |
 | **`0006_add_supports_inference.up.sql`** | Non-Inference Product Segregation | Adds `supports_inference` boolean flag to `global_models` to distinguish callable LLM deployments from ancillary catalog products. |
-| **`0007_add_modality_pricing_and_spend.up.sql`** | Multi-Modal Spend & Batch Assets | Adds modality pricing columns (`rerank_cost_micros_per_search_unit`, `image_cost_micros_base`, `audio_stt_cost_micros_per_second`, etc.) to `global_models`, adds `modality` and `modality_units` JSONB to `spend_logs`, and creates `files` and `batches` tables. |
+| **`0007_add_modality_pricing_and_spend.up.sql`** | Multi-Modal Spend & Batch Assets | Adds modality pricing columns (`rerank_cost_micros_per_search_unit`, `image_cost_micros_base`, `audio_stt_cost_micros_per_second`, etc.) to `global_models`, adds `modality` and `modality_units` JSONB to `spend_logs`, and creates `files` (`file_uploads`) and `batches` tables. |
+| **`0008_add_spend_event_outbox.up.sql`** | Durable Spend Event Outbox | Creates `spend_event_outbox` (`pending`, `processing`, `delivered`, `dead_letter`) with retry/lock indexes for durable, idempotent Redis/PostgreSQL spend reconciliation. |
+| **`0010_guardrail_mode.up.sql`** | `logging_only` Guardrails & All-Role Scanning | Adds `mode` (`enforce` / `logging_only`) and `scan_all_roles` columns to `guardrail_policies`. *(Note: `0009` does not exist.)* |
+| **`0011_budget_reset_outbox.up.sql`** | Budget Reset Outbox | Creates `budget_reset_outbox` (`org`, `team`, `key` scopes) so expired budget period rollovers in PostgreSQL reliably clear Redis spend counters. |
+| **`0012_add_cache_write_and_operations.up.sql`** | Cache-Write Pricing & Operations | Adds `cache_write_cost_micros_per_1m` and `supported_operations` JSONB to `global_models` for prompt cache-write FinOps and `SupportedOperations` routing enforcement. *(v1.6.0 also removes invalid `::uuid` casts on `VARCHAR(64)` `org_id`/`team_id`/`user_id` columns in `file_uploads` queries.)* |
 
 ---
 
@@ -394,9 +400,16 @@ CREATE TABLE batches (
 
 ---
 
-## 3. Redis Keyspace and TTL Matrix
+## 3. Redis Cluster, Sentinel & Keyspace Matrix
 
-Redis acts as the distributed execution fabric for clustered gateway pods. All keys are namespaced with the `gw:` prefix.
+`RedisFabric` (`internal/storage/redis.go`) wraps a `go-redis` `UniversalClient` protected by a circuit breaker (with `redis.Nil` cache misses treated as non-failures). It supports three deployment topologies:
+- **Standalone**: `storage.redis_addr` (`GATEWAY_REDIS_ADDR`)
+- **Redis Cluster**: `storage.redis_addrs` (`GATEWAY_REDIS_ADDRS`, comma-separated seed nodes)
+- **Redis Sentinel**: `storage.redis_addrs` combined with `storage.redis_master_name` (`GATEWAY_REDIS_MASTER_NAME`)
+
+All multi-key Lua scripts for rate limiting, budget reservations, and spend reconciliation use `{org:<orgID>}` hash tags (e.g., `gw:spend:{org:<orgID>}:key:{keyID}`, `gw:budget:{org:<orgID>}:reservations:key:{keyID}`) so every key belonging to an organization maps to the same Redis Cluster hash slot.
+
+All keys are namespaced with the `gw:` prefix.
 
 | Redis Key Pattern | Type | Configured TTL | Subsystem & Purpose |
 | :--- | :--- | :--- | :--- |

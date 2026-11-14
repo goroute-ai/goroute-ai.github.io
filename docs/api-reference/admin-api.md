@@ -29,7 +29,7 @@ The GoRoute Admin Control Plane (`/admin/v1/*`) provides unified APIs for tenant
 | 7 | **Virtual API Keys** | `POST/GET /admin/v1/keys`, `POST .../revoke`, `DELETE` | Scoped API key issuance and instant revocation |
 | 8 | **Credentials Vault** | `POST/GET /admin/v1/credentials`, `/validate`, `.../rotate` | AES-256-GCM encrypted provider secrets vault |
 | 9 | **Model Groups & Deployments** | `POST/GET /admin/v1/model-groups`, `/deployments` | Virtual aliases, EWMA balancers, weight matrices |
-| 10 | **Model Catalogue & Pricing** | `GET/POST /admin/v1/catalogue`, `/sync`, `/pricing` | 4,627+ model dataset and verified pricing audits |
+| 10 | **Model Catalogue & Pricing** | `GET/POST /admin/v1/catalogue`, `/sync`, `/pricing` | Query and sync catalog records; manage pricing provenance |
 | 11 | **Telemetry & Health Probes** | `GET /admin/v1/observability/metrics`, `/health/deployments`, `/cache/invalidate` | EWMA latencies, synthetic probes, cache purges |
 | 12 | **FinOps & Audit Logs** | `GET /admin/v1/spend/summary`, `/spend/logs`, `/audit/logs` | Micro-dollar accounting ledgers and governance trails |
 
@@ -146,7 +146,7 @@ curl -X POST http://localhost:8080/admin/v1/organizations/org_acme/models \
   -H "Authorization: Bearer $GATEWAY_MASTER_ADMIN_KEY" \
   -H "Content-Type: application/json" \
   -d '{
-    "global_model_id": "anthropic/claude-3-5-sonnet-20241022",
+    "global_model_id": "anthropic/claude-sonnet-5-5",
     "is_enabled": true,
     "max_tokens_override": 4096
   }'
@@ -156,7 +156,7 @@ curl -X POST http://localhost:8080/admin/v1/organizations/org_acme/models \
 ```json
 {
   "org_id": "org_acme",
-  "global_model_id": "anthropic/claude-3-5-sonnet-20241022",
+  "global_model_id": "anthropic/claude-sonnet-5-5",
   "is_enabled": true,
   "max_tokens_override": 4096,
   "updated_at": "2026-11-10T12:10:00Z"
@@ -257,7 +257,7 @@ curl -X POST http://localhost:8080/admin/v1/teams \
     "org_id": "org_acme",
     "name": "core-platform",
     "max_budget_micros": 100000000,
-    "allowed_models": ["fast", "reasoning", "anthropic/claude-3-5-sonnet-20241022"]
+    "allowed_models": ["fast", "reasoning", "anthropic/claude-sonnet-5-5"]
   }'
 ```
 
@@ -268,7 +268,7 @@ curl -X POST http://localhost:8080/admin/v1/teams \
   "org_id": "org_acme",
   "name": "core-platform",
   "max_budget_micros": 100000000,
-  "allowed_models": ["fast", "reasoning", "anthropic/claude-3-5-sonnet-20241022"],
+  "allowed_models": ["fast", "reasoning", "anthropic/claude-sonnet-5-5"],
   "created_at": "2026-11-10T12:15:00Z"
 }
 ```
@@ -549,12 +549,12 @@ curl "http://localhost:8080/admin/v1/deployments?model_group_id=mg_fast_019" \
 
 ## 10. Model Catalogue & Pricing Provenance
 
-Explores the embedded 4,627-model database, synchronizes upstream models, and updates verified pricing rates.
+Queries and synchronizes model catalog records and manages pricing provenance. Catalog contents can change as provider offerings and discovery settings change; a catalog entry does not by itself guarantee that a model is available to every tenant or virtual key.
 
 ### Query Catalogue (`GET /admin/v1/catalogue?provider={provider}&search={query}`)
 
 ```bash
-curl "http://localhost:8080/admin/v1/catalogue?provider=anthropic&search=claude-3-5" \
+curl "http://localhost:8080/admin/v1/catalogue?provider=anthropic&search=claude" \
   -H "Authorization: Bearer $GATEWAY_MASTER_ADMIN_KEY"
 ```
 
@@ -680,7 +680,7 @@ curl "http://localhost:8080/admin/v1/spend/summary?org_id=org_acme" \
   "budget_remaining_micros": 451709000,
   "spend_by_model": {
     "gemini/gemini-2.5-flash": 12450000,
-    "anthropic/claude-3-5-sonnet-20241022": 35841000
+    "anthropic/claude-sonnet-5-5": 35841000
   }
 }
 ```

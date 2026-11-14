@@ -76,7 +76,7 @@ graph TD
   - Measures token volume and conversational turn depth.
   - Detects programming language keywords (`func`, `class`, `import`, SQL statements, backticks).
   - Scans for algorithmic, logical, and mathematical reasoning terms.
-- Simple tasks route to lightweight aliases (`fast` → Gemini 2.5 Flash, GPT-4o-mini); complex tasks route to reasoning tiers (`reasoning` → Claude 3.5 Sonnet, o1/o3-mini).
+- Simple tasks route to lightweight aliases (`fast`); complex tasks route to reasoning tiers (`reasoning`). Configure each alias with model IDs that are available to your provider account and exposed by the gateway catalog. The model behind an alias can change without changing the client request.
 
 ### 5. Stage 2 EWMA Load Balancing
 - Selects the target provider deployment using one of five lock-free algorithms:
@@ -117,8 +117,8 @@ graph TD
 GoRoute implements enterprise governance across 4 hierarchical evaluation layers:
 
 ```
-[Layer 1: Public Model Catalogue]
-         │ (4,627+ models with verified pricing provenance)
+[Layer 1: Global Model Catalogue]
+         │ (Discovered and registered provider models; availability varies by deployment)
          ▼
 [Layer 2: Organization Subscriptions]
          │ (Admin enables specific cloud providers: OpenAI, Anthropic, Gemini)

@@ -159,9 +159,19 @@ const sidebars: SidebarsConfig = {
         'operations/operator-ui',
         'operations/configuration',
         'operations/deployment-and-storage',
+        'operations/kubernetes-kustomize',
+        'operations/production-checklist',
         'operations/observability',
         'operations/troubleshooting',
         'operations/claude-code-and-agents',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Cookbook',
+      collapsed: true,
+      items: [
+        'cookbook/overview',
       ],
     },
   ],
@@ -305,6 +315,53 @@ const sidebars: SidebarsConfig = {
         'api-reference/admin-api',
         'api-reference/mcp-api',
         'api-reference/a2a-api',
+      ],
+    },
+  ],
+
+  // Ecosystem Integrations & Observability
+  integrationsSidebar: [
+    'integrations/overview',
+    {
+      type: 'category',
+      label: 'Coding Agents & IDEs',
+      collapsed: false,
+      items: [
+        'integrations/claude-code',
+        'integrations/cursor-and-ides',
+        'integrations/codex-and-cli-agents',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'SDKs & Agent Frameworks',
+      collapsed: false,
+      items: [
+        'integrations/openai-sdks',
+        'integrations/anthropic-sdks',
+        'integrations/agent-frameworks',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Observability & Telemetry',
+      collapsed: false,
+      items: [
+        'integrations/otel-and-prometheus',
+      ],
+    },
+  ],
+
+  // Release Notes & Upgrade Guides
+  releaseNotesSidebar: [
+    {
+      type: 'category',
+      label: 'Release Notes',
+      collapsed: false,
+      items: [
+        'release-notes/index',
+        'release-notes/v1.6.0',
+        'release-notes/v1.5.0',
       ],
     },
   ],

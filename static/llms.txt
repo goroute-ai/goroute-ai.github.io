@@ -1,122 +1,138 @@
-# GoRoute AI Gateway Documentation
+# GoRoute AI Gateway
 
-GoRoute AI Gateway is a production-grade, high-performance AI gateway and Go SDK. It provides 21 standardized multi-modal data plane routes, 42 provider dialects, a zero-dependency Operator Web UI (/ui/), sub-cent micro-dollar FinOps ledger accounting, Model Context Protocol (MCP) tooling, Agent-to-Agent (A2A) mesh networking, and resilient routing.
+> GoRoute AI Gateway is a 100% pure Go high-performance AI Gateway and embeddable Go SDK supporting 73 ProviderType profiles, unified OpenAI/Anthropic/Gemini/MCP/A2A protocols, micro-dollar FinOps accounting, RBAC, guardrails, and SSRF protection.
 
-## 1. Getting Started & Architecture
-- [Developer Learning Path](https://goroute-ai.github.io/ai-gateway-go-docs/docs/getting-started/learning-path): Guided tracks for Go developers, infrastructure operators, and agent architects.
-- [Gateway Overview](https://goroute-ai.github.io/ai-gateway-go-docs/docs/getting-started/overview): Embedded SDK vs standalone proxy deployment modes and core request lifecycles.
-- [Go SDK Quickstart](https://goroute-ai.github.io/ai-gateway-go-docs/docs/getting-started/quickstart-sdk): Add pkg/gateway, configure models, and execute chat completions.
-- [Standalone CLI Quickstart](https://goroute-ai.github.io/ai-gateway-go-docs/docs/getting-started/quickstart-cli): Install and run the standalone gateway binary with the Operator Web UI.
-- [Docker Compose Quickstart](https://goroute-ai.github.io/ai-gateway-go-docs/docs/getting-started/quickstart-docker): Multi-container stack with PostgreSQL persistence and Redis distributed caching.
-- [Architecture & Request Flow](https://goroute-ai.github.io/ai-gateway-go-docs/docs/getting-started/architecture): System topology, middleware pipeline, routing engine, and security boundaries.
+- Canonical Site: https://goroute-ai.github.io/
+- Full Documentation Corpus: https://goroute-ai.github.io/llms-full.txt
 
-## 2. Operator Console
-- [Operator Web UI](https://goroute-ai.github.io/ai-gateway-go-docs/docs/operations/operator-ui): Embedded browser dashboard served at http://localhost:8080/ui/ for live metrics, key vault, deployment health probes, completion testing, and FinOps ledger tracking.
+## Guides & Platform Documentation
 
-## 3. Multi-Modal Data Plane (21 Standardized Routes)
-- [Chat Completions](https://goroute-ai.github.io/ai-gateway-go-docs/docs/data-plane/chat-completions): POST /v1/chat/completions with reasoning effort, role consolidation, and direct provider routing.
-- [Reranking](https://goroute-ai.github.io/ai-gateway-go-docs/docs/data-plane/rerank): POST /v1/rerank and /v2/rerank via Cohere v2 and Jina AI with search-unit accounting.
-- [Content Moderation](https://goroute-ai.github.io/ai-gateway-go-docs/docs/data-plane/moderations): POST /v1/moderations fail-closed safety evaluation via OpenAI omni-moderation.
-- [Legacy Text Completions](https://goroute-ai.github.io/ai-gateway-go-docs/docs/data-plane/completions): POST /v1/completions single and batch text prompting.
-- [Anthropic Messages Ingress](https://goroute-ai.github.io/ai-gateway-go-docs/docs/data-plane/messages): POST /v1/messages and /v1/messages/count_tokens with thinking blocks and tool use schemas.
-- [Heuristic Tokenization](https://goroute-ai.github.io/ai-gateway-go-docs/docs/data-plane/tokenize): POST /v1/tokenize in-process zero-latency BPE approximation.
-- [Audio Transcription & Speech](https://goroute-ai.github.io/ai-gateway-go-docs/docs/data-plane/audio): POST /v1/audio/transcriptions (Whisper STT with disk spooling) and POST /v1/audio/speech (TTS billed per 1K chars).
-- [Image Generation & Edits](https://goroute-ai.github.io/ai-gateway-go-docs/docs/data-plane/images): POST /v1/images/generations, /edits, /variations with resolution matrix pricing.
-- [Dense Vector Embeddings](https://goroute-ai.github.io/ai-gateway-go-docs/docs/data-plane/embeddings): POST /v1/embeddings supporting float and base64 encodings across Cohere and Voyage AI.
-- [Tenant File Management](https://goroute-ai.github.io/ai-gateway-go-docs/docs/data-plane/files): POST/GET/DELETE /v1/files with streaming SHA-256 deduplication and secure disk storage.
-- [Asynchronous Batch Queues](https://goroute-ai.github.io/ai-gateway-go-docs/docs/data-plane/batches): POST /v1/batches with 24-hour SLA execution and 50% FinOps discount.
-- [OpenAI Responses API](https://goroute-ai.github.io/ai-gateway-go-docs/docs/data-plane/responses): POST /v1/responses stateful multi-turn generation endpoints.
-- [Realtime WebSocket Protocol](https://goroute-ai.github.io/ai-gateway-go-docs/docs/data-plane/realtime): Full-duplex WebSocket session hijacking at GET /v1/realtime.
-- [Model Catalogue & Access Control](https://goroute-ai.github.io/ai-gateway-go-docs/docs/data-plane/model-management): 4-layer model hierarchy, capability discovery, and pricing provenance.
-- [Tool Calling & Schemas](https://goroute-ai.github.io/ai-gateway-go-docs/docs/data-plane/tool-calling): OpenAI tool schemas, MCP tool interoperability, and validation.
-- [Server-Side Autonomous Tool Loop](https://goroute-ai.github.io/ai-gateway-go-docs/docs/data-plane/autonomous-tool-loop): Multi-round recursive execution loop with safety bounds and anti-double-billing FinOps ledger.
+- [GoRoute AI Gateway Overview](https://goroute-ai.github.io/docs/getting-started/overview): Understand GoRoute AI Gateway deployment modes, high-performance architecture, multi-protocol execution, and embedded Operator UI.
+- [Quickstart — Go SDK](https://goroute-ai.github.io/docs/getting-started/quickstart-sdk): Install the GoRoute SDK, configure a model, and make your first chat request.
+- [Quickstart — Docker Compose](https://goroute-ai.github.io/docs/getting-started/quickstart-docker): Deploy GoRoute AI Gateway with PostgreSQL 16+ and Redis 7+ using Docker Compose and explore the Operator UI.
+- [Quickstart — Standalone Gateway CLI](https://goroute-ai.github.io/docs/getting-started/quickstart-cli): Install GoRoute AI Gateway via the universal shell installer or source, configure providers, and interact with the Operator UI.
+- [Developer Learning Path](https://goroute-ai.github.io/docs/getting-started/learning-path): A step-by-step route through GoRoute for Go developers and gateway operators.
+- [Chat Completions API](https://goroute-ai.github.io/docs/data-plane/chat-completions): 100% OpenAI-compatible Chat Completions endpoint standardizing reasoning effort, role alternation, dynamic provider routing, and telemetry headers.
+- [Anthropic Messages Ingress API](https://goroute-ai.github.io/docs/data-plane/messages): Native Anthropic Messages API ingress and pre-flight token counting with thinking blocks, tool translation, and strict alternating turn consolidation.
+- [Legacy Text Completions API](https://goroute-ai.github.io/docs/data-plane/completions): OpenAI-compatible text completions endpoint supporting raw prompt text, prompt arrays, parameter controls, and token usage accounting.
+- [Function & Tool Calling](https://goroute-ai.github.io/docs/data-plane/tool-calling): Standardized tool calling across OpenAI, Anthropic, and Gemini with strict schema enforcement and Model Context Protocol (MCP) alignment.
+- [Server-Side Autonomous Tool Loop](https://goroute-ai.github.io/docs/data-plane/autonomous-tool-loop): In-process multi-turn tool execution orchestrator with safety boundaries, execution budgets, and anti-double-billing FinOps ledger tracking.
+- [Model Management & Access Control](https://goroute-ai.github.io/docs/data-plane/model-management): The 4-layer model access control hierarchy, tri-state capability verification, pricing provenance, and declarative model routing groups.
+- [Embeddings API](https://goroute-ai.github.io/docs/data-plane/embeddings): Dense vector embeddings across OpenAI, Google Gemini, Mistral, Cohere Embed v3, and Voyage AI with base64 encoding and dimension reduction.
+- [Document Reranking API](https://goroute-ai.github.io/docs/data-plane/rerank): Unified document reranking across Cohere v2 and Jina AI with structured rank fields, top_n filtering, and micro-dollar search unit accounting.
+- [Audio Transcription, Translation & Speech API](https://goroute-ai.github.io/docs/data-plane/audio): High-throughput audio transcription (Whisper STT), translation, and speech synthesis (TTS) with retryable disk spooling and precision integer FinOps.
+- [Image Generation, Edits & Variations API](https://goroute-ai.github.io/docs/data-plane/images): OpenAI-compatible image generations, edits, and variations across DALL-E 2/3 and Google Imagen with quality tiers and resolution-based FinOps pricing.
+- [OpenAI Realtime WebSocket Protocol](https://goroute-ai.github.io/docs/data-plane/realtime): Full-duplex speech and text sessions over WebSockets using nhooyr.io/websocket connection hijacking, event streaming, and session FinOps.
+- [Stateful Tenant Files API](https://goroute-ai.github.io/docs/data-plane/files): Multi-tenant file storage with streaming SHA-256 hashing, 0700/0600 POSIX permissions, PostgreSQL indexing, and OpenAI Files compatibility.
+- [Asynchronous Batch Processing API](https://goroute-ai.github.io/docs/data-plane/batches): Asynchronous batch processing with 24-hour turnaround SLA, 50% off-peak cost discount, state transitions, and JSONL input/output pipelines.
+- [OpenAI Responses API](https://goroute-ai.github.io/docs/data-plane/responses): OpenAI Responses API specification supporting instructions, polymorphic input, synchronous JSON, and multi-event SSE streaming.
+- [Content Moderation API](https://goroute-ai.github.io/docs/data-plane/moderations): Fail-closed content moderation via OpenAI omni-moderation-latest with category flags, granular confidence scores, and virtual key security boundaries.
+- [Fast Heuristic Tokenization API](https://goroute-ai.github.io/docs/data-plane/tokenize): Zero-latency in-process token counting approximating family-specific BPE and SentencePiece vocabularies without external network calls.
+- [Providers Overview](https://goroute-ai.github.io/docs/providers/overview): Complete provider matrix covering all 73 supported upstream ProviderType profiles, modalities, operation enforcement, and authentication mechanisms.
+- [OpenAI](https://goroute-ai.github.io/docs/providers/openai): OpenAI provider integration for chat, reasoning, images, audio, embeddings, Responses API, and Realtime WebSockets.
+- [Anthropic Claude](https://goroute-ai.github.io/docs/providers/anthropic-claude): Anthropic provider integration for Claude Messages API, extended thinking, and role alternation tool consolidation.
+- [Google Gemini](https://goroute-ai.github.io/docs/providers/google-gemini): Google Gemini provider integration for chat, embeddings, multimodal inputs, image generation, audio, and thinking budgets.
+- [AWS Bedrock](https://goroute-ai.github.io/docs/providers/aws-bedrock): Native AWS Bedrock adapter with SigV4 signing, IAM auth, and Converse API.
+- [Google Cloud Vertex AI](https://goroute-ai.github.io/docs/providers/google-vertex): Google Cloud Vertex AI provider integration with Service Account auth, OAuth2 token caching, and Gemini models.
+- [Azure OpenAI Service](https://goroute-ai.github.io/docs/providers/azure-openai): Native Azure OpenAI Service adapter with API key, Entra ID token auth, custom deployment mapping, and version pinning.
+- [Cohere](https://goroute-ai.github.io/docs/providers/cohere): Native Cohere v2 adapter for Command R/R+, Embed v3, Rerank v3.5, and micro-dollar search unit FinOps accounting.
+- [Mistral AI](https://goroute-ai.github.io/docs/providers/mistral): Native Mistral AI provider adapter for Mistral Large, Codestral, Pixtral, and Embeddings.
+- [Ollama](https://goroute-ai.github.io/docs/providers/ollama): Native Ollama provider adapter for local inference, model auto-discovery, and streaming NDJSON translation.
+- [OpenAI-Compatible Dialects](https://goroute-ai.github.io/docs/providers/openai-compatible): Comprehensive guide to the certified OpenAI-compatible dialect profiles and domain providers.
+- [Custom In-House Providers](https://goroute-ai.github.io/docs/providers/custom-provider): Register and configure custom in-house OpenAI-compatible deployments in configs/config.yaml.
+- [Stage 1 — Zero-LLM Complexity Classifier](https://goroute-ai.github.io/docs/routing-resiliency/complexity-classifier)
+- [Stage 2 — EWMA Load Balancing](https://goroute-ai.github.io/docs/routing-resiliency/load-balancing)
+- [3-State Circuit Breakers](https://goroute-ai.github.io/docs/routing-resiliency/circuit-breakers)
+- [Retries & Fallback Cascades](https://goroute-ai.github.io/docs/routing-resiliency/fallbacks-and-retries)
+- [Cost Accounting and Spend Records](https://goroute-ai.github.io/docs/finops-and-security/micro-dollar-ledger): Understand integer micro-dollar cost calculation and asynchronous spend persistence.
+- [Scoped Virtual Keys & Quotas](https://goroute-ai.github.io/docs/finops-and-security/virtual-keys)
+- [RBAC & Key Vault Architecture](https://goroute-ai.github.io/docs/finops-and-security/rbac-and-vault)
+- [Organization Guardrails](https://goroute-ai.github.io/docs/finops-and-security/guardrails): Configure request blocking, secret and PII handling, and output redaction for an organization.
+- [Network Security & SSRF Protection](https://goroute-ai.github.io/docs/finops-and-security/ssrf-and-network)
+- [Distributed Rate Limiting (RPM & TPM)](https://goroute-ai.github.io/docs/finops-and-security/sliding-window-ratelimit)
+- [Pre-Flight Tokenizer](https://goroute-ai.github.io/docs/finops-and-security/preflight-tokenizer)
+- [Deterministic Exact-Match Cache](https://goroute-ai.github.io/docs/finops-and-security/exact-match-cache)
+- [Model Context Protocol (MCP) Overview](https://goroute-ai.github.io/docs/protocols/mcp-overview): Comprehensive architecture guide for Model Context Protocol (MCP) supporting 2026-07-28 Streamable HTTP, legacy SSE adapters, and virtual hub aggregation.
+- [MCP Virtual Hub & Plain REST Bridge](https://goroute-ai.github.io/docs/protocols/mcp-hub-and-rest): Enterprise routing guide for Virtual Hub aggregation (POST /mcp), scoped server routing, curated toolsets, and the plain REST bridge (/mcp-rest/*).
+- [MCP Progressive Tool Discovery](https://goroute-ai.github.io/docs/protocols/mcp-progressive-discovery): Manage hundreds of enterprise tools without context window bloat using 256-bit opaque handles, registry feeds, schema hydration meta-tools, and governed OpenAPI transport.
+- [MCP Stdio Process Sandboxing](https://goroute-ai.github.io/docs/protocols/mcp-stdio-sandboxing): Process isolation, environment variable scrubbing, execution timeouts, and binary allowlists for local command-line MCP tools.
+- [Agent-to-Agent (A2A) Protocol Overview](https://goroute-ai.github.io/docs/protocols/a2a-overview): Architectural overview of the Linux Foundation Agent-to-Agent Protocol (A2A v1.0), dual HTTP/JSON-RPC bindings, subscribe-first SSE streaming, and transactional outbox webhooks.
+- [Cryptographic Agent Cards (JCS & JWS)](https://goroute-ai.github.io/docs/protocols/a2a-agent-cards): RFC 8785 JSON Canonicalization Scheme (JCS) and RFC 7515 JSON Web Signature (JWS) signing for A2A Agent Cards.
+- [A2A OpenAI Bridge & gRPC Service](https://goroute-ai.github.io/docs/protocols/a2a-bridge-and-grpc): Call autonomous A2A agents using standard OpenAI SDKs via model: a2a/{slug} or high-performance native gRPC lf.a2a.v1.A2AService.
+- [Embedded Operator Web UI](https://goroute-ai.github.io/docs/operations/operator-ui): Comprehensive architecture and operator guide for the embedded React 19 Operator Web UI mounted at /ui/.
+- [Complete Configuration and Environment Reference](https://goroute-ai.github.io/docs/operations/configuration): Comprehensive configuration reference detailing 70+ YAML parameters, environment variable overrides, and model routing policies.
+- [Deployment and Storage Architecture](https://goroute-ai.github.io/docs/operations/deployment-and-storage): Comprehensive production guide covering database migrations, 16 persistent schemas, and the clustered Redis keyspace and TTL matrix.
+- [Kubernetes & Kustomize Deployment](https://goroute-ai.github.io/docs/operations/kubernetes-kustomize): Deploy GoRoute AI Gateway to Kubernetes using the hardened Kustomize manifests in deployments/k8s/, including non-root security contexts, health probes, PostgreSQL 16, Redis Cluster/Sentinel, and Prometheus scraping.
+- [Production Readiness Checklist](https://goroute-ai.github.io/docs/operations/production-checklist): Pre-flight production checklist for GoRoute AI Gateway covering SSRF firewall rules, secret validation, operator RBAC/OIDC, fail-closed rate limits, circuit breakers, file storage quotas, and load/canary verification.
+- [Observability, Metrics & Health Probes](https://goroute-ai.github.io/docs/operations/observability): Production guide for Prometheus metrics scraping, W3C distributed traceparent propagation, and active deployment health probes.
+- [Troubleshooting & Recovery Runbooks](https://goroute-ai.github.io/docs/operations/troubleshooting): Diagnostic guides and production recovery runbooks for common error codes, SSRF blocks, budget exceedances, rate limits, and circuit breakers.
+- [Engineering Guide for Coding Agents](https://goroute-ai.github.io/docs/operations/claude-code-and-agents): Developer guide for configuring Claude Code, Cursor, Copilot, Antigravity, and autonomous coding agents with deterministic verification loops.
+- [Cookbook Overview](https://goroute-ai.github.io/docs/cookbook/overview): Task-based cookbook indexing GoRoute AI Gateway guides and all 26 runnable Go demos by user goal.
 
-## 4. Provider Integrations (42 Adapters)
-- [Provider Setup Overview](https://goroute-ai.github.io/ai-gateway-go-docs/docs/providers/overview): Universal model routing syntax and configuration catalogue.
-- [OpenAI Adapter](https://goroute-ai.github.io/ai-gateway-go-docs/docs/providers/openai): GPT-4o, o1, o3-mini, embeddings, audio, and images.
-- [Anthropic Claude](https://goroute-ai.github.io/ai-gateway-go-docs/docs/providers/anthropic-claude): Claude 3.5 Sonnet, Haiku, Opus, extended thinking, and prompt caching.
-- [Google Gemini](https://goroute-ai.github.io/ai-gateway-go-docs/docs/providers/google-gemini): Gemini 2.0 Flash, Gemini 1.5 Pro, multimodal tokens, and Google Search grounding.
-- [AWS Bedrock](https://goroute-ai.github.io/ai-gateway-go-docs/docs/providers/aws-bedrock): Claude, Llama 3, and Titan via AWS SigV4 signed API requests.
-- [Google Vertex AI](https://goroute-ai.github.io/ai-gateway-go-docs/docs/providers/google-vertex): Enterprise Gemini models with GCP IAM OAuth2 authentication.
-- [Azure OpenAI](https://goroute-ai.github.io/ai-gateway-go-docs/docs/providers/azure-openai): Managed Azure deployments with Entra ID or API key authentication.
-- [Cohere](https://goroute-ai.github.io/ai-gateway-go-docs/docs/providers/cohere): Command R+, Cohere Embed v3, and Rerank v2/v3.
-- [Mistral AI](https://goroute-ai.github.io/ai-gateway-go-docs/docs/providers/mistral): Mistral Large, Codestral, and open-weight checkpoints.
-- [Local Ollama](https://goroute-ai.github.io/ai-gateway-go-docs/docs/providers/ollama): Zero-cloud on-premises inference with Llama 3, Mistral, and Qwen.
-- [Certified OpenAI-Compatible Profiles](https://goroute-ai.github.io/ai-gateway-go-docs/docs/providers/openai-compatible): Zero-overhead dialect routing for Groq, Cerebras, DeepSeek, vLLM, OpenRouter, Perplexity, Together AI, and Fireworks.
-- [Custom Providers](https://goroute-ai.github.io/ai-gateway-go-docs/docs/providers/custom-provider): Define proprietary or internal company model endpoints.
+## System Architecture
 
-## 5. Go SDK
-- [SDK Overview](https://goroute-ai.github.io/ai-gateway-go-docs/docs/sdk/overview): Embedded in-process engine vs remote HTTP client modes.
-- [Client Configuration](https://goroute-ai.github.io/ai-gateway-go-docs/docs/sdk/client-configuration): Timeout, retries, headers, and credential management.
-- [Chat & Streaming](https://goroute-ai.github.io/ai-gateway-go-docs/docs/sdk/chat-and-streaming): Go channels and iterators for SSE stream consumption.
-- [Virtual Keys & FinOps](https://goroute-ai.github.io/ai-gateway-go-docs/docs/sdk/virtual-keys-and-finops): Programmatic key provisioning, budget tracking, and ledger queries.
-- [MCP & A2A SDK](https://goroute-ai.github.io/ai-gateway-go-docs/docs/sdk/mcp-and-a2a): Embedded MCP client and agent card registration.
-- [Go SDK Reference](https://goroute-ai.github.io/ai-gateway-go-docs/docs/sdk/go-sdk-reference): Package godoc index and type signatures.
+- [System Architecture & Topology](https://goroute-ai.github.io/docs/getting-started/architecture): Deep dive into the GoRoute AI Gateway pure Go architecture, 10-step request lifecycle, multi-layer caching, and Operator UI.
 
-## 6. Agentic Protocols (MCP & A2A)
-- [MCP Protocol Overview](https://goroute-ai.github.io/ai-gateway-go-docs/docs/protocols/mcp-overview): Architecture of Model Context Protocol integration.
-- [MCP Virtual Hub & REST Bridge](https://goroute-ai.github.io/ai-gateway-go-docs/docs/protocols/mcp-hub-and-rest): Aggregate multiple MCP tool servers behind POST /mcp.
-- [MCP Progressive Discovery](https://goroute-ai.github.io/ai-gateway-go-docs/docs/protocols/mcp-progressive-discovery): Two-phase token-saving registry discovery for 1,000+ tools.
-- [MCP Stdio Sandboxing](https://goroute-ai.github.io/ai-gateway-go-docs/docs/protocols/mcp-stdio-sandboxing): Isolated subprocess execution for local MCP tools.
-- [A2A Overview](https://goroute-ai.github.io/ai-gateway-go-docs/docs/protocols/a2a-overview): Agent-to-Agent protocol architecture.
-- [A2A Agent Cards](https://goroute-ai.github.io/ai-gateway-go-docs/docs/protocols/a2a-agent-cards): Self-describing agent capability cards at /.well-known/agent-card.json.
-- [A2A Bridge & Native gRPC](https://goroute-ai.github.io/ai-gateway-go-docs/docs/protocols/a2a-bridge-and-grpc): High-speed inter-agent communication and OpenAI compatibility bridge.
+## Go SDK Handbook
 
-## 7. Routing & Resiliency
-- [Complexity Classifier](https://goroute-ai.github.io/ai-gateway-go-docs/docs/routing-resiliency/complexity-classifier): Intent and token analysis for cost-optimized small vs large model routing.
-- [Load Balancing](https://goroute-ai.github.io/ai-gateway-go-docs/docs/routing-resiliency/load-balancing): Round-robin, weighted shuffle, and EWMA least-latency routing across model groups.
-- [Circuit Breakers](https://goroute-ai.github.io/ai-gateway-go-docs/docs/routing-resiliency/circuit-breakers): Closed/Half-Open/Open state machines protecting upstreams.
-- [Fallbacks & Retries](https://goroute-ai.github.io/ai-gateway-go-docs/docs/routing-resiliency/fallbacks-and-retries): Multi-provider fallback cascades with exponential jitter backoff.
+- [Go SDK Overview](https://goroute-ai.github.io/docs/sdk/overview): Choose embedded or remote client mode and find the next SDK guides.
+- [Client Initialization & Configuration](https://goroute-ai.github.io/docs/sdk/client-configuration)
+- [Chat and Streaming](https://goroute-ai.github.io/docs/sdk/chat-and-streaming): Send single-prompt and multi-turn requests, stream deltas, and handle cancellation.
+- [Virtual Keys and FinOps](https://goroute-ai.github.io/docs/sdk/virtual-keys-and-finops): Create and revoke virtual keys and query spend through the Go SDK.
+- [MCP and A2A](https://goroute-ai.github.io/docs/sdk/mcp-and-a2a): Register MCP servers and A2A agents with the Go SDK and use their gateway routes.
+- [Go SDK API Reference](https://goroute-ai.github.io/docs/sdk/go-sdk-reference): Public constructors, options, request types, and methods in pkg/gateway.
 
-## 8. FinOps, Security & Caching
-- [Micro-Dollar FinOps Ledger](https://goroute-ai.github.io/ai-gateway-go-docs/docs/finops-and-security/micro-dollar-ledger): 64-bit integer accounting at $0.000001 resolution.
-- [Virtual Keys & Budgets](https://goroute-ai.github.io/ai-gateway-go-docs/docs/finops-and-security/virtual-keys): Multi-tenant scoped keys with rate limits and spend caps.
-- [RBAC & Encrypted Vault](https://goroute-ai.github.io/ai-gateway-go-docs/docs/finops-and-security/rbac-and-vault): Role-based access control and AES-256-GCM upstream credential storage.
-- [Guardrails & Safety](https://goroute-ai.github.io/ai-gateway-go-docs/docs/finops-and-security/guardrails): Pre-execution regex filters, PII redaction, and policy enforcement.
-- [SSRF & Network Hardening](https://goroute-ai.github.io/ai-gateway-go-docs/docs/finops-and-security/ssrf-and-network): Private IP blocking and egress transport enforcement.
-- [Sliding-Window Rate Limiting](https://goroute-ai.github.io/ai-gateway-go-docs/docs/finops-and-security/sliding-window-ratelimit): Redis-backed sliding log limiters for RPM and TPM.
-- [Preflight Tokenizer](https://goroute-ai.github.io/ai-gateway-go-docs/docs/finops-and-security/preflight-tokenizer): In-process BPE token estimation preventing upstream overflow errors.
-- [Exact-Match Cache](https://goroute-ai.github.io/ai-gateway-go-docs/docs/finops-and-security/exact-match-cache): SHA-256 response caching saving 100% of compute cost on duplicate prompts.
+## Runnable Go Examples
 
-## 9. Operations & Runbooks
-- [Configuration Reference](https://goroute-ai.github.io/ai-gateway-go-docs/docs/operations/configuration): YAML schema, environment overrides, and secret substitution.
-- [Deployment & Storage](https://goroute-ai.github.io/ai-gateway-go-docs/docs/operations/deployment-and-storage): Memory, SQLite, and PostgreSQL database engines.
-- [Health Probes & Observability](https://goroute-ai.github.io/ai-gateway-go-docs/docs/operations/observability): Prometheus metrics, OpenTelemetry tracing, and /health probes.
-- [Troubleshooting Runbook](https://goroute-ai.github.io/ai-gateway-go-docs/docs/operations/troubleshooting): Diagnostic runbook for 4xx/5xx errors, rate limits, and network partitions.
-- [Claude Code & AI Coding Agents](https://goroute-ai.github.io/ai-gateway-go-docs/docs/operations/claude-code-and-agents): Configuring ANTHROPIC_BASE_URL for Claude Code and coding CLI tools.
+- [Interactive Demos & Curriculum Overview](https://goroute-ai.github.io/docs/demos/overview)
+- [Hello Gateway](https://goroute-ai.github.io/docs/demos/hello-gateway)
+- [System Prompts](https://goroute-ai.github.io/docs/demos/system-prompt)
+- [Streaming Tokens](https://goroute-ai.github.io/docs/demos/streaming-tokens)
+- [Temperature & Limits](https://goroute-ai.github.io/docs/demos/temperature-and-sampling)
+- [Structured JSON](https://goroute-ai.github.io/docs/demos/json-mode-structured-output)
+- [Multi-Turn Memory](https://goroute-ai.github.io/docs/demos/multi-turn-conversation)
+- [OpenAI Direct](https://goroute-ai.github.io/docs/demos/openai-direct)
+- [Anthropic Direct](https://goroute-ai.github.io/docs/demos/anthropic-direct)
+- [Google Gemini Direct](https://goroute-ai.github.io/docs/demos/gemini-direct)
+- [Local Ollama](https://goroute-ai.github.io/docs/demos/local-ollama)
+- [Unified Model Aliases](https://goroute-ai.github.io/docs/demos/unified-model-alias)
+- [Tool Definition](https://goroute-ai.github.io/docs/demos/single-tool-definition)
+- [Tool Execution](https://goroute-ai.github.io/docs/demos/tool-execution-callback)
+- [Multi-Tool Inventory](https://goroute-ai.github.io/docs/demos/multi-tool-selection)
+- [Autonomous Agent Loop](https://goroute-ai.github.io/docs/demos/autonomous-tool-loop)
+- [Outage Fallbacks](https://goroute-ai.github.io/docs/demos/failover-fallback-chain)
+- [Round-Robin Balancer](https://goroute-ai.github.io/docs/demos/round-robin-balancer)
+- [Weighted Shuffle](https://goroute-ai.github.io/docs/demos/weighted-shuffle-routing)
+- [Least Latency EWMA](https://goroute-ai.github.io/docs/demos/least-latency-ewma)
+- [Circuit Breakers](https://goroute-ai.github.io/docs/demos/circuit-breaker)
+- [Exact-Match Cache](https://goroute-ai.github.io/docs/demos/exact-match-cache)
+- [Rate Limiting](https://goroute-ai.github.io/docs/demos/sliding-window-rate-limiting)
+- [Virtual Keys & Budgets](https://goroute-ai.github.io/docs/demos/virtual-keys-and-budgets)
+- [MCP Virtual Hub](https://goroute-ai.github.io/docs/demos/mcp-virtual-hub)
+- [A2A Agent Network](https://goroute-ai.github.io/docs/demos/a2a-agent-network)
+- [Embedded Microservice](https://goroute-ai.github.io/docs/demos/embedded-http-microservice)
 
-## 10. Complete API Reference
-- [API Reference Overview](https://goroute-ai.github.io/ai-gateway-go-docs/docs/api-reference/overview): Master index for REST, WebSocket, Admin, MCP, and A2A interfaces.
-- [Gateway REST API](https://goroute-ai.github.io/ai-gateway-go-docs/docs/api-reference/gateway-api): Complete endpoint parameters and headers for 21 data plane routes.
-- [Admin Control Plane API](https://goroute-ai.github.io/ai-gateway-go-docs/docs/api-reference/admin-api): Key provisioning, credential rotation, model deployment, and ledger query APIs.
-- [MCP Gateway API](https://goroute-ai.github.io/ai-gateway-go-docs/docs/api-reference/mcp-api): JSON-RPC 2.0 endpoints for tool discovery and execution.
-- [A2A Protocol API](https://goroute-ai.github.io/ai-gateway-go-docs/docs/api-reference/a2a-api): Agent registration, task dispatch, and SSE streaming.
+## API Reference
 
-## 11. 26 Runnable Go Examples & Demos
-- [Demos Overview](https://goroute-ai.github.io/ai-gateway-go-docs/docs/demos/overview): Index of all 26 executable Go examples.
-- [Hello Gateway](https://goroute-ai.github.io/ai-gateway-go-docs/docs/demos/hello-gateway)
-- [System Prompt](https://goroute-ai.github.io/ai-gateway-go-docs/docs/demos/system-prompt)
-- [Streaming Tokens](https://goroute-ai.github.io/ai-gateway-go-docs/docs/demos/streaming-tokens)
-- [Temperature & Sampling](https://goroute-ai.github.io/ai-gateway-go-docs/docs/demos/temperature-and-sampling)
-- [JSON Mode Structured Output](https://goroute-ai.github.io/ai-gateway-go-docs/docs/demos/json-mode-structured-output)
-- [Multi-Turn Conversation](https://goroute-ai.github.io/ai-gateway-go-docs/docs/demos/multi-turn-conversation)
-- [OpenAI Direct](https://goroute-ai.github.io/ai-gateway-go-docs/docs/demos/openai-direct)
-- [Anthropic Direct](https://goroute-ai.github.io/ai-gateway-go-docs/docs/demos/anthropic-direct)
-- [Gemini Direct](https://goroute-ai.github.io/ai-gateway-go-docs/docs/demos/gemini-direct)
-- [Local Ollama](https://goroute-ai.github.io/ai-gateway-go-docs/docs/demos/local-ollama)
-- [Unified Model Alias](https://goroute-ai.github.io/ai-gateway-go-docs/docs/demos/unified-model-alias)
-- [Single Tool Definition](https://goroute-ai.github.io/ai-gateway-go-docs/docs/demos/single-tool-definition)
-- [Tool Execution Callback](https://goroute-ai.github.io/ai-gateway-go-docs/docs/demos/tool-execution-callback)
-- [Multi-Tool Selection](https://goroute-ai.github.io/ai-gateway-go-docs/docs/demos/multi-tool-selection)
-- [Autonomous Tool Loop](https://goroute-ai.github.io/ai-gateway-go-docs/docs/demos/autonomous-tool-loop)
-- [Failover Fallback Chain](https://goroute-ai.github.io/ai-gateway-go-docs/docs/demos/failover-fallback-chain)
-- [Round-Robin Balancer](https://goroute-ai.github.io/ai-gateway-go-docs/docs/demos/round-robin-balancer)
-- [Weighted Shuffle Routing](https://goroute-ai.github.io/ai-gateway-go-docs/docs/demos/weighted-shuffle-routing)
-- [Least-Latency EWMA](https://goroute-ai.github.io/ai-gateway-go-docs/docs/demos/least-latency-ewma)
-- [Circuit Breaker](https://goroute-ai.github.io/ai-gateway-go-docs/docs/demos/circuit-breaker)
-- [Exact-Match Cache](https://goroute-ai.github.io/ai-gateway-go-docs/docs/demos/exact-match-cache)
-- [Sliding-Window Rate Limiting](https://goroute-ai.github.io/ai-gateway-go-docs/docs/demos/sliding-window-rate-limiting)
-- [Virtual Keys & Budgets](https://goroute-ai.github.io/ai-gateway-go-docs/docs/demos/virtual-keys-and-budgets)
-- [MCP Virtual Hub](https://goroute-ai.github.io/ai-gateway-go-docs/docs/demos/mcp-virtual-hub)
-- [A2A Agent Network](https://goroute-ai.github.io/ai-gateway-go-docs/docs/demos/a2a-agent-network)
-- [Embedded HTTP Microservice](https://goroute-ai.github.io/ai-gateway-go-docs/docs/demos/embedded-http-microservice)
+- [API Reference Index](https://goroute-ai.github.io/docs/api-reference/overview): Master API index linking to all GoRoute AI Gateway data plane routes, admin control plane groups, Model Context Protocol, and Agent-to-Agent protocol specifications.
+- [Gateway Data Plane API Reference](https://goroute-ai.github.io/docs/api-reference/gateway-api): Comprehensive reference for all 23 primary GoRoute AI Gateway /v1 data plane paths (26 HTTP operations), request/response schemas, reasoning normalization, and telemetry headers.
+- [Admin Control Plane API Reference](https://goroute-ai.github.io/docs/api-reference/admin-api): Comprehensive reference for all 12 GoRoute AI Gateway admin control plane endpoint groups with full cURL examples and JSON schemas.
+- [Model Context Protocol (MCP) API Reference](https://goroute-ai.github.io/docs/api-reference/mcp-api): Complete specification of GoRoute MCP Virtual Hub, scoped server execution, curated toolsets, plain REST bridge, and progressive tool discovery.
+- [Agent-to-Agent (A2A) Protocol API Reference](https://goroute-ai.github.io/docs/api-reference/a2a-api): Comprehensive specification of the Linux Foundation A2A v1.0 protocol implementation in GoRoute AI Gateway, including Agent Cards, dual-binding dispatch, SSE streaming, gRPC service, and OpenAI bridge.
+
+## Integrations & Ecosystem
+
+- [Integrations Overview](https://goroute-ai.github.io/docs/integrations/overview): Connect OpenAI- and Anthropic-compatible SDKs, coding agents, IDEs, agent frameworks, and observability backends to GoRoute AI Gateway.
+- [Claude Code](https://goroute-ai.github.io/docs/integrations/claude-code): Configure Anthropic Claude Code to route inference, token counting, and MCP tool calls through GoRoute AI Gateway.
+- [Cursor, Continue & Cline](https://goroute-ai.github.io/docs/integrations/cursor-and-ides): Connect Cursor, Continue.dev, and Cline IDE extensions to GoRoute AI Gateway over /v1 with Virtual Keys.
+- [Codex CLI, Gemini CLI & OpenWebUI](https://goroute-ai.github.io/docs/integrations/codex-and-cli-agents): Route OpenAI Codex CLI, Gemini CLI, and OpenWebUI through GoRoute AI Gateway via /v1 and /v1/responses.
+- [OpenAI SDKs (Python & TypeScript)](https://goroute-ai.github.io/docs/integrations/openai-sdks): Use the official Python and TypeScript openai SDKs with GoRoute AI Gateway for chat completions, streaming, embeddings, Responses API, and Realtime WebSockets.
+- [Anthropic SDKs (Python & TypeScript)](https://goroute-ai.github.io/docs/integrations/anthropic-sdks): Use the official Python anthropic and TypeScript @anthropic-ai/sdk packages with GoRoute AI Gateway via /anthropic/v1/messages and count_tokens.
+- [Agent Frameworks (LangChain, OpenAI Agents SDK & Google ADK)](https://goroute-ai.github.io/docs/integrations/agent-frameworks): Connect LangChain, OpenAI Agents SDK, and Google ADK to GoRoute AI Gateway for unified model routing, MCP tool hubs, and A2A agent dispatch.
+- [OpenTelemetry & Prometheus](https://goroute-ai.github.io/docs/integrations/otel-and-prometheus): Configure OTLP/HTTP trace export (tracing.otlp_endpoint, W3C traceparent, gen_ai.* attributes) for OTel Collector, Jaeger, and Grafana Tempo, plus Prometheus /metrics scraping.
+
+## Release Notes
+
+- [Release Notes](https://goroute-ai.github.io/docs/release-notes): GoRoute AI Gateway release history, upgrade instructions, and database migration guidance.
+- [v1.6.0](https://goroute-ai.github.io/docs/release-notes/v1.6.0): GoRoute AI Gateway v1.6.0 release notes: maximum provider and model compatibility, modality FinOps, migration 0012, Kubernetes Kustomize manifests, and containerized production test suite.
+- [v1.5.0](https://goroute-ai.github.io/docs/release-notes/v1.5.0): GoRoute AI Gateway v1.5.0 release notes: enterprise security hardening, Redis Cluster/Sentinel support, durable FinOps outbox, streaming guardrails, and OTLP distributed tracing.

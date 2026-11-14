@@ -1,12 +1,14 @@
 ---
 title: Providers Overview
 sidebar_position: 1
-description: Complete provider matrix covering all 42 supported upstream LLM providers, modalities, and authentication mechanisms.
+description: Complete provider matrix covering all 73 supported upstream ProviderType profiles, modalities, operation enforcement, and authentication mechanisms.
 ---
+
+import ProviderCatalog from '@site/src/components/ProviderCatalog';
 
 # Providers Overview
 
-GoRoute provides a unified enterprise data plane connecting your applications to 42 leading AI providers through a single, normalized OpenAI-compatible API interface. Applications integrate once against standard endpoints (`/v1/chat/completions`, `/v1/embeddings`, `/v1/rerank`, etc.), while GoRoute manages protocol translation, authentication, streaming SSE normalization, credential vaulting, retries, and FinOps telemetry.
+GoRoute provides a unified enterprise data plane connecting your applications to **73 `ProviderType` profiles** (plus `CustomOpenAICompatible` endpoints) through a single, normalized OpenAI-compatible API interface. Applications integrate once against standard endpoints (`/v1/chat/completions`, `/v1/embeddings`, `/v1/rerank`, etc.), while GoRoute manages protocol translation, authentication, streaming SSE normalization, credential vaulting, retries, operation enforcement, and FinOps telemetry. The provider count describes gateway integrations; it is not a fixed list of model IDs.
 
 ```mermaid
 flowchart TD
@@ -20,20 +22,30 @@ flowchart TD
     
     GW --> CoreEngine
     
-    CoreEngine --> A1["Native OpenAI Adapter\n(GPT-4o, o1, o3, Whisper, TTS, DALL-E)"]
-    CoreEngine --> A2["Native Anthropic Adapter\n(Claude 3.5 Sonnet, Haiku, Opus)"]
-    CoreEngine --> A3["Native Gemini & Vertex Adapters\n(Gemini 2.5 Flash, 1.5 Pro, Imagen)"]
-    CoreEngine --> A4["Native AWS Bedrock Adapter\n(SigV4, Claude, Titan, Nova, Llama 3)"]
+    CoreEngine --> A1["Native OpenAI Adapter\n(Chat, reasoning, audio, images, embeddings)"]
+    CoreEngine --> A2["Native Anthropic Adapter\n(Claude Messages API)"]
+    CoreEngine --> A3["Native Gemini & Vertex Adapters\n(Gemini API, multimodal, Imagen)"]
+    CoreEngine --> A4["Native AWS Bedrock Adapter\n(SigV4, foundation model APIs)"]
     CoreEngine --> A5["Native Azure OpenAI Adapter\n(API Key, Entra ID, Version Pinning)"]
     CoreEngine --> A6["Native Cohere Adapter\n(Command R+, Embed v3, Rerank v3.5)"]
-    CoreEngine --> A7["OpenAI-Compatible Dialect Engine\n(30+ Dialects: Cerebras, Groq, DeepSeek, Together, vLLM, etc.)"]
+    CoreEngine --> A7["OpenAI-Compatible Dialect Engine\n(60+ Built-in & Extended Profiles: Cerebras, Groq, DeepSeek, Together, vLLM, etc.)"]
 ```
 
 ---
 
-## Complete Provider Support Matrix (42 Providers)
+## Interactive Provider Catalog
 
-Below is the definitive capability and modality matrix across all 42 providers supported natively by GoRoute (`internal/domain/inference.go:AllProviders`):
+Filter all **73 `ProviderType` profiles** and `CustomOpenAICompatible` by adapter tier, category, or capability, and click any provider ID to copy it for configuration.
+
+<ProviderCatalog />
+
+---
+
+## Provider Integration Matrix (73 ProviderType Profiles)
+
+GoRoute registers **73 `ProviderType` profiles** in `AllProviders()` (`internal/domain/inference.go`), combining dedicated native protocol adapters (`openai`, `anthropic`, `gemini`, `bedrock`, `vertex`, `azure`, `cohere`, `mistral`, `ollama`), **60+ certified OpenAI-compatible dialect profiles** (`internal/adapter/openaicompat/builtin_profiles.go` and `extended_profiles.go`), and `CustomOpenAICompatible` for arbitrary self-hosted or private endpoints.
+
+This matrix highlights core native adapters and representative dialect integrations. Model IDs change more often than adapters do, so model names shown in this guide and linked provider pages are representative examples, not an exhaustive or guaranteed-current inventory.
 
 | Provider | Adapter Type | Supported Modalities | Streaming | Tools | Auth Strategy | Guide |
 | :--- | :--- | :--- | :---: | :---: | :--- | :--- |
@@ -80,6 +92,22 @@ Below is the definitive capability and modality matrix across all 42 providers s
 | **NVIDIA NIM** | Certified Dialect | Chat, Vision | Yes | Yes | Bearer Token | [Dialects](/docs/providers/openai-compatible#7-enterprise-foundation-model-platforms) |
 | **Scaleway** | Certified Dialect | Chat | Yes | Yes | Bearer Token | [Dialects](/docs/providers/openai-compatible#2-high-performance-serverless-inference) |
 
+### Find model IDs available to your key
+
+Use the provider's current model documentation to choose an ID, then check the gateway's tenant-filtered `GET /v1/models` inventory with the same virtual key your application will use. That inventory is the reference for models currently exposed to that caller. Provider access, gateway catalog discovery/sync settings, organization policies, and key allowlists can all affect availability. A model listed by a provider is not by itself confirmation that a particular GoRoute deployment can route it.
+
+When catalog discovery is enabled, the gateway can synchronize models exposed by supported providers. Discovery does not make every provider model universally available: provider credentials, adapter/protocol compatibility, organization policy, and virtual-key permissions still apply. See [Model Management & Access Control](/docs/data-plane/model-management) and [model catalog configuration](/docs/operations/configuration).
+
+### Embedded Model Catalog & Capability Generalizations (v1.6.0)
+
+GoRoute embeds a curated catalog of **4,627 models** (`internal/modelcatalog/catalog.json.gz`) with operation-level support and modality pricing provenance. When a model is not yet in the catalog or has `CapabilityUnknown` fields, `internal/modelcatalog/generalizations.go` (`InferFamilyCapabilities`, `BackfillCapabilities`, `StripRegionalModelPrefix`) supplies explicit heuristic defaults (`Inferred: true`, `Source: "family-pattern-heuristic"`) for context windows and capabilities (tools, streaming, vision, reasoning, structured outputs) without treating unverified catalog rates as verified for budgeted traffic.
+
+### Operation-Level Routing Enforcement (`SupportedOperations`)
+
+In v1.6.0, `checkDeploymentOperation` (`internal/router/reliability.go`) enforces operation compatibility before dispatching a request:
+- **Adapter-level check**: Adapters implementing `OperationSupportChecker.SupportsOperation(op)` reject unsupported operations with HTTP `501 Not Implemented` (`<op>_not_supported`).
+- **Model-level check**: When `GlobalModel.SupportedOperations` is populated, requests for operations outside that allowlist are rejected with HTTP `400 Bad Request` (`unsupported_operation`).
+
 ---
 
 ## Authentication Strategies
@@ -110,7 +138,7 @@ curl -X POST http://localhost:8080/v1/chat/completions \
 curl -X POST http://localhost:8080/v1/chat/completions \
   -H "Authorization: Bearer your-virtual-key" \
   -H "Content-Type: application/json" \
-  -d '{"model": "anthropic/claude-3-5-sonnet-20241022", "messages": [{"role": "user", "content": "Hello"}]}'
+  -d '{"model": "anthropic/claude-sonnet-5-5", "messages": [{"role": "user", "content": "Hello"}]}'
 ```
 
 ### 2. High-Availability Model Groups & Fallback Topologies
@@ -137,7 +165,7 @@ model_list:
     routing_strategy: least-busy
     fallbacks: ["azure-gpt4o"]
     model_params:
-      model: anthropic/claude-3-5-sonnet-20241022
+      model: anthropic/claude-sonnet-5-5
       api_key: os.environ/ANTHROPIC_API_KEY
 
   - model_name: azure-gpt4o
@@ -153,14 +181,14 @@ model_list:
 
 ## Standard Response Telemetry
 
-Every request processed across any of the 42 providers includes standardized audit and FinOps telemetry headers:
+Every request processed across any of the 73 `ProviderType` profiles includes standardized audit and FinOps telemetry headers:
 
 | Header | Description | Example |
 | :--- | :--- | :--- |
 | `X-Gateway-Request-Id` | Unique UUID assigned to the client invocation | `req_01h8a...` |
 | `X-Trace-Id` | Distributed W3C trace ID for end-to-end tracing | `4bf92f3577b34da6a3ce929d0e0e4736` |
 | `X-Gateway-Provider` | The actual upstream provider that fulfilled the request | `bedrock`, `cerebras`, `openai` |
-| `X-Gateway-Model` | The upstream foundation model executed | `anthropic.claude-3-5-sonnet-20241022-v2:0` |
+| `X-Gateway-Model` | The upstream foundation model executed | `anthropic.claude-sonnet-5-5` |
 | `X-Gateway-Cost-Micros`| Exact cost of the invocation in micro-dollars ($1 = 1,000,000 µ$) | `1250` ($0.001250) |
 | `X-Gateway-Routing-Time`| Gateway latency overhead before upstream dispatch | `4.2ms` |
 | `X-Gateway-Cache` | Cache hit status (`HIT` or `MISS`) | `HIT` |
