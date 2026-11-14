@@ -16,6 +16,16 @@ go run ./hello_gateway
 
 ---
 
+## Find a guide by task
+
+- **Start building:** follow the [Go SDK quickstart](/docs/getting-started/quickstart-sdk), [standalone CLI setup](/docs/getting-started/quickstart-cli), or [Docker Compose deployment](/docs/getting-started/quickstart-docker).
+- **Connect a model provider:** compare supported [AI providers](/docs/providers/overview) or follow the [provider integration guides](/docs/integrations/overview) for existing SDKs and clients.
+- **Evaluate GoRoute's capabilities:** review the [control plane overview](/docs/getting-started/overview), [architecture](/docs/getting-started/architecture), and [API reference](/docs/api-reference/overview).
+- **Prepare for production:** use the [production readiness checklist](/docs/operations/production-checklist), [deployment and storage guide](/docs/operations/deployment-and-storage), or [Kubernetes deployment guide](/docs/operations/kubernetes-kustomize).
+- **Solve an operational issue:** go to [troubleshooting and recovery runbooks](/docs/operations/troubleshooting).
+
+---
+
 ## 1. AI Gateway — Traffic Management & Model Routing
 
 See the [AI Gateway Module](/docs/modules/ai-gateway) for architecture and configuration details.

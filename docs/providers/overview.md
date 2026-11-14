@@ -2,6 +2,7 @@
 title: Providers Overview
 sidebar_position: 1
 description: Complete provider matrix covering all 73 supported upstream ProviderType profiles, modalities, operation enforcement, and authentication mechanisms.
+keywords: [LLM providers, OpenAI, Anthropic Claude, Google Gemini, AWS Bedrock, Azure OpenAI, Ollama, GoRoute providers]
 ---
 
 import ProviderCatalog from '@site/src/components/ProviderCatalog';

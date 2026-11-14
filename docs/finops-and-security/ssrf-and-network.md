@@ -1,6 +1,7 @@
 ---
 title: Network Security & SSRF Protection
 sidebar_position: 4
+description: See how GoRoute blocks server-side request forgery with outbound network controls that protect cloud metadata, private IP ranges, and internal services.
 ---
 
 # Network Security & Outbound SSRF Protection

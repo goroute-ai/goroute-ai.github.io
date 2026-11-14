@@ -2,7 +2,7 @@
 id: kubernetes-kustomize
 title: "Kubernetes & Kustomize Deployment"
 sidebar_position: 7
-description: "Deploy GoRoute AI Gateway to Kubernetes using the hardened Kustomize manifests in deployments/k8s/, including non-root security contexts, health probes, PostgreSQL 16, Redis Cluster/Sentinel, and Prometheus scraping."
+description: "Deploy GoRoute AI Gateway on Kubernetes with hardened Kustomize manifests, non-root security, health probes, PostgreSQL 16, Redis, and Prometheus."
 ---
 
 # Kubernetes & Kustomize Deployment

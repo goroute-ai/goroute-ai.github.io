@@ -2,7 +2,7 @@
 id: production-checklist
 title: "Production Readiness Checklist"
 sidebar_position: 8
-description: "Pre-flight production checklist for GoRoute AI Gateway covering SSRF firewall rules, secret validation, operator RBAC/OIDC, fail-closed rate limits, circuit breakers, file storage quotas, and load/canary verification."
+description: "Production checklist for GoRoute AI Gateway: SSRF firewall, secret validation, RBAC/OIDC, fail-closed rate limits, circuit breakers, and load testing."
 ---
 
 # Production Readiness Checklist

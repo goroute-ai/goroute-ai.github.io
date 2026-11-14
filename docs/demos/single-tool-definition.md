@@ -1,6 +1,7 @@
 ---
 title: Tool Definition
 sidebar_position: 13
+description: Define an MCP tool schema in Go and discover it through the GoRoute virtual hub before invoking it from an application.
 ---
 
 # Single Tool Schema Definition & Discovery

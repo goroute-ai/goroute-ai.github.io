@@ -1,7 +1,7 @@
 ---
 title: Gateway Data Plane API Reference
 sidebar_position: 2
-description: Comprehensive reference for all 23 primary GoRoute AI Gateway /v1 data plane paths (26 HTTP operations), request/response schemas, reasoning normalization, and telemetry headers.
+description: Reference for all 23 GoRoute AI Gateway /v1 data plane routes (26 operations), request/response schemas, reasoning normalization, and telemetry headers.
 ---
 
 # Gateway Data Plane API Reference

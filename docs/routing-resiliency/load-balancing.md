@@ -1,6 +1,7 @@
 ---
 title: Stage 2 — EWMA Load Balancing
 sidebar_position: 2
+description: Compare GoRoute's five model routing strategies, including weighted shuffle, least busy, usage headroom, and latency-based EWMA balancing.
 ---
 
 # Stage 2: EWMA Load Balancing (5 Selection Algorithms)

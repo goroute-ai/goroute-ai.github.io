@@ -1,6 +1,7 @@
 ---
 title: OpenAI Direct
 sidebar_position: 8
+description: Connect the GoRoute Go SDK directly to OpenAI and send chat requests through its unified provider interface.
 ---
 
 # OpenAI Direct Provider Integration

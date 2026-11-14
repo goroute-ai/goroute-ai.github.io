@@ -1,6 +1,7 @@
 ---
 title: Interactive Demos & Curriculum Overview
 sidebar_position: 1
+description: Browse runnable GoRoute Go examples for AI gateway setup, provider integrations, streaming, load balancing, MCP tools, and A2A agents.
 ---
 
 # Go Examples

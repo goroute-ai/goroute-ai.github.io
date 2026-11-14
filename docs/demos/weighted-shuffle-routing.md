@@ -1,6 +1,7 @@
 ---
 title: Weighted Shuffle
 sidebar_position: 19
+description: Split AI traffic between model deployments with weighted shuffle routing in GoRoute for gradual rollouts and controlled traffic allocation.
 ---
 
 # Weighted Shuffle Traffic Splitting

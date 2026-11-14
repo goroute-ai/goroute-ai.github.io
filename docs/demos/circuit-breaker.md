@@ -1,6 +1,7 @@
 ---
 title: Circuit Breakers
 sidebar_position: 21
+description: Configure GoRoute circuit breaker thresholds in Go and learn how fast-failing protects services when an upstream model repeatedly errors.
 ---
 
 # Circuit Breaker Thresholds & Fast-Failing

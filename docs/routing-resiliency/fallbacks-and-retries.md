@@ -1,6 +1,7 @@
 ---
 title: Retries & Fallback Cascades
 sidebar_position: 4
+description: Configure retries and cross-provider fallback cascades in GoRoute to keep AI requests available during upstream timeouts, rate limits, and outages.
 ---
 
 # Retries & Cross-Provider Fallback Cascades

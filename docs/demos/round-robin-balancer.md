@@ -1,6 +1,7 @@
 ---
 title: Round-Robin Balancer
 sidebar_position: 18
+description: Configure round-robin model routing in GoRoute to distribute inference requests evenly across multiple backend deployments.
 ---
 
 # Stateless Round-Robin Load Balancing

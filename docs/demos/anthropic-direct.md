@@ -1,6 +1,7 @@
 ---
 title: Anthropic Direct
 sidebar_position: 9
+description: Connect the GoRoute Go SDK to Anthropic Claude and send model requests through the gateway's provider integration.
 ---
 
 # Anthropic Claude Provider Integration

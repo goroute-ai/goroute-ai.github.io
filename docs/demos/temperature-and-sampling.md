@@ -1,6 +1,7 @@
 ---
 title: Temperature & Limits
 sidebar_position: 5
+description: Control model sampling and cap generated tokens with GoRoute Go SDK options for predictable output and bounded response costs.
 ---
 
 # Temperature and Minimal Output Caps

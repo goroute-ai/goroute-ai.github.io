@@ -124,10 +124,12 @@ function main() {
     }
   }
 
-  // Check (b) unclosed fenced code blocks & (d) sidebar mapping
+  // Check (b) unclosed fenced code blocks, (d) sidebar mapping & (e) SEO frontmatter
   const docFiles = walkFiles(DOCS_DIR).filter((f) => /\.(md|mdx)$/i.test(f));
   const sidebars = parseSidebars(path.join(ROOT, 'sidebars.ts'));
   const mappedIds = collectSidebarIds(sidebars);
+  const seenTitles = new Map();
+  const seenDescriptions = new Map();
 
   for (const filePath of docFiles) {
     const relFromDocs = path.relative(DOCS_DIR, filePath).replace(/\\/g, '/');
@@ -148,6 +150,38 @@ function main() {
         `[sidebar-check] Doc file ${relFromRoot} (id "${docId}") is not mapped in sidebars.ts`
       );
     }
+
+    const fmMatch = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
+    if (!fmMatch) {
+      errors.push(`[seo-check] Missing frontmatter in ${relFromRoot}`);
+      continue;
+    }
+    const fm = fmMatch[1];
+    const titleRaw = fm.match(/^title:\s*(.+)$/m)?.[1];
+    const descRaw = fm.match(/^description:\s*(.+)$/m)?.[1];
+    const title = titleRaw ? titleRaw.replace(/^["']|["']$/g, '').trim() : '';
+    const desc = descRaw ? descRaw.replace(/^["']|["']$/g, '').trim() : '';
+
+    if (!title) {
+      errors.push(`[seo-check] Missing title in ${relFromRoot}`);
+    } else if (seenTitles.has(title)) {
+      errors.push(`[seo-check] Duplicate title "${title}" in ${relFromRoot} (also in ${seenTitles.get(title)})`);
+    } else {
+      seenTitles.set(title, relFromRoot);
+    }
+
+    if (!desc) {
+      errors.push(`[seo-check] Missing description in ${relFromRoot}`);
+    } else {
+      if (desc.length < 50 || desc.length > 160) {
+        errors.push(`[seo-check] Description length ${desc.length} (expected 50-160) in ${relFromRoot}`);
+      }
+      if (seenDescriptions.has(desc)) {
+        errors.push(`[seo-check] Duplicate description in ${relFromRoot} (also in ${seenDescriptions.get(desc)})`);
+      } else {
+        seenDescriptions.set(desc, relFromRoot);
+      }
+    }
   }
 
   if (errors.length > 0) {
@@ -159,7 +193,7 @@ function main() {
   }
 
   console.log(
-    `QA check passed: ${docFiles.length} docs verified (0 brand violations, 0 unclosed fences, 0 hardcoded URLs, 100% sidebar coverage).`
+    `QA check passed: ${docFiles.length} docs verified (0 brand violations, 0 unclosed fences, 0 hardcoded URLs, 100% sidebar coverage, 100% SEO frontmatter).`
   );
 }
 

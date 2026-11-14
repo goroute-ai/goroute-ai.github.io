@@ -1,6 +1,7 @@
 ---
 title: Stage 1 — Zero-LLM Complexity Classifier
 sidebar_position: 1
+description: Route simple and complex prompts to different model tiers with GoRoute's fast heuristic classifier, without calling another LLM.
 ---
 
 # Stage 1: Zero-LLM Heuristic Complexity Classifier

@@ -1,6 +1,7 @@
 ---
 title: System Prompts
 sidebar_position: 3
+description: Set system prompts with the GoRoute Go SDK to guide model behavior across supported provider APIs and reasoning models.
 ---
 
 # System Prompts & Persona Steering

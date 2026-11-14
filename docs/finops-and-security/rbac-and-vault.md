@@ -1,6 +1,7 @@
 ---
 title: RBAC & Key Vault Architecture
 sidebar_position: 3
+description: Learn how GoRoute separates client virtual keys from provider credentials with four-layer role-based access control and an AES-256-GCM key vault.
 ---
 
 # 4-Layer RBAC & Key Vault Architecture

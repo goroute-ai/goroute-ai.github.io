@@ -2,7 +2,8 @@
 id: ai-agent-management
 title: "5. AI Agent Management — MCP, Tools & Agent Access"
 sidebar_position: 5
-description: MCP 2026-07-28 Virtual Hub, REST bridge, progressive discovery, sandboxed Stdio, A2A v1.0 signed Agent Cards and gRPC, autonomous tool loops, and coding-agent governance.
+description: MCP 2026-07-28 Virtual Hub, REST bridge, progressive discovery, sandboxed Stdio, A2A signed Agent Cards, gRPC, and autonomous tool loops.
+keywords: [AI agent management, MCP virtual hub, A2A protocol, Agent Cards, sandboxed stdio, autonomous tool loop]
 ---
 
 # 5. AI Agent Management — MCP, Tools & Agent Access

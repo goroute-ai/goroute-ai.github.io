@@ -1,6 +1,7 @@
 ---
 title: Client Initialization & Configuration
 sidebar_position: 2
+description: Initialize the GoRoute Go SDK for embedded or remote gateway use, then configure client options, timeouts, and model requests.
 ---
 
 # Client Initialization & Configuration

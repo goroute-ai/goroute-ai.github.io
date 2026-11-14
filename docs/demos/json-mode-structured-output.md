@@ -1,6 +1,7 @@
 ---
 title: Structured JSON
 sidebar_position: 6
+description: Build a GoRoute Go SDK example that requests schema-guided JSON output for reliable, machine-readable model responses.
 ---
 
 # Guaranteed JSON Mode Structured Outputs

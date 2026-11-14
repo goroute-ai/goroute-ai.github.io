@@ -2,7 +2,8 @@
 id: ai-finops
 title: "3. AI FinOps — Cost Management & Optimization"
 sidebar_position: 3
-description: Exact 64-bit integer micro-dollar accounting, modality and cache-write pricing, pre-flight budget reservations, durable PostgreSQL outboxes, and Redis Lua sliding-window rate limits.
+description: Exact 64-bit integer micro-dollar accounting, modality pricing, budget reservations, PostgreSQL outboxes, and Redis Lua sliding-window rate limits.
+keywords: [AI FinOps, LLM cost tracking, micro-dollar ledger, token budget, sliding window rate limit, GoRoute]
 ---
 
 # 3. AI FinOps — Cost Management & Optimization

@@ -1,6 +1,7 @@
 ---
 title: A2A Agent Network
 sidebar_position: 26
+description: Register signed A2A Agent Cards and route tasks between agents through GoRoute using its OpenAI-compatible agent bridge.
 ---
 
 # Agent-to-Agent (A2A v1.0) Cryptographic Discovery & Mesh

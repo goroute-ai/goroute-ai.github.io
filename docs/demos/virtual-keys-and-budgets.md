@@ -1,6 +1,7 @@
 ---
 title: Virtual Keys & Budgets
 sidebar_position: 24
+description: Create scoped GoRoute virtual API keys, set spend budgets, track usage in micro-dollars, and revoke keys from a runnable Go example.
 ---
 
 # Virtual Keys, Budgets & FinOps Micro-Dollar Ledger

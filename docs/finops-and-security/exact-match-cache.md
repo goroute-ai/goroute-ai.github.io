@@ -1,6 +1,7 @@
 ---
 title: Deterministic Exact-Match Cache
 sidebar_position: 3
+description: Configure GoRoute's tenant-isolated exact-match response cache for deterministic requests, using SHA-256 cache keys and memory or Redis storage.
 ---
 
 # Deterministic Exact-Match Response Caching

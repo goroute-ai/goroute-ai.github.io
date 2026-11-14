@@ -1,7 +1,7 @@
 ---
 title: "Agent-to-Agent (A2A) Protocol Overview"
 sidebar_position: 1
-description: "Architectural overview of the Linux Foundation Agent-to-Agent Protocol (A2A v1.0), dual HTTP/JSON-RPC bindings, subscribe-first SSE streaming, and transactional outbox webhooks."
+description: "Architecture of the Linux Foundation A2A v1.0 protocol in GoRoute: dual HTTP/JSON-RPC bindings, SSE streaming, and transactional outbox webhooks."
 ---
 
 # Agent-to-Agent (A2A) Protocol Overview

@@ -1,6 +1,7 @@
 ---
 title: Outage Fallbacks
 sidebar_position: 17
+description: Configure a GoRoute fallback target and run a Go example that sends requests to a backup model when the primary provider is unavailable.
 ---
 
 # Upstream Outage Fallback & Failover Cascades

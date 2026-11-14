@@ -1,6 +1,7 @@
 ---
 title: Scoped Virtual Keys & Quotas
 sidebar_position: 2
+description: Create scoped GoRoute virtual API keys with model allowlists, organization and team access, spend budgets, and request or token quotas.
 ---
 
 import Tabs from '@theme/Tabs';

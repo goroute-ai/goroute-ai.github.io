@@ -1,6 +1,7 @@
 ---
 title: Google Gemini Direct
 sidebar_position: 10
+description: Connect a GoRoute Go application to Google Gemini and send model requests through the gateway's provider integration.
 ---
 
 # Google Gemini Provider Integration

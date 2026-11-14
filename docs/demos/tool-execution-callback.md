@@ -1,6 +1,7 @@
 ---
 title: Tool Execution
 sidebar_position: 14
+description: Build a Go example that invokes an MCP tool through the GoRoute gateway hub and handles its structured execution result.
 ---
 
 # Executing Tool Invocations via Gateway Hub

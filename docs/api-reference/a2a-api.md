@@ -1,7 +1,7 @@
 ---
 title: Agent-to-Agent (A2A) Protocol API Reference
 sidebar_position: 5
-description: Comprehensive specification of the Linux Foundation A2A v1.0 protocol implementation in GoRoute AI Gateway, including Agent Cards, dual-binding dispatch, SSE streaming, gRPC service, and OpenAI bridge.
+description: Specification of the A2A v1.0 protocol in GoRoute AI Gateway, covering Agent Cards, dual-binding dispatch, SSE streaming, gRPC, and OpenAI bridge.
 ---
 
 # Agent-to-Agent (A2A) Protocol API Reference

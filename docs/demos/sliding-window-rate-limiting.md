@@ -1,6 +1,7 @@
 ---
 title: Rate Limiting
 sidebar_position: 23
+description: Use the Go SDK to configure sliding-window request and token quotas that protect provider limits and keep usage fair across tenants.
 ---
 
 # Sliding-Window Rate Limiting (RPM/TPM Quotas)

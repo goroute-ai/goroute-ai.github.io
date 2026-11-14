@@ -1,6 +1,7 @@
 ---
 title: Multi-Turn Memory
 sidebar_position: 7
+description: Preserve conversation history across multiple chat turns with GoRoute's Go SDK request messages and an embedded gateway.
 ---
 
 # Multi-Turn Conversational Memory & Context

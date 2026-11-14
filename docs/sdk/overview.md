@@ -2,6 +2,7 @@
 title: Go SDK Overview
 sidebar_position: 1
 description: Choose embedded or remote client mode and find the next SDK guides.
+keywords: [Go AI SDK, GoRoute SDK, pkg/gateway, embedded AI gateway Go, Go LLM client]
 ---
 
 # Go SDK Overview

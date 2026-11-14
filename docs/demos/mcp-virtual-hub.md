@@ -1,6 +1,7 @@
 ---
 title: MCP Virtual Hub
 sidebar_position: 25
+description: Connect upstream Model Context Protocol servers to the GoRoute virtual hub and invoke their tools over JSON-RPC from a Go example.
 ---
 
 # Model Context Protocol (MCP) Virtual Hub

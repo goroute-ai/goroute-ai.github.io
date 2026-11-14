@@ -1,6 +1,7 @@
 ---
 title: Streaming Tokens
 sidebar_position: 4
+description: Stream chat response tokens as server-sent events with the GoRoute Go SDK and translate provider streaming formats through one gateway.
 ---
 
 # Zero-Buffer SSE Token Streaming

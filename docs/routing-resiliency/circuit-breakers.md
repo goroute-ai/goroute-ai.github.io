@@ -1,6 +1,7 @@
 ---
 title: 3-State Circuit Breakers
 sidebar_position: 3
+description: Learn how GoRoute's healthy, open, and half-open circuit breaker states isolate failing AI providers and limit cascading request failures.
 ---
 
 # 3-State Circuit Breakers & Outage Isolation

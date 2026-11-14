@@ -1,7 +1,8 @@
 ---
 title: API Reference Index
 sidebar_position: 1
-description: Master API index linking to all GoRoute AI Gateway data plane routes, admin control plane groups, Model Context Protocol, and Agent-to-Agent protocol specifications.
+description: Master API index for GoRoute AI Gateway /v1 data plane routes, admin control plane endpoints, MCP Virtual Hub, and A2A v1.0 specifications.
+keywords: [GoRoute API reference, AI gateway endpoints, OpenAI compatible API, admin API, MCP API, A2A API]
 ---
 
 import EndpointCatalog from '@site/src/components/EndpointCatalog';

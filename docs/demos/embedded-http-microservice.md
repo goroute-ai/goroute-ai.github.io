@@ -1,6 +1,7 @@
 ---
 title: Embedded Microservice
 sidebar_position: 27
+description: Embed GoRoute AI Gateway in a Go HTTP service with Kubernetes liveness and readiness probes and graceful shutdown handling.
 ---
 
 # Embedded HTTP Microservice with Kubernetes Probes

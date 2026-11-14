@@ -1,6 +1,7 @@
 ---
 title: Exact-Match Cache
 sidebar_position: 22
+description: Run a Go example of GoRoute's SHA-256 exact-match cache and see how repeated deterministic prompts can avoid another provider request.
 ---
 
 # Sub-Millisecond Exact-Match SHA-256 Cache

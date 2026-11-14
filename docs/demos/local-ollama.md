@@ -1,6 +1,7 @@
 ---
 title: Local Ollama
 sidebar_position: 11
+description: Connect GoRoute AI Gateway to a local Ollama model using a custom API base URL for on-premises or offline inference.
 ---
 
 # Local Offline LLM with Ollama Integration

@@ -1,6 +1,7 @@
 ---
 title: Pre-Flight Tokenizer
 sidebar_position: 2
+description: Estimate prompt tokens before provider dispatch so GoRoute can enforce token quotas and reject oversized requests before they incur upstream costs.
 ---
 
 # Pre-Flight Tokenizer & TPM Estimation

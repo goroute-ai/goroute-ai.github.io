@@ -1,6 +1,7 @@
 ---
 title: Autonomous Agent Loop
 sidebar_position: 16
+description: Build a GoRoute agent loop that analyzes a request, executes tools over multiple turns, and returns a synthesized response.
 ---
 
 # Autonomous Agent Loop & Multi-Step Resolution

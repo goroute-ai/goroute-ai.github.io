@@ -1,6 +1,7 @@
 ---
 title: Distributed Rate Limiting (RPM & TPM)
 sidebar_position: 1
+description: Enforce distributed requests-per-minute and tokens-per-minute quotas with GoRoute's atomic Redis Lua sliding-window rate limiter.
 ---
 
 # Distributed Rate Limiting (RPM & TPM)

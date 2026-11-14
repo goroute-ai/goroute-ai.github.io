@@ -1,6 +1,7 @@
 ---
 title: Multi-Tool Inventory
 sidebar_position: 15
+description: Combine specialized MCP tool servers in the GoRoute virtual hub and discover tools through one aggregated registry in a Go example.
 ---
 
 # Multi-Tool Inventory & Route Scoping

@@ -1,6 +1,7 @@
 ---
 title: Hello Gateway
 sidebar_position: 2
+description: Build your first GoRoute Go SDK application by starting an embedded AI gateway and sending a chat completion to a configured model.
 ---
 
 # Hello Gateway

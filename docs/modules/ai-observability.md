@@ -2,7 +2,8 @@
 id: ai-observability
 title: "4. AI Observability — Monitoring, Tracing & Evaluation"
 sidebar_position: 4
-description: OTLP/HTTP distributed tracing with gen_ai.* attributes, Prometheus /metrics with Vitter Algorithm R reservoirs, Embedded Operator Console, Guardrails Simulator, and secret-scrubbed logs.
+description: OTLP/HTTP distributed tracing with gen_ai.* attributes, Prometheus /metrics, Embedded Operator Console, Guardrails Simulator, and scrubbed logs.
+keywords: [AI observability, OpenTelemetry LLM, Prometheus AI metrics, Operator Web UI, gen_ai tracing]
 ---
 
 # 4. AI Observability — Monitoring, Tracing & Evaluation

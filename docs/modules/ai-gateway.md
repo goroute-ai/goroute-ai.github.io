@@ -2,7 +2,8 @@
 id: ai-gateway
 title: "1. AI Gateway — Traffic Management & Model Routing"
 sidebar_position: 1
-description: Unified multi-provider inference proxy with 23 /v1 paths, 73+ provider profiles, complexity-based routing, 5 load-balancing strategies, Redis circuit breakers, fallbacks, and 2-tier caching.
+description: Unified LLM proxy with 23 /v1 routes, 73+ provider profiles, complexity routing, 5 load-balancing strategies, circuit breakers, and 2-tier caching.
+keywords: [AI gateway, LLM proxy Go, model routing, load balancing, circuit breaker, multi-provider AI]
 ---
 
 # 1. AI Gateway — Traffic Management & Model Routing

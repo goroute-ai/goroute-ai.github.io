@@ -3,6 +3,7 @@ id: ai-governance
 title: "2. AI Governance — Security, Policies & Compliance"
 sidebar_position: 2
 description: Enterprise 4-layer policy enforcement, Operator RBAC with OIDC/JWT, AES-256-GCM Credentials Vault, Virtual Keys, streaming guardrails, and SSRF egress firewall.
+keywords: [AI governance, virtual API keys, LLM guardrails, RBAC OIDC, AES-256-GCM vault, SSRF protection]
 ---
 
 # 2. AI Governance — Security, Policies & Compliance

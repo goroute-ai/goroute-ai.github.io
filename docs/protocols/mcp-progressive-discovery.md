@@ -1,7 +1,7 @@
 ---
 title: "MCP Progressive Tool Discovery"
 sidebar_position: 3
-description: "Manage hundreds of enterprise tools without context window bloat using 256-bit opaque handles, registry feeds, schema hydration meta-tools, and governed OpenAPI transport."
+description: "Scale to hundreds of enterprise tools without context bloat using 256-bit opaque handles, registry feeds, schema hydration, and OpenAPI transport."
 ---
 
 # MCP Progressive Tool Discovery

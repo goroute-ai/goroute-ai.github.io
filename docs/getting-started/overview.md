@@ -2,6 +2,7 @@
 title: GoRoute AI Control Plane Overview
 sidebar_position: 1
 description: Understand the GoRoute Enterprise AI Control Plane, its 5 core modules, deployment modes, high-performance architecture, and embedded Operator UI.
+keywords: [GoRoute AI Control Plane, Go AI gateway, enterprise LLM gateway, AI governance, AI FinOps, MCP, A2A]
 ---
 
 # GoRoute AI Control Plane Overview

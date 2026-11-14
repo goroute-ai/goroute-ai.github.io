@@ -1,6 +1,7 @@
 ---
 title: Unified Model Aliases
 sidebar_position: 12
+description: Configure a logical model alias in GoRoute so applications can switch upstream AI providers without changing their model request code.
 ---
 
 # Decoupling Applications with Unified Model Aliases

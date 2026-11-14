@@ -1,5 +1,7 @@
 import React, { ReactNode, useState } from 'react';
+import Head from '@docusaurus/Head';
 import Link from '@docusaurus/Link';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 
 const pillars = [
@@ -130,25 +132,55 @@ function CopyInstallButton(): ReactNode {
 }
 
 export default function Home(): ReactNode {
+  const { siteConfig } = useDocusaurusContext();
+  const siteUrl = siteConfig.url.replace(/\/+$/, '');
+  const softwareAppSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'GoRoute AI Control Plane',
+    applicationCategory: 'DeveloperApplication',
+    operatingSystem: 'Linux, macOS, Windows',
+    programmingLanguage: 'Go',
+    license: 'https://opensource.org/licenses/Apache-2.0',
+    url: `${siteUrl}/`,
+    codeRepository: 'https://github.com/goroute-ai/ai-gateway-go',
+    description:
+      'Pure Go enterprise AI gateway and embeddable Go SDK with 73+ provider profiles, virtual API keys, micro-dollar FinOps, OpenTelemetry, MCP Virtual Hub, and A2A.',
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'GoRoute AI',
+      url: `${siteUrl}/`,
+    },
+  };
+
   return (
     <Layout
-      title="GoRoute AI Control Plane · Gateway, Governance, FinOps, Observability & Agents"
-      description="The Enterprise AI Control Plane in Pure Go: AI Gateway, AI Governance, AI FinOps, AI Observability, and AI Agent Management."
+      title="Go AI Gateway & Enterprise Control Plane"
+      description="Embeddable Go AI SDK and standalone LLM gateway with 73+ providers, virtual keys, micro-dollar FinOps, OpenTelemetry observability, MCP hub, and A2A."
     >
+      <Head>
+        <meta property="og:type" content="website" />
+        <script type="application/ld+json">{JSON.stringify(softwareAppSchema)}</script>
+      </Head>
       <main className="home-page">
         <section className="home-hero">
           <div className="home-hero__copy">
             <p className="home-eyebrow">GoRoute · Enterprise AI Control Plane</p>
-            <h1>The Enterprise AI Control Plane in Pure Go.</h1>
+            <h1>A Go AI Gateway and Control Plane for Production AI.</h1>
             <p className="home-hero__lead">
-              Unify AI Gateway routing, Governance, Micro-Dollar FinOps, Observability, and MCP/A2A Agent Management in one embeddable Go SDK or standalone control plane.
+              Build with an embeddable Go SDK or deploy a standalone gateway to route models, govern access, manage AI costs, observe traffic, and connect agents.
             </p>
             <div className="home-actions">
               <Link className="button button--primary button--lg" to="/docs/getting-started/overview">
-                Explore Control Plane <span aria-hidden="true">→</span>
+                Explore Product Capabilities <span aria-hidden="true">→</span>
               </Link>
-              <Link className="button button--secondary button--lg" to="/docs/operations/operator-ui">
-                Operator Console
+              <Link className="button button--secondary button--lg" to="/docs/getting-started/quickstart-sdk">
+                Start with the Go SDK
               </Link>
             </div>
             <div className="home-code-hint">

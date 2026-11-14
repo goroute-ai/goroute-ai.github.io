@@ -1,6 +1,7 @@
 ---
 title: Least Latency EWMA
 sidebar_position: 20
+description: Use GoRoute's Peak-EWMA load balancer to track provider response times and route model requests toward the lowest-latency endpoint.
 ---
 
 # Dynamic Peak-EWMA Lowest-Latency Load Balancer

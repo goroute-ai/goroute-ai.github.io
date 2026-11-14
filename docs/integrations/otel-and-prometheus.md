@@ -2,7 +2,7 @@
 id: otel-and-prometheus
 title: OpenTelemetry & Prometheus
 sidebar_position: 8
-description: Configure OTLP/HTTP trace export (tracing.otlp_endpoint, W3C traceparent, gen_ai.* attributes) for OTel Collector, Jaeger, and Grafana Tempo, plus Prometheus /metrics scraping.
+description: Configure OTLP/HTTP tracing with W3C traceparent and gen_ai.* attributes for OTel Collector, Jaeger, and Grafana Tempo, plus Prometheus /metrics.
 ---
 
 # OpenTelemetry & Prometheus
