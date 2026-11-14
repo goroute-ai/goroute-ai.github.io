@@ -1,12 +1,35 @@
 ---
 title: System Architecture & Topology
 sidebar_position: 5
-description: Deep dive into the GoRoute AI Gateway pure Go architecture, 10-step request lifecycle, multi-layer caching, and Operator UI.
+description: Deep dive into the GoRoute Enterprise AI Control Plane architecture, its 5 core modules, 10-step request lifecycle, multi-layer caching, and persistence layer.
 ---
 
 # System Architecture & Topology
 
-GoRoute AI Gateway is engineered as an ultra-high-throughput, low-overhead AI data plane and agentic protocol router written in pure Go. It delivers sub-2ms hot-path routing overhead, multi-tenant isolation, and resilient upstream execution.
+GoRoute is engineered as an **Enterprise AI Control Plane** written in pure Go, organizing traffic routing, security governance, micro-dollar FinOps, observability, and agent management into five cohesive modules on top of a lock-free Go core and distributed persistence layer. It delivers sub-2ms hot-path routing overhead, multi-tenant isolation, and resilient upstream execution.
+
+```mermaid
+flowchart TB
+    Clients["Clients, IDEs & Agents<br/>(OpenAI / Anthropic SDKs, Claude Code, Cursor, MCP, A2A)"] --> ControlPlane
+
+    subgraph ControlPlane["GoRoute Enterprise AI Control Plane (Pure Go)"]
+        direction LR
+        M1["1. AI Gateway<br/>(/v1/*, 73 Providers,<br/>EWMA, Circuit Breakers)"]
+        M2["2. AI Governance<br/>(4-Layer RBAC, Vault,<br/>Guardrails, SSRF)"]
+        M3["3. AI FinOps<br/>(Micro-Dollar Ledger,<br/>Outboxes, Lua Limits)"]
+        M4["4. AI Observability<br/>(OTLP, Prometheus,<br/>Operator UI /ui/)"]
+        M5["5. AI Agent Mgmt<br/>(MCP Hub, A2A gRPC,<br/>Tool Loops)"]
+    end
+
+    subgraph CorePersistence["Go Core & Persistence Layer"]
+        direction LR
+        L1["L1 In-Memory Cache<br/>(Ring Buffers & Auth)"]
+        Redis["Redis UniversalClient<br/>(Cluster/Sentinel, Lua, Pub/Sub)"]
+        PG["PostgreSQL 16+<br/>(Migrations 0001-0012, Outboxes)"]
+    end
+
+    ControlPlane --> CorePersistence
+```
 
 ![GoRoute AI Gateway Architecture](/img/architecture.png)
 

@@ -4,44 +4,51 @@ import Layout from '@theme/Layout';
 
 const pillars = [
   {
-    badge: 'GUI CONSOLE · PORT 8080',
-    title: 'Operator Console',
-    text: 'Zero-dependency browser dashboard for live cluster telemetry, virtual key management, and financial audits.',
-    link: '/docs/operations/operator-ui',
-    label: 'Explore Operator Console',
+    badge: 'MODULE 01 · TRAFFIC & ROUTING',
+    title: '1. AI Gateway',
+    text: '23 /v1 routes, 73+ provider profiles, adaptive load balancing, 3-state circuit breakers, and 2-tier exact-match cache.',
+    link: '/docs/modules/ai-gateway',
+    label: 'Explore AI Gateway',
   },
   {
-    badge: 'DATA PLANE · UNIFIED',
-    title: 'Multi-Modal Data Plane',
-    text: 'High-throughput unified routing for chat, audio transcription, image synthesis, and realtime WebSockets.',
-    link: '/docs/data-plane/chat-completions',
-    label: 'Browse Data Plane',
+    badge: 'MODULE 02 · ACCESS & POLICY',
+    title: '2. AI Governance',
+    text: 'Scoped Virtual API Keys, RBAC, AES-256-GCM credential vault, input/output guardrails, and SSRF protection.',
+    link: '/docs/modules/ai-governance',
+    label: 'Explore AI Governance',
   },
   {
-    badge: 'ECOSYSTEM · ADAPTERS',
-    title: 'Provider Ecosystem',
-    text: 'Native zero-overhead adapters for dedicated cloud providers, local Ollama, and OpenAI-compatible engines.',
-    link: '/docs/providers/overview',
-    label: 'View Providers',
+    badge: 'MODULE 03 · COST & QUOTAS',
+    title: '3. AI FinOps',
+    text: '64-bit integer micro-dollar ledger, versioned modality pricing, sliding-window rate limits, and pre-flight tokenization.',
+    link: '/docs/modules/ai-finops',
+    label: 'Explore AI FinOps',
   },
   {
-    badge: 'FINOPS · SUB-CENT ACCURACY',
-    title: 'Micro-Dollar FinOps',
-    text: '64-bit micro-dollar accounting with tenant virtual keys, spend caps, rate limiting, and response caching.',
-    link: '/docs/finops-and-security/micro-dollar-ledger',
-    label: 'FinOps Architecture',
+    badge: 'MODULE 04 · TELEMETRY & UI',
+    title: '4. AI Observability',
+    text: 'OpenTelemetry tracing, Prometheus metrics, embedded Operator Web UI (/ui/), and deployment health probes.',
+    link: '/docs/modules/ai-observability',
+    label: 'Explore Observability',
+  },
+  {
+    badge: 'MODULE 05 · MCP & A2A',
+    title: '5. AI Agent Management',
+    text: 'MCP Virtual Hub with stdio sandboxing, signed A2A Agent Cards & gRPC, and autonomous multi-turn tool loops.',
+    link: '/docs/modules/ai-agent-management',
+    label: 'Explore Agent Management',
   },
 ];
 
 const paths = [
   {
     number: '01',
-    badge: 'EMBEDDED GO LIBRARY',
+    badge: 'EMBEDDED GO CONTROL PLANE',
     title: 'Embed with the Go SDK',
-    summary: 'Direct in-process integration for Go backend services needing zero network proxy overhead.',
+    summary: 'Run the full AI Control Plane in-process inside your Go services with zero proxy hop overhead.',
     topics: [
       'Installation & pkg/gateway setup',
-      'Client options, context & timeouts',
+      'Client options, routing & fallbacks',
       'Chat completions & streaming iterators',
     ],
     link: '/docs/getting-started/quickstart-sdk',
@@ -49,39 +56,39 @@ const paths = [
   },
   {
     number: '02',
-    badge: 'CONTAINER & CLUSTER',
-    title: 'Deploy Standalone Proxy',
-    summary: 'Containerized deployment with the embedded Operator Console and state storage.',
+    badge: 'CONTAINER & KUBERNETES',
+    title: 'Deploy the Control Plane',
+    summary: 'Standalone binary, Docker Compose, or Kubernetes Kustomize with Operator UI and HA storage.',
     topics: [
-      'Docker Compose & single binary CLI',
-      'Operator Console visual management',
-      'PostgreSQL & Redis state storage',
+      'Docker Compose, CLI & Kustomize overlays',
+      'Operator Console (/ui/) visual management',
+      'PostgreSQL & Redis Cluster/Sentinel state',
     ],
     link: '/docs/getting-started/quickstart-docker',
     label: 'Deployment Options',
   },
   {
     number: '03',
-    badge: 'UNIFIED ENDPOINTS',
-    title: 'Multi-Modal Data Plane',
-    summary: 'Standardized HTTP and WebSocket routes across any upstream AI provider dialect.',
+    badge: 'GOVERNANCE & FINOPS',
+    title: 'Enforce Policy & Budgets',
+    summary: 'Protect every model, tool, and agent call with Virtual Keys, guardrails, and micro-dollar ledgers.',
     topics: [
-      'Chat completions & thinking blocks',
-      'Speech STT/TTS & image generation',
-      'Realtime WebSocket data plane',
+      'Virtual API Keys, RBAC & AES-256-GCM vault',
+      'Micro-dollar spend caps & rate limiting',
+      'Input/output guardrails & SSRF policy',
     ],
-    link: '/docs/data-plane/chat-completions',
-    label: 'Explore Routes',
+    link: '/docs/modules/ai-governance',
+    label: 'Governance & FinOps',
   },
   {
     number: '04',
-    badge: 'RUNNABLE EXAMPLES',
-    title: 'Interactive Demos & Protocols',
-    summary: 'Complete Go code recipes for resilient traffic routing, MCP tools, and agent networks.',
+    badge: 'AGENTS & EXAMPLES',
+    title: 'Agents, MCP & Runnable Demos',
+    summary: 'Complete Go recipes for MCP tool hubs, A2A agent networks, and resilient multi-provider routing.',
     topics: [
       '26 runnable atomic Go demonstrations',
-      'EWMA balancers & circuit breakers',
-      'MCP Virtual Hub & A2A agent network',
+      'MCP Virtual Hub & A2A agent bridge',
+      'Claude Code, Codex & IDE integrations',
     ],
     link: '/docs/demos/overview',
     label: 'View Code Demos',
@@ -125,20 +132,20 @@ function CopyInstallButton(): ReactNode {
 export default function Home(): ReactNode {
   return (
     <Layout
-      title="GoRoute AI Gateway · Go SDK, Standalone Proxy & Operator Console"
-      description="Production-grade AI gateway for Go. Unified multi-modal routing, native provider adapters, embedded Operator Web UI (/ui/), and micro-dollar FinOps."
+      title="GoRoute AI Control Plane · Gateway, Governance, FinOps, Observability & Agents"
+      description="The Enterprise AI Control Plane in Pure Go: AI Gateway, AI Governance, AI FinOps, AI Observability, and AI Agent Management."
     >
       <main className="home-page">
         <section className="home-hero">
           <div className="home-hero__copy">
-            <p className="home-eyebrow">GoRoute AI Gateway · Enterprise AI Infrastructure</p>
-            <h1>Build your AI integration in Go.</h1>
+            <p className="home-eyebrow">GoRoute · Enterprise AI Control Plane</p>
+            <h1>The Enterprise AI Control Plane in Pure Go.</h1>
             <p className="home-hero__lead">
-              Embed the gateway directly in your Go services with zero external network overhead, or deploy it as a standalone high-performance proxy with real-time observability and sub-cent FinOps accounting.
+              Unify AI Gateway routing, Governance, Micro-Dollar FinOps, Observability, and MCP/A2A Agent Management in one embeddable Go SDK or standalone control plane.
             </p>
             <div className="home-actions">
-              <Link className="button button--primary button--lg" to="/docs/getting-started/quickstart-sdk">
-                Start with the Go SDK <span aria-hidden="true">→</span>
+              <Link className="button button--primary button--lg" to="/docs/getting-started/overview">
+                Explore Control Plane <span aria-hidden="true">→</span>
               </Link>
               <Link className="button button--secondary button--lg" to="/docs/operations/operator-ui">
                 Operator Console
@@ -159,8 +166,8 @@ export default function Home(): ReactNode {
             </div>
             <div className="flow-line"><span>inspect & route</span></div>
             <div className="flow-node flow-node--gateway">
-              <span>GOROUTE AI GATEWAY</span>
-              <strong>Operator Console & FinOps Engine</strong>
+              <span>GOROUTE AI CONTROL PLANE</span>
+              <strong>Gateway · Governance · FinOps · Agents</strong>
             </div>
             <div className="flow-line"><span>upstream dialect</span></div>
             <div className="flow-node flow-node--provider">
@@ -173,10 +180,10 @@ export default function Home(): ReactNode {
         <section className="home-paths" aria-labelledby="home-pillars-title">
           <div className="home-section-heading">
             <div>
-              <p className="home-eyebrow">Enterprise Architecture</p>
-              <h2 id="home-pillars-title">Engineered for production scale</h2>
+              <p className="home-eyebrow">Control Plane Modules</p>
+              <h2 id="home-pillars-title">Five unified modules for production AI</h2>
             </div>
-            <p>From embedded microservices to multi-tenant clusters, GoRoute provides complete control over AI workloads.</p>
+            <p>Every capability required to route, govern, account for, observe, and orchestrate enterprise AI workloads.</p>
           </div>
           <div className="home-pillars">
             {pillars.map((pillar) => (

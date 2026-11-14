@@ -1,6 +1,6 @@
-# GoRoute AI Gateway Documentation Portal & Runnable Demos
+# GoRoute Enterprise AI Control Plane Documentation Portal & Runnable Demos
 
-> Production documentation portal and progressive developer curriculum for [GoRoute AI Gateway (`ai-gateway-go`)](https://github.com/goroute-ai/ai-gateway-go) — the ultra-high-performance AI Gateway written in 100% Pure Go.
+> Production documentation portal and progressive developer curriculum for [GoRoute AI Gateway (`ai-gateway-go`)](https://github.com/goroute-ai/ai-gateway-go) — the **Enterprise AI Control Plane** written in 100% Pure Go, unifying **AI Gateway**, **AI Governance**, **AI FinOps**, **AI Observability**, and **AI Agent Management**.
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/goroute-ai/ai-gateway-go)](https://goreportcard.com/report/github.com/goroute-ai/ai-gateway-go)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
@@ -11,7 +11,12 @@
 ## 🌟 Overview
 
 This repository hosts:
-1. **The Developer Documentation Portal**: Powered by Docusaurus 3, featuring full-text search, written API guides, Mermaid architecture diagrams, a dual light/dark theme (Royal Violet `#6d28d9` / Lavender `#b39aff`), and practical Go SDK and provider guides.
+1. **The Enterprise AI Control Plane Documentation Portal**: Powered by Docusaurus 3, featuring full-text search, written API guides, Mermaid architecture diagrams, a dual light/dark theme (Royal Violet `#6d28d9` / Lavender `#b39aff`), and guides organized around GoRoute's **5 Core Control Plane Modules**:
+   - **1. AI Gateway**: Traffic management, 23 `/v1` data plane paths (26 HTTP ops), 73 `ProviderType` profiles, EWMA load balancing, and circuit breakers.
+   - **2. AI Governance**: 4-layer policy model, Operator RBAC/OIDC, AES-256-GCM Credentials Vault, Virtual Keys, streaming guardrails, and SSRF firewall.
+   - **3. AI FinOps**: 64-bit integer micro-dollar ledger, cache-write & modality pricing, durable spend/budget-reset outboxes, and Redis Lua rate limits.
+   - **4. AI Observability**: OTLP/HTTP distributed tracing (`gen_ai.*`), Prometheus `/metrics`, Vitter Algorithm R latency reservoirs, and Embedded Operator Console (`/ui/`).
+   - **5. AI Agent Management**: MCP 2026-07-28 Virtual Hub, A2A v1.0 signed Agent Cards & gRPC, autonomous tool loops, and coding-agent/framework access control.
 2. **Runnable Progressive Demos Suite (`examples/`)**: 26 runnable Go examples using only public release package types (`github.com/goroute-ai/ai-gateway-go/pkg/gateway`) with zero external dependencies.
 3. **100% Free Zero-Cost Hosting Configs**: Fully automated deployment workflow for **GitHub Pages** (`.github/workflows/deploy.yml`), plus turnkey configs for Cloudflare Pages, Vercel, and Netlify.
 

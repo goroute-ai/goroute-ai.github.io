@@ -120,9 +120,9 @@ function main() {
   const seenIds = new Set();
 
   const indexLines = [
-    '# GoRoute AI Gateway',
+    '# GoRoute AI Control Plane',
     '',
-    '> GoRoute AI Gateway is a 100% pure Go high-performance AI Gateway and embeddable Go SDK supporting 73 ProviderType profiles, unified OpenAI/Anthropic/Gemini/MCP/A2A protocols, micro-dollar FinOps accounting, RBAC, guardrails, and SSRF protection.',
+    '> GoRoute AI Control Plane is a 100% pure Go Enterprise AI Control Plane and embeddable Go SDK spanning five core modules: 1. AI Gateway (23 /v1 routes, 73+ provider profiles, adaptive load balancing, circuit breakers, exact-match cache), 2. AI Governance (Virtual API Keys, RBAC, AES-256-GCM vault, guardrails, SSRF protection), 3. AI FinOps (64-bit micro-dollar accounting, sliding-window rate limits, pre-flight tokenization), 4. AI Observability (OpenTelemetry, Prometheus, Operator Web UI), and 5. AI Agent Management (MCP Virtual Hub, A2A protocol, autonomous tool loops).',
     '',
     `- Canonical Site: ${SITE_URL}${BASE_URL}`,
     `- Full Documentation Corpus: ${SITE_URL}${BASE_URL}llms-full.txt`,
@@ -130,7 +130,7 @@ function main() {
   ];
 
   const fullParts = [
-    '# GoRoute AI Gateway — Complete Documentation Corpus',
+    '# GoRoute AI Control Plane — Complete Documentation Corpus',
     '',
     `Generated from ${SITE_URL}${BASE_URL}`,
     '',

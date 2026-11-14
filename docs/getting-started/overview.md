@@ -1,12 +1,18 @@
 ---
-title: GoRoute AI Gateway Overview
+title: GoRoute AI Control Plane Overview
 sidebar_position: 1
-description: Understand GoRoute AI Gateway deployment modes, high-performance architecture, multi-protocol execution, and embedded Operator UI.
+description: Understand the GoRoute Enterprise AI Control Plane, its 5 core modules, deployment modes, high-performance architecture, and embedded Operator UI.
 ---
 
-# GoRoute AI Gateway Overview
+# GoRoute AI Control Plane Overview
 
-GoRoute AI Gateway is a high-throughput, low-overhead enterprise AI control plane and multi-protocol gateway engineered in pure Go. It unifies **73 `ProviderType` profiles** (plus `CustomOpenAICompatible`) and agentic execution standards into an OpenAI-compatible API, a Linux Foundation Agent-to-Agent (A2A v1.0) bridge, and a Model Context Protocol (MCP 2026-07-28) virtual hub.
+GoRoute is a high-throughput, low-overhead **Enterprise AI Control Plane** engineered in pure Go. It unifies **73 `ProviderType` profiles** (plus `CustomOpenAICompatible`), **23 primary `/v1` data plane paths (26 HTTP operations)**, a Model Context Protocol (MCP 2026-07-28) virtual hub, and a Linux Foundation Agent-to-Agent (A2A v1.0) bridge into five integrated control-plane modules:
+
+1. **[AI Gateway — Traffic Management & Model Routing](/docs/modules/ai-gateway)**: Multi-provider `/v1/*` and `/anthropic/v1/*` data plane, `SupportedOperations` enforcement, Stage 1 complexity classifier, Stage 2 load balancers, 3-state Redis circuit breakers, bounded fallback chains, and 2-tier exact-match caching.
+2. **[AI Governance — Security, Policies & Compliance](/docs/modules/ai-governance)**: 4-layer access hierarchy, Operator RBAC + OIDC/JWT, AES-256-GCM Credentials Vault, scoped Virtual Keys (`sk-gw-...`), streaming & `logging_only` guardrails, outbound SSRF firewall, and HTTP security headers.
+3. **[AI FinOps — Cost Management & Optimization](/docs/modules/ai-finops)**: 64-bit integer micro-dollar ledger (`$1 = 1,000,000 µ$`), cache-write & modality pricing (`0007`/`0012`), `unpriced_requests` tracking, pre-flight upper-bound budget reservations, durable PostgreSQL spend & budget-reset outboxes (`0008`/`0011`), Redis Lua rate limits, and pre-flight tokenization.
+4. **[AI Observability — Monitoring, Tracing & Evaluation](/docs/modules/ai-observability)**: OTLP/HTTP distributed tracing (`gen_ai.*`, W3C `traceparent`), Prometheus `/metrics`, Vitter Algorithm R latency reservoirs, Embedded Operator Console (`/ui/*`), Guardrails Policy Simulator, and secret-scrubbed `slog` logs.
+5. **[AI Agent Management — MCP, Tools & Agent Access](/docs/modules/ai-agent-management)**: MCP Virtual Hub, REST bridge (`/mcp-rest/*`), progressive discovery, sandboxed Stdio & SHA-256 tool pinning, MRTR AEAD tokens, A2A signed Agent Cards (JCS/JWS) & native gRPC, autonomous tool loops, and coding-agent/framework access control.
 
 ![GoRoute AI Gateway Architecture](/img/architecture.png)
 

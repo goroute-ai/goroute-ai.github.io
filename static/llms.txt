@@ -1,22 +1,23 @@
-# GoRoute AI Gateway
+# GoRoute AI Control Plane
 
-> GoRoute AI Gateway is a 100% pure Go high-performance AI Gateway and embeddable Go SDK supporting 73 ProviderType profiles, unified OpenAI/Anthropic/Gemini/MCP/A2A protocols, micro-dollar FinOps accounting, RBAC, guardrails, and SSRF protection.
+> GoRoute AI Control Plane is a 100% pure Go Enterprise AI Control Plane and embeddable Go SDK spanning five core modules: 1. AI Gateway (23 /v1 routes, 73+ provider profiles, adaptive load balancing, circuit breakers, exact-match cache), 2. AI Governance (Virtual API Keys, RBAC, AES-256-GCM vault, guardrails, SSRF protection), 3. AI FinOps (64-bit micro-dollar accounting, sliding-window rate limits, pre-flight tokenization), 4. AI Observability (OpenTelemetry, Prometheus, Operator Web UI), and 5. AI Agent Management (MCP Virtual Hub, A2A protocol, autonomous tool loops).
 
 - Canonical Site: https://goroute-ai.github.io/
 - Full Documentation Corpus: https://goroute-ai.github.io/llms-full.txt
 
 ## Guides & Platform Documentation
 
-- [GoRoute AI Gateway Overview](https://goroute-ai.github.io/docs/getting-started/overview): Understand GoRoute AI Gateway deployment modes, high-performance architecture, multi-protocol execution, and embedded Operator UI.
+- [GoRoute AI Control Plane Overview](https://goroute-ai.github.io/docs/getting-started/overview): Understand the GoRoute Enterprise AI Control Plane, its 5 core modules, deployment modes, high-performance architecture, and embedded Operator UI.
+- [System Architecture & Topology](https://goroute-ai.github.io/docs/getting-started/architecture): Deep dive into the GoRoute Enterprise AI Control Plane architecture, its 5 core modules, 10-step request lifecycle, multi-layer caching, and persistence layer.
 - [Quickstart — Go SDK](https://goroute-ai.github.io/docs/getting-started/quickstart-sdk): Install the GoRoute SDK, configure a model, and make your first chat request.
 - [Quickstart — Docker Compose](https://goroute-ai.github.io/docs/getting-started/quickstart-docker): Deploy GoRoute AI Gateway with PostgreSQL 16+ and Redis 7+ using Docker Compose and explore the Operator UI.
 - [Quickstart — Standalone Gateway CLI](https://goroute-ai.github.io/docs/getting-started/quickstart-cli): Install GoRoute AI Gateway via the universal shell installer or source, configure providers, and interact with the Operator UI.
 - [Developer Learning Path](https://goroute-ai.github.io/docs/getting-started/learning-path): A step-by-step route through GoRoute for Go developers and gateway operators.
+- [1. AI Gateway — Traffic Management & Model Routing](https://goroute-ai.github.io/docs/modules/ai-gateway): Unified multi-provider inference proxy with 23 /v1 paths, 73+ provider profiles, complexity-based routing, 5 load-balancing strategies, Redis circuit breakers, fallbacks, and 2-tier caching.
 - [Chat Completions API](https://goroute-ai.github.io/docs/data-plane/chat-completions): 100% OpenAI-compatible Chat Completions endpoint standardizing reasoning effort, role alternation, dynamic provider routing, and telemetry headers.
 - [Anthropic Messages Ingress API](https://goroute-ai.github.io/docs/data-plane/messages): Native Anthropic Messages API ingress and pre-flight token counting with thinking blocks, tool translation, and strict alternating turn consolidation.
 - [Legacy Text Completions API](https://goroute-ai.github.io/docs/data-plane/completions): OpenAI-compatible text completions endpoint supporting raw prompt text, prompt arrays, parameter controls, and token usage accounting.
 - [Function & Tool Calling](https://goroute-ai.github.io/docs/data-plane/tool-calling): Standardized tool calling across OpenAI, Anthropic, and Gemini with strict schema enforcement and Model Context Protocol (MCP) alignment.
-- [Server-Side Autonomous Tool Loop](https://goroute-ai.github.io/docs/data-plane/autonomous-tool-loop): In-process multi-turn tool execution orchestrator with safety boundaries, execution budgets, and anti-double-billing FinOps ledger tracking.
 - [Model Management & Access Control](https://goroute-ai.github.io/docs/data-plane/model-management): The 4-layer model access control hierarchy, tri-state capability verification, pricing provenance, and declarative model routing groups.
 - [Embeddings API](https://goroute-ai.github.io/docs/data-plane/embeddings): Dense vector embeddings across OpenAI, Google Gemini, Mistral, Cohere Embed v3, and Voyage AI with base64 encoding and dimension reduction.
 - [Document Reranking API](https://goroute-ai.github.io/docs/data-plane/rerank): Unified document reranking across Cohere v2 and Jina AI with structured rank fields, top_n filtering, and micro-dollar search unit accounting.
@@ -44,14 +45,22 @@
 - [Stage 2 — EWMA Load Balancing](https://goroute-ai.github.io/docs/routing-resiliency/load-balancing)
 - [3-State Circuit Breakers](https://goroute-ai.github.io/docs/routing-resiliency/circuit-breakers)
 - [Retries & Fallback Cascades](https://goroute-ai.github.io/docs/routing-resiliency/fallbacks-and-retries)
-- [Cost Accounting and Spend Records](https://goroute-ai.github.io/docs/finops-and-security/micro-dollar-ledger): Understand integer micro-dollar cost calculation and asynchronous spend persistence.
+- [Deterministic Exact-Match Cache](https://goroute-ai.github.io/docs/finops-and-security/exact-match-cache)
+- [2. AI Governance — Security, Policies & Compliance](https://goroute-ai.github.io/docs/modules/ai-governance): Enterprise 4-layer policy enforcement, Operator RBAC with OIDC/JWT, AES-256-GCM Credentials Vault, Virtual Keys, streaming guardrails, and SSRF egress firewall.
 - [Scoped Virtual Keys & Quotas](https://goroute-ai.github.io/docs/finops-and-security/virtual-keys)
 - [RBAC & Key Vault Architecture](https://goroute-ai.github.io/docs/finops-and-security/rbac-and-vault)
 - [Organization Guardrails](https://goroute-ai.github.io/docs/finops-and-security/guardrails): Configure request blocking, secret and PII handling, and output redaction for an organization.
 - [Network Security & SSRF Protection](https://goroute-ai.github.io/docs/finops-and-security/ssrf-and-network)
+- [Production Readiness Checklist](https://goroute-ai.github.io/docs/operations/production-checklist): Pre-flight production checklist for GoRoute AI Gateway covering SSRF firewall rules, secret validation, operator RBAC/OIDC, fail-closed rate limits, circuit breakers, file storage quotas, and load/canary verification.
+- [3. AI FinOps — Cost Management & Optimization](https://goroute-ai.github.io/docs/modules/ai-finops): Exact 64-bit integer micro-dollar accounting, modality and cache-write pricing, pre-flight budget reservations, durable PostgreSQL outboxes, and Redis Lua sliding-window rate limits.
+- [Cost Accounting and Spend Records](https://goroute-ai.github.io/docs/finops-and-security/micro-dollar-ledger): Understand integer micro-dollar cost calculation and asynchronous spend persistence.
 - [Distributed Rate Limiting (RPM & TPM)](https://goroute-ai.github.io/docs/finops-and-security/sliding-window-ratelimit)
 - [Pre-Flight Tokenizer](https://goroute-ai.github.io/docs/finops-and-security/preflight-tokenizer)
-- [Deterministic Exact-Match Cache](https://goroute-ai.github.io/docs/finops-and-security/exact-match-cache)
+- [4. AI Observability — Monitoring, Tracing & Evaluation](https://goroute-ai.github.io/docs/modules/ai-observability): OTLP/HTTP distributed tracing with gen_ai.* attributes, Prometheus /metrics with Vitter Algorithm R reservoirs, Embedded Operator Console, Guardrails Simulator, and secret-scrubbed logs.
+- [Observability, Metrics & Health Probes](https://goroute-ai.github.io/docs/operations/observability): Production guide for Prometheus metrics scraping, W3C distributed traceparent propagation, and active deployment health probes.
+- [Embedded Operator Web UI](https://goroute-ai.github.io/docs/operations/operator-ui): Comprehensive architecture and operator guide for the embedded React 19 Operator Web UI mounted at /ui/.
+- [Troubleshooting & Recovery Runbooks](https://goroute-ai.github.io/docs/operations/troubleshooting): Diagnostic guides and production recovery runbooks for common error codes, SSRF blocks, budget exceedances, rate limits, and circuit breakers.
+- [5. AI Agent Management — MCP, Tools & Agent Access](https://goroute-ai.github.io/docs/modules/ai-agent-management): MCP 2026-07-28 Virtual Hub, REST bridge, progressive discovery, sandboxed Stdio, A2A v1.0 signed Agent Cards and gRPC, autonomous tool loops, and coding-agent governance.
 - [Model Context Protocol (MCP) Overview](https://goroute-ai.github.io/docs/protocols/mcp-overview): Comprehensive architecture guide for Model Context Protocol (MCP) supporting 2026-07-28 Streamable HTTP, legacy SSE adapters, and virtual hub aggregation.
 - [MCP Virtual Hub & Plain REST Bridge](https://goroute-ai.github.io/docs/protocols/mcp-hub-and-rest): Enterprise routing guide for Virtual Hub aggregation (POST /mcp), scoped server routing, curated toolsets, and the plain REST bridge (/mcp-rest/*).
 - [MCP Progressive Tool Discovery](https://goroute-ai.github.io/docs/protocols/mcp-progressive-discovery): Manage hundreds of enterprise tools without context window bloat using 256-bit opaque handles, registry feeds, schema hydration meta-tools, and governed OpenAPI transport.
@@ -59,19 +68,16 @@
 - [Agent-to-Agent (A2A) Protocol Overview](https://goroute-ai.github.io/docs/protocols/a2a-overview): Architectural overview of the Linux Foundation Agent-to-Agent Protocol (A2A v1.0), dual HTTP/JSON-RPC bindings, subscribe-first SSE streaming, and transactional outbox webhooks.
 - [Cryptographic Agent Cards (JCS & JWS)](https://goroute-ai.github.io/docs/protocols/a2a-agent-cards): RFC 8785 JSON Canonicalization Scheme (JCS) and RFC 7515 JSON Web Signature (JWS) signing for A2A Agent Cards.
 - [A2A OpenAI Bridge & gRPC Service](https://goroute-ai.github.io/docs/protocols/a2a-bridge-and-grpc): Call autonomous A2A agents using standard OpenAI SDKs via model: a2a/{slug} or high-performance native gRPC lf.a2a.v1.A2AService.
-- [Embedded Operator Web UI](https://goroute-ai.github.io/docs/operations/operator-ui): Comprehensive architecture and operator guide for the embedded React 19 Operator Web UI mounted at /ui/.
+- [Server-Side Autonomous Tool Loop](https://goroute-ai.github.io/docs/data-plane/autonomous-tool-loop): In-process multi-turn tool execution orchestrator with safety boundaries, execution budgets, and anti-double-billing FinOps ledger tracking.
+- [Engineering Guide for Coding Agents](https://goroute-ai.github.io/docs/operations/claude-code-and-agents): Developer guide for configuring Claude Code, Cursor, Copilot, Antigravity, and autonomous coding agents with deterministic verification loops.
 - [Complete Configuration and Environment Reference](https://goroute-ai.github.io/docs/operations/configuration): Comprehensive configuration reference detailing 70+ YAML parameters, environment variable overrides, and model routing policies.
 - [Deployment and Storage Architecture](https://goroute-ai.github.io/docs/operations/deployment-and-storage): Comprehensive production guide covering database migrations, 16 persistent schemas, and the clustered Redis keyspace and TTL matrix.
 - [Kubernetes & Kustomize Deployment](https://goroute-ai.github.io/docs/operations/kubernetes-kustomize): Deploy GoRoute AI Gateway to Kubernetes using the hardened Kustomize manifests in deployments/k8s/, including non-root security contexts, health probes, PostgreSQL 16, Redis Cluster/Sentinel, and Prometheus scraping.
-- [Production Readiness Checklist](https://goroute-ai.github.io/docs/operations/production-checklist): Pre-flight production checklist for GoRoute AI Gateway covering SSRF firewall rules, secret validation, operator RBAC/OIDC, fail-closed rate limits, circuit breakers, file storage quotas, and load/canary verification.
-- [Observability, Metrics & Health Probes](https://goroute-ai.github.io/docs/operations/observability): Production guide for Prometheus metrics scraping, W3C distributed traceparent propagation, and active deployment health probes.
-- [Troubleshooting & Recovery Runbooks](https://goroute-ai.github.io/docs/operations/troubleshooting): Diagnostic guides and production recovery runbooks for common error codes, SSRF blocks, budget exceedances, rate limits, and circuit breakers.
-- [Engineering Guide for Coding Agents](https://goroute-ai.github.io/docs/operations/claude-code-and-agents): Developer guide for configuring Claude Code, Cursor, Copilot, Antigravity, and autonomous coding agents with deterministic verification loops.
 - [Cookbook Overview](https://goroute-ai.github.io/docs/cookbook/overview): Task-based cookbook indexing GoRoute AI Gateway guides and all 26 runnable Go demos by user goal.
 
 ## System Architecture
 
-- [System Architecture & Topology](https://goroute-ai.github.io/docs/getting-started/architecture): Deep dive into the GoRoute AI Gateway pure Go architecture, 10-step request lifecycle, multi-layer caching, and Operator UI.
+- [System Architecture & Topology](https://goroute-ai.github.io/docs/getting-started/architecture): Deep dive into the GoRoute Enterprise AI Control Plane architecture, its 5 core modules, 10-step request lifecycle, multi-layer caching, and persistence layer.
 
 ## Go SDK Handbook
 

@@ -3,8 +3,8 @@ import type * as Preset from '@docusaurus/preset-classic';
 import { themes as prismThemes } from 'prism-react-renderer';
 
 const config: Config = {
-  title: 'GoRoute AI Gateway',
-  tagline: 'Go SDK and self-hosted AI Gateway documentation',
+  title: 'GoRoute AI Control Plane',
+  tagline: 'Enterprise AI Control Plane — Gateway, Governance, FinOps, Observability & Agent Management',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
@@ -79,9 +79,9 @@ const config: Config = {
       },
     },
     navbar: {
-      title: 'GoRoute AI Gateway',
+      title: 'GoRoute AI Control Plane',
       logo: {
-        alt: 'GoRoute AI Gateway Logo',
+        alt: 'GoRoute AI Control Plane Logo',
         src: 'img/logo-icon.png',
         srcDark: 'img/logo-icon.png',
         width: 36,
@@ -92,7 +92,19 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'docsSidebar',
           position: 'left',
-          label: 'Guides',
+          label: 'Control Plane',
+        },
+        {
+          type: 'dropdown',
+          label: 'Modules',
+          position: 'left',
+          items: [
+            { label: '1. AI Gateway', to: '/docs/modules/ai-gateway' },
+            { label: '2. AI Governance', to: '/docs/modules/ai-governance' },
+            { label: '3. AI FinOps', to: '/docs/modules/ai-finops' },
+            { label: '4. AI Observability', to: '/docs/modules/ai-observability' },
+            { label: '5. AI Agent Management', to: '/docs/modules/ai-agent-management' },
+          ],
         },
         {
           type: 'docSidebar',
@@ -141,7 +153,7 @@ const config: Config = {
     footer: {
       style: 'dark',
       links: [],
-      copyright: `Copyright © ${new Date().getFullYear()} GoRoute AI Gateway. Built in 100% Pure Go. Licensed under Apache 2.0.`,
+      copyright: `Copyright © ${new Date().getFullYear()} GoRoute AI Control Plane. Built in 100% Pure Go. Licensed under Apache 2.0.`,
     },
     prism: {
       theme: prismThemes.github,
