@@ -11,8 +11,8 @@ body:
     id: doc-url
     attributes:
       label: Page URL or File Path
-      description: The path or URL of the page containing the error (e.g. `/docs/data-plane/rerank` or `docs/providers/aws-bedrock.md`).
-      placeholder: "e.g. docs/data-plane/audio.md"
+      description: The path or URL of the page containing the error (e.g. `/docs/gateway/endpoints/rerank` or `docs/providers/aws-bedrock.md`).
+      placeholder: "e.g. docs/gateway/endpoints/audio.md"
     validations:
       required: true
   - type: textarea

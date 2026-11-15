@@ -2,6 +2,7 @@
 title: Custom In-House Providers
 sidebar_position: 12
 description: Register and configure custom in-house OpenAI-compatible deployments in configs/config.yaml.
+keywords: [CustomOpenAICompatible, custom LLM provider, self-hosted model, config.yaml provider, private endpoint]
 ---
 
 # Custom In-House Providers

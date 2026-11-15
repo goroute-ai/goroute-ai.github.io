@@ -3,6 +3,7 @@ id: claude-code
 title: Claude Code
 sidebar_position: 2
 description: Configure Anthropic Claude Code to route inference, token counting, and MCP tool calls through GoRoute AI Gateway.
+keywords: [claude code goroute, anthropic_base_url, coding agent proxy, virtual key budgets, mcp tools]
 ---
 
 # Claude Code
@@ -55,13 +56,13 @@ export ANTHROPIC_MODEL="claude-sonnet-4-20250514"
 claude --model reasoning
 ```
 
-GoRoute's `/anthropic/v1/messages` handler normalizes system blocks, `extended_thinking` budgets, and parallel `tool_result` turns automatically. See [Anthropic Messages Ingress API](/docs/data-plane/messages) for translation details.
+GoRoute's `/anthropic/v1/messages` handler normalizes system blocks, `extended_thinking` budgets, and parallel `tool_result` turns automatically. See [Anthropic Messages Ingress API](/docs/gateway/endpoints/messages) for translation details.
 
 ---
 
 ## 4. Connecting Claude Code to GoRoute MCP
 
-You can also point Claude Code at GoRoute's [MCP Virtual Hub](/docs/protocols/mcp-hub-and-rest) so MCP tool calls inherit your Virtual Key RBAC and sandboxing:
+You can also point Claude Code at GoRoute's [MCP Virtual Hub](/docs/agents/mcp-hub-and-rest) so MCP tool calls inherit your Virtual Key RBAC and sandboxing:
 
 ```json
 {
@@ -95,4 +96,4 @@ curl -sS http://localhost:8080/anthropic/v1/messages \
   }'
 ```
 
-For repository-level agent workflow patterns (`CLAUDE.md`, `.claude/rules/`, and `AGENTS.md`), see [Engineering Guide for Coding Agents](/docs/operations/claude-code-and-agents).
+For repository-level agent workflow patterns (`CLAUDE.md`, `.claude/rules/`, and `AGENTS.md`), see [Engineering Guide for Coding Agents](/docs/contributing/claude-code-and-agents).

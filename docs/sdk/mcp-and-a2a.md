@@ -2,6 +2,7 @@
 title: MCP and A2A
 sidebar_position: 5
 description: Register MCP servers and A2A agents with the Go SDK and use their gateway routes.
+keywords: [go sdk mcp, go sdk a2a, addmcpserver, a2a agent registration, agent protocols go]
 ---
 
 # MCP and A2A
@@ -45,7 +46,7 @@ for _, tool := range tools {
 }
 ```
 
-The gateway also provides a plain REST bridge for clients that do not use JSON-RPC. See the [MCP overview](/docs/protocols/mcp-overview), [hub and REST bridge](/docs/protocols/mcp-hub-and-rest), and [MCP API reference](/docs/api-reference/mcp-api).
+The gateway also provides a plain REST bridge for clients that do not use JSON-RPC. See the [MCP overview](/docs/agents/mcp-overview), [hub and REST bridge](/docs/agents/mcp-hub-and-rest), and [MCP API reference](/docs/api/mcp-api).
 
 ## Register an A2A agent
 
@@ -62,7 +63,7 @@ if err != nil {
 fmt.Println("Registered agent:", agentID)
 ```
 
-Use the [A2A API reference](/docs/api-reference/a2a-api) for message and task request schemas. The SDK's `SendA2AMessage` method currently accepts a protobuf type from an `internal` package, so applications outside the gateway module should use the HTTP API or another supported public client for dispatch.
+Use `GetWellKnownAgentCard(ctx)` to fetch the gateway's signed discovery card (`/.well-known/agent-card.json`), and consult the [A2A API reference](/docs/api/a2a-api) for message and task request schemas. The SDK's `SendA2AMessage` method currently accepts a protobuf type from an `internal` package, so applications outside the gateway module should use the HTTP API or another supported public client for dispatch.
 
 ## Security and permissions
 

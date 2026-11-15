@@ -2,6 +2,7 @@
 title: Mistral AI
 sidebar_position: 9
 description: Native Mistral AI provider adapter for Mistral Large, Codestral, Pixtral, and Embeddings.
+keywords: [Mistral AI, Mistral Large, Codestral, Pixtral, Mistral embeddings]
 ---
 
 # Mistral AI
@@ -14,7 +15,7 @@ The adapter handles complete protocol translation, streaming SSE token accumulat
 
 ## Representative model IDs
 
-This list is illustrative rather than exhaustive. Mistral model names can change; see [Mistral's current model documentation](https://docs.mistral.ai/getting-started/models/models_overview/) and confirm which IDs your gateway key can use with [`GET /v1/models`](/docs/api-reference/gateway-api#4-model-catalogue-inventory-get-v1models). Catalog discovery is configuration-dependent and does not override provider access or gateway policies.
+This list is illustrative rather than exhaustive. Mistral model names can change; see [Mistral's current model documentation](https://docs.mistral.ai/getting-started/models/models_overview/) and confirm which IDs your gateway key can use with [`GET /v1/models`](/docs/api/gateway-api#4-model-catalogue-inventory-get-v1models). Catalog discovery is configuration-dependent and does not override provider access or gateway policies.
 
 | Model | Identifier | Modality | Max Context | Description |
 | :--- | :--- | :--- | :--- | :--- |

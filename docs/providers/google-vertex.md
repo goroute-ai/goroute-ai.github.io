@@ -2,13 +2,14 @@
 title: Google Cloud Vertex AI
 sidebar_position: 6
 description: Google Cloud Vertex AI provider integration with Service Account auth, OAuth2 token caching, and Gemini models.
+keywords: [Google Vertex AI, Service Account auth, OAuth2 token cache, Vertex Gemini, GCP AI provider]
 ---
 
 # Google Cloud Vertex AI
 
 GoRoute provides a native enterprise adapter for **Google Cloud Vertex AI** (`internal/adapter/vertex/`), enabling organizations to consume Google's Gemini models through their existing Google Cloud Platform (GCP) enterprise agreements, VPC Service Controls, and IAM role hierarchies.
 
-Model availability and IDs on Vertex AI can differ from Google AI Studio. The model identifiers in the examples below are illustrative, not a complete or guaranteed-current support list. Check [Vertex AI's model documentation](https://cloud.google.com/vertex-ai/generative-ai/docs/learn/models) and confirm the models exposed to your caller with [`GET /v1/models`](/docs/api-reference/gateway-api#4-model-catalogue-inventory-get-v1models).
+Model availability and IDs on Vertex AI can differ from Google AI Studio. The model identifiers in the examples below are illustrative, not a complete or guaranteed-current support list. Check [Vertex AI's model documentation](https://cloud.google.com/vertex-ai/generative-ai/docs/learn/models) and confirm the models exposed to your caller with [`GET /v1/models`](/docs/api/gateway-api#4-model-catalogue-inventory-get-v1models).
 
 The Vertex AI adapter directly communicates with the Vertex AI Platform REST endpoints:
 ```text

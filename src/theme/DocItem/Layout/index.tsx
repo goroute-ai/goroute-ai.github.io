@@ -29,35 +29,65 @@ export default function DocItemLayoutWrapper(props: Props): ReactNode {
     headline: metadata.title,
     description: metadata.description,
     url: canonicalUrl,
+    inLanguage: 'en',
+    isPartOf: {
+      '@id': `${siteUrl}/#website`,
+    },
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': canonicalUrl,
     },
     author: {
-      '@type': 'Organization',
-      name: 'GoRoute AI',
-      url: siteUrl,
+      '@id': `${siteUrl}/#organization`,
     },
     publisher: {
-      '@type': 'Organization',
-      name: 'GoRoute AI',
-      url: siteUrl,
-      logo: {
-        '@type': 'ImageObject',
-        url: `${siteUrl}/img/logo-icon.png`,
-      },
+      '@id': `${siteUrl}/#organization`,
     },
   };
+
+  if (typeof metadata.lastUpdatedAt === 'number' && Number.isFinite(metadata.lastUpdatedAt)) {
+    techArticleSchema.dateModified = new Date(metadata.lastUpdatedAt).toISOString();
+  }
 
   if (keywords) {
     techArticleSchema.keywords = keywords;
   }
+
+  const rawFaq = (frontMatter as Record<string, unknown>).faq;
+  const faqItems = Array.isArray(rawFaq)
+    ? rawFaq.filter(
+        (item): item is { q: string; a: string } =>
+          Boolean(item) &&
+          typeof item === 'object' &&
+          typeof (item as Record<string, unknown>).q === 'string' &&
+          typeof (item as Record<string, unknown>).a === 'string' &&
+          (item as { q: string }).q.trim().length > 0 &&
+          (item as { a: string }).a.trim().length > 0
+      )
+    : [];
+
+  const faqSchema =
+    faqItems.length > 0
+      ? {
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: faqItems.map((item) => ({
+            '@type': 'Question',
+            name: item.q.trim(),
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: item.a.trim(),
+            },
+          })),
+        }
+      : null;
 
   return (
     <>
       <Head>
         <meta property="og:type" content="article" />
         <script type="application/ld+json">{JSON.stringify(techArticleSchema)}</script>
+        {faqSchema && <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>}
       </Head>
       <DocItemLayout {...props} />
     </>

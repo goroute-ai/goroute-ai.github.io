@@ -30,7 +30,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Text & Chat',
     auth: 'Virtual API Key',
     summary: 'Unified OpenAI-compatible chat completions with streaming SSE, tool calling, reasoning, and FinOps headers.',
-    docPath: '/docs/api-reference/gateway-api',
+    docPath: '/docs/api/gateway-api',
   },
   {
     method: 'POST',
@@ -39,7 +39,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Text & Chat',
     auth: 'Virtual API Key',
     summary: 'Legacy text completions endpoint with streaming support.',
-    docPath: '/docs/api-reference/gateway-api',
+    docPath: '/docs/api/gateway-api',
   },
   {
     method: 'POST',
@@ -48,7 +48,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Embeddings & Rerank',
     auth: 'Virtual API Key',
     summary: 'Generate vector embeddings across OpenAI, Cohere, Gemini, Bedrock, Vertex, and dialect providers.',
-    docPath: '/docs/api-reference/gateway-api',
+    docPath: '/docs/api/gateway-api',
   },
   {
     method: 'GET',
@@ -57,7 +57,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Models',
     auth: 'Virtual API Key',
     summary: 'List models accessible to the authenticated virtual key or tenant.',
-    docPath: '/docs/api-reference/gateway-api',
+    docPath: '/docs/api/gateway-api',
   },
   {
     method: 'POST',
@@ -66,7 +66,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Embeddings & Rerank',
     auth: 'Virtual API Key',
     summary: 'Rerank candidate documents against a query (Cohere, Voyage, Jina, Together, Fireworks, Novita, NVIDIA).',
-    docPath: '/docs/api-reference/gateway-api',
+    docPath: '/docs/api/gateway-api',
   },
   {
     method: 'POST',
@@ -75,7 +75,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Safety & Tokens',
     auth: 'Virtual API Key',
     summary: 'Classify text inputs for policy and content safety violations.',
-    docPath: '/docs/api-reference/gateway-api',
+    docPath: '/docs/api/gateway-api',
   },
   {
     method: 'POST',
@@ -84,7 +84,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Text & Chat',
     auth: 'Virtual API Key',
     summary: 'Anthropic Messages API ingress supporting Claude SDKs and extended thinking.',
-    docPath: '/docs/api-reference/gateway-api',
+    docPath: '/docs/api/gateway-api',
   },
   {
     method: 'POST',
@@ -93,7 +93,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Safety & Tokens',
     auth: 'Virtual API Key',
     summary: 'Count input tokens using the Anthropic Messages token-counting schema.',
-    docPath: '/docs/api-reference/gateway-api',
+    docPath: '/docs/api/gateway-api',
   },
   {
     method: 'POST',
@@ -102,7 +102,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Safety & Tokens',
     auth: 'Virtual API Key',
     summary: 'Pre-flight token count estimation for request payloads.',
-    docPath: '/docs/api-reference/gateway-api',
+    docPath: '/docs/api/gateway-api',
   },
   {
     method: 'POST',
@@ -111,7 +111,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Audio',
     auth: 'Virtual API Key',
     summary: 'Speech-to-text transcription via multipart audio upload.',
-    docPath: '/docs/api-reference/gateway-api',
+    docPath: '/docs/api/gateway-api',
   },
   {
     method: 'POST',
@@ -120,7 +120,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Audio',
     auth: 'Virtual API Key',
     summary: 'Speech-to-English audio translation.',
-    docPath: '/docs/api-reference/gateway-api',
+    docPath: '/docs/api/gateway-api',
   },
   {
     method: 'POST',
@@ -129,7 +129,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Audio',
     auth: 'Virtual API Key',
     summary: 'Text-to-speech audio synthesis returning binary audio streams.',
-    docPath: '/docs/api-reference/gateway-api',
+    docPath: '/docs/api/gateway-api',
   },
   {
     method: 'POST',
@@ -138,7 +138,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Images',
     auth: 'Virtual API Key',
     summary: 'Generate images from text prompts.',
-    docPath: '/docs/api-reference/gateway-api',
+    docPath: '/docs/api/gateway-api',
   },
   {
     method: 'POST',
@@ -147,7 +147,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Images',
     auth: 'Virtual API Key',
     summary: 'Edit or inpaint an existing image with a prompt and optional mask.',
-    docPath: '/docs/api-reference/gateway-api',
+    docPath: '/docs/api/gateway-api',
   },
   {
     method: 'POST',
@@ -156,7 +156,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Images',
     auth: 'Virtual API Key',
     summary: 'Create visual variations of an uploaded source image.',
-    docPath: '/docs/api-reference/gateway-api',
+    docPath: '/docs/api/gateway-api',
   },
   {
     method: 'POST',
@@ -165,7 +165,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Files',
     auth: 'Virtual API Key',
     summary: 'Upload a file for batch processing or assistants.',
-    docPath: '/docs/api-reference/gateway-api',
+    docPath: '/docs/api/gateway-api',
   },
   {
     method: 'GET',
@@ -174,7 +174,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Files',
     auth: 'Virtual API Key',
     summary: 'List uploaded files scoped to the tenant.',
-    docPath: '/docs/api-reference/gateway-api',
+    docPath: '/docs/api/gateway-api',
   },
   {
     method: 'GET',
@@ -183,7 +183,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Files',
     auth: 'Virtual API Key',
     summary: 'Retrieve metadata for a specific uploaded file.',
-    docPath: '/docs/api-reference/gateway-api',
+    docPath: '/docs/api/gateway-api',
   },
   {
     method: 'GET',
@@ -192,7 +192,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Files',
     auth: 'Virtual API Key',
     summary: 'Download the raw contents of an uploaded file.',
-    docPath: '/docs/api-reference/gateway-api',
+    docPath: '/docs/api/gateway-api',
   },
   {
     method: 'DELETE',
@@ -201,7 +201,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Files',
     auth: 'Virtual API Key',
     summary: 'Delete an uploaded file.',
-    docPath: '/docs/api-reference/gateway-api',
+    docPath: '/docs/api/gateway-api',
   },
   {
     method: 'POST',
@@ -210,7 +210,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Batches',
     auth: 'Virtual API Key',
     summary: 'Create an asynchronous batch inference job.',
-    docPath: '/docs/api-reference/gateway-api',
+    docPath: '/docs/api/gateway-api',
   },
   {
     method: 'GET',
@@ -219,7 +219,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Batches',
     auth: 'Virtual API Key',
     summary: 'List asynchronous batch jobs for the tenant.',
-    docPath: '/docs/api-reference/gateway-api',
+    docPath: '/docs/api/gateway-api',
   },
   {
     method: 'GET',
@@ -228,7 +228,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Batches',
     auth: 'Virtual API Key',
     summary: 'Inspect status and output file IDs for a batch job.',
-    docPath: '/docs/api-reference/gateway-api',
+    docPath: '/docs/api/gateway-api',
   },
   {
     method: 'POST',
@@ -237,7 +237,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Batches',
     auth: 'Virtual API Key',
     summary: 'Cancel an in-progress batch job.',
-    docPath: '/docs/api-reference/gateway-api',
+    docPath: '/docs/api/gateway-api',
   },
   {
     method: 'POST',
@@ -246,7 +246,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Responses & Realtime',
     auth: 'Virtual API Key',
     summary: 'OpenAI Responses API for stateful multi-turn reasoning and tool execution.',
-    docPath: '/docs/api-reference/gateway-api',
+    docPath: '/docs/api/gateway-api',
   },
   {
     method: 'WS',
@@ -255,7 +255,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Responses & Realtime',
     auth: 'Virtual API Key',
     summary: 'Full-duplex WebSocket proxy for low-latency realtime audio and text sessions.',
-    docPath: '/docs/api-reference/gateway-api',
+    docPath: '/docs/api/gateway-api',
   },
 
   // ── OpenAI Direct Wire Spec (/openai/v1/*) ────────────────────────────────
@@ -266,7 +266,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Responses & Realtime',
     auth: 'Virtual API Key',
     summary: 'Direct OpenAI-prefixed Responses API alias.',
-    docPath: '/docs/api-reference/gateway-api',
+    docPath: '/docs/api/gateway-api',
   },
   {
     method: 'WS',
@@ -275,7 +275,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Responses & Realtime',
     auth: 'Virtual API Key',
     summary: 'Direct OpenAI-prefixed Realtime WebSocket alias.',
-    docPath: '/docs/api-reference/gateway-api',
+    docPath: '/docs/api/gateway-api',
   },
 
   // ── Anthropic Native Ingress (/anthropic/v1/*) ────────────────────────────
@@ -286,7 +286,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Anthropic Ingress',
     auth: 'Virtual API Key',
     summary: 'Native Anthropic Messages endpoint for Claude Code and Anthropic SDKs.',
-    docPath: '/docs/api-reference/gateway-api',
+    docPath: '/docs/api/gateway-api',
   },
   {
     method: 'POST',
@@ -295,7 +295,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Anthropic Ingress',
     auth: 'Virtual API Key',
     summary: 'Native Anthropic token-counting endpoint.',
-    docPath: '/docs/api-reference/gateway-api',
+    docPath: '/docs/api/gateway-api',
   },
 
   // ── MCP Data Plane (/mcp*) ────────────────────────────────────────────────
@@ -306,7 +306,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'MCP Hub',
     auth: 'Virtual API Key',
     summary: 'SSE stream for MCP resource and tool list change notifications.',
-    docPath: '/docs/api-reference/mcp-api',
+    docPath: '/docs/api/mcp-api',
   },
   {
     method: 'POST',
@@ -315,7 +315,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'MCP Hub',
     auth: 'Virtual API Key',
     summary: 'MCP Virtual Hub JSON-RPC endpoint aggregating tools across upstream servers.',
-    docPath: '/docs/api-reference/mcp-api',
+    docPath: '/docs/api/mcp-api',
   },
   {
     method: 'POST',
@@ -324,7 +324,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'MCP Hub',
     auth: 'Virtual API Key',
     summary: 'Scoped MCP JSON-RPC endpoint targeting a single registered MCP server.',
-    docPath: '/docs/api-reference/mcp-api',
+    docPath: '/docs/api/mcp-api',
   },
   {
     method: 'POST',
@@ -333,7 +333,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'MCP Hub',
     auth: 'Virtual API Key',
     summary: 'Curated MCP toolset endpoint exposing an approved subset of tools.',
-    docPath: '/docs/api-reference/mcp-api',
+    docPath: '/docs/api/mcp-api',
   },
   {
     method: 'GET',
@@ -342,7 +342,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'MCP REST Bridge',
     auth: 'Virtual API Key',
     summary: 'Plain REST bridge listing available MCP tools without JSON-RPC framing.',
-    docPath: '/docs/api-reference/mcp-api',
+    docPath: '/docs/api/mcp-api',
   },
   {
     method: 'POST',
@@ -351,7 +351,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'MCP REST Bridge',
     auth: 'Virtual API Key',
     summary: 'Plain REST bridge invoking an MCP tool by name and arguments.',
-    docPath: '/docs/api-reference/mcp-api',
+    docPath: '/docs/api/mcp-api',
   },
   {
     method: 'GET',
@@ -360,7 +360,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Progressive Discovery',
     auth: 'Virtual API Key',
     summary: 'Progressive tool catalog registry feed returning compact tool handles.',
-    docPath: '/docs/api-reference/mcp-api',
+    docPath: '/docs/api/mcp-api',
   },
 
   // ── A2A Data Plane (/a2a/v1/*) ────────────────────────────────────────────
@@ -371,7 +371,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Discovery',
     auth: 'Public',
     summary: 'Signed gateway Agent Card JSON for A2A capability discovery.',
-    docPath: '/docs/api-reference/a2a-api',
+    docPath: '/docs/api/a2a-api',
   },
   {
     method: 'POST',
@@ -380,7 +380,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Agent Messaging',
     auth: 'Virtual API Key',
     summary: 'Send an A2A message/task to a registered agent.',
-    docPath: '/docs/api-reference/a2a-api',
+    docPath: '/docs/api/a2a-api',
   },
   {
     method: 'GET',
@@ -389,7 +389,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Tasks',
     auth: 'Virtual API Key',
     summary: 'List A2A tasks for the specified agent.',
-    docPath: '/docs/api-reference/a2a-api',
+    docPath: '/docs/api/a2a-api',
   },
   {
     method: 'GET',
@@ -398,7 +398,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Tasks',
     auth: 'Virtual API Key',
     summary: 'Retrieve current state and artifacts of an A2A task.',
-    docPath: '/docs/api-reference/a2a-api',
+    docPath: '/docs/api/a2a-api',
   },
   {
     method: 'POST',
@@ -407,7 +407,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Tasks',
     auth: 'Virtual API Key',
     summary: 'Cancel an active A2A task.',
-    docPath: '/docs/api-reference/a2a-api',
+    docPath: '/docs/api/a2a-api',
   },
   {
     method: 'GET',
@@ -416,7 +416,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Tasks',
     auth: 'Virtual API Key',
     summary: 'Subscribe-first SSE stream for live A2A task status and artifact updates.',
-    docPath: '/docs/api-reference/a2a-api',
+    docPath: '/docs/api/a2a-api',
   },
   {
     method: 'POST',
@@ -425,7 +425,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Tasks',
     auth: 'Virtual API Key',
     summary: 'POST variant for subscribing to an A2A task SSE stream.',
-    docPath: '/docs/api-reference/a2a-api',
+    docPath: '/docs/api/a2a-api',
   },
 
   // ── Control Plane (/admin/v1/*) ───────────────────────────────────────────
@@ -436,7 +436,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Organizations & Policies',
     auth: 'Master Admin Key',
     summary: 'Create a new tenant organization.',
-    docPath: '/docs/api-reference/admin-api',
+    docPath: '/docs/api/admin-api',
   },
   {
     method: 'GET',
@@ -445,7 +445,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Organizations & Policies',
     auth: 'Master Admin Key',
     summary: 'List all organizations.',
-    docPath: '/docs/api-reference/admin-api',
+    docPath: '/docs/api/admin-api',
   },
   {
     method: 'POST',
@@ -454,7 +454,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Organizations & Policies',
     auth: 'Master Admin Key',
     summary: 'Set provider subscription access for an organization.',
-    docPath: '/docs/api-reference/admin-api',
+    docPath: '/docs/api/admin-api',
   },
   {
     method: 'GET',
@@ -463,7 +463,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Organizations & Policies',
     auth: 'Master Admin Key',
     summary: 'Get provider subscriptions for an organization.',
-    docPath: '/docs/api-reference/admin-api',
+    docPath: '/docs/api/admin-api',
   },
   {
     method: 'POST',
@@ -472,7 +472,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Organizations & Policies',
     auth: 'Master Admin Key',
     summary: 'Configure model allowlist/denylist policies for an organization.',
-    docPath: '/docs/api-reference/admin-api',
+    docPath: '/docs/api/admin-api',
   },
   {
     method: 'GET',
@@ -481,7 +481,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Organizations & Policies',
     auth: 'Master Admin Key',
     summary: 'Retrieve model policies for an organization.',
-    docPath: '/docs/api-reference/admin-api',
+    docPath: '/docs/api/admin-api',
   },
   {
     method: 'POST',
@@ -490,7 +490,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Guardrails',
     auth: 'Master Admin Key',
     summary: 'Set input/output security guardrail policies for an organization.',
-    docPath: '/docs/api-reference/admin-api',
+    docPath: '/docs/api/admin-api',
   },
   {
     method: 'GET',
@@ -499,7 +499,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Guardrails',
     auth: 'Master Admin Key',
     summary: 'Get configured guardrail policies for an organization.',
-    docPath: '/docs/api-reference/admin-api',
+    docPath: '/docs/api/admin-api',
   },
   {
     method: 'POST',
@@ -508,7 +508,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Guardrails',
     auth: 'Master Admin Key',
     summary: 'Dry-run guardrail rules against a sample payload.',
-    docPath: '/docs/api-reference/admin-api',
+    docPath: '/docs/api/admin-api',
   },
   {
     method: 'POST',
@@ -517,7 +517,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Teams & Users',
     auth: 'Master Admin Key',
     summary: 'Create a team within an organization.',
-    docPath: '/docs/api-reference/admin-api',
+    docPath: '/docs/api/admin-api',
   },
   {
     method: 'GET',
@@ -526,7 +526,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Teams & Users',
     auth: 'Master Admin Key',
     summary: 'List teams.',
-    docPath: '/docs/api-reference/admin-api',
+    docPath: '/docs/api/admin-api',
   },
   {
     method: 'POST',
@@ -535,7 +535,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Teams & Users',
     auth: 'Master Admin Key',
     summary: 'Create a user.',
-    docPath: '/docs/api-reference/admin-api',
+    docPath: '/docs/api/admin-api',
   },
   {
     method: 'GET',
@@ -544,7 +544,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Teams & Users',
     auth: 'Master Admin Key',
     summary: 'List users.',
-    docPath: '/docs/api-reference/admin-api',
+    docPath: '/docs/api/admin-api',
   },
   {
     method: 'POST',
@@ -553,7 +553,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Virtual Keys',
     auth: 'Master Admin Key',
     summary: 'Issue a scoped Virtual API Key (sk-gw-...) with rate and budget limits.',
-    docPath: '/docs/api-reference/admin-api',
+    docPath: '/docs/api/admin-api',
   },
   {
     method: 'GET',
@@ -562,7 +562,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Virtual Keys',
     auth: 'Master Admin Key',
     summary: 'List issued Virtual API Keys.',
-    docPath: '/docs/api-reference/admin-api',
+    docPath: '/docs/api/admin-api',
   },
   {
     method: 'POST',
@@ -571,7 +571,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Virtual Keys',
     auth: 'Master Admin Key',
     summary: 'Revoke a Virtual API Key.',
-    docPath: '/docs/api-reference/admin-api',
+    docPath: '/docs/api/admin-api',
   },
   {
     method: 'DELETE',
@@ -580,7 +580,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Virtual Keys',
     auth: 'Master Admin Key',
     summary: 'Delete/revoke a Virtual API Key.',
-    docPath: '/docs/api-reference/admin-api',
+    docPath: '/docs/api/admin-api',
   },
   {
     method: 'POST',
@@ -589,7 +589,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Credentials Vault',
     auth: 'Master Admin Key',
     summary: 'Store an upstream provider credential encrypted with AES-256-GCM.',
-    docPath: '/docs/api-reference/admin-api',
+    docPath: '/docs/api/admin-api',
   },
   {
     method: 'GET',
@@ -598,7 +598,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Credentials Vault',
     auth: 'Master Admin Key',
     summary: 'List stored provider credentials (secrets redacted).',
-    docPath: '/docs/api-reference/admin-api',
+    docPath: '/docs/api/admin-api',
   },
   {
     method: 'POST',
@@ -607,7 +607,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Credentials Vault',
     auth: 'Master Admin Key',
     summary: 'Preflight-validate a provider credential before storing.',
-    docPath: '/docs/api-reference/admin-api',
+    docPath: '/docs/api/admin-api',
   },
   {
     method: 'POST',
@@ -616,7 +616,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Credentials Vault',
     auth: 'Master Admin Key',
     summary: 'Rotate a stored provider credential.',
-    docPath: '/docs/api-reference/admin-api',
+    docPath: '/docs/api/admin-api',
   },
   {
     method: 'POST',
@@ -625,7 +625,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Credentials Vault',
     auth: 'Master Admin Key',
     summary: 'Live-validate an existing stored credential against the upstream provider.',
-    docPath: '/docs/api-reference/admin-api',
+    docPath: '/docs/api/admin-api',
   },
   {
     method: 'POST',
@@ -634,7 +634,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Routing & Deployments',
     auth: 'Master Admin Key',
     summary: 'Create a logical model alias group with routing strategy.',
-    docPath: '/docs/api-reference/admin-api',
+    docPath: '/docs/api/admin-api',
   },
   {
     method: 'GET',
@@ -643,7 +643,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Routing & Deployments',
     auth: 'Master Admin Key',
     summary: 'List model groups.',
-    docPath: '/docs/api-reference/admin-api',
+    docPath: '/docs/api/admin-api',
   },
   {
     method: 'POST',
@@ -652,7 +652,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Routing & Deployments',
     auth: 'Master Admin Key',
     summary: 'Register an upstream model deployment.',
-    docPath: '/docs/api-reference/admin-api',
+    docPath: '/docs/api/admin-api',
   },
   {
     method: 'GET',
@@ -661,7 +661,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Routing & Deployments',
     auth: 'Master Admin Key',
     summary: 'List configured deployments.',
-    docPath: '/docs/api-reference/admin-api',
+    docPath: '/docs/api/admin-api',
   },
   {
     method: 'GET',
@@ -670,7 +670,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Catalogue & Pricing',
     auth: 'Master Admin Key',
     summary: 'List discovered models and versioned pricing in the global catalogue.',
-    docPath: '/docs/api-reference/admin-api',
+    docPath: '/docs/api/admin-api',
   },
   {
     method: 'POST',
@@ -679,7 +679,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Catalogue & Pricing',
     auth: 'Master Admin Key',
     summary: 'Trigger immediate upstream model discovery sync.',
-    docPath: '/docs/api-reference/admin-api',
+    docPath: '/docs/api/admin-api',
   },
   {
     method: 'POST',
@@ -688,7 +688,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Catalogue & Pricing',
     auth: 'Master Admin Key',
     summary: 'Import model catalogue and pricing definitions.',
-    docPath: '/docs/api-reference/admin-api',
+    docPath: '/docs/api/admin-api',
   },
   {
     method: 'POST',
@@ -697,7 +697,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Catalogue & Pricing',
     auth: 'Master Admin Key',
     summary: 'Update micro-dollar pricing for a model.',
-    docPath: '/docs/api-reference/admin-api',
+    docPath: '/docs/api/admin-api',
   },
   {
     method: 'GET',
@@ -706,7 +706,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Catalogue & Pricing',
     auth: 'Master Admin Key',
     summary: 'List versioned model pricing history.',
-    docPath: '/docs/api-reference/admin-api',
+    docPath: '/docs/api/admin-api',
   },
   {
     method: 'GET',
@@ -715,7 +715,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Health & Telemetry',
     auth: 'Master Admin Key',
     summary: 'Retrieve JSON snapshot of gateway telemetry and cache/routing metrics.',
-    docPath: '/docs/api-reference/admin-api',
+    docPath: '/docs/api/admin-api',
   },
   {
     method: 'GET',
@@ -724,7 +724,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Health & Telemetry',
     auth: 'Master Admin Key',
     summary: 'Inspect circuit breaker and health status of all deployments.',
-    docPath: '/docs/api-reference/admin-api',
+    docPath: '/docs/api/admin-api',
   },
   {
     method: 'POST',
@@ -733,7 +733,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Health & Telemetry',
     auth: 'Master Admin Key',
     summary: 'Trigger active health probes across deployments.',
-    docPath: '/docs/api-reference/admin-api',
+    docPath: '/docs/api/admin-api',
   },
   {
     method: 'POST',
@@ -742,7 +742,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Health & Telemetry',
     auth: 'Master Admin Key',
     summary: 'Invalidate L1/L2 exact-match response cache entries.',
-    docPath: '/docs/api-reference/admin-api',
+    docPath: '/docs/api/admin-api',
   },
   {
     method: 'GET',
@@ -751,7 +751,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'FinOps & Audit',
     auth: 'Master Admin Key',
     summary: 'Aggregated micro-dollar spend summary by org, team, or key.',
-    docPath: '/docs/api-reference/admin-api',
+    docPath: '/docs/api/admin-api',
   },
   {
     method: 'GET',
@@ -760,7 +760,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'FinOps & Audit',
     auth: 'Master Admin Key',
     summary: 'Paginated per-request FinOps spend ledger.',
-    docPath: '/docs/api-reference/admin-api',
+    docPath: '/docs/api/admin-api',
   },
   {
     method: 'GET',
@@ -769,7 +769,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'FinOps & Audit',
     auth: 'Master Admin Key',
     summary: 'Control-plane governance audit log entries.',
-    docPath: '/docs/api-reference/admin-api',
+    docPath: '/docs/api/admin-api',
   },
   {
     method: 'POST',
@@ -778,7 +778,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'MCP Management',
     auth: 'Master Admin Key',
     summary: 'Register an upstream MCP server (HTTP or sandboxed stdio).',
-    docPath: '/docs/api-reference/admin-api',
+    docPath: '/docs/api/admin-api',
   },
   {
     method: 'GET',
@@ -787,7 +787,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'MCP Management',
     auth: 'Master Admin Key',
     summary: 'List registered MCP servers.',
-    docPath: '/docs/api-reference/admin-api',
+    docPath: '/docs/api/admin-api',
   },
   {
     method: 'POST',
@@ -796,7 +796,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'MCP Management',
     auth: 'Master Admin Key',
     summary: 'Sync tool definitions from an MCP server.',
-    docPath: '/docs/api-reference/admin-api',
+    docPath: '/docs/api/admin-api',
   },
   {
     method: 'POST',
@@ -805,7 +805,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'MCP Management',
     auth: 'Master Admin Key',
     summary: 'Create a curated MCP toolset.',
-    docPath: '/docs/api-reference/admin-api',
+    docPath: '/docs/api/admin-api',
   },
   {
     method: 'GET',
@@ -814,7 +814,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'MCP Management',
     auth: 'Master Admin Key',
     summary: 'List curated MCP toolsets.',
-    docPath: '/docs/api-reference/admin-api',
+    docPath: '/docs/api/admin-api',
   },
   {
     method: 'GET',
@@ -823,7 +823,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'MCP Management',
     auth: 'Master Admin Key',
     summary: 'List all synced MCP tools.',
-    docPath: '/docs/api-reference/admin-api',
+    docPath: '/docs/api/admin-api',
   },
   {
     method: 'POST',
@@ -832,7 +832,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'MCP Management',
     auth: 'Master Admin Key',
     summary: 'Store BYOK credentials for an MCP server.',
-    docPath: '/docs/api-reference/admin-api',
+    docPath: '/docs/api/admin-api',
   },
   {
     method: 'POST',
@@ -841,7 +841,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'A2A Management',
     auth: 'Master Admin Key',
     summary: 'Register an A2A agent.',
-    docPath: '/docs/api-reference/admin-api',
+    docPath: '/docs/api/admin-api',
   },
   {
     method: 'GET',
@@ -850,7 +850,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'A2A Management',
     auth: 'Master Admin Key',
     summary: 'List registered A2A agents.',
-    docPath: '/docs/api-reference/admin-api',
+    docPath: '/docs/api/admin-api',
   },
   {
     method: 'GET',
@@ -859,7 +859,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'A2A Management',
     auth: 'Master Admin Key',
     summary: 'Get details for a registered A2A agent.',
-    docPath: '/docs/api-reference/admin-api',
+    docPath: '/docs/api/admin-api',
   },
   {
     method: 'POST',
@@ -868,7 +868,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'A2A Management',
     auth: 'Master Admin Key',
     summary: 'Toggle the emergency kill-switch for an A2A agent.',
-    docPath: '/docs/api-reference/admin-api',
+    docPath: '/docs/api/admin-api',
   },
   {
     method: 'POST',
@@ -877,7 +877,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'A2A Management',
     auth: 'Master Admin Key',
     summary: 'Configure webhook push notifications for A2A tasks.',
-    docPath: '/docs/api-reference/admin-api',
+    docPath: '/docs/api/admin-api',
   },
 
   // ── System & Telemetry ────────────────────────────────────────────────────
@@ -888,7 +888,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Probes',
     auth: 'Public',
     summary: 'Liveness probe returning service OK status.',
-    docPath: '/docs/operations/observability',
+    docPath: '/docs/deploy/observability',
   },
   {
     method: 'GET',
@@ -897,7 +897,7 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Probes',
     auth: 'Public',
     summary: 'Readiness probe verifying PostgreSQL and Redis connectivity.',
-    docPath: '/docs/operations/observability',
+    docPath: '/docs/deploy/observability',
   },
   {
     method: 'GET',
@@ -906,6 +906,6 @@ export const GATEWAY_ENDPOINTS: GatewayEndpoint[] = [
     group: 'Probes',
     auth: 'Metrics Auth',
     summary: 'Prometheus exposition endpoint for gateway, cache, and upstream HTTP metrics.',
-    docPath: '/docs/operations/observability',
+    docPath: '/docs/deploy/observability',
   },
 ];

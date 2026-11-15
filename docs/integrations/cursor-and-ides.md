@@ -3,6 +3,7 @@ id: cursor-and-ides
 title: Cursor, Continue & Cline
 sidebar_position: 3
 description: Connect Cursor, Continue.dev, and Cline IDE extensions to GoRoute AI Gateway over /v1 with Virtual Keys.
+keywords: [cursor ide goroute, continue dev, cline extension, ide llm proxy, virtual keys]
 ---
 
 # Cursor, Continue & Cline

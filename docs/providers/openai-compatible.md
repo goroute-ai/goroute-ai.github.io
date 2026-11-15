@@ -2,6 +2,7 @@
 title: OpenAI-Compatible Dialects
 sidebar_position: 11
 description: Comprehensive guide to the certified OpenAI-compatible dialect profiles and domain providers.
+keywords: [OpenAI-compatible providers, dialect profiles, Groq Together Fireworks, DeepSeek xAI OpenRouter, provider profiles]
 ---
 
 # OpenAI-Compatible Dialects

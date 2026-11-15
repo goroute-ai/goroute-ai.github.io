@@ -3,6 +3,7 @@ id: codex-and-cli-agents
 title: Codex CLI, Gemini CLI & OpenWebUI
 sidebar_position: 4
 description: Route OpenAI Codex CLI, Gemini CLI, and OpenWebUI through GoRoute AI Gateway via /v1 and /v1/responses.
+keywords: [openai codex cli, gemini cli, openwebui, cli coding agents, responses api]
 ---
 
 # Codex CLI, Gemini CLI & OpenWebUI

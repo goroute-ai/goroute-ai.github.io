@@ -20,7 +20,7 @@ Run `npm run typecheck`, `npm run check:docs`, and `npm run build` after making 
 
 ## Architecture & Key Paths
 
-- `docs/`: MDX/Markdown documentation organized by topic (`getting-started/`, `modules/`, `data-plane/`, `routing-resiliency/`, `finops-and-security/`, `providers/`, `protocols/`, `sdk/`, `api-reference/`, `operations/`, `integrations/`, `demos/`, `cookbook/`, `release-notes/`).
+- `docs/`: MDX/Markdown documentation organized by topic (`start/`, `gateway/`, `providers/`, `governance/`, `finops/`, `agents/`, `deploy/`, `contributing/`, `sdk/`, `integrations/`, `examples/`, `api/`, `releases/`).
 - `sidebars.ts`: Sidebar navigation tree. **Every `.md`/`.mdx` file under `docs/` must be mapped here.**
 - `src/data/endpoints.ts` & `src/data/providers.ts`: Structured data backing `src/components/EndpointCatalog.tsx` and `src/components/ProviderCatalog.tsx`.
 - `src/css/custom.css` & `src/pages/index.tsx`: Theme tokens and landing page.

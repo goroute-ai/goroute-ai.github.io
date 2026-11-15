@@ -92,6 +92,55 @@ function checkFencedCodeBlocks(filePath, content) {
   return openFence;
 }
 
+function extractKeywords(fm) {
+  const inlineMatch = fm.match(/^keywords:\s*\[([^\]]*)\]/m);
+  if (inlineMatch) {
+    return inlineMatch[1]
+      .split(',')
+      .map((s) => s.replace(/^["']|["']$/g, '').trim())
+      .filter(Boolean);
+  }
+  const blockMatch = fm.match(/^keywords:\s*\r?\n((?:\s+-\s+.+\r?\n?)+)/m);
+  if (blockMatch) {
+    return blockMatch[1]
+      .split(/\r?\n/)
+      .map((l) => l.replace(/^\s*-\s+/, '').replace(/^["']|["']$/g, '').trim())
+      .filter(Boolean);
+  }
+  const scalarMatch = fm.match(/^keywords:\s*([^\n\r[\]]+)$/m);
+  if (scalarMatch) {
+    const val = scalarMatch[1].replace(/^["']|["']$/g, '').trim();
+    return val ? [val] : [];
+  }
+  return [];
+}
+
+function extractFirstH1(body) {
+  const lines = body.split(/\r?\n/);
+  let openFence = null;
+  for (const line of lines) {
+    const trimmed = line.trimStart();
+    const fenceMatch = trimmed.match(/^(`{3,}|~{3,})(.*)$/);
+    if (fenceMatch) {
+      const char = fenceMatch[1][0];
+      const len = fenceMatch[1].length;
+      const rest = fenceMatch[2].trim();
+      if (!openFence) {
+        openFence = { char, len };
+      } else if (openFence.char === char && len >= openFence.len && rest === '') {
+        openFence = null;
+      }
+      continue;
+    }
+    if (openFence) continue;
+    const h1Match = line.match(/^#\s+(.+?)\s*$/);
+    if (h1Match) {
+      return h1Match[1].trim();
+    }
+  }
+  return null;
+}
+
 function main() {
   const errors = [];
 
@@ -124,7 +173,7 @@ function main() {
     }
   }
 
-  // Check (b) unclosed fenced code blocks, (d) sidebar mapping & (e) SEO frontmatter
+  // Check (b) unclosed fenced code blocks, (d) sidebar mapping & (e) SEO frontmatter + H1 alignment
   const docFiles = walkFiles(DOCS_DIR).filter((f) => /\.(md|mdx)$/i.test(f));
   const sidebars = parseSidebars(path.join(ROOT, 'sidebars.ts'));
   const mappedIds = collectSidebarIds(sidebars);
@@ -151,12 +200,13 @@ function main() {
       );
     }
 
-    const fmMatch = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
+    const fmMatch = content.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/);
     if (!fmMatch) {
       errors.push(`[seo-check] Missing frontmatter in ${relFromRoot}`);
       continue;
     }
     const fm = fmMatch[1];
+    const body = fmMatch[2];
     const titleRaw = fm.match(/^title:\s*(.+)$/m)?.[1];
     const descRaw = fm.match(/^description:\s*(.+)$/m)?.[1];
     const title = titleRaw ? titleRaw.replace(/^["']|["']$/g, '').trim() : '';
@@ -180,6 +230,20 @@ function main() {
         errors.push(`[seo-check] Duplicate description in ${relFromRoot} (also in ${seenDescriptions.get(desc)})`);
       } else {
         seenDescriptions.set(desc, relFromRoot);
+      }
+    }
+
+    const keywords = extractKeywords(fm);
+    if (keywords.length === 0) {
+      errors.push(`[seo-check] Missing keywords in ${relFromRoot}`);
+    }
+
+    if (title) {
+      const h1 = extractFirstH1(body);
+      if (!h1) {
+        errors.push(`[seo-check] Missing H1 heading matching title "${title}" in ${relFromRoot}`);
+      } else if (h1 !== title) {
+        errors.push(`[seo-check] H1 "${h1}" does not match frontmatter title "${title}" in ${relFromRoot}`);
       }
     }
   }

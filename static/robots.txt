@@ -2,4 +2,20 @@ User-agent: *
 Allow: /
 Disallow: /search
 
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
 Sitemap: https://goroute-ai.github.io/sitemap.xml
+# LLM Context Index: https://goroute-ai.github.io/llms.txt

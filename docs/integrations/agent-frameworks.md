@@ -3,14 +3,15 @@ id: agent-frameworks
 title: Agent Frameworks (LangChain, OpenAI Agents SDK & Google ADK)
 sidebar_position: 7
 description: Connect LangChain, OpenAI Agents SDK, and Google ADK to GoRoute AI Gateway for unified model routing, MCP tool hubs, and A2A agent dispatch.
+keywords: [langchain goroute, openai agents sdk, google adk, agent frameworks, mcp a2a integration]
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Agent Frameworks
+# Agent Frameworks (LangChain, OpenAI Agents SDK & Google ADK)
 
-Agentic frameworks can route both **LLM inference** (`/v1` or `/anthropic`) and **tool/agent protocols** ([MCP](/docs/protocols/mcp-overview) and [A2A](/docs/protocols/a2a-overview)) through GoRoute AI Gateway.
+Agentic frameworks can route both **LLM inference** (`/v1` or `/anthropic`) and **tool/agent protocols** ([MCP](/docs/agents/mcp-overview) and [A2A](/docs/agents/a2a-overview)) through GoRoute AI Gateway.
 
 ---
 
@@ -90,7 +91,7 @@ In Google ADK, you can either route model calls through GoRoute's OpenAI-compati
 1. **Model Routing via `/v1`**:
    Set `OPENAI_BASE_URL="http://localhost:8080/v1"` and `OPENAI_API_KEY="sk-gw-your-virtual-key"` for OpenAI-compatible model wrappers, with Gemini models declared in GoRoute's `model_list` (e.g., `gemini/gemini-2.5-flash`).
 2. **A2A Agent Discovery & Dispatch**:
-   GoRoute serves A2A agent cards at `GET /.well-known/agent-card.json` and task endpoints under `/a2a/v1/agents/{agentSlug}/` (`POST /`, `GET /tasks`, `GET /tasks/{taskID}`, `POST /tasks/{taskID}:cancel`, `GET|POST /tasks/{taskID}:subscribe`). See [A2A Agent Cards](/docs/protocols/a2a-agent-cards).
+   GoRoute serves A2A agent cards at `GET /.well-known/agent-card.json` and task endpoints under `/a2a/v1/agents/{agentSlug}/` (`POST /`, `GET /tasks`, `GET /tasks/{taskID}`, `POST /tasks/{taskID}:cancel`, `GET|POST /tasks/{taskID}:subscribe`). See [A2A Agent Cards](/docs/agents/a2a-agent-cards).
 
 ---
 
@@ -100,7 +101,7 @@ Any framework supporting **Streamable HTTP MCP** or **REST tool calls** can cons
 
 | Protocol | Endpoint | Auth Header | Guide |
 | :--- | :--- | :--- | :--- |
-| **MCP Virtual Hub (All Allowed Tools)** | `POST http://localhost:8080/mcp` | `Authorization: Bearer sk-gw-...` | [MCP Hub & REST](/docs/protocols/mcp-hub-and-rest) |
-| **Scoped MCP Server** | `POST http://localhost:8080/mcp/{serverSlug}` | `Authorization: Bearer sk-gw-...` | [MCP Overview](/docs/protocols/mcp-overview) |
-| **Curated MCP Toolset** | `POST http://localhost:8080/mcp/toolsets/{toolsetSlug}` | `Authorization: Bearer sk-gw-...` | [Progressive Discovery](/docs/protocols/mcp-progressive-discovery) |
-| **MCP REST Bridge** | `GET /mcp-rest/tools/list`, `POST /mcp-rest/tools/call` | `Authorization: Bearer sk-gw-...` | [MCP Hub & REST](/docs/protocols/mcp-hub-and-rest) |
+| **MCP Virtual Hub (All Allowed Tools)** | `POST http://localhost:8080/mcp` | `Authorization: Bearer sk-gw-...` | [MCP Hub & REST](/docs/agents/mcp-hub-and-rest) |
+| **Scoped MCP Server** | `POST http://localhost:8080/mcp/{serverSlug}` | `Authorization: Bearer sk-gw-...` | [MCP Overview](/docs/agents/mcp-overview) |
+| **Curated MCP Toolset** | `POST http://localhost:8080/mcp/toolsets/{toolsetSlug}` | `Authorization: Bearer sk-gw-...` | [Progressive Discovery](/docs/agents/mcp-progressive-discovery) |
+| **MCP REST Bridge** | `GET /mcp-rest/tools/list`, `POST /mcp-rest/tools/call` | `Authorization: Bearer sk-gw-...` | [MCP Hub & REST](/docs/agents/mcp-hub-and-rest) |

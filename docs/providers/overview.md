@@ -97,7 +97,7 @@ This matrix highlights core native adapters and representative dialect integrati
 
 Use the provider's current model documentation to choose an ID, then check the gateway's tenant-filtered `GET /v1/models` inventory with the same virtual key your application will use. That inventory is the reference for models currently exposed to that caller. Provider access, gateway catalog discovery/sync settings, organization policies, and key allowlists can all affect availability. A model listed by a provider is not by itself confirmation that a particular GoRoute deployment can route it.
 
-When catalog discovery is enabled, the gateway can synchronize models exposed by supported providers. Discovery does not make every provider model universally available: provider credentials, adapter/protocol compatibility, organization policy, and virtual-key permissions still apply. See [Model Management & Access Control](/docs/data-plane/model-management) and [model catalog configuration](/docs/operations/configuration).
+When catalog discovery is enabled, the gateway can synchronize models exposed by supported providers. Discovery does not make every provider model universally available: provider credentials, adapter/protocol compatibility, organization policy, and virtual-key permissions still apply. See [Model Management & Access Control](/docs/gateway/endpoints/model-management) and [model catalog configuration](/docs/deploy/configuration).
 
 ### Embedded Model Catalog & Capability Generalizations (v1.6.0)
 

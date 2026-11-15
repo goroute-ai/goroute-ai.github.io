@@ -3,6 +3,7 @@ id: anthropic-sdks
 title: Anthropic SDKs (Python & TypeScript)
 sidebar_position: 6
 description: Use the official Python anthropic and TypeScript @anthropic-ai/sdk packages with GoRoute AI Gateway via /anthropic/v1/messages and count_tokens.
+keywords: [anthropic python sdk, anthropic typescript sdk, claude messages api, count_tokens, goroute anthropic]
 ---
 
 import Tabs from '@theme/Tabs';
@@ -150,4 +151,4 @@ console.log(count.input_tokens);
   </TabItem>
 </Tabs>
 
-See [Anthropic Messages Ingress API](/docs/data-plane/messages) for details on extended thinking blocks, tool schema translation, and alternating turn consolidation.
+See [Anthropic Messages Ingress API](/docs/gateway/endpoints/messages) for details on extended thinking blocks, tool schema translation, and alternating turn consolidation.

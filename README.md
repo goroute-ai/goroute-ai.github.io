@@ -12,7 +12,7 @@
 
 This repository hosts:
 1. **The Enterprise AI Control Plane Documentation Portal**: Powered by Docusaurus 3, featuring full-text search, written API guides, Mermaid architecture diagrams, a dual light/dark theme (Royal Violet `#6d28d9` / Lavender `#b39aff`), and guides organized around GoRoute's **5 Core Control Plane Modules**:
-   - **1. AI Gateway**: Traffic management, 23 `/v1` data plane paths (26 HTTP ops), 73 `ProviderType` profiles, EWMA load balancing, and circuit breakers.
+   - **1. AI Gateway**: Traffic management, 23 `/v1` data plane paths (97 documented endpoints), 73+ provider profiles, 6 routing strategies, and circuit breakers.
    - **2. AI Governance**: 4-layer policy model, Operator RBAC/OIDC, AES-256-GCM Credentials Vault, Virtual Keys, streaming guardrails, and SSRF firewall.
    - **3. AI FinOps**: 64-bit integer micro-dollar ledger, cache-write & modality pricing, durable spend/budget-reset outboxes, and Redis Lua rate limits.
    - **4. AI Observability**: OTLP/HTTP distributed tracing (`gen_ai.*`), Prometheus `/metrics`, Vitter Algorithm R latency reservoirs, and Embedded Operator Console (`/ui/`).

@@ -2,6 +2,7 @@
 title: AWS Bedrock
 sidebar_position: 5
 description: Native AWS Bedrock adapter with SigV4 signing, IAM auth, and Converse API.
+keywords: [AWS Bedrock, SigV4 signing, Bedrock Converse API, IAM authentication, Bedrock provider]
 ---
 
 # AWS Bedrock
@@ -61,7 +62,7 @@ If only the Access Key ID is supplied in the credential, GoRoute falls back to a
 
 ## Representative model IDs
 
-This table is illustrative and may lag behind AWS releases. See [AWS Bedrock's current supported model list](https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html) for provider-side IDs, then check [`GET /v1/models`](/docs/api-reference/gateway-api#4-model-catalogue-inventory-get-v1models) to confirm which models are exposed to your gateway key. AWS account access, region, gateway catalog state, and model policies affect availability.
+This table is illustrative and may lag behind AWS releases. See [AWS Bedrock's current supported model list](https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html) for provider-side IDs, then check [`GET /v1/models`](/docs/api/gateway-api#4-model-catalogue-inventory-get-v1models) to confirm which models are exposed to your gateway key. AWS account access, region, gateway catalog state, and model policies affect availability.
 
 | Foundation Family | Example Bedrock Model ID |
 | :--- | :--- |

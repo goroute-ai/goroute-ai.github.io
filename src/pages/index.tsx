@@ -8,36 +8,36 @@ const pillars = [
   {
     badge: 'MODULE 01 · TRAFFIC & ROUTING',
     title: '1. AI Gateway',
-    text: '23 /v1 routes, 73+ provider profiles, adaptive load balancing, 3-state circuit breakers, and 2-tier exact-match cache.',
-    link: '/docs/modules/ai-gateway',
+    text: '23 /v1 paths (97 documented endpoints), 73+ provider profiles, 6 routing strategies, 3-state circuit breakers, and 2-tier exact-match cache.',
+    link: '/docs/gateway',
     label: 'Explore AI Gateway',
   },
   {
     badge: 'MODULE 02 · ACCESS & POLICY',
     title: '2. AI Governance',
     text: 'Scoped Virtual API Keys, RBAC, AES-256-GCM credential vault, input/output guardrails, and SSRF protection.',
-    link: '/docs/modules/ai-governance',
+    link: '/docs/governance',
     label: 'Explore AI Governance',
   },
   {
     badge: 'MODULE 03 · COST & QUOTAS',
     title: '3. AI FinOps',
     text: '64-bit integer micro-dollar ledger, versioned modality pricing, sliding-window rate limits, and pre-flight tokenization.',
-    link: '/docs/modules/ai-finops',
+    link: '/docs/finops',
     label: 'Explore AI FinOps',
   },
   {
     badge: 'MODULE 04 · TELEMETRY & UI',
     title: '4. AI Observability',
     text: 'OpenTelemetry tracing, Prometheus metrics, embedded Operator Web UI (/ui/), and deployment health probes.',
-    link: '/docs/modules/ai-observability',
+    link: '/docs/deploy/observability',
     label: 'Explore Observability',
   },
   {
     badge: 'MODULE 05 · MCP & A2A',
     title: '5. AI Agent Management',
     text: 'MCP Virtual Hub with stdio sandboxing, signed A2A Agent Cards & gRPC, and autonomous multi-turn tool loops.',
-    link: '/docs/modules/ai-agent-management',
+    link: '/docs/agents',
     label: 'Explore Agent Management',
   },
 ];
@@ -50,23 +50,23 @@ const paths = [
     summary: 'Run the full AI Control Plane in-process inside your Go services with zero proxy hop overhead.',
     topics: [
       'Installation & pkg/gateway setup',
-      'Client options, routing & fallbacks',
-      'Chat completions & streaming iterators',
+      'Client options, 6 routing strategies & fallbacks',
+      'Chat completions, Realtime & streaming iterators',
     ],
-    link: '/docs/getting-started/quickstart-sdk',
+    link: '/docs/start/quickstart-sdk',
     label: 'Go SDK Quickstart',
   },
   {
     number: '02',
     badge: 'CONTAINER & KUBERNETES',
     title: 'Deploy the Control Plane',
-    summary: 'Standalone binary, Docker Compose, or Kubernetes Kustomize with Operator UI and HA storage.',
+    summary: 'Standalone binary, Docker Compose, or Kubernetes Helm & Kustomize with Operator UI and HA storage.',
     topics: [
-      'Docker Compose, CLI & Kustomize overlays',
+      'Docker Compose, CLI, Helm & Kustomize overlays',
       'Operator Console (/ui/) visual management',
       'PostgreSQL & Redis Cluster/Sentinel state',
     ],
-    link: '/docs/getting-started/quickstart-docker',
+    link: '/docs/start/quickstart-docker',
     label: 'Deployment Options',
   },
   {
@@ -79,7 +79,7 @@ const paths = [
       'Micro-dollar spend caps & rate limiting',
       'Input/output guardrails & SSRF policy',
     ],
-    link: '/docs/modules/ai-governance',
+    link: '/docs/governance',
     label: 'Governance & FinOps',
   },
   {
@@ -92,7 +92,7 @@ const paths = [
       'MCP Virtual Hub & A2A agent bridge',
       'Claude Code, Codex & IDE integrations',
     ],
-    link: '/docs/demos/overview',
+    link: '/docs/examples/overview',
     label: 'View Code Demos',
   },
 ];
@@ -141,20 +141,28 @@ export default function Home(): ReactNode {
     applicationCategory: 'DeveloperApplication',
     operatingSystem: 'Linux, macOS, Windows',
     programmingLanguage: 'Go',
+    softwareVersion: '1.7.0',
     license: 'https://opensource.org/licenses/Apache-2.0',
-    url: `${siteUrl}/`,
+    url: siteUrl,
+    image: `${siteUrl}/img/og-card.png`,
     codeRepository: 'https://github.com/goroute-ai/ai-gateway-go',
     description:
       'Pure Go enterprise AI gateway and embeddable Go SDK with 73+ provider profiles, virtual API keys, micro-dollar FinOps, OpenTelemetry, MCP Virtual Hub, and A2A.',
+    featureList: [
+      '73+ LLM provider profiles and 23 /v1 data plane routes',
+      'Scoped Virtual API Keys, 4-layer RBAC, AES-256-GCM vault, and SSRF firewall',
+      '64-bit integer micro-dollar FinOps ledger and Redis Lua rate limits',
+      'OpenTelemetry distributed tracing, Prometheus metrics, and embedded Operator Web UI',
+      'MCP Virtual Hub with stdio sandboxing and A2A v1.0 protocol bridge',
+      'Zero-hop embeddable Go SDK (pkg/gateway)',
+    ],
     offers: {
       '@type': 'Offer',
       price: '0',
       priceCurrency: 'USD',
     },
     publisher: {
-      '@type': 'Organization',
-      name: 'GoRoute AI',
-      url: `${siteUrl}/`,
+      '@id': `${siteUrl}/#organization`,
     },
   };
 
@@ -170,16 +178,21 @@ export default function Home(): ReactNode {
       <main className="home-page">
         <section className="home-hero">
           <div className="home-hero__copy">
-            <p className="home-eyebrow">GoRoute · Enterprise AI Control Plane</p>
+            <p className="home-eyebrow">
+              GoRoute · Enterprise AI Control Plane ·{' '}
+              <Link className="home-eyebrow__release" to="/docs/releases">
+                v1.7.0
+              </Link>
+            </p>
             <h1>A Go AI Gateway and Control Plane for Production AI.</h1>
             <p className="home-hero__lead">
               Build with an embeddable Go SDK or deploy a standalone gateway to route models, govern access, manage AI costs, observe traffic, and connect agents.
             </p>
             <div className="home-actions">
-              <Link className="button button--primary button--lg" to="/docs/getting-started/overview">
+              <Link className="button button--primary button--lg" to="/docs/start/overview">
                 Explore Product Capabilities <span aria-hidden="true">→</span>
               </Link>
-              <Link className="button button--secondary button--lg" to="/docs/getting-started/quickstart-sdk">
+              <Link className="button button--secondary button--lg" to="/docs/start/quickstart-sdk">
                 Start with the Go SDK
               </Link>
             </div>

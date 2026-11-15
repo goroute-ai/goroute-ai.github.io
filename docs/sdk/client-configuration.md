@@ -2,6 +2,7 @@
 title: Client Initialization & Configuration
 sidebar_position: 2
 description: Initialize the GoRoute Go SDK for embedded or remote gateway use, then configure client options, timeouts, and model requests.
+keywords: [go sdk configuration, gateway.new options, embedded gateway go, remote client go, client timeouts]
 ---
 
 # Client Initialization & Configuration
@@ -74,7 +75,7 @@ gw, err := gateway.New(
 | `Model` | `string` | Upstream provider/model identifier (e.g. `"gemini/gemini-2.5-flash"`, `"anthropic/claude-sonnet-4-20250514"`, `"openai/gpt-4.1-mini"`). |
 | `APIKey` | `string` | Upstream API key string or environment reference (e.g. `"os.environ/GEMINI_API_KEY"`). |
 | `APIBase` | `string` | Optional custom endpoint URL (e.g. for Ollama or private vLLM clusters: `"http://localhost:11434"`). |
-| `RoutingStrategy`| `string` | Routing policy: `"weighted-shuffle"`, `"least-busy"`, `"latency-based"`, `"usage-based-headroom"`, or `"lowest-cost"`. |
+| `RoutingStrategy`| `string` | Routing policy: `"weighted-shuffle"`, `"least-busy"`, `"latency-based"`, `"usage-based-headroom"`, `"lowest-cost"`, or `"round-robin"`. |
 | `Fallbacks` | `[]string`| Ordered list of model aliases to invoke if this model returns 429, 503, or times out. |
 | `Weight` | `int` | Integer weight for `"weighted-shuffle"` distribution. |
 | `RPM` | `int` | Requests Per Minute limit enforced across this model entry. |
@@ -152,6 +153,26 @@ gw, err := gateway.New(
     gateway.WithRemote("https://ai-gateway.company.com", "sk-gw-production"),
 )
 ```
+
+---
+
+### `WithHTTPClient(hc *http.Client) Option`
+
+Configures a custom `*http.Client` for remote gateway HTTP requests and `/v1/realtime` WebSocket dialing (timeouts, custom TLS, transport pooling):
+
+```go
+customHTTP := &http.Client{Timeout: 45 * time.Second}
+gw, err := gateway.New(
+    gateway.WithRemote("https://ai-gateway.company.com", "sk-gw-production"),
+    gateway.WithHTTPClient(customHTTP),
+)
+```
+
+---
+
+### `WithAllowPrivateNetworks() Option`
+
+Permits embedded gateway connections to localhost or private network addresses (useful for local Ollama/LM Studio servers or in-process test mocks without enabling `WithDemoMocksIfEnvMissing()`).
 
 ---
 

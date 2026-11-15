@@ -3,6 +3,7 @@ id: openai-sdks
 title: OpenAI SDKs (Python & TypeScript)
 sidebar_position: 5
 description: Use the official Python and TypeScript openai SDKs with GoRoute AI Gateway for chat completions, streaming, embeddings, Responses API, and Realtime WebSockets.
+keywords: [openai python sdk, openai typescript sdk, base_url override, chat completions, realtime websocket]
 ---
 
 import Tabs from '@theme/Tabs';
@@ -198,4 +199,4 @@ ws.on("open", () => {
 });
 ```
 
-See [Realtime WebSocket API](/docs/data-plane/realtime) and [Gateway API Reference](/docs/api-reference/gateway-api) for the full list of supported OpenAI-compatible endpoints.
+See [Realtime WebSocket API](/docs/gateway/endpoints/realtime) and [Gateway API Reference](/docs/api/gateway-api) for the full list of supported OpenAI-compatible endpoints.

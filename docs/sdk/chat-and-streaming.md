@@ -2,6 +2,7 @@
 title: Chat and Streaming
 sidebar_position: 3
 description: Send single-prompt and multi-turn requests, stream deltas, and handle cancellation.
+keywords: [go sdk chat, streamchat go, multi-turn chat, sse streaming go, pkg/gateway]
 ---
 
 # Chat and Streaming
@@ -74,8 +75,66 @@ if err != nil {
 fmt.Println(result.Content)
 ```
 
+## Pure-SDK Modality & Responses Wrappers
+
+In `v1.7.0`, `pkg/gateway` provides self-contained public request and response structs (zero `internal/` package imports) for embeddings, reranking, moderation, the OpenAI Responses API, images, audio, and tokenization:
+
+```go
+// Vector embeddings
+emb, err := gw.CreateEmbedding(ctx, gateway.EmbeddingRequest{
+	Model: "text-embedding-3-small",
+	Input: []string{"GoRoute AI Gateway"},
+})
+
+// Document reranking
+reranked, err := gw.CreateRerank(ctx, gateway.RerankRequest{
+	Model:     "rerank-v3.5",
+	Query:     "zero-allocation Go proxy",
+	Documents: []any{"GoRoute routes inference in pure Go."},
+})
+
+// OpenAI Responses API (sync or streaming)
+resp, err := gw.CreateResponse(ctx, gateway.ResponseRequest{
+	Model: "fast",
+	Input: "Summarize this diff in two bullets.",
+})
+_, err = gw.StreamResponse(ctx, gateway.ResponseRequest{
+	Model: "fast",
+	Input: "Stream a haiku about Go.",
+}, func(delta string) error {
+	_, err := fmt.Print(delta)
+	return err
+})
+```
+
+Additional pure-SDK modality methods include `CreateModeration`, `CreateImage`, `ImageEdit`, `ImageVariation`, `CreateSpeech`, `TranscribeAudio`, `Tokenize`, `CountTokens`, and stateful file/batch helpers (`UploadFile`, `ListFiles`, `GetFile`, `GetFileContent`, `DeleteFile`, `CreateBatch`, `ListBatches`, `GetBatch`, `CancelBatch`).
+
+## Realtime WebSocket Sessions
+
+Use `ConnectRealtime` to open a full-duplex WebSocket session to `/v1/realtime` using `*gateway.RealtimeSession`:
+
+```go
+session, err := gw.ConnectRealtime(ctx, "gpt-4o-realtime-preview")
+if err != nil {
+	return err
+}
+defer session.Close()
+
+if err := session.SendEvent(ctx, gateway.RealtimeEvent{
+	Type: "response.create",
+}); err != nil {
+	return err
+}
+
+ev, err := session.ReadEvent(ctx)
+if err != nil {
+	return err
+}
+fmt.Println("Received event:", ev.Type)
+```
+
 ## Inspect result fields
 
 `ChatResult` provides top-level fields for content, provider, model, request ID, cost in micro-dollars, routing time in microseconds, cache status, and whether a fallback was attempted. `Usage` and `Raw` expose internal domain types; prefer the top-level fields when you need a stable public SDK surface.
 
-For function/tool definitions and the HTTP request shape, see [Tool Calling](/docs/data-plane/tool-calling). The current public SDK request type does not expose a `tools` field.
+For function/tool definitions and the HTTP request shape, see [Tool Calling](/docs/gateway/endpoints/tool-calling). The current public `ChatRequest` struct does not expose a `tools` field.

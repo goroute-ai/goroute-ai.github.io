@@ -2,6 +2,7 @@
 title: Azure OpenAI Service
 sidebar_position: 7
 description: Native Azure OpenAI Service adapter with API key, Entra ID token auth, custom deployment mapping, and version pinning.
+keywords: [Azure OpenAI, Entra ID auth, deployment mapping, API version pinning, Azure provider]
 ---
 
 # Azure OpenAI Service

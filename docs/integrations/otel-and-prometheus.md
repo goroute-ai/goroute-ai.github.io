@@ -3,11 +3,15 @@ id: otel-and-prometheus
 title: OpenTelemetry & Prometheus
 sidebar_position: 8
 description: Configure OTLP/HTTP tracing with W3C traceparent and gen_ai.* attributes for OTel Collector, Jaeger, and Grafana Tempo, plus Prometheus /metrics.
+keywords: [opentelemetry collector, jaeger tracing, grafana tempo, prometheus scraping, otlp http]
 ---
 
 # OpenTelemetry & Prometheus
 
 GoRoute AI Gateway provides built-in **OTLP/HTTP distributed tracing** (`internal/observability/tracing_otlp.go`) and **Prometheus 0.0.4 metrics** (`GET /metrics`). All outbound OTLP exports pass through GoRoute's outbound SSRF `network.Policy`.
+
+> [!NOTE]
+> This integration guide covers connecting external collectors (**OTel Collector**, **Jaeger**, **Grafana Tempo**, and **Prometheus** scrapers). For built-in GoRoute telemetry (`gateway_*` metric definitions, W3C `traceparent` generation, `/healthz` / `/readyz` probes, and secret-scrubbed logging), see [Observability, Metrics & Health Probes](/docs/deploy/observability).
 
 ---
 
@@ -102,4 +106,4 @@ scrape_configs:
           cluster: "prod-verification"
 ```
 
-For the full catalog of exported `gateway_*` metrics, health probes (`/healthz`, `/readyz`), and structured log scrubbing, see [Observability, Metrics & Health Probes](/docs/operations/observability).
+For the full catalog of exported `gateway_*` metrics, health probes (`/healthz`, `/readyz`), and structured log scrubbing, see [Observability, Metrics & Health Probes](/docs/deploy/observability).

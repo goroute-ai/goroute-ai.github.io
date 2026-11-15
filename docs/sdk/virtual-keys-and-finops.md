@@ -2,6 +2,7 @@
 title: Virtual Keys and FinOps
 sidebar_position: 4
 description: Create and revoke virtual keys and query spend through the Go SDK.
+keywords: [go sdk virtual keys, finops spend summary, createvirtualkey, revoke key go, budget management]
 ---
 
 # Virtual Keys and FinOps
@@ -53,14 +54,17 @@ The SDK calls the gateway's revoke endpoint. Subsequent authentication behavior 
 
 ## Read the spend summary
 
+Use `GetSpendSummary` (added in `v1.7.0`) for a pure-SDK `*gateway.SpendSummaryResponse` with zero `internal/` package dependencies:
+
 ```go
-summary, err := adminClient.SpendSummary(ctx)
+summary, err := adminClient.GetSpendSummary(ctx)
 if err != nil {
 	return err
 }
-fmt.Printf("Requests: %d; tokens: %d; cost: %d µ$\n",
-	summary.TotalRequests, summary.TotalTokens, summary.TotalCostMicros)
+fmt.Printf("Requests: %d; tokens: %d; cost: %d µ$ ($%.4f; unpriced: %d)\n",
+	summary.TotalRequests, summary.TotalTokens, summary.TotalCostMicros,
+	summary.TotalCostUSD, summary.UnpricedRequests)
 fmt.Println("Spend by provider:", summary.SpendByProvider)
 ```
 
-The summary type currently comes from an internal gateway package, although the SDK method exposes it. The stable JSON API is available at `GET /admin/v1/spend/summary`; see the [cost accounting guide](/docs/finops-and-security/micro-dollar-ledger) and [API reference](/docs/api-reference/gateway-api).
+The SDK also exposes `UpdateVirtualKey`, `RotateVirtualKey`, `UpdateTeam`, `DeleteTeam`, `UpdateUser`, `DeleteUser`, and `GetConfig` using public SDK types, plus the legacy `SpendSummary` method (which returns an internal storage type). The stable JSON API is available at `GET /admin/v1/spend/summary`; see the [cost accounting guide](/docs/finops/micro-dollar-ledger) and [Admin API reference](/docs/api/admin-api).

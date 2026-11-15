@@ -2,13 +2,14 @@
 title: Google Gemini
 sidebar_position: 4
 description: Google Gemini provider integration for chat, embeddings, multimodal inputs, image generation, audio, and thinking budgets.
+keywords: [Google Gemini, Gemini chat API, thinking budgets, Gemini multimodal, Gemini embeddings]
 ---
 
 # Google Gemini
 
 GoRoute provides a native provider adapter for **Google Gemini** (`internal/adapter/gemini/`), translating standard OpenAI chat completion, streaming, embeddings, and tool calling requests into Google's **Gemini REST API** (`generateContent`, `streamGenerateContent`).
 
-The adapter supports Google AI Studio API keys, multimodal audio and image inputs, structured JSON outputs, image generation, and reasoning-budget handling. The model IDs shown here are provider-side examples, not an exhaustive or guaranteed-current list of models supported by every GoRoute deployment. Check [Google's current Gemini model list](https://ai.google.dev/gemini-api/docs/models), then confirm which models your key can use with [`GET /v1/models`](/docs/api-reference/gateway-api#4-model-catalogue-inventory-get-v1models).
+The adapter supports Google AI Studio API keys, multimodal audio and image inputs, structured JSON outputs, image generation, and reasoning-budget handling. The model IDs shown here are provider-side examples, not an exhaustive or guaranteed-current list of models supported by every GoRoute deployment. Check [Google's current Gemini model list](https://ai.google.dev/gemini-api/docs/models), then confirm which models your key can use with [`GET /v1/models`](/docs/api/gateway-api#4-model-catalogue-inventory-get-v1models).
 
 ---
 

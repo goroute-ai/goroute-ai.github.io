@@ -2,6 +2,7 @@
 title: Ollama
 sidebar_position: 10
 description: Native Ollama provider adapter for local inference, model auto-discovery, and streaming NDJSON translation.
+keywords: [Ollama local inference, local LLM gateway, model auto-discovery, NDJSON streaming, self-hosted Ollama]
 ---
 
 # Ollama

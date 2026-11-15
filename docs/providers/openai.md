@@ -2,11 +2,12 @@
 title: OpenAI
 sidebar_position: 2
 description: OpenAI provider integration for chat, reasoning, images, audio, embeddings, Responses API, and Realtime WebSockets.
+keywords: [OpenAI provider, OpenAI API gateway, reasoning models, Responses API, Realtime WebSocket]
 ---
 
 # OpenAI
 
-GoRoute provides a native adapter for **OpenAI**, with gateway routes for chat, embeddings, audio, images, moderation, Responses, and Realtime. Model IDs used in examples are provider-side examples, not an exhaustive or guaranteed-current list of models supported by every GoRoute deployment. OpenAI changes model IDs and endpoint availability over time; check the [OpenAI model catalog](https://developers.openai.com/api/docs/models) and then confirm the IDs exposed to your key with [`GET /v1/models`](/docs/api-reference/gateway-api#4-model-catalogue-inventory-get-v1models).
+GoRoute provides a native adapter for **OpenAI**, with gateway routes for chat, embeddings, audio, images, moderation, Responses, and Realtime. Model IDs used in examples are provider-side examples, not an exhaustive or guaranteed-current list of models supported by every GoRoute deployment. OpenAI changes model IDs and endpoint availability over time; check the [OpenAI model catalog](https://developers.openai.com/api/docs/models) and then confirm the IDs exposed to your key with [`GET /v1/models`](/docs/api/gateway-api#4-model-catalogue-inventory-get-v1models).
 
 ---
 

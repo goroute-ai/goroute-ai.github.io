@@ -2,6 +2,7 @@
 title: Cohere
 sidebar_position: 8
 description: Native Cohere v2 adapter for Command R/R+, Embed v3, Rerank v3.5, and micro-dollar search unit FinOps accounting.
+keywords: [Cohere v2, Command R, Embed v3, Rerank v3.5, search unit FinOps]
 ---
 
 # Cohere

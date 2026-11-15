@@ -23,7 +23,7 @@ The embedded mode does not require a separately deployed gateway service. It sti
 The upstream module currently declares Go `1.26.0` in `go.mod`. Use a compatible Go toolchain:
 
 ```bash
-go get github.com/goroute-ai/ai-gateway-go/pkg/gateway@v1.5.0
+go get github.com/goroute-ai/ai-gateway-go/pkg/gateway@v1.7.0
 ```
 
 ## Minimal request
