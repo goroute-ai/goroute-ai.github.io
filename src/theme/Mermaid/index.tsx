@@ -8,18 +8,18 @@ import styles from './styles.module.css';
 const GOROUTE_THEME_DARK = {
   bg: '#000000',
   fg: '#E5E7EB',
-  line: '#12C2EA',
-  accent: '#7C3AED',
+  line: '#38BDF8',
+  accent: '#7DD3FC',
   muted: '#9CA3AF',
-  surface: '#0D1117',
-  border: '#30363D',
+  surface: '#0D131F',
+  border: '#253145',
 };
 
 const GOROUTE_THEME_LIGHT = {
   bg: '#ffffff',
   fg: '#0f172a',
-  line: '#0284c7',
-  accent: '#7c3aed',
+  line: '#0284C7',
+  accent: '#0369A1',
   muted: '#64748b',
   surface: '#f8fafc',
   border: '#cbd5e1',

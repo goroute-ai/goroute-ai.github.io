@@ -103,13 +103,6 @@ export default function Home(): ReactNode {
                 Start with the Go SDK
               </Link>
             </div>
-            <div className="home-code-hint">
-              <div className="home-code-hint__content">
-                <span className="home-code-hint__prompt">$</span>
-                <code>curl -fsSL https://raw.githubusercontent.com/goroute-ai/ai-gateway-go/main/install.sh | bash</code>
-              </div>
-              <CopyInstallButton />
-            </div>
           </div>
           <div className="home-hero__diagram" aria-label="Request flow from Go application through GoRoute to an AI provider">
             <div className="flow-node flow-node--client">
@@ -126,6 +119,13 @@ export default function Home(): ReactNode {
               <span>UPSTREAM PROVIDERS</span>
               <strong>Universal Model Integrations</strong>
             </div>
+          </div>
+          <div className="home-code-hint">
+            <div className="home-code-hint__content">
+              <span className="home-code-hint__prompt">$</span>
+              <code>curl -fsSL https://raw.githubusercontent.com/goroute-ai/ai-gateway-go/main/install.sh | bash</code>
+            </div>
+            <CopyInstallButton />
           </div>
         </section>
       </main>

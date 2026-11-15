@@ -290,9 +290,14 @@
 }
 
 .methodPOST {
-  background: rgba(139, 92, 246, 0.15);
+  background: rgba(56, 189, 248, 0.14);
   color: var(--ifm-color-primary);
-  border: 1px solid rgba(139, 92, 246, 0.35);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+}
+
+:global([data-theme='light']) .methodPOST {
+  background: rgba(3, 105, 161, 0.1);
+  border-color: rgba(3, 105, 161, 0.35);
 }
 
 .methodDELETE {
@@ -302,9 +307,15 @@
 }
 
 .methodWS {
-  background: rgba(245, 158, 11, 0.14);
-  color: #f59e0b;
-  border: 1px solid rgba(245, 158, 11, 0.3);
+  background: rgba(251, 146, 60, 0.14);
+  color: #fb923c;
+  border: 1px solid rgba(251, 146, 60, 0.32);
+}
+
+:global([data-theme='light']) .methodWS {
+  background: rgba(194, 65, 12, 0.1);
+  color: #c2410c;
+  border-color: rgba(194, 65, 12, 0.32);
 }
 
 .pathCode {

@@ -75,7 +75,7 @@ const config: Config = {
       tagName: 'meta',
       attributes: {
         name: 'theme-color',
-        content: '#0b1120',
+        content: '#000000',
       },
     },
     {

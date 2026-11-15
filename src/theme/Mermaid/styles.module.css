@@ -64,14 +64,14 @@
 /* Outbound and Return Messages */
 .container svg .message line,
 .container svg .message polyline {
-  stroke: #12C2EA;
+  stroke: #38bdf8;
   stroke-width: 1.5px;
 }
 
 /* Dashed return arrows */
 .container svg .message line[stroke-dasharray],
 .container svg .message polyline[stroke-dasharray] {
-  stroke: #a78bfa;
+  stroke: #93c5fd;
 }
 
 /* Message labels */
@@ -84,10 +84,10 @@
 
 /* Architectural Notes */
 .container svg .note polygon {
-  fill: #161824;
-  stroke: #7c3aed;
+  fill: #0c1929;
+  stroke: #38bdf8;
   stroke-width: 1px;
-  filter: drop-shadow(0 2px 6px rgba(124, 58, 237, 0.18));
+  filter: drop-shadow(0 2px 6px rgba(56, 189, 248, 0.16));
 }
 
 .container svg .note text {
@@ -99,24 +99,24 @@
 
 /* Block Containers (loop, alt, opt) */
 .container svg .block rect:first-child {
-  stroke: #4f46e5;
+  stroke: #0284c7;
   stroke-width: 1px;
   stroke-dasharray: 4 4;
-  fill: rgba(79, 70, 229, 0.04);
+  fill: rgba(56, 189, 248, 0.05);
   rx: 6px;
   ry: 6px;
 }
 
 .container svg .block rect:nth-child(2) {
-  fill: #1e1b4b;
-  stroke: #6366f1;
+  fill: #0f2544;
+  stroke: #38bdf8;
   rx: 4px;
   ry: 4px;
 }
 
 .container svg .block text {
   font-family: var(--ifm-font-family-base), -apple-system, BlinkMacSystemFont, sans-serif;
-  fill: #c7d2fe;
+  fill: #bae6fd;
   font-weight: 600;
   font-size: 11px;
 }
@@ -146,7 +146,7 @@
 
 :global([data-theme='light']) .container svg .message line[stroke-dasharray],
 :global([data-theme='light']) .container svg .message polyline[stroke-dasharray] {
-  stroke: #7c3aed;
+  stroke: #0369a1;
 }
 
 :global([data-theme='light']) .container svg .message text {
@@ -154,25 +154,25 @@
 }
 
 :global([data-theme='light']) .container svg .note polygon {
-  fill: #faf5ff;
-  stroke: #7c3aed;
-  filter: drop-shadow(0 2px 6px rgba(124, 58, 237, 0.12));
+  fill: #f0f9ff;
+  stroke: #0284c7;
+  filter: drop-shadow(0 2px 6px rgba(3, 105, 161, 0.12));
 }
 
 :global([data-theme='light']) .container svg .note text {
-  fill: #4c1d95;
+  fill: #0c4a6e;
 }
 
 :global([data-theme='light']) .container svg .block rect:first-child {
-  stroke: #7c3aed;
-  fill: rgba(124, 58, 237, 0.03);
+  stroke: #0284c7;
+  fill: rgba(14, 165, 233, 0.05);
 }
 
 :global([data-theme='light']) .container svg .block rect:nth-child(2) {
-  fill: #ede9fe;
-  stroke: #6d28d9;
+  fill: #e0f2fe;
+  stroke: #0369a1;
 }
 
 :global([data-theme='light']) .container svg .block text {
-  fill: #3730a3;
+  fill: #0c4a6e;
 }
