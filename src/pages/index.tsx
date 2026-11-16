@@ -1,42 +1,13 @@
-import React, { ReactNode, useState } from 'react';
+import React, { ReactNode } from 'react';
 import Head from '@docusaurus/Head';
-import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
-
-function CopyInstallButton(): ReactNode {
-  const [copied, setCopied] = useState(false);
-  const command = 'curl -fsSL https://raw.githubusercontent.com/goroute-ai/ai-gateway-go/main/install.sh | bash';
-
-  const handleCopy = () => {
-    if (typeof navigator !== 'undefined' && navigator.clipboard) {
-      navigator.clipboard.writeText(command);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    }
-  };
-
-  return (
-    <button
-      type="button"
-      className="home-code-hint__copy"
-      onClick={handleCopy}
-      aria-label={copied ? 'Copied!' : 'Copy install command'}
-      title={copied ? 'Copied!' : 'Copy to clipboard'}
-    >
-      {copied ? (
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-          <polyline points="20 6 9 17 4 12"></polyline>
-        </svg>
-      ) : (
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-        </svg>
-      )}
-    </button>
-  );
-}
+import DeveloperPathsSection from '../components/home/DeveloperPathsSection';
+import HeroSection from '../components/home/HeroSection';
+import PillarShowcaseBand from '../components/home/PillarShowcaseBand';
+import PlatformMetricsStrip from '../components/home/PlatformMetricsStrip';
+import styles from '../components/home/Home.module.css';
+import { PILLAR_BANDS } from '../data/homeContent';
 
 export default function Home(): ReactNode {
   const { siteConfig } = useDocusaurusContext();
@@ -48,20 +19,21 @@ export default function Home(): ReactNode {
     applicationCategory: 'DeveloperApplication',
     operatingSystem: 'Linux, macOS, Windows',
     programmingLanguage: 'Go',
-    softwareVersion: '1.7.0',
+    softwareVersion: '1.8.0',
     license: 'https://opensource.org/licenses/Apache-2.0',
     url: siteUrl,
     image: `${siteUrl}/img/og-card.png`,
     codeRepository: 'https://github.com/goroute-ai/ai-gateway-go',
     description:
-      'Pure Go enterprise AI gateway and embeddable Go SDK with 73+ provider profiles, virtual API keys, micro-dollar FinOps, OpenTelemetry, MCP Virtual Hub, and A2A.',
+      'Pure Go enterprise AI gateway and embeddable Go SDK with 73+ provider profiles, Two-Layer Guardrails with 19 drivers, virtual API keys, micro-dollar FinOps, OpenTelemetry, MCP Virtual Hub, and A2A.',
     featureList: [
-      '73+ LLM provider profiles and 23 /v1 data plane routes',
+      '73+ LLM provider profiles and 24 primary /v1 data plane routes (73 Unified OpenAPI paths)',
       'Scoped Virtual API Keys, 4-layer RBAC, AES-256-GCM vault, and SSRF firewall',
+      'Two-Layer Guardrails Engine with 19 drivers, 7 hooks, Starlark custom_code, and WithGuardrailScanner',
       '64-bit integer micro-dollar FinOps ledger and Redis Lua rate limits',
-      'OpenTelemetry distributed tracing, Prometheus metrics, and embedded Operator Web UI',
-      'MCP Virtual Hub with stdio sandboxing and A2A v1.0 protocol bridge',
-      'Zero-hop embeddable Go SDK (pkg/gateway)',
+      'OpenTelemetry distributed tracing, Prometheus metrics, and Light/Dark Embedded Operator Web UI',
+      'MCP Virtual Hub with zero-trust tool governance and A2A v1.0 protocol bridge',
+      'Embeddable Go SDK (pkg/gateway)',
     ],
     offers: {
       '@type': 'Offer',
@@ -76,58 +48,35 @@ export default function Home(): ReactNode {
   return (
     <Layout
       title="Go AI Gateway & Enterprise Control Plane"
-      description="Embeddable Go AI SDK and standalone LLM gateway with 73+ providers, virtual keys, micro-dollar FinOps, OpenTelemetry observability, MCP hub, and A2A."
+      description="Embeddable Go AI SDK and standalone LLM gateway with 73+ providers, Two-Layer Guardrails, micro-dollar FinOps, OpenTelemetry observability, MCP hub, and A2A."
     >
       <Head>
         <meta property="og:type" content="website" />
         <script type="application/ld+json">{JSON.stringify(softwareAppSchema)}</script>
       </Head>
-      <main className="home-page">
-        <section className="home-hero">
-          <div className="home-hero__copy">
-            <p className="home-eyebrow">
-              GoRoute · Enterprise AI Control Plane ·{' '}
-              <Link className="home-eyebrow__release" to="/docs/releases">
-                v1.7.0
-              </Link>
+      <main className={`home-page ${styles.homeShell}`}>
+        <HeroSection />
+        <PlatformMetricsStrip />
+
+        <section className={styles.pillarsWrapper} aria-labelledby="control-plane-modules-title">
+          <div className={styles.sectionIntro}>
+            <div>
+              <p className={styles.sectionEyebrow}>Five Integrated Control Plane Modules</p>
+              <h2 id="control-plane-modules-title" className={styles.sectionTitle}>
+                Built top to bottom for production AI infrastructure
+              </h2>
+            </div>
+            <p className={styles.sectionLead}>
+              Every layer of the GoRoute control plane works together in a single static binary or embedded Go SDK.
             </p>
-            <h1>A Go AI Gateway and Control Plane for Production AI.</h1>
-            <p className="home-hero__lead">
-              Build with an embeddable Go SDK or deploy a standalone gateway to route models, govern access, manage AI costs, observe traffic, and connect agents.
-            </p>
-            <div className="home-actions">
-              <Link className="button button--primary button--lg" to="/docs/start/overview">
-                Explore Product Capabilities <span aria-hidden="true">→</span>
-              </Link>
-              <Link className="button button--secondary button--lg" to="/docs/start/quickstart-sdk">
-                Start with the Go SDK
-              </Link>
-            </div>
           </div>
-          <div className="home-hero__diagram" aria-label="Request flow from Go application through GoRoute to an AI provider">
-            <div className="flow-node flow-node--client">
-              <span>YOUR APP / CLIENTS</span>
-              <strong>Go SDK & HTTP / WS</strong>
-            </div>
-            <div className="flow-line"><span>inspect & route</span></div>
-            <div className="flow-node flow-node--gateway">
-              <span>GOROUTE AI CONTROL PLANE</span>
-              <strong>Gateway · Governance · FinOps · Agents</strong>
-            </div>
-            <div className="flow-line"><span>upstream dialect</span></div>
-            <div className="flow-node flow-node--provider">
-              <span>UPSTREAM PROVIDERS</span>
-              <strong>Universal Model Integrations</strong>
-            </div>
-          </div>
-          <div className="home-code-hint">
-            <div className="home-code-hint__content">
-              <span className="home-code-hint__prompt">$</span>
-              <code>curl -fsSL https://raw.githubusercontent.com/goroute-ai/ai-gateway-go/main/install.sh | bash</code>
-            </div>
-            <CopyInstallButton />
-          </div>
+
+          {PILLAR_BANDS.map((pillar) => (
+            <PillarShowcaseBand key={pillar.id} pillar={pillar} />
+          ))}
         </section>
+
+        <DeveloperPathsSection />
       </main>
     </Layout>
   );

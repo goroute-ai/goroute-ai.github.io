@@ -437,7 +437,7 @@ export function main() {
   }
 
   const fullParts = [
-    '# GoRoute AI Control Plane — Complete Documentation Corpus',
+    '# GoRoute AI Control Plane: Complete Documentation Corpus',
     '',
     `Generated from ${SITE_ROOT}`,
     '',

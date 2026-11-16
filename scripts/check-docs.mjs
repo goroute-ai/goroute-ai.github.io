@@ -170,6 +170,9 @@ function main() {
       if (HARDCODED_BASE_PATTERN.test(lines[i])) {
         errors.push(`[url-check] Hardcoded /ai-gateway-go-docs/docs/ URL in ${rel}:${i + 1}`);
       }
+      if (!rel.startsWith('static' + path.sep) && rel !== 'README.md' && lines[i].includes('\u2014')) {
+        errors.push(`[dash-check] Em-dash (U+2014) found in ${rel}:${i + 1}`);
+      }
     }
   }
 

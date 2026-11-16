@@ -24,7 +24,7 @@ The GoRoute Admin Control Plane (`/admin/v1/*`) provides unified APIs for tenant
 | 1 | **Organizations** | `POST/GET /admin/v1/organizations` | Tenant org creation and budget caps |
 | 2 | **Subscriptions** | `POST/GET /admin/v1/organizations/{orgID}/subscriptions` | Layer 2 provider enablement |
 | 3 | **Model Policies** | `POST/GET /admin/v1/organizations/{orgID}/models` | Layer 3 org model overrides and token ceilings |
-| 4 | **Guardrails & Simulator** | `POST/GET /admin/v1/organizations/{orgID}/guardrails`, `/simulate` | PII redaction, secret scanning, stateless testing |
+| 4 | **Guardrails & Simulator** | `POST/GET /admin/v1/organizations/{orgID}/guardrails`, `/simulate`, `/guardrail-definitions`, `/guardrail-bindings`, `/tool-policies`, `/guardrail-usage` | PII/secret scanning, named registry (19 drivers, Starlark), hierarchical bindings, tool taint policies, and micro-dollar guardrail usage |
 | 5 | **Teams** | `POST/GET /admin/v1/teams` | Departmental team isolation and model scopes |
 | 6 | **Users** | `POST/GET /admin/v1/users` | User directory and role-based permissions |
 | 7 | **Virtual API Keys** | `POST/GET /admin/v1/keys`, `POST .../revoke`, `DELETE` | Scoped API key issuance and instant revocation |

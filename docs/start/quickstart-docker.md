@@ -1,11 +1,11 @@
 ---
-title: Quickstart — Docker Compose
+title: "Quickstart: Docker Compose"
 sidebar_position: 4
 description: Deploy GoRoute AI Gateway with PostgreSQL 16+ and Redis 7+ using Docker Compose and explore the Operator UI.
 keywords: [GoRoute Docker Compose, PostgreSQL setup, Redis setup, Operator UI, quickstart]
 ---
 
-# Quickstart — Docker Compose
+# Quickstart: Docker Compose
 
 Run GoRoute AI Gateway in a fully containerized production topology with PostgreSQL 16+ for persistent multi-tenant metadata and Redis 7+ for distributed sliding-window rate limiting.
 

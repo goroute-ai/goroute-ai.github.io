@@ -1,13 +1,13 @@
 ---
 title: Gateway Data Plane API Reference
 sidebar_position: 2
-description: Reference for all 23 GoRoute AI Gateway /v1 data plane routes (26 operations), request/response schemas, reasoning normalization, and telemetry headers.
+description: Reference for all 24 GoRoute AI Gateway /v1 data plane routes, request/response schemas, reasoning normalization, guardrails evaluation, and telemetry headers.
 keywords: [gateway data plane api, /v1 chat completions, openai compatible api, responses api, realtime websocket]
 ---
 
 # Gateway Data Plane API Reference
 
-GoRoute AI Gateway exposes an OpenAI-compatible data plane supporting **23 primary `/v1` paths (26 HTTP operations)** across **73 `ProviderType` profiles** (plus `CustomOpenAICompatible`). All routes execute with sub-2ms gateway overhead, automated circuit breaking, cross-provider fallbacks, and real-time micro-dollar accounting.
+GoRoute AI Gateway exposes an OpenAI-compatible data plane supporting **24 primary `/v1` paths** across **73 `ProviderType` profiles** (plus `CustomOpenAICompatible`). All routes execute with sub-2ms gateway overhead, automated circuit breaking, cross-provider fallbacks, and real-time micro-dollar accounting.
 
 > [!NOTE]
 > All data plane routes accept standard OpenAI SDKs (Python, TypeScript, Go) and raw HTTP clients. Set your client `base_url` to `http://localhost:8080/v1` and supply a Virtual API Key (`sk-gw-...`) via the `Authorization` header.
@@ -50,7 +50,7 @@ In addition to logical aliases (`fast`, `reasoning`), GoRoute allows clients to 
 
 ---
 
-## Summary of All 23 Primary `/v1` Data Plane Paths (26 HTTP Operations)
+## Summary of All 24 Primary `/v1` Data Plane Paths
 
 | HTTP Method | Route | Description |
 | :--- | :--- | :--- |
@@ -80,6 +80,7 @@ In addition to logical aliases (`fast`, `reasoning`), GoRoute allows clients to 
 | `POST` | `/v1/batches/{batch_id}/cancel` | Abort in-flight batch execution |
 | `POST` | `/v1/responses` | OpenAI Responses API translation bridge |
 | `GET` | `/v1/realtime` | Full-duplex OpenAI Realtime WebSocket session |
+| `POST` | `/v1/guardrails/apply` | Standalone Pipeline v2 guardrail evaluation without upstream LLM call |
 
 ---
 

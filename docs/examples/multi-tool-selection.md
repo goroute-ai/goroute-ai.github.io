@@ -88,7 +88,7 @@ func main() {
 	demoutil.Info("Server Registered", "Enterprise Financial Suite")
 	demoutil.Info("Total Aggregated Tools", fmt.Sprintf("%d tools indexed", count))
 	for _, t := range tools {
-		demoutil.Info("Discovered Tool", fmt.Sprintf("%-18s — %v", t["name"], t["description"]))
+		demoutil.Info("Discovered Tool", fmt.Sprintf("%-18s: %v", t["name"], t["description"]))
 	}
 
 	demoutil.Success("Hub Unification", "Multiple enterprise endpoints aggregated under a unified schema")

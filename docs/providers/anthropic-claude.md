@@ -9,7 +9,7 @@ keywords: [Anthropic Claude, Claude Messages API, extended thinking, role altern
 
 GoRoute provides a native adapter for **Anthropic**, translating standard OpenAI chat completion and tool calling requests into Anthropic's **Messages API** (`POST /v1/messages`). The model IDs below are provider-side examples, not an exhaustive or guaranteed-current list of models supported by every GoRoute deployment. Check [Anthropic's current model status](https://docs.anthropic.com/en/docs/about-claude/model-deprecations) and the [model overview](https://docs.anthropic.com/en/docs/about-claude/models), then confirm which models your key can use with [`GET /v1/models`](/docs/api/gateway-api#4-model-catalogue-inventory-get-v1models).
 
-The adapter natively implements Anthropic-specific protocol requirements—such as extended thinking budgets, strict user/assistant turn alternation, tool use consolidation, and Server-Sent Events (SSE) stream translation.
+The adapter natively implements Anthropic-specific protocol requirements (including extended thinking budgets, strict user/assistant turn alternation, tool use consolidation, and Server-Sent Events (SSE) stream translation).
 
 ---
 

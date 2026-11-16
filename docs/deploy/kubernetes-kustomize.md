@@ -102,7 +102,7 @@ resources:
 images:
   - name: goroute/ai-gateway
     newName: ghcr.io/goroute-ai/ai-gateway-go
-    newTag: v1.7.0
+    newTag: v1.8.0
 
 patches:
   - target:

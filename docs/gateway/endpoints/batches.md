@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 
 # Asynchronous Batch Processing API
 
-For high-volume, non-interactive workloads—such as dataset labeling, offline evaluation, bulk summarization, and synthetic data generation—GoRoute AI Gateway provides the **OpenAI-Compatible Batch Processing API**.
+For high-volume, non-interactive workloads (such as dataset labeling, offline evaluation, bulk summarization, and synthetic data generation), GoRoute AI Gateway provides the **OpenAI-Compatible Batch Processing API**.
 
 Batches decouple request ingestion from immediate execution. By accepting a 24-hour completion SLA, workloads run over off-peak provider headroom at up to a **50% discount** compared to synchronous on-demand inference.
 

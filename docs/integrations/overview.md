@@ -41,14 +41,14 @@ GoRoute accepts either standard credential header:
 ## Integration Guides
 
 ### Coding Agents & IDEs
-- [**Claude Code**](/docs/integrations/claude-code) — Route Claude Code through `/anthropic` using `ANTHROPIC_BASE_URL` and `ANTHROPIC_AUTH_TOKEN` or `ANTHROPIC_API_KEY`.
-- [**Cursor, Continue & Cline**](/docs/integrations/cursor-and-ides) — Configure IDE extensions against `/v1` with Virtual Keys and unified model aliases.
-- [**Codex CLI, Gemini CLI & OpenWebUI**](/docs/integrations/codex-and-cli-agents) — Connect terminal coding agents and self-hosted chat UIs via `/v1`.
+- [**Claude Code**](/docs/integrations/claude-code): Route Claude Code through `/anthropic` using `ANTHROPIC_BASE_URL` and `ANTHROPIC_AUTH_TOKEN` or `ANTHROPIC_API_KEY`.
+- [**Cursor, Continue & Cline**](/docs/integrations/cursor-and-ides): Configure IDE extensions against `/v1` with Virtual Keys and unified model aliases.
+- [**Codex CLI, Gemini CLI & OpenWebUI**](/docs/integrations/codex-and-cli-agents): Connect terminal coding agents and self-hosted chat UIs via `/v1`.
 
 ### Official Language SDKs & Agent Frameworks
-- [**OpenAI SDKs (Python & TypeScript)**](/docs/integrations/openai-sdks) — Chat completions, SSE streaming, embeddings, Responses API, and Realtime WebSockets.
-- [**Anthropic SDKs (Python & TypeScript)**](/docs/integrations/anthropic-sdks) — Native `/anthropic/v1/messages` and `/anthropic/v1/messages/count_tokens`.
-- [**Agent Frameworks**](/docs/integrations/agent-frameworks) — LangChain, OpenAI Agents SDK, and Google ADK with GoRoute MCP and A2A endpoints.
+- [**OpenAI SDKs (Python & TypeScript)**](/docs/integrations/openai-sdks): Chat completions, SSE streaming, embeddings, Responses API, and Realtime WebSockets.
+- [**Anthropic SDKs (Python & TypeScript)**](/docs/integrations/anthropic-sdks): Native `/anthropic/v1/messages` and `/anthropic/v1/messages/count_tokens`.
+- [**Agent Frameworks**](/docs/integrations/agent-frameworks): LangChain, OpenAI Agents SDK, and Google ADK with GoRoute MCP and A2A endpoints.
 
 ### Observability & Telemetry
-- [**OpenTelemetry & Prometheus**](/docs/integrations/otel-and-prometheus) — OTLP/HTTP span export (`tracing.otlp_endpoint`, `gen_ai.*` attributes, W3C `traceparent`) and Prometheus `/metrics` scraping.
+- [**OpenTelemetry & Prometheus**](/docs/integrations/otel-and-prometheus): OTLP/HTTP span export (`tracing.otlp_endpoint`, `gen_ai.*` attributes, W3C `traceparent`) and Prometheus `/metrics` scraping.

@@ -765,11 +765,12 @@ main[class*='docMainContainer'] {
 
 .home-code-hint {
   grid-column: 1 / -1;
+  justify-self: start;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.85rem;
-  width: 100%;
+  gap: 1rem;
+  width: fit-content;
   max-width: 100%;
   margin-top: 0.25rem;
   padding: 0.6rem 0.75rem 0.6rem 1.1rem;
@@ -1102,6 +1103,9 @@ main[class*='docMainContainer'] {
 }
 
 @media (max-width: 820px) {
+  .home-code-hint {
+    width: 100%;
+  }
   .home-code-hint code {
     white-space: normal;
     overflow-wrap: anywhere;

@@ -51,37 +51,37 @@ The examples module declares its Go toolchain version in `examples/go.mod`. See 
 ## Examples by task
 
 ### Fundamentals
-- [**Hello Gateway**](/docs/examples/hello-gateway) — Minimal in-process gateway setup and synchronous chat.
-- [**System Prompts**](/docs/examples/system-prompt) — Persona steering using `gateway.WithSystem(...)`.
-- [**Streaming Tokens**](/docs/examples/streaming-tokens) — Zero-buffer SSE token streaming via `StreamChat`.
-- [**Sampling & Limits**](/docs/examples/temperature-and-sampling) — Deterministic outputs and minimal token capping.
-- [**Structured JSON**](/docs/examples/json-mode-structured-output) — Guaranteed machine-readable JSON object output.
-- [**Multi-Turn Memory**](/docs/examples/multi-turn-conversation) — Maintaining conversation history across multiple turns.
+- [**Hello Gateway**](/docs/examples/hello-gateway): Minimal in-process gateway setup and synchronous chat.
+- [**System Prompts**](/docs/examples/system-prompt): Persona steering using `gateway.WithSystem(...)`.
+- [**Streaming Tokens**](/docs/examples/streaming-tokens): Zero-buffer SSE token streaming via `StreamChat`.
+- [**Sampling & Limits**](/docs/examples/temperature-and-sampling): Deterministic outputs and minimal token capping.
+- [**Structured JSON**](/docs/examples/json-mode-structured-output): Guaranteed machine-readable JSON object output.
+- [**Multi-Turn Memory**](/docs/examples/multi-turn-conversation): Maintaining conversation history across multiple turns.
 
 ### Multi-Provider Integrations
-- [**OpenAI Direct**](/docs/examples/openai-direct) — Connecting to OpenAI with `openai/gpt-4o-mini`.
-- [**Anthropic Direct**](/docs/examples/anthropic-direct) — Connecting to Anthropic with `anthropic/claude-haiku-4-5-20251001`.
-- [**Google Gemini Direct**](/docs/examples/gemini-direct) — Connecting to Gemini with `gemini/gemini-2.5-flash-lite`.
-- [**Local Ollama**](/docs/examples/local-ollama) — Self-hosted offline inference on port 11434.
-- [**Unified Model Aliases**](/docs/examples/unified-model-alias) — Logical aliases decoupling callers from specific vendors.
+- [**OpenAI Direct**](/docs/examples/openai-direct): Connecting to OpenAI with `openai/gpt-4o-mini`.
+- [**Anthropic Direct**](/docs/examples/anthropic-direct): Connecting to Anthropic with `anthropic/claude-haiku-4-5-20251001`.
+- [**Google Gemini Direct**](/docs/examples/gemini-direct): Connecting to Gemini with `gemini/gemini-2.5-flash-lite`.
+- [**Local Ollama**](/docs/examples/local-ollama): Self-hosted offline inference on port 11434.
+- [**Unified Model Aliases**](/docs/examples/unified-model-alias): Logical aliases decoupling callers from specific vendors.
 
 ### Tool Calling & Autonomous Agents
-- [**Tool Definition**](/docs/examples/single-tool-definition) — Registering tool schemas via Model Context Protocol (MCP).
-- [**Tool Execution**](/docs/examples/tool-execution-callback) — In-process tool execution and result returning.
-- [**Multi-Tool Inventory**](/docs/examples/multi-tool-selection) — Aggregating multiple tool servers into a single schema.
-- [**Autonomous Agent Loop**](/docs/examples/autonomous-tool-loop) — Multi-turn self-orchestrating loop with zero human intervention.
+- [**Tool Definition**](/docs/examples/single-tool-definition): Registering tool schemas via Model Context Protocol (MCP).
+- [**Tool Execution**](/docs/examples/tool-execution-callback): In-process tool execution and result returning.
+- [**Multi-Tool Inventory**](/docs/examples/multi-tool-selection): Aggregating multiple tool servers into a single schema.
+- [**Autonomous Agent Loop**](/docs/examples/autonomous-tool-loop): Multi-turn self-orchestrating loop with zero human intervention.
 
 ### Traffic Routing & Outage Resiliency
-- [**Outage Fallback Chains**](/docs/examples/failover-fallback-chain) — Automatic 503 outage recovery with secondary models.
-- [**Round-Robin Balancer**](/docs/examples/round-robin-balancer) — Uniform stateless load balancing.
-- [**Weighted Shuffle Routing**](/docs/examples/weighted-shuffle-routing) — Proportionate canary and cost-steered traffic splitting.
-- [**Least-Latency EWMA**](/docs/examples/least-latency-ewma) — Peak-EWMA routing favoring lowest latency endpoints.
-- [**Circuit Breakers**](/docs/examples/circuit-breaker) — Fast-failing broken backends to protect caller latency.
+- [**Outage Fallback Chains**](/docs/examples/failover-fallback-chain): Automatic 503 outage recovery with secondary models.
+- [**Round-Robin Balancer**](/docs/examples/round-robin-balancer): Uniform stateless load balancing.
+- [**Weighted Shuffle Routing**](/docs/examples/weighted-shuffle-routing): Proportionate canary and cost-steered traffic splitting.
+- [**Least-Latency EWMA**](/docs/examples/least-latency-ewma): Peak-EWMA routing favoring lowest latency endpoints.
+- [**Circuit Breakers**](/docs/examples/circuit-breaker): Fast-failing broken backends to protect caller latency.
 
 ### Enterprise FinOps, Protocols & Microservices
-- [**Exact-Match Cache**](/docs/examples/exact-match-cache) — Sub-millisecond SHA-256 caching for identical prompts.
-- [**Sliding-Window Rate Limits**](/docs/examples/sliding-window-rate-limiting) — Strict RPM and TPM quota enforcement.
-- [**Virtual Keys & Budgets**](/docs/examples/virtual-keys-and-budgets) — Department keys, micro-dollar tracking, and revocation.
-- [**MCP Virtual Hub**](/docs/examples/mcp-virtual-hub) — Model Context Protocol Virtual Hub & REST bridge.
-- [**A2A Agent Network**](/docs/examples/a2a-agent-network) — Cryptographic Agent-to-Agent discovery and dispatch.
-- [**Embedded Microservice**](/docs/examples/embedded-http-microservice) — Production HTTP server with Kubernetes probes.
+- [**Exact-Match Cache**](/docs/examples/exact-match-cache): Sub-millisecond SHA-256 caching for identical prompts.
+- [**Sliding-Window Rate Limits**](/docs/examples/sliding-window-rate-limiting): Strict RPM and TPM quota enforcement.
+- [**Virtual Keys & Budgets**](/docs/examples/virtual-keys-and-budgets): Department keys, micro-dollar tracking, and revocation.
+- [**MCP Virtual Hub**](/docs/examples/mcp-virtual-hub): Model Context Protocol Virtual Hub & REST bridge.
+- [**A2A Agent Network**](/docs/examples/a2a-agent-network): Cryptographic Agent-to-Agent discovery and dispatch.
+- [**Embedded Microservice**](/docs/examples/embedded-http-microservice): Production HTTP server with Kubernetes probes.

@@ -300,6 +300,20 @@
   border-color: rgba(3, 105, 161, 0.35);
 }
 
+.methodPUT,
+.methodPATCH {
+  background: rgba(245, 158, 11, 0.14);
+  color: #f59e0b;
+  border: 1px solid rgba(245, 158, 11, 0.32);
+}
+
+:global([data-theme='light']) .methodPUT,
+:global([data-theme='light']) .methodPATCH {
+  background: rgba(180, 83, 9, 0.1);
+  color: #b45309;
+  border-color: rgba(180, 83, 9, 0.32);
+}
+
 .methodDELETE {
   background: rgba(239, 68, 68, 0.14);
   color: #ef4444;

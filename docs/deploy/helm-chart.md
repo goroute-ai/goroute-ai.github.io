@@ -2,13 +2,13 @@
 id: helm-chart
 title: "Helm Chart Deployment"
 sidebar_position: 8
-description: "Deploy GoRoute AI Gateway on Kubernetes using the official Helm chart (v0.2.0 / v1.7.0) with HPA, PDB, NetworkPolicy, and migration hooks."
+description: "Deploy GoRoute AI Gateway on Kubernetes using the official Helm chart (v0.3.0 / v1.8.0) with HPA, PDB, NetworkPolicy, and migration hooks."
 keywords: [goroute helm chart, kubernetes deployment, helm values, hpa autoscaling, networkpolicy]
 ---
 
 # Helm Chart Deployment
 
-GoRoute AI Gateway ships an official Kubernetes Helm chart (`goroute`, chart version `0.2.0`, app version `1.7.0`) under [`deployments/helm/goroute/`](https://github.com/goroute-ai/ai-gateway-go/tree/main/deployments/helm/goroute) and as a packaged `.tgz` archive on the GitHub Releases page.
+GoRoute AI Gateway ships an official Kubernetes Helm chart (`goroute`, chart version `0.3.0`, app version `1.8.0`) under [`deployments/helm/goroute/`](https://github.com/goroute-ai/ai-gateway-go/tree/main/deployments/helm/goroute) and as a packaged `.tgz` archive on the GitHub Releases page.
 
 For raw manifests without Helm, see [Kubernetes & Kustomize Deployment](./kubernetes-kustomize.md).
 
@@ -33,7 +33,7 @@ In production, keep `postgresql.enabled: false` and `redis.enabled: false` when 
 
 ```bash
 # Option A: Install directly from a release .tgz archive
-helm upgrade --install goroute ./goroute-0.2.0.tgz \
+helm upgrade --install goroute ./goroute-0.3.0.tgz \
   --namespace goroute-prod --create-namespace \
   --set secrets.existingSecret="goroute-prod-secrets" \
   --set migration.enabled=true
@@ -71,7 +71,7 @@ helm upgrade --install goroute deployments/helm/goroute \
 | :--- | :--- | :--- |
 | `replicaCount` | `2` | Static pod count (used only when `autoscaling.enabled: false`). |
 | `image.repository` | `ghcr.io/goroute-ai/ai-gateway-go` | Container image repository. |
-| `image.tag` | `""` | Overrides `Chart.AppVersion` (`1.7.0`) when non-empty. |
+| `image.tag` | `""` | Overrides `Chart.AppVersion` (`1.8.0`) when non-empty. |
 | `image.pullPolicy` | `IfNotPresent` | Kubernetes image pull policy. |
 | `service.type` | `ClusterIP` | Kubernetes Service type. |
 | `service.port` | `8080` | HTTP data plane, `/admin/v1`, `/ui/`, and `/metrics` port. |

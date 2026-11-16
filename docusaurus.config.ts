@@ -6,7 +6,7 @@ const SITE_URL = process.env.DOCUSAURUS_URL || 'https://goroute-ai.github.io';
 
 const config: Config = {
   title: 'GoRoute AI Control Plane',
-  tagline: 'Enterprise AI Control Plane — Gateway, Governance, FinOps, Observability & Agent Management',
+  tagline: 'Enterprise AI Control Plane: Gateway, Governance, FinOps, Observability & Agent Management',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
@@ -91,7 +91,7 @@ const config: Config = {
             '@id': `${SITE_URL}/#organization`,
             name: 'GoRoute AI',
             description:
-              'Enterprise AI Control Plane in pure Go — AI Gateway, Governance, FinOps, Observability, and Agent Management.',
+              'Enterprise AI Control Plane in pure Go: AI Gateway, Governance, FinOps, Observability, and Agent Management.',
             url: SITE_URL,
             logo: {
               '@type': 'ImageObject',
@@ -107,7 +107,7 @@ const config: Config = {
             url: SITE_URL,
             name: 'GoRoute AI Control Plane',
             description:
-              'Enterprise AI Control Plane in pure Go — AI Gateway, Governance, FinOps, Observability, and Agent Management.',
+              'Enterprise AI Control Plane in pure Go: AI Gateway, Governance, FinOps, Observability, and Agent Management.',
             publisher: {
               '@id': `${SITE_URL}/#organization`,
             },
@@ -330,7 +330,7 @@ const config: Config = {
       { property: 'og:image:height', content: '630' },
       {
         property: 'og:image:alt',
-        content: 'GoRoute AI Control Plane — Enterprise AI Gateway, Governance, FinOps, Observability & Agent Management in Pure Go',
+        content: 'GoRoute AI Control Plane: Enterprise AI Gateway, Governance, FinOps, Observability & Agent Management in Pure Go',
       },
       { name: 'twitter:card', content: 'summary_large_image' },
     ],

@@ -175,6 +175,7 @@ const sidebars: SidebarsConfig = {
       collapsed: true,
       items: [
         'releases/index',
+        'releases/v1.8.0',
         'releases/v1.7.0',
         'releases/v1.6.0',
         'releases/v1.5.0',

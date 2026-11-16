@@ -1,4 +1,4 @@
-# GoRoute AI Control Plane — Complete Documentation Corpus
+# GoRoute AI Control Plane: Complete Documentation Corpus
 
 Generated from https://goroute-ai.github.io/
 
@@ -11,13 +11,13 @@ Section: Control Plane Documentation > Start Here
 
 # GoRoute AI Control Plane Overview
 
-GoRoute is a high-throughput, low-overhead **Enterprise AI Control Plane** engineered in pure Go. It unifies **73 `ProviderType` profiles** (plus `CustomOpenAICompatible`), **23 primary `/v1` data plane paths (26 HTTP operations)**, a Model Context Protocol (MCP 2026-07-28) virtual hub, and a Linux Foundation Agent-to-Agent (A2A v1.0) bridge into five integrated control-plane modules:
+GoRoute is a high-throughput, low-overhead **Enterprise AI Control Plane** engineered in pure Go. It unifies **73 `ProviderType` profiles** (plus `CustomOpenAICompatible`), **24 primary `/v1` data plane paths (`73` Unified OpenAPI paths)**, a Model Context Protocol (MCP 2026-07-28) virtual hub, and a Linux Foundation Agent-to-Agent (A2A v1.0) bridge into five integrated control-plane modules:
 
-1. **[AI Gateway — Traffic Management & Model Routing](https://goroute-ai.github.io/docs/gateway)**: Multi-provider `/v1/*` and `/anthropic/v1/*` data plane (23 primary `/v1` paths / 26 operations), `SupportedOperations` enforcement, Stage 1 complexity classifier, Stage 2 load balancers (6 strategies including `round-robin`), 3-state Redis circuit breakers, bounded fallback chains, and 2-tier exact-match caching.
-2. **[AI Governance — Security, Policies & Compliance](https://goroute-ai.github.io/docs/governance)**: 4-layer access hierarchy, Operator RBAC + OIDC/JWT, AES-256-GCM Credentials Vault, scoped Virtual Keys (`sk-gw-...`), streaming & `logging_only` guardrails, outbound SSRF firewall, and HTTP security headers.
-3. **[AI FinOps — Cost Management & Optimization](https://goroute-ai.github.io/docs/finops)**: 64-bit integer micro-dollar ledger (`$1 = 1,000,000 µ$`), cache-write & modality pricing (`0007`/`0012`), `unpriced_requests` tracking, pre-flight upper-bound budget reservations, durable PostgreSQL spend & budget-reset outboxes (`0008`/`0011`/`0014`), Redis Lua rate limits, and pre-flight tokenization.
-4. **[AI Observability — Monitoring, Tracing & Evaluation](https://goroute-ai.github.io/docs/deploy/observability)**: OTLP/HTTP distributed tracing (`gen_ai.*`, W3C `traceparent`), Prometheus `/metrics`, Vitter Algorithm R latency reservoirs, Embedded Operator Console (`/ui/*`), Guardrails Policy Simulator, and secret-scrubbed `slog` logs.
-5. **[AI Agent Management — MCP, Tools & Agent Access](https://goroute-ai.github.io/docs/agents)**: MCP Virtual Hub, REST bridge (`/mcp-rest/*`), progressive discovery, sandboxed Stdio & SHA-256 tool pinning, MRTR AEAD tokens, A2A signed Agent Cards (JCS/JWS) & native gRPC, autonomous tool loops, and coding-agent/framework access control.
+1. **[AI Gateway: Traffic Management & Model Routing](https://goroute-ai.github.io/docs/gateway)**: Multi-provider `/v1/*` and `/anthropic/v1/*` data plane (24 primary `/v1` paths), `SupportedOperations` enforcement, Stage 1 complexity classifier, Stage 2 load balancers (6 strategies including `round-robin`), 3-state Redis circuit breakers, bounded fallback chains, and 2-tier exact-match caching.
+2. **[AI Governance: Security, Policies & Compliance](https://goroute-ai.github.io/docs/governance)**: 4-layer access hierarchy, Operator RBAC + OIDC/JWT, AES-256-GCM Credentials Vault, scoped Virtual Keys (`sk-gw-...`), Two-Layer Guardrails Engine (19 drivers, 7 hooks, Starlark `custom_code`, `WithGuardrailScanner`, `POST /v1/guardrails/apply`), outbound SSRF firewall, and HTTP security headers.
+3. **[AI FinOps: Cost Management & Optimization](https://goroute-ai.github.io/docs/finops)**: 64-bit integer micro-dollar ledger (`$1 = 1,000,000 µ$`), cache-write & modality pricing (`0007`/`0012`), `unpriced_requests` tracking, pre-flight upper-bound budget reservations, durable PostgreSQL spend & budget-reset outboxes (`0008`/`0011`/`0014`), Redis Lua rate limits, and pre-flight tokenization.
+4. **[AI Observability: Monitoring, Tracing & Evaluation](https://goroute-ai.github.io/docs/deploy/observability)**: OTLP/HTTP distributed tracing (`gen_ai.*`, `guardrail.evaluate`, W3C `traceparent`), Prometheus `/metrics`, Vitter Algorithm R latency reservoirs, Light/Dark Embedded Operator Console (`/ui/`) with 4-Tab Guardrails Console, and secret-scrubbed `slog` logs.
+5. **[AI Agent Management: MCP, Tools & Agent Access](https://goroute-ai.github.io/docs/agents)**: MCP Virtual Hub, REST bridge (`/mcp-rest/*`), progressive discovery, sandboxed Stdio & SHA-256 tool pinning, zero-trust tool taint policies, MRTR AEAD tokens, A2A signed Agent Cards (JCS/JWS) & native gRPC, autonomous tool loops, and coding-agent/framework access control.
 
 ![GoRoute AI Gateway Architecture](https://goroute-ai.github.io/img/architecture.png)
 
@@ -34,10 +34,10 @@ Install the latest precompiled GoRoute binary for your OS (macOS, Linux, Windows
 curl -fsSL https://raw.githubusercontent.com/goroute-ai/ai-gateway-go/main/install.sh | bash
 ```
 
-To install a specific version pin (such as `v1.7.0`):
+To install a specific version pin (such as `v1.8.0`):
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/goroute-ai/ai-gateway-go/main/install.sh | bash -s -- v1.7.0
+curl -fsSL https://raw.githubusercontent.com/goroute-ai/ai-gateway-go/main/install.sh | bash -s -- v1.8.0
 ```
 
 > [!TIP]
@@ -105,7 +105,7 @@ Every inference request traversing GoRoute undergoes sub-2ms processing on the h
 
 ## Core Capabilities
 
-- **23 Primary `/v1` Data Plane Paths (26 HTTP Operations)**: Unified endpoints for Chat Completions, Text Completions, Vector Embeddings, Reranking, Moderation, Anthropic Messages, Tokenization, Audio (STT & TTS), Image Generation/Edits/Variations, Stateful Tenant Files, Asynchronous Batches, Responses API, and Realtime WebSockets.
+- **24 Primary `/v1` Data Plane Paths (`73` Unified OpenAPI Paths)**: Unified endpoints for Chat Completions, Text Completions, Vector Embeddings, Reranking, Moderation, Anthropic Messages, Tokenization, Standalone Guardrails Evaluation (`/v1/guardrails/apply`), Audio (STT & TTS), Image Generation/Edits/Variations, Stateful Tenant Files, Asynchronous Batches, Responses API, and Realtime WebSockets.
 - **73 `ProviderType` Profiles**: Native adapters for dedicated cloud providers (OpenAI, Anthropic Claude, Google Gemini, AWS Bedrock, Azure OpenAI, Google Vertex AI, Cohere, Mistral, Ollama), 60+ built-in and extended OpenAI-compatible dialect profiles, and `CustomOpenAICompatible`.
 - **Agentic Protocols Built-In**: Native Model Context Protocol (MCP) virtual hub with tool deduplication and progressive discovery, alongside Linux Foundation Agent-to-Agent (A2A) cryptographic cards, message dispatch, and gRPC streaming.
 - **Enterprise FinOps**: Real-time micro-dollar ledger ($1 = 1,000,000 µ$) with multi-tenant budgeting, spend summaries, and immutable audit logs.
@@ -115,30 +115,30 @@ Every inference request traversing GoRoute undergoes sub-2ms processing on the h
 
 ## Choose Your Path
 
-Choose the path that matches what you are building — embed GoRoute inside a Go service, run it as a shared HTTP/gRPC gateway, or govern tools and coding agents:
+Choose the path that matches what you are building: embed GoRoute inside a Go service, run it as a shared HTTP/gRPC gateway, or govern tools and coding agents.
 
-- **Path A — Build a Go Application (`pkg/gateway`)**: Start with the [Go SDK Overview](https://goroute-ai.github.io/docs/sdk/overview) and [Go SDK Quickstart](https://goroute-ai.github.io/docs/start/quickstart-sdk), configure model aliases in [Client Configuration](https://goroute-ai.github.io/docs/sdk/client-configuration), add streaming via [Chat and Streaming](https://goroute-ai.github.io/docs/sdk/chat-and-streaming), and explore [Go Examples](https://goroute-ai.github.io/docs/examples/overview).
-- **Path B — Run a Shared Gateway**: Choose between the [Standalone Gateway Quickstart](https://goroute-ai.github.io/docs/start/quickstart-gateway) and [Docker Compose Quickstart](https://goroute-ai.github.io/docs/start/quickstart-docker), tune [Configuration](https://goroute-ai.github.io/docs/deploy/configuration) and [Storage](https://goroute-ai.github.io/docs/deploy/deployment-and-storage), connect [Providers](https://goroute-ai.github.io/docs/providers/overview), and verify [Observability & Health Probes](https://goroute-ai.github.io/docs/deploy/observability) and the [Production Checklist](https://goroute-ai.github.io/docs/deploy/production-checklist).
-- **Path C — Connect Tools, Agents & Coding IDEs**: Configure the [MCP Virtual Hub](https://goroute-ai.github.io/docs/agents/mcp-overview) and [A2A Protocol](https://goroute-ai.github.io/docs/agents/a2a-overview), compare with [MCP and A2A in the Go SDK](https://goroute-ai.github.io/docs/sdk/mcp-and-a2a), or point [Integrations](https://goroute-ai.github.io/docs/integrations/overview) (Claude Code, Cursor, OpenAI/Anthropic SDKs) at your gateway.
+- **Path A: Build a Go Application (`pkg/gateway`)**: Start with the [Go SDK Overview](https://goroute-ai.github.io/docs/sdk/overview) and [Go SDK Quickstart](https://goroute-ai.github.io/docs/start/quickstart-sdk), configure model aliases in [Client Configuration](https://goroute-ai.github.io/docs/sdk/client-configuration), add streaming via [Chat and Streaming](https://goroute-ai.github.io/docs/sdk/chat-and-streaming), and explore [Go Examples](https://goroute-ai.github.io/docs/examples/overview).
+- **Path B: Run a Shared Gateway**: Choose between the [Standalone Gateway Quickstart](https://goroute-ai.github.io/docs/start/quickstart-gateway) and [Docker Compose Quickstart](https://goroute-ai.github.io/docs/start/quickstart-docker), tune [Configuration](https://goroute-ai.github.io/docs/deploy/configuration) and [Storage](https://goroute-ai.github.io/docs/deploy/deployment-and-storage), connect [Providers](https://goroute-ai.github.io/docs/providers/overview), and verify [Observability & Health Probes](https://goroute-ai.github.io/docs/deploy/observability) and the [Production Checklist](https://goroute-ai.github.io/docs/deploy/production-checklist).
+- **Path C: Connect Tools, Agents & Coding IDEs**: Configure the [MCP Virtual Hub](https://goroute-ai.github.io/docs/agents/mcp-overview) and [A2A Protocol](https://goroute-ai.github.io/docs/agents/a2a-overview), compare with [MCP and A2A in the Go SDK](https://goroute-ai.github.io/docs/sdk/mcp-and-a2a), or point [Integrations](https://goroute-ai.github.io/docs/integrations/overview) (Claude Code, Cursor, OpenAI/Anthropic SDKs) at your gateway.
 
 ---
 
 ## Next Steps
 
-- [Quickstart: Standalone Gateway](https://goroute-ai.github.io/docs/start/quickstart-gateway) — Launch GoRoute locally in 2 minutes.
-- [Quickstart: Docker Compose](https://goroute-ai.github.io/docs/start/quickstart-docker) — Spin up the gateway with PostgreSQL and Redis.
-- [Quickstart: Go SDK](https://goroute-ai.github.io/docs/start/quickstart-sdk) — Embed GoRoute directly in your Go applications.
-- [System Architecture & Topology](https://goroute-ai.github.io/docs/start/architecture) — Deep dive into the 10-step request lifecycle.
-- [API Reference Overview](https://goroute-ai.github.io/docs/api/overview) — Explore data plane and control plane endpoints.
+- [Quickstart: Standalone Gateway](https://goroute-ai.github.io/docs/start/quickstart-gateway): Launch GoRoute locally in 2 minutes.
+- [Quickstart: Docker Compose](https://goroute-ai.github.io/docs/start/quickstart-docker): Spin up the gateway with PostgreSQL and Redis.
+- [Quickstart: Go SDK](https://goroute-ai.github.io/docs/start/quickstart-sdk): Embed GoRoute directly in your Go applications.
+- [System Architecture & Topology](https://goroute-ai.github.io/docs/start/architecture): Deep dive into the 10-step request lifecycle.
+- [API Reference Overview](https://goroute-ai.github.io/docs/api/overview): Explore data plane and control plane endpoints.
 
 ---
 
-## Quickstart — Standalone Gateway CLI
+## Quickstart: Standalone Gateway CLI
 URL: https://goroute-ai.github.io/docs/start/quickstart-gateway
 Markdown: https://goroute-ai.github.io/docs/start/quickstart-gateway.md
 Section: Control Plane Documentation > Start Here
 
-# Quickstart — Standalone Gateway CLI
+# Quickstart: Standalone Gateway CLI
 
 Run GoRoute AI Gateway as a high-performance standalone service to provide an intelligent, multi-provider AI proxy for your engineering team or microservices architecture.
 
@@ -326,12 +326,12 @@ curl http://localhost:8080/metrics
 
 ---
 
-## Quickstart — Docker Compose
+## Quickstart: Docker Compose
 URL: https://goroute-ai.github.io/docs/start/quickstart-docker
 Markdown: https://goroute-ai.github.io/docs/start/quickstart-docker.md
 Section: Control Plane Documentation > Start Here
 
-# Quickstart — Docker Compose
+# Quickstart: Docker Compose
 
 Run GoRoute AI Gateway in a fully containerized production topology with PostgreSQL 16+ for persistent multi-tenant metadata and Redis 7+ for distributed sliding-window rate limiting.
 
@@ -522,12 +522,12 @@ docker compose -f deployments/docker-compose.yml down -v
 
 ---
 
-## Quickstart — Go SDK
+## Quickstart: Go SDK
 URL: https://goroute-ai.github.io/docs/start/quickstart-sdk
 Markdown: https://goroute-ai.github.io/docs/start/quickstart-sdk.md
 Section: Control Plane Documentation > Start Here
 
-# Quickstart — Go SDK
+# Quickstart: Go SDK
 
 Use the Go SDK to run an embedded gateway in your Go process or connect to a gateway that is already running. This guide shows the embedded option and uses local mock providers when a provider key is unavailable.
 
@@ -825,12 +825,12 @@ Access all configured protocols and live health metrics via the [Operator Web UI
 
 ---
 
-## AI Gateway — Traffic Management & Model Routing
+## AI Gateway: Traffic Management & Model Routing
 URL: https://goroute-ai.github.io/docs/gateway
 Markdown: https://goroute-ai.github.io/docs/gateway.md
 Section: Control Plane Documentation > Gateway & Routing
 
-# AI Gateway — Traffic Management & Model Routing
+# AI Gateway: Traffic Management & Model Routing
 
 The **AI Gateway** module is GoRoute's high-throughput, zero-allocation data plane for routing inference traffic across **73 `ProviderType` profiles** (8 native adapters, 60+ built-in/extended OpenAI-compatible profiles, and `CustomOpenAICompatible`) through a single unified API.
 
@@ -840,7 +840,7 @@ The **AI Gateway** module is GoRoute's high-throughput, zero-allocation data pla
 
 | Capability | Implementation | Guide |
 | :--- | :--- | :--- |
-| **Unified Data Plane (23 `/v1` Paths)** | OpenAI-compatible `/v1/*` & `/openai/v1/*`, plus native Anthropic `/anthropic/v1/messages` & `count_tokens`, Responses API, Realtime WebSockets, Audio, Images, Files, Batches, Rerank, and Moderations. | [Chat Completions](https://goroute-ai.github.io/docs/gateway/endpoints/chat-completions) · [Messages](https://goroute-ai.github.io/docs/gateway/endpoints/messages) · [Responses](https://goroute-ai.github.io/docs/gateway/endpoints/responses) · [Realtime](https://goroute-ai.github.io/docs/gateway/endpoints/realtime) |
+| **Unified Data Plane (24 `/v1` Paths)** | OpenAI-compatible `/v1/*` & `/openai/v1/*`, plus native Anthropic `/anthropic/v1/messages` & `count_tokens`, Responses API, Realtime WebSockets, `POST /v1/guardrails/apply`, Audio, Images, Files, Batches, Rerank, and Moderations. | [Chat Completions](https://goroute-ai.github.io/docs/gateway/endpoints/chat-completions) · [Messages](https://goroute-ai.github.io/docs/gateway/endpoints/messages) · [Responses](https://goroute-ai.github.io/docs/gateway/endpoints/responses) · [Realtime](https://goroute-ai.github.io/docs/gateway/endpoints/realtime) |
 | **73+ Provider Profiles & `SupportedOperations`** | Native adapters for OpenAI, Anthropic, Azure OpenAI, AWS Bedrock, Google Gemini, Google Vertex, Cohere, Mistral, Ollama, plus 60+ OpenAI-compatible profiles with `SupportedOperations` enforcement (`OperationSupportChecker`). | [Providers Overview](https://goroute-ai.github.io/docs/providers/overview) · [OpenAI-Compatible](https://goroute-ai.github.io/docs/providers/openai-compatible) |
 | **Stage 1 Complexity Classifier** | Heuristic prompt complexity scoring routes simple requests to fast/low-cost tiers and complex tasks to reasoning models automatically. | [Routing & Load Balancing](https://goroute-ai.github.io/docs/gateway/routing-and-load-balancing) |
 | **Stage 2 Load Balancers** | Six strategies across sibling deployments: `weighted-shuffle`, `least-busy`, `latency-based` (EWMA), `usage-based-headroom`, `lowest-cost`, and `round-robin`. | [Routing & Load Balancing](https://goroute-ai.github.io/docs/gateway/routing-and-load-balancing) |
@@ -4080,7 +4080,7 @@ Section: Control Plane Documentation > Endpoint Guides
 
 # Asynchronous Batch Processing API
 
-For high-volume, non-interactive workloads—such as dataset labeling, offline evaluation, bulk summarization, and synthetic data generation—GoRoute AI Gateway provides the **OpenAI-Compatible Batch Processing API**.
+For high-volume, non-interactive workloads (such as dataset labeling, offline evaluation, bulk summarization, and synthetic data generation), GoRoute AI Gateway provides the **OpenAI-Compatible Batch Processing API**.
 
 Batches decouple request ingestion from immediate execution. By accepting a 24-hour completion SLA, workloads run over off-peak provider headroom at up to a **50% discount** compared to synchronous on-demand inference.
 
@@ -5285,7 +5285,7 @@ Section: Control Plane Documentation > Providers
 
 GoRoute provides a native adapter for **Anthropic**, translating standard OpenAI chat completion and tool calling requests into Anthropic's **Messages API** (`POST /v1/messages`). The model IDs below are provider-side examples, not an exhaustive or guaranteed-current list of models supported by every GoRoute deployment. Check [Anthropic's current model status](https://docs.anthropic.com/en/docs/about-claude/model-deprecations) and the [model overview](https://docs.anthropic.com/en/docs/about-claude/models), then confirm which models your key can use with [`GET /v1/models`](https://goroute-ai.github.io/docs/api/gateway-api#4-model-catalogue-inventory-get-v1models).
 
-The adapter natively implements Anthropic-specific protocol requirements—such as extended thinking budgets, strict user/assistant turn alternation, tool use consolidation, and Server-Sent Events (SSE) stream translation.
+The adapter natively implements Anthropic-specific protocol requirements (including extended thinking budgets, strict user/assistant turn alternation, tool use consolidation, and Server-Sent Events (SSE) stream translation).
 
 ---
 
@@ -7425,12 +7425,12 @@ func main() {
 
 ---
 
-## AI Governance — Security, Policies & Compliance
+## AI Governance: Security, Policies & Compliance
 URL: https://goroute-ai.github.io/docs/governance
 Markdown: https://goroute-ai.github.io/docs/governance.md
 Section: Control Plane Documentation > Governance & Security
 
-# AI Governance — Security, Policies & Compliance
+# AI Governance: Security, Policies & Compliance
 
 The **AI Governance** module enforces fail-closed identity, credential isolation, content safety, and network egress boundaries across every inference, tool, and control-plane request.
 
@@ -7442,9 +7442,9 @@ The **AI Governance** module enforces fail-closed identity, credential isolation
 | :--- | :--- | :--- |
 | **4-Layer Policy Model** | Hierarchical fail-closed scoping across **Organization → Team → User → Virtual Key** for model allowlists, budgets, and rate limits. | [RBAC & Credential Vault](https://goroute-ai.github.io/docs/governance/rbac-and-vault) |
 | **Operator RBAC & OIDC/JWT** | Role-based access control for `/admin/v1/*` and `/ui/*` supporting Master Admin Keys as well as OIDC/JWT identity mapping. | [RBAC & Credential Vault](https://goroute-ai.github.io/docs/governance/rbac-and-vault) |
-| **AES-256-GCM Credentials Vault** | Upstream provider API keys and MCP credentials are encrypted at rest and in transit via `internal/storage/vault.go`. | [RBAC & Credential Vault](https://goroute-ai.github.io/docs/governance/rbac-and-vault) |
+| **AES-256-GCM Credentials Vault** | Upstream provider API keys, MCP credentials, and guardrail secrets are encrypted at rest and in transit via `internal/storage/vault.go` with DEK rotation. | [RBAC & Credential Vault](https://goroute-ai.github.io/docs/governance/rbac-and-vault) |
 | **Virtual Keys (`sk-gw-...`)** | Scoped, revocable data-plane tokens accepted via `Authorization: Bearer` or `x-api-key` (with conflict rejection on mismatched dual headers). | [Virtual Keys](https://goroute-ai.github.io/docs/governance/virtual-keys) |
-| **Streaming & `logging_only` Guardrails** | All-role input scanning, PII/secret redaction, streaming output chunk filtering (`stream_filter.go`), and `enforce` vs. `logging_only` policy modes. | [Guardrails Engine](https://goroute-ai.github.io/docs/governance/guardrails) |
+| **Two-Layer Guardrails Engine (19 Drivers)** | Pipeline v2 with 7 hooks (`pre_call`, `during_call`, `post_call`, `logging_only`, `pre_mcp_call`, `during_mcp_call`, `post_mcp_call`), `POST /v1/guardrails/apply`, Starlark `custom_code`, `WithGuardrailScanner`, streaming windowing, and hierarchical bindings (`Org` → `Team` → `VirtualKey` → `EndUser` → `ModelGroup` → `Tag`). | [Guardrails Engine](https://goroute-ai.github.io/docs/governance/guardrails) |
 | **Outbound SSRF Firewall** | `internal/security/network` `SafeTransport` enforces DNS pinning, private-IP/loopback blocking, and link-local address protection on all provider, OTLP, and MCP egress. | [SSRF & Network Security](https://goroute-ai.github.io/docs/governance/network-and-ssrf) |
 | **Security Headers & CORS** | Strict HTTP security headers, configurable CORS origins, and production secret validation before startup. | [Production Readiness Checklist](https://goroute-ai.github.io/docs/deploy/production-checklist) |
 
@@ -7672,6 +7672,18 @@ Guardrail violations are recorded in logs and organization policy changes are wr
 
 ---
 
+## Two-Layer Guardrails Engine (`v1.8.0`)
+
+In `v1.8.0`, GoRoute expands baseline org policies into a full **Two-Layer Guardrails Engine** supporting tenant-scoped `guardrail_definitions` (AES-256-GCM Vault encrypted) and hierarchical `guardrail_bindings` (`Org` → `Team` → `VirtualKey` → `EndUser` → `ModelGroup` → `Tag`, with `default_on` and anti-bypass `is_locked`):
+
+- **19 Built-In Drivers**: `openai_moderation`, `bedrock` (SigV4), `azure/prompt_shield`, `azure/text_moderations`, `model_armor`, `presidio`, `lakera_v2`, `guardrails_ai`, `pangea`, `local_content_filter`, `generic_http` webhooks, sandboxed Starlark `custom_code` (`50,000`-step cap, zero filesystem/import access, SSRF-checked `http_get`/`http_post`), `tool_permission`, `tool_policy` (cross-turn taint tracking), `block_code_execution`, `mcp_security`, `mcp_end_user_permission`, `llm_as_a_judge`, and `decision_model`.
+- **7 Execution Hooks**: `pre_call`, concurrent canceling `during_call`, `post_call`, async `logging_only`, `pre_mcp_call`, `during_mcp_call`, and `post_mcp_call`, plus cross-chunk `StreamWindowEvaluator` masking and streamed `delta.tool_calls` scanning.
+- **Standalone Evaluation Endpoint**: `POST /v1/guardrails/apply` evaluates inputs, outputs, or tool calls directly against Pipeline v2 without dispatching to an upstream LLM.
+- **Public Go SDK Extensibility**: Register custom in-process scanners via `gateway.WithGuardrailScanner(name, scanner, opts...)` (`allow` / `block` / `flag` / `modify`).
+- **Operator Console & Telemetry**: Manage named registries, Starlark rules, tool trust policies, and micro-dollar usage rollups in the 4-Tab Guardrails Console at `/ui/`, backed by `guardrail.evaluate` OpenTelemetry spans and `gateway_guardrail_*` Prometheus metrics.
+
+---
+
 ## Network Security & SSRF Protection
 URL: https://goroute-ai.github.io/docs/governance/network-and-ssrf
 Markdown: https://goroute-ai.github.io/docs/governance/network-and-ssrf.md
@@ -7719,12 +7731,12 @@ security:
 
 ---
 
-## AI FinOps — Cost Management & Optimization
+## AI FinOps: Cost Management & Optimization
 URL: https://goroute-ai.github.io/docs/finops
 Markdown: https://goroute-ai.github.io/docs/finops.md
 Section: Control Plane Documentation > FinOps & Rate Limits
 
-# AI FinOps — Cost Management & Optimization
+# AI FinOps: Cost Management & Optimization
 
 The **AI FinOps** module eliminates floating-point billing drift and race-condition overspends by combining **64-bit integer micro-dollar arithmetic**, **pre-flight budget reservations**, and **atomic Redis Lua rate limiting**.
 
@@ -7734,7 +7746,7 @@ The **AI FinOps** module eliminates floating-point billing drift and race-condit
 
 | Capability | Implementation | Guide |
 | :--- | :--- | :--- |
-| **64-Bit Integer Micro-Dollar Ledger** | All costs are computed in integer micro-dollars (`1 USD = 1,000,000 micro-dollars`) with intermediate pico-dollar precision — zero `float32`/`float64` accounting. | [Micro-Dollar Ledger](https://goroute-ai.github.io/docs/finops/micro-dollar-ledger) |
+| **64-Bit Integer Micro-Dollar Ledger** | All costs are computed in integer micro-dollars (`1 USD = 1,000,000 micro-dollars`) with intermediate pico-dollar precision and zero `float32`/`float64` accounting. | [Micro-Dollar Ledger](https://goroute-ai.github.io/docs/finops/micro-dollar-ledger) |
 | **Cache-Write & Modality Pricing** | Supports prompt-cache write pricing (`CacheCreationTokens` / `cache_write_cost_micros_per_1m`), audio/image/video modality rates (`0007`/`0012`), and immutable `model_pricing_history`. | [Micro-Dollar Ledger](https://goroute-ai.github.io/docs/finops/micro-dollar-ledger) |
 | **Unpriced Usage Tracking** | Tracks `unpriced_requests` and `unpriced_tokens` explicitly so custom or uncatalogued models never silently report `$0.00` without visibility. | [Micro-Dollar Ledger](https://goroute-ai.github.io/docs/finops/micro-dollar-ledger) |
 | **Pre-Flight Reservations & Lease Renewal** | Reserves upper-bound estimated cost before upstream dispatch, renews leases during long streams, and reconciles exact token spend on completion. | [Micro-Dollar Ledger](https://goroute-ai.github.io/docs/finops/micro-dollar-ledger) |
@@ -7915,14 +7927,14 @@ If the estimated prompt tokens + requested `max_tokens` exceeds the virtual key'
 
 ---
 
-## AI Agent Management — MCP, Tools & Agent Access
+## AI Agent Management: MCP, Tools & Agent Access
 URL: https://goroute-ai.github.io/docs/agents
 Markdown: https://goroute-ai.github.io/docs/agents.md
 Section: Control Plane Documentation > Agents (MCP & A2A)
 
-# AI Agent Management — MCP, Tools & Agent Access
+# AI Agent Management: MCP, Tools & Agent Access
 
-The **AI Agent Management** module turns GoRoute into a governed control plane for **tools**, **multi-agent networks**, and **autonomous coding agents** — enforcing Virtual Key RBAC, cryptographic identity, and execution sandboxing across MCP and A2A protocols.
+The **AI Agent Management** module turns GoRoute into a governed control plane for **tools**, **multi-agent networks**, and **autonomous coding agents**, enforcing Virtual Key RBAC, cryptographic identity, and execution sandboxing across MCP and A2A protocols.
 
 ---
 
@@ -9370,17 +9382,17 @@ GoRoute accepts either standard credential header:
 ## Integration Guides
 
 ### Coding Agents & IDEs
-- [**Claude Code**](https://goroute-ai.github.io/docs/integrations/claude-code) — Route Claude Code through `/anthropic` using `ANTHROPIC_BASE_URL` and `ANTHROPIC_AUTH_TOKEN` or `ANTHROPIC_API_KEY`.
-- [**Cursor, Continue & Cline**](https://goroute-ai.github.io/docs/integrations/cursor-and-ides) — Configure IDE extensions against `/v1` with Virtual Keys and unified model aliases.
-- [**Codex CLI, Gemini CLI & OpenWebUI**](https://goroute-ai.github.io/docs/integrations/codex-and-cli-agents) — Connect terminal coding agents and self-hosted chat UIs via `/v1`.
+- [**Claude Code**](https://goroute-ai.github.io/docs/integrations/claude-code): Route Claude Code through `/anthropic` using `ANTHROPIC_BASE_URL` and `ANTHROPIC_AUTH_TOKEN` or `ANTHROPIC_API_KEY`.
+- [**Cursor, Continue & Cline**](https://goroute-ai.github.io/docs/integrations/cursor-and-ides): Configure IDE extensions against `/v1` with Virtual Keys and unified model aliases.
+- [**Codex CLI, Gemini CLI & OpenWebUI**](https://goroute-ai.github.io/docs/integrations/codex-and-cli-agents): Connect terminal coding agents and self-hosted chat UIs via `/v1`.
 
 ### Official Language SDKs & Agent Frameworks
-- [**OpenAI SDKs (Python & TypeScript)**](https://goroute-ai.github.io/docs/integrations/openai-sdks) — Chat completions, SSE streaming, embeddings, Responses API, and Realtime WebSockets.
-- [**Anthropic SDKs (Python & TypeScript)**](https://goroute-ai.github.io/docs/integrations/anthropic-sdks) — Native `/anthropic/v1/messages` and `/anthropic/v1/messages/count_tokens`.
-- [**Agent Frameworks**](https://goroute-ai.github.io/docs/integrations/agent-frameworks) — LangChain, OpenAI Agents SDK, and Google ADK with GoRoute MCP and A2A endpoints.
+- [**OpenAI SDKs (Python & TypeScript)**](https://goroute-ai.github.io/docs/integrations/openai-sdks): Chat completions, SSE streaming, embeddings, Responses API, and Realtime WebSockets.
+- [**Anthropic SDKs (Python & TypeScript)**](https://goroute-ai.github.io/docs/integrations/anthropic-sdks): Native `/anthropic/v1/messages` and `/anthropic/v1/messages/count_tokens`.
+- [**Agent Frameworks**](https://goroute-ai.github.io/docs/integrations/agent-frameworks): LangChain, OpenAI Agents SDK, and Google ADK with GoRoute MCP and A2A endpoints.
 
 ### Observability & Telemetry
-- [**OpenTelemetry & Prometheus**](https://goroute-ai.github.io/docs/integrations/otel-and-prometheus) — OTLP/HTTP span export (`tracing.otlp_endpoint`, `gen_ai.*` attributes, W3C `traceparent`) and Prometheus `/metrics` scraping.
+- [**OpenTelemetry & Prometheus**](https://goroute-ai.github.io/docs/integrations/otel-and-prometheus): OTLP/HTTP span export (`tracing.otlp_endpoint`, `gen_ai.*` attributes, W3C `traceparent`) and Prometheus `/metrics` scraping.
 
 ---
 
@@ -10238,19 +10250,19 @@ The table below documents every configurable parameter across all gateway subsys
 
 | YAML Path | Environment Variable Override | Default | Subsystem & Description |
 | :--- | :--- | :--- | :--- |
-| `server.host` | — | `"0.0.0.0"` | **Server**: HTTP network bind address. |
+| `server.host` | None | `"0.0.0.0"` | **Server**: HTTP network bind address. |
 | `server.environment` | `ENV` / `GATEWAY_ENV` | `"development"` | **Server**: Runtime environment (`"development"`, `"staging"`, `"production"`). Production rejects default secrets. |
 | `server.port` | `GATEWAY_PORT` | `8080` | **Server**: HTTP listen port (`1`–`65535`). |
 | `server.grpc_port` | `GATEWAY_GRPC_PORT` | `0` | **Server**: Optional A2A gRPC listen port (`0` disables gRPC). |
-| `server.cors_allowed_origins` | — | `[]` | **Security**: Allowed CORS origins (empty disables CORS headers). |
-| `server.cors_allow_credentials` | — | `false` | **Security**: Enables `Access-Control-Allow-Credentials` (disallowed with `*`). |
-| `server.enable_hsts` | — | `false` | **Security**: Emits `Strict-Transport-Security` header on responses. |
+| `server.cors_allowed_origins` | None | `[]` | **Security**: Allowed CORS origins (empty disables CORS headers). |
+| `server.cors_allow_credentials` | None | `false` | **Security**: Enables `Access-Control-Allow-Credentials` (disallowed with `*`). |
+| `server.enable_hsts` | None | `false` | **Security**: Emits `Strict-Transport-Security` header on responses. |
 | `server.max_file_storage_bytes_per_org` | `GATEWAY_MAX_FILE_STORAGE_BYTES_PER_ORG` | `5368709120` | **Files**: Per-org storage quota in bytes (`5 GiB` default; `0` = unlimited). |
 | `server.max_concurrent_file_uploads` | `GATEWAY_MAX_CONCURRENT_FILE_UPLOADS` | `8` | **Files**: Maximum concurrent `/v1/files` uploads (`0` = unlimited). |
-| `server.read_timeout` | — | `30s` | **Server**: Maximum duration for reading the entire request body. |
-| `server.write_timeout` | — | `300s` | **Server**: Maximum duration before timing out writes (sized for reasoning streams). |
-| `server.idle_timeout` | — | `120s` | **Server**: Maximum time to wait for the next request when keep-alives are enabled. |
-| `server.shutdown_timeout` | — | `15s` | **Server**: Graceful shutdown deadline before force-closing active HTTP streams. |
+| `server.read_timeout` | None | `30s` | **Server**: Maximum duration for reading the entire request body. |
+| `server.write_timeout` | None | `300s` | **Server**: Maximum duration before timing out writes (sized for reasoning streams). |
+| `server.idle_timeout` | None | `120s` | **Server**: Maximum time to wait for the next request when keep-alives are enabled. |
+| `server.shutdown_timeout` | None | `15s` | **Server**: Graceful shutdown deadline before force-closing active HTTP streams. |
 | `logging.level` | `GATEWAY_LOG_LEVEL` | `"info"` | **Logging**: Log verbosity: `"debug"`, `"info"`, `"warn"`, `"error"`. |
 | `logging.format` | `GATEWAY_LOG_FORMAT` | `"text"` | **Logging**: `"json"` (cloud structured) or `"text"` (CLI). Auto-selects `"json"` if `ENV=production`. |
 | `logging.add_source` | `GATEWAY_LOG_ADD_SOURCE` | `false` | **Logging**: Annotates log lines with source `file:line` for developer debugging. |
@@ -10259,78 +10271,78 @@ The table below documents every configurable parameter across all gateway subsys
 | `storage.redis_addr` | `GATEWAY_REDIS_ADDR` | `"localhost:6379"` | **Storage**: Standalone Redis host:port for L2 auth caching, Lua rate limits, and pub/sub. |
 | `storage.redis_addrs` | `GATEWAY_REDIS_ADDRS` | `[]` | **Storage**: Comma-separated Redis Cluster or Sentinel seed nodes. |
 | `storage.redis_master_name` | `GATEWAY_REDIS_MASTER_NAME` | `""` | **Storage**: Redis Sentinel master name. |
-| `tracing.otlp_endpoint` | — | `""` | **Observability**: Optional OTLP/HTTP traces URL (empty disables export). |
-| `tracing.service_name` | — | `"ai-gateway-go"` | **Observability**: Service name attribute attached to exported OpenTelemetry spans. |
-| `tracing.headers` | — | `{}` | **Observability**: Optional HTTP headers sent with OTLP trace exports (e.g., auth tokens). |
+| `tracing.otlp_endpoint` | None | `""` | **Observability**: Optional OTLP/HTTP traces URL (empty disables export). |
+| `tracing.service_name` | None | `"ai-gateway-go"` | **Observability**: Service name attribute attached to exported OpenTelemetry spans. |
+| `tracing.headers` | None | `{}` | **Observability**: Optional HTTP headers sent with OTLP trace exports (e.g., auth tokens). |
 | `storage.redis_pass` | `GATEWAY_REDIS_PASS` | `""` | **Storage**: Optional Redis authentication password. |
-| `storage.redis_db` | — | `0` | **Storage**: Redis logical database index (`0`–`15`). |
+| `storage.redis_db` | None | `0` | **Storage**: Redis logical database index (`0`–`15`). |
 | `auth.master_admin_key` | `GATEWAY_MASTER_ADMIN_KEY` | *(auto-generated)* | **Auth**: Master Bearer token for `/admin/v1/*` control plane APIs. |
 | `auth.allow_master_key_data_plane` | `GATEWAY_ALLOW_MASTER_KEY_DATA_PLANE` | `false` | **Auth**: Allows master admin key on data-plane routes (disabled by default for security). |
 | `auth.master_encryption_key` | `GATEWAY_MASTER_ENCRYPTION_KEY` | *(auto-generated)* | **Auth**: 64-character hex string (32-byte key) for AES-256-GCM vault encryption. |
 | `auth.jwt_secret` | `GATEWAY_JWT_SECRET` | *(random)* | **Auth**: HMAC secret used for signing internal short-lived JWT tokens. |
-| `auth.default_org_id` | — | `"org_default"` | **Auth**: Primary root organization identifier seeded on initial startup. |
+| `auth.default_org_id` | None | `"org_default"` | **Auth**: Primary root organization identifier seeded on initial startup. |
 | `auth.default_virtual_key` | `GATEWAY_DEFAULT_KEY` | `""` | **Auth**: Optional pre-seeded client virtual key for automated integration testing. |
-| `auth.l1_cache_ttl` | — | `15s` | **Auth**: In-memory L1 cache TTL for virtual key validation and identity contexts. |
-| `auth.l2_cache_ttl` | — | `5m` | **Auth**: Redis L2 cache TTL for virtual key validation across clustered pods. |
-| `router.default_fast_alias` | — | `"fast"` | **Router**: Virtual model alias routing to high-throughput, low-latency models. |
-| `router.default_reasoning_alias` | — | `"reasoning"` | **Router**: Virtual model alias routing to frontier deep-reasoning models. |
-| `router.default_coding_alias` | — | `"coding"` | **Router**: Virtual model alias routing to specialized code-generation models. |
-| `router.complexity_threshold` | — | `0.40` | **Router**: Prompt complexity heuristic score `[0.0, 1.0]` triggering `"auto"` $\rightarrow$ `"reasoning"`. |
-| `router.long_context_tokens` | — | `32000` | **Router**: Input token threshold triggering automatic routing to long-context engines. |
-| `router.default_max_retries` | — | `2` | **Router**: Maximum intra-deployment retries before failing over to fallback chain. |
+| `auth.l1_cache_ttl` | None | `15s` | **Auth**: In-memory L1 cache TTL for virtual key validation and identity contexts. |
+| `auth.l2_cache_ttl` | None | `5m` | **Auth**: Redis L2 cache TTL for virtual key validation across clustered pods. |
+| `router.default_fast_alias` | None | `"fast"` | **Router**: Virtual model alias routing to high-throughput, low-latency models. |
+| `router.default_reasoning_alias` | None | `"reasoning"` | **Router**: Virtual model alias routing to frontier deep-reasoning models. |
+| `router.default_coding_alias` | None | `"coding"` | **Router**: Virtual model alias routing to specialized code-generation models. |
+| `router.complexity_threshold` | None | `0.40` | **Router**: Prompt complexity heuristic score `[0.0, 1.0]` triggering `"auto"` $\rightarrow$ `"reasoning"`. |
+| `router.long_context_tokens` | None | `32000` | **Router**: Input token threshold triggering automatic routing to long-context engines. |
+| `router.default_max_retries` | None | `2` | **Router**: Maximum intra-deployment retries before failing over to fallback chain. |
 | `router.base_retry_delay` | `GATEWAY_ROUTER_BASE_RETRY_DELAY` | `50ms` | **Router**: Base backoff delay for full-jitter exponential retry calculations. |
 | `router.max_retry_delay` | `GATEWAY_ROUTER_MAX_RETRY_DELAY` | `2s` | **Router**: Maximum ceiling delay between retry attempts. |
 | `router.default_cooldown` | `GATEWAY_ROUTER_DEFAULT_COOLDOWN` | `60s` | **Router**: Duration a tripped deployment remains isolated in `OPEN` circuit breaker state. |
-| `router.failure_window` | — | `30s` | **Router**: Sliding time window for tracking consecutive upstream provider errors. |
-| `router.failure_threshold` | — | `3` | **Router**: Number of consecutive errors required to trip deployment circuit breaker. |
-| `rate_limit.enabled` | — | `true` | **Rate Limit**: Enables distributed sliding-window rate limiting via Redis Lua scripts. |
-| `rate_limit.window_seconds` | — | `60` | **Rate Limit**: Window duration in seconds for RPM and TPM rate tracking. |
-| `rate_limit.concurrency_ttl_sec` | — | `300` | **Rate Limit**: TTL lease in seconds for tracking concurrent in-flight requests. |
-| `rate_limit.default_estimated_tpm` | — | `128` | **Rate Limit**: Heuristic token estimate reserved prior to parsing request payload. |
-| `rate_limit.redis_timeout` | — | `50ms` | **Rate Limit**: Timeout for Redis rate check execution before failing closed. |
-| `finops.channel_buffer_size` | — | `16384` | **FinOps**: Asynchronous ring buffer capacity for in-flight spend ledger events. |
-| `finops.batch_size` | — | `250` | **FinOps**: Maximum spend records batched into a single database bulk insert. |
+| `router.failure_window` | None | `30s` | **Router**: Sliding time window for tracking consecutive upstream provider errors. |
+| `router.failure_threshold` | None | `3` | **Router**: Number of consecutive errors required to trip deployment circuit breaker. |
+| `rate_limit.enabled` | None | `true` | **Rate Limit**: Enables distributed sliding-window rate limiting via Redis Lua scripts. |
+| `rate_limit.window_seconds` | None | `60` | **Rate Limit**: Window duration in seconds for RPM and TPM rate tracking. |
+| `rate_limit.concurrency_ttl_sec` | None | `300` | **Rate Limit**: TTL lease in seconds for tracking concurrent in-flight requests. |
+| `rate_limit.default_estimated_tpm` | None | `128` | **Rate Limit**: Heuristic token estimate reserved prior to parsing request payload. |
+| `rate_limit.redis_timeout` | None | `50ms` | **Rate Limit**: Timeout for Redis rate check execution before failing closed. |
+| `finops.channel_buffer_size` | None | `16384` | **FinOps**: Asynchronous ring buffer capacity for in-flight spend ledger events. |
+| `finops.batch_size` | None | `250` | **FinOps**: Maximum spend records batched into a single database bulk insert. |
 | `finops.flush_interval` | `GATEWAY_FINOPS_FLUSH_INTERVAL` | `500ms` | **FinOps**: Maximum interval between background spend ledger flushes. |
-| `finops.max_unflushed_age` | — | `5s` | **FinOps**: Hard timeout forcing asynchronous spend ledger buffer flush. |
-| `discovery.auto_approve_discovered_models` | — | `true` | **Discovery**: Automatically activates newly discovered upstream models. |
-| `discovery.poll_interval_hours` | — | `24` | **Discovery**: Interval in hours between background upstream provider catalog syncs. |
-| `discovery.enable_background_sync` | — | `true` | **Discovery**: Enables background discovery daemon across enabled providers. |
+| `finops.max_unflushed_age` | None | `5s` | **FinOps**: Hard timeout forcing asynchronous spend ledger buffer flush. |
+| `discovery.auto_approve_discovered_models` | None | `true` | **Discovery**: Automatically activates newly discovered upstream models. |
+| `discovery.poll_interval_hours` | None | `24` | **Discovery**: Interval in hours between background upstream provider catalog syncs. |
+| `discovery.enable_background_sync` | None | `true` | **Discovery**: Enables background discovery daemon across enabled providers. |
 | `security.network.egress_proxy_url` | `GATEWAY_EGRESS_PROXY_URL` | `""` | **Network**: Corporate HTTP/HTTPS egress proxy URL for enterprise firewalls. |
 | `security.network.outbound_ssrf.allow_private_networks` | `GATEWAY_SSRF_ALLOW_PRIVATE` | `false` | **SSRF**: Enables egress to private/internal IPs (must be `false` in production). |
-| `security.network.outbound_ssrf.allowed_private_cidrs` | — | `[]` | **SSRF**: Explicit CIDR allowlist (e.g. `["10.240.0.0/16"]`) when egress is gated. |
+| `security.network.outbound_ssrf.allowed_private_cidrs` | None | `[]` | **SSRF**: Explicit CIDR allowlist (e.g. `["10.240.0.0/16"]`) when egress is gated. |
 | `security.network.outbound_ssrf.allow_insecure_http` | `GATEWAY_SSRF_ALLOW_INSECURE_HTTP` | `false` | **SSRF**: Permits unencrypted HTTP upstream calls (prohibited in production). |
-| `security.network.outbound_ssrf.allowed_schemes` | — | `["https"]` | **SSRF**: Permitted URL schemes for provider endpoints (`https`, `http`). |
-| `security.network.outbound_ssrf.blocked_ips` | — | `["169.254.169.254", ...]` | **SSRF**: Cloud instance metadata IPs blocked from outbound routing. |
-| `security.network.outbound_ssrf.dial_timeout` | — | `10s` | **SSRF**: Network connect and TLS handshake timeout for outbound calls. |
-| `security.network.outbound_ssrf.max_redirects` | — | `3` | **SSRF**: Maximum allowed HTTP redirect hops on outbound provider requests. |
-| `security.network.inbound_caller.expose_on_public_internet` | — | `false` | **Network**: Policy flag asserting whether gateway is exposed to public web. |
-| `security.network.inbound_caller.allowed_client_cidrs` | — | `[]` | **Network**: Client CIDR allowlist restricting incoming caller IP addresses. |
-| `mcp.enabled` | — | `true` | **MCP**: Activates Model Context Protocol virtual hub and bridge endpoints. |
-| `mcp.allow_stdio_servers` | — | `false` | **MCP**: Permits spawning local command-line subprocess MCP tool servers. |
-| `mcp.session_ttl_minutes` | — | `15` | **MCP**: Inactivity timeout for stateful 2025-11-25 MCP SSE sessions. |
-| `mcp.execution_timeout_seconds` | — | `30` | **MCP**: Maximum execution duration for individual MCP tool calls. |
-| `mcp.max_payload_bytes` | — | `10485760` | **MCP**: Maximum allowed tool request and response payload size (10 MB). |
-| `mcp.handle_ttl` | — | `1h` | **MCP**: Cache TTL for 256-bit progressive discovery tool handles (`tool_hdl_...`). |
-| `a2a.enabled` | — | `true` | **A2A**: Activates Linux Foundation Agent-to-Agent v1.0 protocol router. |
-| `a2a.allow_http_binding` | — | `true` | **A2A**: Enables standard REST HTTP+JSON binding on `/a2a/v1/*`. |
-| `a2a.allow_jsonrpc_binding` | — | `true` | **A2A**: Enables JSON-RPC 2.0 protocol binding on `/a2a/v1/*`. |
-| `a2a.allow_legacy_card_discovery` | — | `false` | **A2A**: Allows unsigned or legacy uncanonicalized agent card discovery. |
-| `a2a.max_task_lifespan` | — | `24h` | **A2A**: Retention period for active and completed A2A task records. |
-| `a2a.stream_buffer_capacity` | — | `256` | **A2A**: Ring buffer event capacity for SSE task streaming subscribers. |
+| `security.network.outbound_ssrf.allowed_schemes` | None | `["https"]` | **SSRF**: Permitted URL schemes for provider endpoints (`https`, `http`). |
+| `security.network.outbound_ssrf.blocked_ips` | None | `["169.254.169.254", ...]` | **SSRF**: Cloud instance metadata IPs blocked from outbound routing. |
+| `security.network.outbound_ssrf.dial_timeout` | None | `10s` | **SSRF**: Network connect and TLS handshake timeout for outbound calls. |
+| `security.network.outbound_ssrf.max_redirects` | None | `3` | **SSRF**: Maximum allowed HTTP redirect hops on outbound provider requests. |
+| `security.network.inbound_caller.expose_on_public_internet` | None | `false` | **Network**: Policy flag asserting whether gateway is exposed to public web. |
+| `security.network.inbound_caller.allowed_client_cidrs` | None | `[]` | **Network**: Client CIDR allowlist restricting incoming caller IP addresses. |
+| `mcp.enabled` | None | `true` | **MCP**: Activates Model Context Protocol virtual hub and bridge endpoints. |
+| `mcp.allow_stdio_servers` | None | `false` | **MCP**: Permits spawning local command-line subprocess MCP tool servers. |
+| `mcp.session_ttl_minutes` | None | `15` | **MCP**: Inactivity timeout for stateful 2025-11-25 MCP SSE sessions. |
+| `mcp.execution_timeout_seconds` | None | `30` | **MCP**: Maximum execution duration for individual MCP tool calls. |
+| `mcp.max_payload_bytes` | None | `10485760` | **MCP**: Maximum allowed tool request and response payload size (10 MB). |
+| `mcp.handle_ttl` | None | `1h` | **MCP**: Cache TTL for 256-bit progressive discovery tool handles (`tool_hdl_...`). |
+| `a2a.enabled` | None | `true` | **A2A**: Activates Linux Foundation Agent-to-Agent v1.0 protocol router. |
+| `a2a.allow_http_binding` | None | `true` | **A2A**: Enables standard REST HTTP+JSON binding on `/a2a/v1/*`. |
+| `a2a.allow_jsonrpc_binding` | None | `true` | **A2A**: Enables JSON-RPC 2.0 protocol binding on `/a2a/v1/*`. |
+| `a2a.allow_legacy_card_discovery` | None | `false` | **A2A**: Allows unsigned or legacy uncanonicalized agent card discovery. |
+| `a2a.max_task_lifespan` | None | `24h` | **A2A**: Retention period for active and completed A2A task records. |
+| `a2a.stream_buffer_capacity` | None | `256` | **A2A**: Ring buffer event capacity for SSE task streaming subscribers. |
 | `a2a.stream_publish_interval` | `GATEWAY_A2A_STREAM_PUBLISH_INTERVAL` | `50ms` | **A2A**: Polling interval for background task stream publication daemon. |
 | `a2a.max_push_retries` | `GATEWAY_A2A_MAX_PUSH_RETRIES` | `5` | **A2A**: Maximum webhook push notification delivery retries before Dead Lettering. |
 | `a2a.signing_key_id` | `GATEWAY_A2A_SIGNING_KEY_ID` | `"gw-a2a-signer-v1"` | **A2A**: Key ID for RFC 8785 JCS canonicalization and JWS Agent Card signing. |
-| `a2a.allowed_signing_algs` | — | `["ES256", "RS256", "EdDSA"]` | **A2A**: Permitted cryptographic algorithms for incoming Agent Cards. |
-| `a2a.trusted_card_jwks` | — | `{}` | **A2A**: Map of upstream agent slug to JWKS URL for signature verification. |
+| `a2a.allowed_signing_algs` | None | `["ES256", "RS256", "EdDSA"]` | **A2A**: Permitted cryptographic algorithms for incoming Agent Cards. |
+| `a2a.trusted_card_jwks` | None | `{}` | **A2A**: Map of upstream agent slug to JWKS URL for signature verification. |
 | `files.storage_dir` | `GOROUTE_FILES_DIR` | `os.TempDir()/goroute-files` | **Files**: Local disk directory for stateful tenant assets and batch files (`0700` dir, `0600` file mode). |
-| `providers.custom_openai_compatible[].id` | — | — | **Custom Provider**: Unique string identifier (e.g. `"inhouse-vllm"`). |
-| `providers.custom_openai_compatible[].display_name` | — | — | **Custom Provider**: Human-readable label for logs and UI. |
-| `providers.custom_openai_compatible[].base_url` | — | — | **Custom Provider**: Target endpoint base URL (e.g. `http://vllm-cluster:8000/v1`). |
-| `providers.custom_openai_compatible[].supports_streaming` | — | `"true"` | **Custom Provider**: Streaming capability override (`"true"`, `"false"`, `"unknown"`). |
-| `providers.custom_openai_compatible[].supports_tools` | — | `"true"` | **Custom Provider**: Function/tool calling capability override. |
-| `providers.custom_openai_compatible[].supports_structured_outputs` | — | `"true"` | **Custom Provider**: Structured outputs (`response_format: json_schema`) support. |
-| `providers.custom_openai_compatible[].supports_list_models` | — | `true` | **Custom Provider**: Whether upstream endpoint implements `GET /models`. |
-| `providers.custom_openai_compatible[].default_headers` | — | `{}` | **Custom Provider**: HTTP headers automatically attached to outbound calls. |
+| `providers.custom_openai_compatible[].id` | None | Required | **Custom Provider**: Unique string identifier (e.g. `"inhouse-vllm"`). |
+| `providers.custom_openai_compatible[].display_name` | None | Required | **Custom Provider**: Human-readable label for logs and UI. |
+| `providers.custom_openai_compatible[].base_url` | None | Required | **Custom Provider**: Target endpoint base URL (e.g. `http://vllm-cluster:8000/v1`). |
+| `providers.custom_openai_compatible[].supports_streaming` | None | `"true"` | **Custom Provider**: Streaming capability override (`"true"`, `"false"`, `"unknown"`). |
+| `providers.custom_openai_compatible[].supports_tools` | None | `"true"` | **Custom Provider**: Function/tool calling capability override. |
+| `providers.custom_openai_compatible[].supports_structured_outputs` | None | `"true"` | **Custom Provider**: Structured outputs (`response_format: json_schema`) support. |
+| `providers.custom_openai_compatible[].supports_list_models` | None | `true` | **Custom Provider**: Whether upstream endpoint implements `GET /models`. |
+| `providers.custom_openai_compatible[].default_headers` | None | `{}` | **Custom Provider**: HTTP headers automatically attached to outbound calls. |
 
 ---
 
@@ -10961,7 +10973,7 @@ resources:
 images:
   - name: goroute/ai-gateway
     newName: ghcr.io/goroute-ai/ai-gateway-go
-    newTag: v1.7.0
+    newTag: v1.8.0
 
 patches:
   - target:
@@ -11039,7 +11051,7 @@ Section: Control Plane Documentation > Deploy & Operate
 
 # Helm Chart Deployment
 
-GoRoute AI Gateway ships an official Kubernetes Helm chart (`goroute`, chart version `0.2.0`, app version `1.7.0`) under [`deployments/helm/goroute/`](https://github.com/goroute-ai/ai-gateway-go/tree/main/deployments/helm/goroute) and as a packaged `.tgz` archive on the GitHub Releases page.
+GoRoute AI Gateway ships an official Kubernetes Helm chart (`goroute`, chart version `0.3.0`, app version `1.8.0`) under [`deployments/helm/goroute/`](https://github.com/goroute-ai/ai-gateway-go/tree/main/deployments/helm/goroute) and as a packaged `.tgz` archive on the GitHub Releases page.
 
 For raw manifests without Helm, see [Kubernetes & Kustomize Deployment](https://goroute-ai.github.io/docs/deploy/kubernetes-kustomize).
 
@@ -11064,7 +11076,7 @@ In production, keep `postgresql.enabled: false` and `redis.enabled: false` when 
 
 ```bash
 # Option A: Install directly from a release .tgz archive
-helm upgrade --install goroute ./goroute-0.2.0.tgz \
+helm upgrade --install goroute ./goroute-0.3.0.tgz \
   --namespace goroute-prod --create-namespace \
   --set secrets.existingSecret="goroute-prod-secrets" \
   --set migration.enabled=true
@@ -11102,7 +11114,7 @@ helm upgrade --install goroute deployments/helm/goroute \
 | :--- | :--- | :--- |
 | `replicaCount` | `2` | Static pod count (used only when `autoscaling.enabled: false`). |
 | `image.repository` | `ghcr.io/goroute-ai/ai-gateway-go` | Container image repository. |
-| `image.tag` | `""` | Overrides `Chart.AppVersion` (`1.7.0`) when non-empty. |
+| `image.tag` | `""` | Overrides `Chart.AppVersion` (`1.8.0`) when non-empty. |
 | `image.pullPolicy` | `IfNotPresent` | Kubernetes image pull policy. |
 | `service.type` | `ClusterIP` | Kubernetes Service type. |
 | `service.port` | `8080` | HTTP data plane, `/admin/v1`, `/ui/`, and `/metrics` port. |
@@ -11494,16 +11506,19 @@ Metrics are maintained in-memory using Vitter Algorithm R uniform reservoir samp
 
 | Metric Name | Type | Labels | Description |
 | :--- | :--- | :--- | :--- |
-| `gateway_requests_total` | Counter | — | Total inference requests processed across all endpoints. |
-| `gateway_errors_total` | Counter | — | Total failed inference requests (HTTP 4xx/5xx). |
+| `gateway_requests_total` | Counter | None | Total inference requests processed across all endpoints. |
+| `gateway_errors_total` | Counter | None | Total failed inference requests (HTTP 4xx/5xx). |
 | `gateway_latency_ms` | Gauge | `quantile="0.5"`, `"0.95"`, `"0.99"` | End-to-end request duration percentiles in milliseconds. |
 | `gateway_ttft_ms` | Gauge | `quantile="0.95"` | P95 Time-To-First-Token for streaming responses in milliseconds. |
 | `gateway_routing_overhead_micros` | Gauge | `quantile="0.95"` | P95 Stage 1 (heuristic) + Stage 2 (load balancer) routing decision time in microseconds. |
-| `gateway_fallbacks_total` | Counter | — | Total failover executions to secondary or tertiary model groups. |
-| `gateway_retries_total` | Counter | — | Total intra-group exponential retry attempts. |
-| `gateway_cache_hits_total` | Counter | — | Total exact-match responses served directly from Redis/L1 cache. |
-| `gateway_ratelimit_rejections_total` | Counter | — | Total requests rejected by RPM/TPM rate limits or financial spend ceilings. |
-| `gateway_guardrail_blocks_total` | Counter | — | Total requests intercepted and blocked by security guardrail rules. |
+| `gateway_fallbacks_total` | Counter | None | Total failover executions to secondary or tertiary model groups. |
+| `gateway_retries_total` | Counter | None | Total intra-group exponential retry attempts. |
+| `gateway_cache_hits_total` | Counter | None | Total exact-match responses served directly from Redis/L1 cache. |
+| `gateway_ratelimit_rejections_total` | Counter | None | Total requests rejected by RPM/TPM rate limits or financial spend ceilings. |
+| `gateway_guardrail_blocks_total` | Counter | None | Total requests intercepted and blocked by security guardrail rules. |
+| `gateway_guardrail_evaluations_total` | Counter | `guardrail`, `hook`, `decision` | Total guardrail evaluations segmented by guardrail name, execution hook, and decision (`allow`, `block`, `flag`, `modify`, `error`). |
+| `gateway_guardrail_errors_total` | Counter | `guardrail`, `hook` | Total guardrail evaluation errors segmented by guardrail name and hook. |
+| `gateway_guardrail_duration_ms` | Histogram | `guardrail`, `hook` | Guardrail evaluation latency histogram in milliseconds (`le` buckets and `+Inf`). |
 | `gateway_provider_requests_total` | Counter | `provider` | Request volume segmented by upstream provider (`openai`, `anthropic`, etc.). |
 | `gateway_provider_errors_total` | Counter | `provider` | Upstream failure count segmented by provider. |
 | `gateway_provider_latency_p95_ms` | Gauge | `provider` | P95 upstream round-trip latency segmented by provider. |
@@ -11699,7 +11714,7 @@ spec:
     spec:
       containers:
         - name: gateway
-          image: ghcr.io/goroute-ai/ai-gateway-go:v1.7.0
+          image: ghcr.io/goroute-ai/ai-gateway-go:v1.8.0
           ports:
             - containerPort: 8080
               name: http
@@ -12094,7 +12109,7 @@ The embedded mode does not require a separately deployed gateway service. It sti
 The upstream module currently declares Go `1.26.0` in `go.mod`. Use a compatible Go toolchain:
 
 ```bash
-go get github.com/goroute-ai/ai-gateway-go/pkg/gateway@v1.7.0
+go get github.com/goroute-ai/ai-gateway-go/pkg/gateway@v1.8.0
 ```
 
 ## Minimal request
@@ -12671,6 +12686,25 @@ func WithLogger(l *slog.Logger) Option
 func WithModelList(entries ...ModelEntry) Option
 func WithRemote(baseURL, apiKey string) Option
 func WithSilentLogs() Option
+func WithGuardrailScanner(name string, scanner GuardrailScanner, opts ...GuardrailOption) Option
+```
+
+### Guardrail Scanner Options & Types (`v1.8.0`)
+
+```go
+type GuardrailDecision string // "allow" | "block" | "flag" | "modify"
+type GuardrailHook string     // "pre_call" | "during_call" | "post_call" | "logging_only" | "pre_mcp_call" | "during_mcp_call" | "post_mcp_call"
+
+type GuardrailScanner interface {
+	Scan(ctx context.Context, req GuardrailScanRequest) (GuardrailScanResult, error)
+}
+type GuardrailScannerFunc func(ctx context.Context, req GuardrailScanRequest) (GuardrailScanResult, error)
+
+func WithGuardrailTimeout(d time.Duration) GuardrailOption
+func WithGuardrailFailOpen(failOpen bool) GuardrailOption
+func WithGuardrailHooks(hooks ...GuardrailHook) GuardrailOption
+func WithGuardrailDefaultOn(defaultOn bool) GuardrailOption
+func WithGuardrailPrecedence(precedence int) GuardrailOption
 ```
 
 `Option` is an opaque option type accepted by `New`; its function signature uses an internal configuration type. Applications should pass the built-in options instead of constructing options directly.
@@ -12850,9 +12884,9 @@ GoRoute AI Gateway provides a comprehensive API surface combining a high-perform
 
 ## Interactive Endpoint Catalog
 
-Search and filter every HTTP and WebSocket route exposed by GoRoute AI Gateway across `/v1/*`, `/openai/v1/*`, `/anthropic/v1/*`, `/mcp*`, `/a2a/v1/*`, and `/admin/v1/*`. The interactive catalog documents **97 endpoints across 7 API surfaces**, while the unified OpenAPI specification (`gateway.openapi.yaml`) covers **63 paths** with automated `/v1` and `/admin/v1` parity enforced by `cmd/specgen`.
+Search and filter every HTTP and WebSocket route exposed by GoRoute AI Gateway across `/v1/*`, `/openai/v1/*`, `/anthropic/v1/*`, `/mcp*`, `/a2a/v1/*`, and `/admin/v1/*`. The interactive catalog documents **112 endpoints across 7 API surfaces**, while the unified OpenAPI specification (`gateway.openapi.yaml`) covers **73 paths** (`24` `/v1` + `49` `/admin/v1`) with automated parity enforced by `cmd/specgen`.
 
-### Gateway Endpoints (97 Documented)
+### Gateway Endpoints (112 Documented)
 
 | Method | Path | Surface | Auth | Summary |
 | :--- | :--- | :--- | :--- | :--- |
@@ -12882,6 +12916,7 @@ Search and filter every HTTP and WebSocket route exposed by GoRoute AI Gateway a
 | `POST` | `/v1/batches/{batch_id}/cancel` | Data Plane (/v1) | Virtual API Key | Cancel an in-progress batch job. |
 | `POST` | `/v1/responses` | Data Plane (/v1) | Virtual API Key | OpenAI Responses API for stateful multi-turn reasoning and tool execution. |
 | `WS` | `/v1/realtime` | Data Plane (/v1) | Virtual API Key | Full-duplex WebSocket proxy for low-latency realtime audio and text sessions. |
+| `POST` | `/v1/guardrails/apply` | Data Plane (/v1) | Virtual API Key | Evaluate input/output text or tool calls directly against Pipeline v2 guardrails. |
 | `POST` | `/openai/v1/responses` | OpenAI Direct (/openai/v1) | Virtual API Key | Direct OpenAI-prefixed Responses API alias. |
 | `WS` | `/openai/v1/realtime` | OpenAI Direct (/openai/v1) | Virtual API Key | Direct OpenAI-prefixed Realtime WebSocket alias. |
 | `POST` | `/anthropic/v1/messages` | Anthropic Native (/anthropic/v1) | Virtual API Key | Native Anthropic Messages endpoint for Claude Code and Anthropic SDKs. |
@@ -12908,7 +12943,21 @@ Search and filter every HTTP and WebSocket route exposed by GoRoute AI Gateway a
 | `GET` | `/admin/v1/organizations/{orgID}/models` | Admin Control Plane (/admin/v1) | Master Admin Key | Retrieve model policies for an organization. |
 | `POST` | `/admin/v1/organizations/{orgID}/guardrails` | Admin Control Plane (/admin/v1) | Master Admin Key | Set input/output security guardrail policies for an organization. |
 | `GET` | `/admin/v1/organizations/{orgID}/guardrails` | Admin Control Plane (/admin/v1) | Master Admin Key | Get configured guardrail policies for an organization. |
-| `POST` | `/admin/v1/organizations/{orgID}/guardrails/simulate` | Admin Control Plane (/admin/v1) | Master Admin Key | Dry-run guardrail rules against a sample payload. |
+| `POST` | `/admin/v1/organizations/{orgID}/guardrails/simulate` | Admin Control Plane (/admin/v1) | Master Admin Key | Dry-run guardrail rules and Pipeline v2 drivers against a sample payload. |
+| `POST` | `/admin/v1/organizations/{orgID}/guardrail-definitions` | Admin Control Plane (/admin/v1) | Master Admin Key | Create a named guardrail definition backed by one of 19 drivers, Starlark, or webhooks. |
+| `GET` | `/admin/v1/organizations/{orgID}/guardrail-definitions` | Admin Control Plane (/admin/v1) | Master Admin Key | List named guardrail definitions configured for an organization. |
+| `GET` | `/admin/v1/guardrail-definitions/{guardrailID}` | Admin Control Plane (/admin/v1) | Master Admin Key | Retrieve a named guardrail definition by ID. |
+| `PUT` | `/admin/v1/guardrail-definitions/{guardrailID}` | Admin Control Plane (/admin/v1) | Master Admin Key | Replace configuration and credentials for a guardrail definition. |
+| `PATCH` | `/admin/v1/guardrail-definitions/{guardrailID}` | Admin Control Plane (/admin/v1) | Master Admin Key | Partially update a named guardrail definition. |
+| `DELETE` | `/admin/v1/guardrail-definitions/{guardrailID}` | Admin Control Plane (/admin/v1) | Master Admin Key | Delete a named guardrail definition. |
+| `POST` | `/admin/v1/guardrail-definitions/{guardrailID}/status` | Admin Control Plane (/admin/v1) | Master Admin Key | Enable or disable a named guardrail definition. |
+| `POST` | `/admin/v1/guardrail-bindings` | Admin Control Plane (/admin/v1) | Master Admin Key | Bind a guardrail definition to an Org, Team, VirtualKey, EndUser, ModelGroup, or Tag. |
+| `GET` | `/admin/v1/organizations/{orgID}/guardrail-bindings` | Admin Control Plane (/admin/v1) | Master Admin Key | List hierarchical guardrail bindings for an organization. |
+| `DELETE` | `/admin/v1/guardrail-bindings/{bindingID}` | Admin Control Plane (/admin/v1) | Master Admin Key | Remove a guardrail binding. |
+| `POST` | `/admin/v1/organizations/{orgID}/tool-policies` | Admin Control Plane (/admin/v1) | Master Admin Key | Create or update tool permission and cross-turn taint trust policies. |
+| `GET` | `/admin/v1/organizations/{orgID}/tool-policies` | Admin Control Plane (/admin/v1) | Master Admin Key | List tool trust policies configured for an organization. |
+| `DELETE` | `/admin/v1/organizations/{orgID}/tool-policies/{policyID}` | Admin Control Plane (/admin/v1) | Master Admin Key | Delete a tool trust policy. |
+| `GET` | `/admin/v1/organizations/{orgID}/guardrail-usage` | Admin Control Plane (/admin/v1) | Master Admin Key | Query micro-dollar guardrail usage rollups and evaluation counts. |
 | `POST` | `/admin/v1/teams` | Admin Control Plane (/admin/v1) | Master Admin Key | Create a team within an organization. |
 | `GET` | `/admin/v1/teams` | Admin Control Plane (/admin/v1) | Master Admin Key | List teams. |
 | `POST` | `/admin/v1/users` | Admin Control Plane (/admin/v1) | Master Admin Key | Create a user. |
@@ -12982,7 +13031,7 @@ flowchart TD
 
 | Specification Guide | Endpoints Base | Core Coverage |
 | :--- | :--- | :--- |
-| **[Gateway Data Plane API](https://goroute-ai.github.io/docs/api/gateway-api)** | `/v1/*` | All 23 primary `/v1/*` paths (26 HTTP/WebSocket operations): Chat Completions, Text Completions, Embeddings, Models, Rerank, Moderations, Anthropic Messages, Tokenization, Audio (STT & TTS), Images, Files, Batches, Responses, and Realtime WebSockets. |
+| **[Gateway Data Plane API](https://goroute-ai.github.io/docs/api/gateway-api)** | `/v1/*` | All 24 primary `/v1/*` paths: Chat Completions, Text Completions, Embeddings, Models, Rerank, Moderations, Anthropic Messages, Tokenization, Standalone Guardrails (`/v1/guardrails/apply`), Audio (STT & TTS), Images, Files, Batches, Responses, and Realtime WebSockets. |
 | **[Admin Control Plane API](https://goroute-ai.github.io/docs/api/admin-api)** | `/admin/v1/*` | All management groups: Organizations, Provider Subscriptions, Model Policies, Guardrails & Simulator, Teams, Users, Virtual Keys, Credentials Vault, Model Groups, Deployments, Catalogue/Pricing, Health/Cache, and FinOps Ledgers. |
 | **[Model Context Protocol (MCP) API](https://goroute-ai.github.io/docs/api/mcp-api)** | `/mcp/*`, `/mcp-rest/*` | Virtual Hub aggregator, Scoped server execution, Curated toolsets, Plain REST tool bridge, and Progressive Tool Discovery catalog feed. |
 | **[Agent-to-Agent (A2A) API](https://goroute-ai.github.io/docs/api/a2a-api)** | `/a2a/v1/*`, `gRPC` | Signed Agent Cards (`/.well-known/agent-card.json`), dual-binding message dispatch, Subscribe-First SSE task streaming, native gRPC service, and OpenAI SDK compatibility bridge. |
@@ -13052,7 +13101,7 @@ Section: API Reference > API Reference
 
 # Gateway Data Plane API Reference
 
-GoRoute AI Gateway exposes an OpenAI-compatible data plane supporting **23 primary `/v1` paths (26 HTTP operations)** across **73 `ProviderType` profiles** (plus `CustomOpenAICompatible`). All routes execute with sub-2ms gateway overhead, automated circuit breaking, cross-provider fallbacks, and real-time micro-dollar accounting.
+GoRoute AI Gateway exposes an OpenAI-compatible data plane supporting **24 primary `/v1` paths** across **73 `ProviderType` profiles** (plus `CustomOpenAICompatible`). All routes execute with sub-2ms gateway overhead, automated circuit breaking, cross-provider fallbacks, and real-time micro-dollar accounting.
 
 > [!NOTE]
 > All data plane routes accept standard OpenAI SDKs (Python, TypeScript, Go) and raw HTTP clients. Set your client `base_url` to `http://localhost:8080/v1` and supply a Virtual API Key (`sk-gw-...`) via the `Authorization` header.
@@ -13095,7 +13144,7 @@ In addition to logical aliases (`fast`, `reasoning`), GoRoute allows clients to 
 
 ---
 
-## Summary of All 23 Primary `/v1` Data Plane Paths (26 HTTP Operations)
+## Summary of All 24 Primary `/v1` Data Plane Paths
 
 | HTTP Method | Route | Description |
 | :--- | :--- | :--- |
@@ -13125,6 +13174,7 @@ In addition to logical aliases (`fast`, `reasoning`), GoRoute allows clients to 
 | `POST` | `/v1/batches/{batch_id}/cancel` | Abort in-flight batch execution |
 | `POST` | `/v1/responses` | OpenAI Responses API translation bridge |
 | `GET` | `/v1/realtime` | Full-duplex OpenAI Realtime WebSocket session |
+| `POST` | `/v1/guardrails/apply` | Standalone Pipeline v2 guardrail evaluation without upstream LLM call |
 
 ---
 
@@ -13809,7 +13859,7 @@ The GoRoute Admin Control Plane (`/admin/v1/*`) provides unified APIs for tenant
 | 1 | **Organizations** | `POST/GET /admin/v1/organizations` | Tenant org creation and budget caps |
 | 2 | **Subscriptions** | `POST/GET /admin/v1/organizations/{orgID}/subscriptions` | Layer 2 provider enablement |
 | 3 | **Model Policies** | `POST/GET /admin/v1/organizations/{orgID}/models` | Layer 3 org model overrides and token ceilings |
-| 4 | **Guardrails & Simulator** | `POST/GET /admin/v1/organizations/{orgID}/guardrails`, `/simulate` | PII redaction, secret scanning, stateless testing |
+| 4 | **Guardrails & Simulator** | `POST/GET /admin/v1/organizations/{orgID}/guardrails`, `/simulate`, `/guardrail-definitions`, `/guardrail-bindings`, `/tool-policies`, `/guardrail-usage` | PII/secret scanning, named registry (19 drivers, Starlark), hierarchical bindings, tool taint policies, and micro-dollar guardrail usage |
 | 5 | **Teams** | `POST/GET /admin/v1/teams` | Departmental team isolation and model scopes |
 | 6 | **Users** | `POST/GET /admin/v1/users` | User directory and role-based permissions |
 | 7 | **Virtual API Keys** | `POST/GET /admin/v1/keys`, `POST .../revoke`, `DELETE` | Scoped API key issuance and instant revocation |
@@ -15226,40 +15276,40 @@ The examples module declares its Go toolchain version in `examples/go.mod`. See 
 ## Examples by task
 
 ### Fundamentals
-- [**Hello Gateway**](https://goroute-ai.github.io/docs/examples/hello-gateway) — Minimal in-process gateway setup and synchronous chat.
-- [**System Prompts**](https://goroute-ai.github.io/docs/examples/system-prompt) — Persona steering using `gateway.WithSystem(...)`.
-- [**Streaming Tokens**](https://goroute-ai.github.io/docs/examples/streaming-tokens) — Zero-buffer SSE token streaming via `StreamChat`.
-- [**Sampling & Limits**](https://goroute-ai.github.io/docs/examples/temperature-and-sampling) — Deterministic outputs and minimal token capping.
-- [**Structured JSON**](https://goroute-ai.github.io/docs/examples/json-mode-structured-output) — Guaranteed machine-readable JSON object output.
-- [**Multi-Turn Memory**](https://goroute-ai.github.io/docs/examples/multi-turn-conversation) — Maintaining conversation history across multiple turns.
+- [**Hello Gateway**](https://goroute-ai.github.io/docs/examples/hello-gateway): Minimal in-process gateway setup and synchronous chat.
+- [**System Prompts**](https://goroute-ai.github.io/docs/examples/system-prompt): Persona steering using `gateway.WithSystem(...)`.
+- [**Streaming Tokens**](https://goroute-ai.github.io/docs/examples/streaming-tokens): Zero-buffer SSE token streaming via `StreamChat`.
+- [**Sampling & Limits**](https://goroute-ai.github.io/docs/examples/temperature-and-sampling): Deterministic outputs and minimal token capping.
+- [**Structured JSON**](https://goroute-ai.github.io/docs/examples/json-mode-structured-output): Guaranteed machine-readable JSON object output.
+- [**Multi-Turn Memory**](https://goroute-ai.github.io/docs/examples/multi-turn-conversation): Maintaining conversation history across multiple turns.
 
 ### Multi-Provider Integrations
-- [**OpenAI Direct**](https://goroute-ai.github.io/docs/examples/openai-direct) — Connecting to OpenAI with `openai/gpt-4o-mini`.
-- [**Anthropic Direct**](https://goroute-ai.github.io/docs/examples/anthropic-direct) — Connecting to Anthropic with `anthropic/claude-haiku-4-5-20251001`.
-- [**Google Gemini Direct**](https://goroute-ai.github.io/docs/examples/gemini-direct) — Connecting to Gemini with `gemini/gemini-2.5-flash-lite`.
-- [**Local Ollama**](https://goroute-ai.github.io/docs/examples/local-ollama) — Self-hosted offline inference on port 11434.
-- [**Unified Model Aliases**](https://goroute-ai.github.io/docs/examples/unified-model-alias) — Logical aliases decoupling callers from specific vendors.
+- [**OpenAI Direct**](https://goroute-ai.github.io/docs/examples/openai-direct): Connecting to OpenAI with `openai/gpt-4o-mini`.
+- [**Anthropic Direct**](https://goroute-ai.github.io/docs/examples/anthropic-direct): Connecting to Anthropic with `anthropic/claude-haiku-4-5-20251001`.
+- [**Google Gemini Direct**](https://goroute-ai.github.io/docs/examples/gemini-direct): Connecting to Gemini with `gemini/gemini-2.5-flash-lite`.
+- [**Local Ollama**](https://goroute-ai.github.io/docs/examples/local-ollama): Self-hosted offline inference on port 11434.
+- [**Unified Model Aliases**](https://goroute-ai.github.io/docs/examples/unified-model-alias): Logical aliases decoupling callers from specific vendors.
 
 ### Tool Calling & Autonomous Agents
-- [**Tool Definition**](https://goroute-ai.github.io/docs/examples/single-tool-definition) — Registering tool schemas via Model Context Protocol (MCP).
-- [**Tool Execution**](https://goroute-ai.github.io/docs/examples/tool-execution-callback) — In-process tool execution and result returning.
-- [**Multi-Tool Inventory**](https://goroute-ai.github.io/docs/examples/multi-tool-selection) — Aggregating multiple tool servers into a single schema.
-- [**Autonomous Agent Loop**](https://goroute-ai.github.io/docs/examples/autonomous-tool-loop) — Multi-turn self-orchestrating loop with zero human intervention.
+- [**Tool Definition**](https://goroute-ai.github.io/docs/examples/single-tool-definition): Registering tool schemas via Model Context Protocol (MCP).
+- [**Tool Execution**](https://goroute-ai.github.io/docs/examples/tool-execution-callback): In-process tool execution and result returning.
+- [**Multi-Tool Inventory**](https://goroute-ai.github.io/docs/examples/multi-tool-selection): Aggregating multiple tool servers into a single schema.
+- [**Autonomous Agent Loop**](https://goroute-ai.github.io/docs/examples/autonomous-tool-loop): Multi-turn self-orchestrating loop with zero human intervention.
 
 ### Traffic Routing & Outage Resiliency
-- [**Outage Fallback Chains**](https://goroute-ai.github.io/docs/examples/failover-fallback-chain) — Automatic 503 outage recovery with secondary models.
-- [**Round-Robin Balancer**](https://goroute-ai.github.io/docs/examples/round-robin-balancer) — Uniform stateless load balancing.
-- [**Weighted Shuffle Routing**](https://goroute-ai.github.io/docs/examples/weighted-shuffle-routing) — Proportionate canary and cost-steered traffic splitting.
-- [**Least-Latency EWMA**](https://goroute-ai.github.io/docs/examples/least-latency-ewma) — Peak-EWMA routing favoring lowest latency endpoints.
-- [**Circuit Breakers**](https://goroute-ai.github.io/docs/examples/circuit-breaker) — Fast-failing broken backends to protect caller latency.
+- [**Outage Fallback Chains**](https://goroute-ai.github.io/docs/examples/failover-fallback-chain): Automatic 503 outage recovery with secondary models.
+- [**Round-Robin Balancer**](https://goroute-ai.github.io/docs/examples/round-robin-balancer): Uniform stateless load balancing.
+- [**Weighted Shuffle Routing**](https://goroute-ai.github.io/docs/examples/weighted-shuffle-routing): Proportionate canary and cost-steered traffic splitting.
+- [**Least-Latency EWMA**](https://goroute-ai.github.io/docs/examples/least-latency-ewma): Peak-EWMA routing favoring lowest latency endpoints.
+- [**Circuit Breakers**](https://goroute-ai.github.io/docs/examples/circuit-breaker): Fast-failing broken backends to protect caller latency.
 
 ### Enterprise FinOps, Protocols & Microservices
-- [**Exact-Match Cache**](https://goroute-ai.github.io/docs/examples/exact-match-cache) — Sub-millisecond SHA-256 caching for identical prompts.
-- [**Sliding-Window Rate Limits**](https://goroute-ai.github.io/docs/examples/sliding-window-rate-limiting) — Strict RPM and TPM quota enforcement.
-- [**Virtual Keys & Budgets**](https://goroute-ai.github.io/docs/examples/virtual-keys-and-budgets) — Department keys, micro-dollar tracking, and revocation.
-- [**MCP Virtual Hub**](https://goroute-ai.github.io/docs/examples/mcp-virtual-hub) — Model Context Protocol Virtual Hub & REST bridge.
-- [**A2A Agent Network**](https://goroute-ai.github.io/docs/examples/a2a-agent-network) — Cryptographic Agent-to-Agent discovery and dispatch.
-- [**Embedded Microservice**](https://goroute-ai.github.io/docs/examples/embedded-http-microservice) — Production HTTP server with Kubernetes probes.
+- [**Exact-Match Cache**](https://goroute-ai.github.io/docs/examples/exact-match-cache): Sub-millisecond SHA-256 caching for identical prompts.
+- [**Sliding-Window Rate Limits**](https://goroute-ai.github.io/docs/examples/sliding-window-rate-limiting): Strict RPM and TPM quota enforcement.
+- [**Virtual Keys & Budgets**](https://goroute-ai.github.io/docs/examples/virtual-keys-and-budgets): Department keys, micro-dollar tracking, and revocation.
+- [**MCP Virtual Hub**](https://goroute-ai.github.io/docs/examples/mcp-virtual-hub): Model Context Protocol Virtual Hub & REST bridge.
+- [**A2A Agent Network**](https://goroute-ai.github.io/docs/examples/a2a-agent-network): Cryptographic Agent-to-Agent discovery and dispatch.
+- [**Embedded Microservice**](https://goroute-ai.github.io/docs/examples/embedded-http-microservice): Production HTTP server with Kubernetes probes.
 
 ---
 
@@ -16321,7 +16371,7 @@ func main() {
 	demoutil.Info("Server Registered", "Enterprise Financial Suite")
 	demoutil.Info("Total Aggregated Tools", fmt.Sprintf("%d tools indexed", count))
 	for _, t := range tools {
-		demoutil.Info("Discovered Tool", fmt.Sprintf("%-18s — %v", t["name"], t["description"]))
+		demoutil.Info("Discovered Tool", fmt.Sprintf("%-18s: %v", t["name"], t["description"]))
 	}
 
 	demoutil.Success("Hub Unification", "Multiple enterprise endpoints aggregated under a unified schema")
@@ -17397,6 +17447,7 @@ GoRoute AI Gateway follows [Semantic Versioning](https://semver.org/spec/v2.0.0.
 
 | Version | Release Date | Highlights |
 | :--- | :--- | :--- |
+| **[v1.8.0](https://goroute-ai.github.io/docs/releases/v1.8.0)** | 2026-11-16 | Two-Layer Guardrails Engine (`19` built-in drivers, `7` hooks, Starlark `custom_code`, `WithGuardrailScanner`), `POST /v1/guardrails/apply`, tool/MCP taint tracking, Light/Dark Operator UI with 4-Tab Guardrails Console, Helm chart (`0.3.0`), and migrations `0016`–`0019`. |
 | **[v1.7.0](https://goroute-ai.github.io/docs/releases/v1.7.0)** | 2026-11-14 | SSRF & media fetch hardening, pure-SDK parity (`ConnectRealtime`, `WithHTTPClient`), 63-path `specgen` parity, `round-robin` routing, Helm chart (`0.2.0`), and migrations `0013`–`0015`. |
 | **[v1.6.0](https://goroute-ai.github.io/docs/releases/v1.6.0)** | 2026-11-13 | Maximum provider & model compatibility, modality FinOps, `0012` migration, hardened Kustomize manifests (`deployments/k8s/`), and containerized production test suite. |
 | **[v1.5.0](https://goroute-ai.github.io/docs/releases/v1.5.0)** | 2026-11-13 | Operator RBAC & inbound JWT/OIDC, Redis Cluster/Sentinel support, durable spend outbox, shared circuit breakers, streaming guardrail redaction, and OTLP tracing. |
@@ -17411,15 +17462,15 @@ Before upgrading across minor versions:
 - Review `configs/config.example.yaml` for newly added configuration blocks.
 
 ### 2. Database Migrations
-GoRoute embeds all PostgreSQL migrations (`migrations/0001_*.sql` through `0015_*.sql`) directly in the gateway binary and applies pending up-migrations atomically at startup (or via `-migrate-only` / the Helm `migration` pre-upgrade hook job).
+GoRoute embeds all PostgreSQL migrations (`migrations/0001_*.sql` through `0019_*.sql`) directly in the gateway binary and applies pending up-migrations atomically at startup (or via `-migrate-only` / the Helm `migration` pre-upgrade hook job).
 
 For zero-downtime rolling upgrades in Kubernetes:
 1. Ensure your PostgreSQL user has DDL permissions (`CREATE TABLE`, `ALTER TABLE`, `CREATE INDEX`) or run a pre-upgrade migration job.
-2. Take a PostgreSQL snapshot before applying major schema changes (such as `0008` spend outbox, `0012` cache-write and operations columns, or `0013`–`0015` user/team/org concurrency and budget limits).
+2. Take a PostgreSQL snapshot before applying major schema changes (such as `0008` spend outbox, `0012` cache-write and operations columns, `0013`–`0015` user/team/org concurrency and budget limits, or `0016`–`0019` guardrails registry, tool policies, and usage metrics).
 3. Upgrade the gateway image tag and monitor `/readyz` before draining old pods:
 
 ```bash
-kubectl -n goroute-prod set image deployment/gateway gateway=ghcr.io/goroute-ai/ai-gateway-go:v1.7.0
+kubectl -n goroute-prod set image deployment/gateway gateway=ghcr.io/goroute-ai/ai-gateway-go:v1.8.0
 kubectl -n goroute-prod rollout status deployment/gateway --timeout=120s
 ```
 
@@ -17427,6 +17478,43 @@ kubectl -n goroute-prod rollout status deployment/gateway --timeout=120s
 After rollout completes:
 - Confirm `GET /healthz` and `GET /readyz` return `200 OK`.
 - Run `make test-canary` against a staging environment to validate live provider routing and modality endpoints.
+
+---
+
+## v1.8.0
+URL: https://goroute-ai.github.io/docs/releases/v1.8.0
+Markdown: https://goroute-ai.github.io/docs/releases/v1.8.0.md
+Section: Control Plane Documentation > Release Notes
+
+# v1.8.0
+
+**Release Date:** 2026-11-16  
+**Theme:** Multi-Provider Guardrails Engine, 19 Built-In Drivers, Zero-Trust Tool/MCP Governance & Light Blue Dark/Light Operator Web UI
+
+---
+
+## Two-Layer Guardrails Engine, 19 Built-In Drivers & Tool/MCP Governance
+
+- **Baseline Toxicity Persistence & Named Registry (`migrations/0016`, `0017`)**: Persists `GuardrailPolicy` toxicity filter and 5 content category lists in PostgreSQL alongside tenant-scoped `guardrail_definitions` (Vault AES-256-GCM encrypted secrets and DEK rotation) and hierarchical `guardrail_bindings` (`Org` → `Team` → `VirtualKey` → `EndUser` → `ModelGroup` → `Tag`, with `default_on` and anti-bypass `is_locked` enforcement).
+- **Pipeline v2 Lifecycle & Load Balancing**: Supports all 7 execution hooks (`pre_call`, concurrent canceling `during_call`, `post_call`, async `logging_only`, `pre_mcp_call`, `during_mcp_call`, `post_mcp_call`), `stream_scope`, tag-based `mode_rule` routing, weighted `RouterLB` cooldown load balancing, and `goroute_extensions` (`guardrails`, `tags`) across inference, non-chat, and OpenAPI contracts (`73` Unified OpenAPI paths: `24` `/v1` + `49` `/admin/v1`).
+- **Extensibility (Public Go SDK, Rich Webhooks & Starlark `custom_code`)**: Adds exported `pkg/gateway.GuardrailScanner` (`WithGuardrailScanner`, `allow`/`block`/`flag`/`modify`), rich `generic_http` webhooks with independent per-scanner timeouts and fail-open handling, and sandboxed Starlark `custom_code` scripts (`apply_guardrail`) with deterministic `50,000`-step limits, context deadlines, zero filesystem/import access, and SSRF-checked `http_get`/`http_post`.
+- **19 Built-In Drivers, LLM Judges & Streaming Windowing**: Adds `openai_moderation`, `bedrock` (SigV4), `azure/prompt_shield`, `azure/text_moderations`, `model_armor`, `presidio`, `lakera_v2`, `guardrails_ai`, `pangea`, `local_content_filter`, `llm_as_a_judge`, `decision_model` (with recursion loop protection), cross-chunk `StreamWindowEvaluator` masking, and incremental streamed `delta.tool_calls` scanning.
+- **Tool & Zero-Trust MCP Governance (`migrations/0018`)**: Adds rule-based `tool_permission`, persistent cross-turn `tool_policy` trust-chain taint tracking inside `ToolLoopOrchestrator`, `block_code_execution`, `mcp_security`, `mcp_end_user_permission`, and `mcp_jwt_signer` upstream token exchange.
+- **Standalone Evaluation API & Micro-Dollar Telemetry (`migrations/0019`)**: Adds Data Plane `POST /v1/guardrails/apply`, expanded `/admin/v1/organizations/{orgID}/guardrails/simulate`, registry/binding/tool-policy/usage endpoints, declarative YAML seeding (`guardrails.definitions[]`, `guardrails.tool_policies[]`), scrubbed `guardrail.evaluate` OpenTelemetry spans, and `gateway_guardrail_evaluations_total`, `gateway_guardrail_errors_total`, and `gateway_guardrail_duration_ms` Prometheus metrics.
+
+---
+
+## Light Blue Dark & Light Operator Web UI Theme & Guardrails Console (`web/`, `internal/ui/`)
+
+- **Dark & Light Theme System**: Adopts CSS-custom-property Obsidian Dark (`#000000` canvas, `#38bdf8` light-blue accent) and Pristine Slate Light (`#ffffff` canvas, `#0369a1` sky-blue accent) themes, backed by a CSP-compliant synchronous `ThemeContext` (`localStorage` persistence) and Header Dark/Light toggle.
+- **4-Tab Guardrails Operator Console**: Adds lazy-loaded views for **Org Baseline Policy**, **Named Guardrails & Provider Registry** (including Starlark editor and tag matrix), **Tool Policies & Trust Matrix**, and **Pipeline Simulator (`/v1/guardrails/apply`) & Micro-Dollar Usage Dashboard**.
+
+---
+
+## Helm Chart (`0.3.0`) & Database Migrations (`0016`–`0019`)
+
+- **Migrations `0016`–`0019`**: `0016_guardrail_policy_toxicity`, `0017_guardrail_registry_and_bindings`, `0018_tool_policies`, and `0019_guardrail_usage_metrics`.
+- **Release Packaging**: Official Helm chart `0.3.0` (`appVersion: "1.8.0"`) and multi-arch container image `ghcr.io/goroute-ai/ai-gateway-go:v1.8.0`. See [Helm Chart Deployment](https://goroute-ai.github.io/docs/deploy/helm-chart).
 
 ---
 

@@ -19,7 +19,7 @@ GoRoute AI Gateway provides a comprehensive API surface combining a high-perform
 
 ## Interactive Endpoint Catalog
 
-Search and filter every HTTP and WebSocket route exposed by GoRoute AI Gateway across `/v1/*`, `/openai/v1/*`, `/anthropic/v1/*`, `/mcp*`, `/a2a/v1/*`, and `/admin/v1/*`. The interactive catalog documents **97 endpoints across 7 API surfaces**, while the unified OpenAPI specification (`gateway.openapi.yaml`) covers **63 paths** with automated `/v1` and `/admin/v1` parity enforced by `cmd/specgen`.
+Search and filter every HTTP and WebSocket route exposed by GoRoute AI Gateway across `/v1/*`, `/openai/v1/*`, `/anthropic/v1/*`, `/mcp*`, `/a2a/v1/*`, and `/admin/v1/*`. The interactive catalog documents **112 endpoints across 7 API surfaces**, while the unified OpenAPI specification (`gateway.openapi.yaml`) covers **73 paths** (`24` `/v1` + `49` `/admin/v1`) with automated parity enforced by `cmd/specgen`.
 
 <EndpointCatalog />
 
@@ -51,7 +51,7 @@ flowchart TD
 
 | Specification Guide | Endpoints Base | Core Coverage |
 | :--- | :--- | :--- |
-| **[Gateway Data Plane API](/docs/api/gateway-api)** | `/v1/*` | All 23 primary `/v1/*` paths (26 HTTP/WebSocket operations): Chat Completions, Text Completions, Embeddings, Models, Rerank, Moderations, Anthropic Messages, Tokenization, Audio (STT & TTS), Images, Files, Batches, Responses, and Realtime WebSockets. |
+| **[Gateway Data Plane API](/docs/api/gateway-api)** | `/v1/*` | All 24 primary `/v1/*` paths: Chat Completions, Text Completions, Embeddings, Models, Rerank, Moderations, Anthropic Messages, Tokenization, Standalone Guardrails (`/v1/guardrails/apply`), Audio (STT & TTS), Images, Files, Batches, Responses, and Realtime WebSockets. |
 | **[Admin Control Plane API](/docs/api/admin-api)** | `/admin/v1/*` | All management groups: Organizations, Provider Subscriptions, Model Policies, Guardrails & Simulator, Teams, Users, Virtual Keys, Credentials Vault, Model Groups, Deployments, Catalogue/Pricing, Health/Cache, and FinOps Ledgers. |
 | **[Model Context Protocol (MCP) API](/docs/api/mcp-api)** | `/mcp/*`, `/mcp-rest/*` | Virtual Hub aggregator, Scoped server execution, Curated toolsets, Plain REST tool bridge, and Progressive Tool Discovery catalog feed. |
 | **[Agent-to-Agent (A2A) API](/docs/api/a2a-api)** | `/a2a/v1/*`, `gRPC` | Signed Agent Cards (`/.well-known/agent-card.json`), dual-binding message dispatch, Subscribe-First SSE task streaming, native gRPC service, and OpenAI SDK compatibility bridge. |

@@ -56,16 +56,19 @@ Metrics are maintained in-memory using Vitter Algorithm R uniform reservoir samp
 
 | Metric Name | Type | Labels | Description |
 | :--- | :--- | :--- | :--- |
-| `gateway_requests_total` | Counter | — | Total inference requests processed across all endpoints. |
-| `gateway_errors_total` | Counter | — | Total failed inference requests (HTTP 4xx/5xx). |
+| `gateway_requests_total` | Counter | None | Total inference requests processed across all endpoints. |
+| `gateway_errors_total` | Counter | None | Total failed inference requests (HTTP 4xx/5xx). |
 | `gateway_latency_ms` | Gauge | `quantile="0.5"`, `"0.95"`, `"0.99"` | End-to-end request duration percentiles in milliseconds. |
 | `gateway_ttft_ms` | Gauge | `quantile="0.95"` | P95 Time-To-First-Token for streaming responses in milliseconds. |
 | `gateway_routing_overhead_micros` | Gauge | `quantile="0.95"` | P95 Stage 1 (heuristic) + Stage 2 (load balancer) routing decision time in microseconds. |
-| `gateway_fallbacks_total` | Counter | — | Total failover executions to secondary or tertiary model groups. |
-| `gateway_retries_total` | Counter | — | Total intra-group exponential retry attempts. |
-| `gateway_cache_hits_total` | Counter | — | Total exact-match responses served directly from Redis/L1 cache. |
-| `gateway_ratelimit_rejections_total` | Counter | — | Total requests rejected by RPM/TPM rate limits or financial spend ceilings. |
-| `gateway_guardrail_blocks_total` | Counter | — | Total requests intercepted and blocked by security guardrail rules. |
+| `gateway_fallbacks_total` | Counter | None | Total failover executions to secondary or tertiary model groups. |
+| `gateway_retries_total` | Counter | None | Total intra-group exponential retry attempts. |
+| `gateway_cache_hits_total` | Counter | None | Total exact-match responses served directly from Redis/L1 cache. |
+| `gateway_ratelimit_rejections_total` | Counter | None | Total requests rejected by RPM/TPM rate limits or financial spend ceilings. |
+| `gateway_guardrail_blocks_total` | Counter | None | Total requests intercepted and blocked by security guardrail rules. |
+| `gateway_guardrail_evaluations_total` | Counter | `guardrail`, `hook`, `decision` | Total guardrail evaluations segmented by guardrail name, execution hook, and decision (`allow`, `block`, `flag`, `modify`, `error`). |
+| `gateway_guardrail_errors_total` | Counter | `guardrail`, `hook` | Total guardrail evaluation errors segmented by guardrail name and hook. |
+| `gateway_guardrail_duration_ms` | Histogram | `guardrail`, `hook` | Guardrail evaluation latency histogram in milliseconds (`le` buckets and `+Inf`). |
 | `gateway_provider_requests_total` | Counter | `provider` | Request volume segmented by upstream provider (`openai`, `anthropic`, etc.). |
 | `gateway_provider_errors_total` | Counter | `provider` | Upstream failure count segmented by provider. |
 | `gateway_provider_latency_p95_ms` | Gauge | `provider` | P95 upstream round-trip latency segmented by provider. |
@@ -261,7 +264,7 @@ spec:
     spec:
       containers:
         - name: gateway
-          image: ghcr.io/goroute-ai/ai-gateway-go:v1.7.0
+          image: ghcr.io/goroute-ai/ai-gateway-go:v1.8.0
           ports:
             - containerPort: 8080
               name: http

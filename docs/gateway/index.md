@@ -1,12 +1,12 @@
 ---
 id: index
-title: "AI Gateway — Traffic Management & Model Routing"
+title: "AI Gateway: Traffic Management & Model Routing"
 sidebar_position: 1
-description: Unified LLM proxy with 23 /v1 routes, 73+ provider profiles, complexity routing, 6 load-balancing strategies, circuit breakers, and 2-tier caching.
+description: Unified LLM proxy with 24 /v1 routes, 73+ provider profiles, complexity routing, 6 load-balancing strategies, circuit breakers, and 2-tier caching.
 keywords: [AI gateway, LLM proxy Go, model routing, load balancing, circuit breaker, multi-provider AI]
 ---
 
-# AI Gateway — Traffic Management & Model Routing
+# AI Gateway: Traffic Management & Model Routing
 
 The **AI Gateway** module is GoRoute's high-throughput, zero-allocation data plane for routing inference traffic across **73 `ProviderType` profiles** (8 native adapters, 60+ built-in/extended OpenAI-compatible profiles, and `CustomOpenAICompatible`) through a single unified API.
 
@@ -16,7 +16,7 @@ The **AI Gateway** module is GoRoute's high-throughput, zero-allocation data pla
 
 | Capability | Implementation | Guide |
 | :--- | :--- | :--- |
-| **Unified Data Plane (23 `/v1` Paths)** | OpenAI-compatible `/v1/*` & `/openai/v1/*`, plus native Anthropic `/anthropic/v1/messages` & `count_tokens`, Responses API, Realtime WebSockets, Audio, Images, Files, Batches, Rerank, and Moderations. | [Chat Completions](/docs/gateway/endpoints/chat-completions) · [Messages](/docs/gateway/endpoints/messages) · [Responses](/docs/gateway/endpoints/responses) · [Realtime](/docs/gateway/endpoints/realtime) |
+| **Unified Data Plane (24 `/v1` Paths)** | OpenAI-compatible `/v1/*` & `/openai/v1/*`, plus native Anthropic `/anthropic/v1/messages` & `count_tokens`, Responses API, Realtime WebSockets, `POST /v1/guardrails/apply`, Audio, Images, Files, Batches, Rerank, and Moderations. | [Chat Completions](/docs/gateway/endpoints/chat-completions) · [Messages](/docs/gateway/endpoints/messages) · [Responses](/docs/gateway/endpoints/responses) · [Realtime](/docs/gateway/endpoints/realtime) |
 | **73+ Provider Profiles & `SupportedOperations`** | Native adapters for OpenAI, Anthropic, Azure OpenAI, AWS Bedrock, Google Gemini, Google Vertex, Cohere, Mistral, Ollama, plus 60+ OpenAI-compatible profiles with `SupportedOperations` enforcement (`OperationSupportChecker`). | [Providers Overview](/docs/providers/overview) · [OpenAI-Compatible](/docs/providers/openai-compatible) |
 | **Stage 1 Complexity Classifier** | Heuristic prompt complexity scoring routes simple requests to fast/low-cost tiers and complex tasks to reasoning models automatically. | [Routing & Load Balancing](/docs/gateway/routing-and-load-balancing) |
 | **Stage 2 Load Balancers** | Six strategies across sibling deployments: `weighted-shuffle`, `least-busy`, `latency-based` (EWMA), `usage-based-headroom`, `lowest-cost`, and `round-robin`. | [Routing & Load Balancing](/docs/gateway/routing-and-load-balancing) |

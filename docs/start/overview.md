@@ -16,13 +16,13 @@ faq:
 
 # GoRoute AI Control Plane Overview
 
-GoRoute is a high-throughput, low-overhead **Enterprise AI Control Plane** engineered in pure Go. It unifies **73 `ProviderType` profiles** (plus `CustomOpenAICompatible`), **23 primary `/v1` data plane paths (26 HTTP operations)**, a Model Context Protocol (MCP 2026-07-28) virtual hub, and a Linux Foundation Agent-to-Agent (A2A v1.0) bridge into five integrated control-plane modules:
+GoRoute is a high-throughput, low-overhead **Enterprise AI Control Plane** engineered in pure Go. It unifies **73 `ProviderType` profiles** (plus `CustomOpenAICompatible`), **24 primary `/v1` data plane paths (`73` Unified OpenAPI paths)**, a Model Context Protocol (MCP 2026-07-28) virtual hub, and a Linux Foundation Agent-to-Agent (A2A v1.0) bridge into five integrated control-plane modules:
 
-1. **[AI Gateway — Traffic Management & Model Routing](/docs/gateway)**: Multi-provider `/v1/*` and `/anthropic/v1/*` data plane (23 primary `/v1` paths / 26 operations), `SupportedOperations` enforcement, Stage 1 complexity classifier, Stage 2 load balancers (6 strategies including `round-robin`), 3-state Redis circuit breakers, bounded fallback chains, and 2-tier exact-match caching.
-2. **[AI Governance — Security, Policies & Compliance](/docs/governance)**: 4-layer access hierarchy, Operator RBAC + OIDC/JWT, AES-256-GCM Credentials Vault, scoped Virtual Keys (`sk-gw-...`), streaming & `logging_only` guardrails, outbound SSRF firewall, and HTTP security headers.
-3. **[AI FinOps — Cost Management & Optimization](/docs/finops)**: 64-bit integer micro-dollar ledger (`$1 = 1,000,000 µ$`), cache-write & modality pricing (`0007`/`0012`), `unpriced_requests` tracking, pre-flight upper-bound budget reservations, durable PostgreSQL spend & budget-reset outboxes (`0008`/`0011`/`0014`), Redis Lua rate limits, and pre-flight tokenization.
-4. **[AI Observability — Monitoring, Tracing & Evaluation](/docs/deploy/observability)**: OTLP/HTTP distributed tracing (`gen_ai.*`, W3C `traceparent`), Prometheus `/metrics`, Vitter Algorithm R latency reservoirs, Embedded Operator Console (`/ui/*`), Guardrails Policy Simulator, and secret-scrubbed `slog` logs.
-5. **[AI Agent Management — MCP, Tools & Agent Access](/docs/agents)**: MCP Virtual Hub, REST bridge (`/mcp-rest/*`), progressive discovery, sandboxed Stdio & SHA-256 tool pinning, MRTR AEAD tokens, A2A signed Agent Cards (JCS/JWS) & native gRPC, autonomous tool loops, and coding-agent/framework access control.
+1. **[AI Gateway: Traffic Management & Model Routing](/docs/gateway)**: Multi-provider `/v1/*` and `/anthropic/v1/*` data plane (24 primary `/v1` paths), `SupportedOperations` enforcement, Stage 1 complexity classifier, Stage 2 load balancers (6 strategies including `round-robin`), 3-state Redis circuit breakers, bounded fallback chains, and 2-tier exact-match caching.
+2. **[AI Governance: Security, Policies & Compliance](/docs/governance)**: 4-layer access hierarchy, Operator RBAC + OIDC/JWT, AES-256-GCM Credentials Vault, scoped Virtual Keys (`sk-gw-...`), Two-Layer Guardrails Engine (19 drivers, 7 hooks, Starlark `custom_code`, `WithGuardrailScanner`, `POST /v1/guardrails/apply`), outbound SSRF firewall, and HTTP security headers.
+3. **[AI FinOps: Cost Management & Optimization](/docs/finops)**: 64-bit integer micro-dollar ledger (`$1 = 1,000,000 µ$`), cache-write & modality pricing (`0007`/`0012`), `unpriced_requests` tracking, pre-flight upper-bound budget reservations, durable PostgreSQL spend & budget-reset outboxes (`0008`/`0011`/`0014`), Redis Lua rate limits, and pre-flight tokenization.
+4. **[AI Observability: Monitoring, Tracing & Evaluation](/docs/deploy/observability)**: OTLP/HTTP distributed tracing (`gen_ai.*`, `guardrail.evaluate`, W3C `traceparent`), Prometheus `/metrics`, Vitter Algorithm R latency reservoirs, Light/Dark Embedded Operator Console (`/ui/`) with 4-Tab Guardrails Console, and secret-scrubbed `slog` logs.
+5. **[AI Agent Management: MCP, Tools & Agent Access](/docs/agents)**: MCP Virtual Hub, REST bridge (`/mcp-rest/*`), progressive discovery, sandboxed Stdio & SHA-256 tool pinning, zero-trust tool taint policies, MRTR AEAD tokens, A2A signed Agent Cards (JCS/JWS) & native gRPC, autonomous tool loops, and coding-agent/framework access control.
 
 ![GoRoute AI Gateway Architecture](/img/architecture.png)
 
@@ -39,10 +39,10 @@ Install the latest precompiled GoRoute binary for your OS (macOS, Linux, Windows
 curl -fsSL https://raw.githubusercontent.com/goroute-ai/ai-gateway-go/main/install.sh | bash
 ```
 
-To install a specific version pin (such as `v1.7.0`):
+To install a specific version pin (such as `v1.8.0`):
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/goroute-ai/ai-gateway-go/main/install.sh | bash -s -- v1.7.0
+curl -fsSL https://raw.githubusercontent.com/goroute-ai/ai-gateway-go/main/install.sh | bash -s -- v1.8.0
 ```
 
 > [!TIP]
@@ -110,7 +110,7 @@ Every inference request traversing GoRoute undergoes sub-2ms processing on the h
 
 ## Core Capabilities
 
-- **23 Primary `/v1` Data Plane Paths (26 HTTP Operations)**: Unified endpoints for Chat Completions, Text Completions, Vector Embeddings, Reranking, Moderation, Anthropic Messages, Tokenization, Audio (STT & TTS), Image Generation/Edits/Variations, Stateful Tenant Files, Asynchronous Batches, Responses API, and Realtime WebSockets.
+- **24 Primary `/v1` Data Plane Paths (`73` Unified OpenAPI Paths)**: Unified endpoints for Chat Completions, Text Completions, Vector Embeddings, Reranking, Moderation, Anthropic Messages, Tokenization, Standalone Guardrails Evaluation (`/v1/guardrails/apply`), Audio (STT & TTS), Image Generation/Edits/Variations, Stateful Tenant Files, Asynchronous Batches, Responses API, and Realtime WebSockets.
 - **73 `ProviderType` Profiles**: Native adapters for dedicated cloud providers (OpenAI, Anthropic Claude, Google Gemini, AWS Bedrock, Azure OpenAI, Google Vertex AI, Cohere, Mistral, Ollama), 60+ built-in and extended OpenAI-compatible dialect profiles, and `CustomOpenAICompatible`.
 - **Agentic Protocols Built-In**: Native Model Context Protocol (MCP) virtual hub with tool deduplication and progressive discovery, alongside Linux Foundation Agent-to-Agent (A2A) cryptographic cards, message dispatch, and gRPC streaming.
 - **Enterprise FinOps**: Real-time micro-dollar ledger ($1 = 1,000,000 µ$) with multi-tenant budgeting, spend summaries, and immutable audit logs.
@@ -120,18 +120,18 @@ Every inference request traversing GoRoute undergoes sub-2ms processing on the h
 
 ## Choose Your Path
 
-Choose the path that matches what you are building — embed GoRoute inside a Go service, run it as a shared HTTP/gRPC gateway, or govern tools and coding agents:
+Choose the path that matches what you are building: embed GoRoute inside a Go service, run it as a shared HTTP/gRPC gateway, or govern tools and coding agents.
 
-- **Path A — Build a Go Application (`pkg/gateway`)**: Start with the [Go SDK Overview](/docs/sdk/overview) and [Go SDK Quickstart](/docs/start/quickstart-sdk), configure model aliases in [Client Configuration](/docs/sdk/client-configuration), add streaming via [Chat and Streaming](/docs/sdk/chat-and-streaming), and explore [Go Examples](/docs/examples/overview).
-- **Path B — Run a Shared Gateway**: Choose between the [Standalone Gateway Quickstart](/docs/start/quickstart-gateway) and [Docker Compose Quickstart](/docs/start/quickstart-docker), tune [Configuration](/docs/deploy/configuration) and [Storage](/docs/deploy/deployment-and-storage), connect [Providers](/docs/providers/overview), and verify [Observability & Health Probes](/docs/deploy/observability) and the [Production Checklist](/docs/deploy/production-checklist).
-- **Path C — Connect Tools, Agents & Coding IDEs**: Configure the [MCP Virtual Hub](/docs/agents/mcp-overview) and [A2A Protocol](/docs/agents/a2a-overview), compare with [MCP and A2A in the Go SDK](/docs/sdk/mcp-and-a2a), or point [Integrations](/docs/integrations/overview) (Claude Code, Cursor, OpenAI/Anthropic SDKs) at your gateway.
+- **Path A: Build a Go Application (`pkg/gateway`)**: Start with the [Go SDK Overview](/docs/sdk/overview) and [Go SDK Quickstart](/docs/start/quickstart-sdk), configure model aliases in [Client Configuration](/docs/sdk/client-configuration), add streaming via [Chat and Streaming](/docs/sdk/chat-and-streaming), and explore [Go Examples](/docs/examples/overview).
+- **Path B: Run a Shared Gateway**: Choose between the [Standalone Gateway Quickstart](/docs/start/quickstart-gateway) and [Docker Compose Quickstart](/docs/start/quickstart-docker), tune [Configuration](/docs/deploy/configuration) and [Storage](/docs/deploy/deployment-and-storage), connect [Providers](/docs/providers/overview), and verify [Observability & Health Probes](/docs/deploy/observability) and the [Production Checklist](/docs/deploy/production-checklist).
+- **Path C: Connect Tools, Agents & Coding IDEs**: Configure the [MCP Virtual Hub](/docs/agents/mcp-overview) and [A2A Protocol](/docs/agents/a2a-overview), compare with [MCP and A2A in the Go SDK](/docs/sdk/mcp-and-a2a), or point [Integrations](/docs/integrations/overview) (Claude Code, Cursor, OpenAI/Anthropic SDKs) at your gateway.
 
 ---
 
 ## Next Steps
 
-- [Quickstart: Standalone Gateway](/docs/start/quickstart-gateway) — Launch GoRoute locally in 2 minutes.
-- [Quickstart: Docker Compose](/docs/start/quickstart-docker) — Spin up the gateway with PostgreSQL and Redis.
-- [Quickstart: Go SDK](/docs/start/quickstart-sdk) — Embed GoRoute directly in your Go applications.
-- [System Architecture & Topology](/docs/start/architecture) — Deep dive into the 10-step request lifecycle.
-- [API Reference Overview](/docs/api/overview) — Explore data plane and control plane endpoints.
+- [Quickstart: Standalone Gateway](/docs/start/quickstart-gateway): Launch GoRoute locally in 2 minutes.
+- [Quickstart: Docker Compose](/docs/start/quickstart-docker): Spin up the gateway with PostgreSQL and Redis.
+- [Quickstart: Go SDK](/docs/start/quickstart-sdk): Embed GoRoute directly in your Go applications.
+- [System Architecture & Topology](/docs/start/architecture): Deep dive into the 10-step request lifecycle.
+- [API Reference Overview](/docs/api/overview): Explore data plane and control plane endpoints.

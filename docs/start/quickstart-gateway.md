@@ -1,11 +1,11 @@
 ---
-title: Quickstart — Standalone Gateway CLI
+title: "Quickstart: Standalone Gateway CLI"
 sidebar_position: 3
 description: Install GoRoute AI Gateway via the universal shell installer or source, configure providers, and interact with the Operator UI.
 keywords: [GoRoute CLI quickstart, standalone AI gateway, install.sh, provider setup, Operator UI]
 ---
 
-# Quickstart — Standalone Gateway CLI
+# Quickstart: Standalone Gateway CLI
 
 Run GoRoute AI Gateway as a high-performance standalone service to provide an intelligent, multi-provider AI proxy for your engineering team or microservices architecture.
 

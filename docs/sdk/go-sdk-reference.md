@@ -36,6 +36,25 @@ func WithLogger(l *slog.Logger) Option
 func WithModelList(entries ...ModelEntry) Option
 func WithRemote(baseURL, apiKey string) Option
 func WithSilentLogs() Option
+func WithGuardrailScanner(name string, scanner GuardrailScanner, opts ...GuardrailOption) Option
+```
+
+### Guardrail Scanner Options & Types (`v1.8.0`)
+
+```go
+type GuardrailDecision string // "allow" | "block" | "flag" | "modify"
+type GuardrailHook string     // "pre_call" | "during_call" | "post_call" | "logging_only" | "pre_mcp_call" | "during_mcp_call" | "post_mcp_call"
+
+type GuardrailScanner interface {
+	Scan(ctx context.Context, req GuardrailScanRequest) (GuardrailScanResult, error)
+}
+type GuardrailScannerFunc func(ctx context.Context, req GuardrailScanRequest) (GuardrailScanResult, error)
+
+func WithGuardrailTimeout(d time.Duration) GuardrailOption
+func WithGuardrailFailOpen(failOpen bool) GuardrailOption
+func WithGuardrailHooks(hooks ...GuardrailHook) GuardrailOption
+func WithGuardrailDefaultOn(defaultOn bool) GuardrailOption
+func WithGuardrailPrecedence(precedence int) GuardrailOption
 ```
 
 `Option` is an opaque option type accepted by `New`; its function signature uses an internal configuration type. Applications should pass the built-in options instead of constructing options directly.

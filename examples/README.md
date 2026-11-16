@@ -1,4 +1,4 @@
-# GoRoute AI Gateway — Progressive Developer Demos
+# GoRoute AI Gateway: Progressive Developer Demos
 
 > Hands-on Go examples for the [GoRoute AI Gateway](https://github.com/goroute-ai/ai-gateway-go).
 > Every demo is self-contained in its own directory, compiles with pure Go (`go run ./<dir>`), and demonstrates a single atomic capability.

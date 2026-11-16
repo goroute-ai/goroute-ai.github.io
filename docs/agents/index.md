@@ -1,14 +1,14 @@
 ---
 id: index
-title: "AI Agent Management — MCP, Tools & Agent Access"
+title: "AI Agent Management: MCP, Tools & Agent Access"
 sidebar_position: 1
 description: MCP 2026-07-28 Virtual Hub, REST bridge, progressive discovery, sandboxed Stdio, A2A signed Agent Cards, gRPC, and autonomous tool loops.
 keywords: [AI agent management, MCP virtual hub, A2A protocol, Agent Cards, sandboxed stdio, autonomous tool loop]
 ---
 
-# AI Agent Management — MCP, Tools & Agent Access
+# AI Agent Management: MCP, Tools & Agent Access
 
-The **AI Agent Management** module turns GoRoute into a governed control plane for **tools**, **multi-agent networks**, and **autonomous coding agents** — enforcing Virtual Key RBAC, cryptographic identity, and execution sandboxing across MCP and A2A protocols.
+The **AI Agent Management** module turns GoRoute into a governed control plane for **tools**, **multi-agent networks**, and **autonomous coding agents**, enforcing Virtual Key RBAC, cryptographic identity, and execution sandboxing across MCP and A2A protocols.
 
 ---
 

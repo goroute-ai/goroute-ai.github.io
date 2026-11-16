@@ -19,7 +19,7 @@ const SURFACES: Array<'All' | EndpointSurface> = [
   'System & Telemetry',
 ];
 
-const METHODS: Array<'All' | EndpointMethod> = ['All', 'GET', 'POST', 'DELETE', 'WS'];
+const METHODS: Array<'All' | EndpointMethod> = ['All', 'GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'WS'];
 
 const AUTHS: Array<'All' | EndpointAuth> = [
   'All',
@@ -35,6 +35,10 @@ function methodBadgeClass(method: EndpointMethod): string {
       return styles.methodGET;
     case 'POST':
       return styles.methodPOST;
+    case 'PUT':
+      return styles.methodPUT;
+    case 'PATCH':
+      return styles.methodPATCH;
     case 'DELETE':
       return styles.methodDELETE;
     case 'WS':

@@ -1,11 +1,11 @@
 ---
-title: Quickstart — Go SDK
+title: "Quickstart: Go SDK"
 sidebar_position: 2
 description: Install the GoRoute SDK, configure a model, and make your first chat request.
 keywords: [GoRoute Go SDK, pkg/gateway, embedded AI gateway, chat completions Go, quickstart]
 ---
 
-# Quickstart — Go SDK
+# Quickstart: Go SDK
 
 Use the Go SDK to run an embedded gateway in your Go process or connect to a gateway that is already running. This guide shows the embedded option and uses local mock providers when a provider key is unavailable.
 

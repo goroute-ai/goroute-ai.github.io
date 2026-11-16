@@ -1,12 +1,12 @@
 ---
 id: index
-title: "AI Governance — Security, Policies & Compliance"
+title: "AI Governance: Security, Policies & Compliance"
 sidebar_position: 1
-description: Enterprise 4-layer policy enforcement, Operator RBAC with OIDC/JWT, AES-256-GCM Credentials Vault, Virtual Keys, streaming guardrails, and SSRF egress firewall.
+description: Enterprise 4-layer policy, RBAC with OIDC/JWT, AES-256-GCM Vault, Virtual Keys, Two-Layer Guardrails with 19 drivers, and SSRF firewall.
 keywords: [AI governance, virtual API keys, LLM guardrails, RBAC OIDC, AES-256-GCM vault, SSRF protection]
 ---
 
-# AI Governance — Security, Policies & Compliance
+# AI Governance: Security, Policies & Compliance
 
 The **AI Governance** module enforces fail-closed identity, credential isolation, content safety, and network egress boundaries across every inference, tool, and control-plane request.
 
@@ -18,9 +18,9 @@ The **AI Governance** module enforces fail-closed identity, credential isolation
 | :--- | :--- | :--- |
 | **4-Layer Policy Model** | Hierarchical fail-closed scoping across **Organization → Team → User → Virtual Key** for model allowlists, budgets, and rate limits. | [RBAC & Credential Vault](/docs/governance/rbac-and-vault) |
 | **Operator RBAC & OIDC/JWT** | Role-based access control for `/admin/v1/*` and `/ui/*` supporting Master Admin Keys as well as OIDC/JWT identity mapping. | [RBAC & Credential Vault](/docs/governance/rbac-and-vault) |
-| **AES-256-GCM Credentials Vault** | Upstream provider API keys and MCP credentials are encrypted at rest and in transit via `internal/storage/vault.go`. | [RBAC & Credential Vault](/docs/governance/rbac-and-vault) |
+| **AES-256-GCM Credentials Vault** | Upstream provider API keys, MCP credentials, and guardrail secrets are encrypted at rest and in transit via `internal/storage/vault.go` with DEK rotation. | [RBAC & Credential Vault](/docs/governance/rbac-and-vault) |
 | **Virtual Keys (`sk-gw-...`)** | Scoped, revocable data-plane tokens accepted via `Authorization: Bearer` or `x-api-key` (with conflict rejection on mismatched dual headers). | [Virtual Keys](/docs/governance/virtual-keys) |
-| **Streaming & `logging_only` Guardrails** | All-role input scanning, PII/secret redaction, streaming output chunk filtering (`stream_filter.go`), and `enforce` vs. `logging_only` policy modes. | [Guardrails Engine](/docs/governance/guardrails) |
+| **Two-Layer Guardrails Engine (19 Drivers)** | Pipeline v2 with 7 hooks (`pre_call`, `during_call`, `post_call`, `logging_only`, `pre_mcp_call`, `during_mcp_call`, `post_mcp_call`), `POST /v1/guardrails/apply`, Starlark `custom_code`, `WithGuardrailScanner`, streaming windowing, and hierarchical bindings (`Org` → `Team` → `VirtualKey` → `EndUser` → `ModelGroup` → `Tag`). | [Guardrails Engine](/docs/governance/guardrails) |
 | **Outbound SSRF Firewall** | `internal/security/network` `SafeTransport` enforces DNS pinning, private-IP/loopback blocking, and link-local address protection on all provider, OTLP, and MCP egress. | [SSRF & Network Security](/docs/governance/network-and-ssrf) |
 | **Security Headers & CORS** | Strict HTTP security headers, configurable CORS origins, and production secret validation before startup. | [Production Readiness Checklist](/docs/deploy/production-checklist) |
 

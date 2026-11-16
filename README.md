@@ -1,6 +1,6 @@
 # GoRoute Enterprise AI Control Plane Documentation Portal & Runnable Demos
 
-> Production documentation portal and progressive developer curriculum for [GoRoute AI Gateway (`ai-gateway-go`)](https://github.com/goroute-ai/ai-gateway-go) — the **Enterprise AI Control Plane** written in 100% Pure Go, unifying **AI Gateway**, **AI Governance**, **AI FinOps**, **AI Observability**, and **AI Agent Management**.
+> Production documentation portal and progressive developer curriculum for [GoRoute AI Gateway (`ai-gateway-go`)](https://github.com/goroute-ai/ai-gateway-go), the **Enterprise AI Control Plane** written in 100% Pure Go, unifying **AI Gateway**, **AI Governance**, **AI FinOps**, **AI Observability**, and **AI Agent Management**.
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/goroute-ai/ai-gateway-go)](https://goreportcard.com/report/github.com/goroute-ai/ai-gateway-go)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
