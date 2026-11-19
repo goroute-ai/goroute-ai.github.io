@@ -7,7 +7,7 @@ keywords: [GoRoute Go SDK, pkg/gateway, embedded AI gateway, chat completions Go
 
 # Quickstart: Go SDK
 
-Use the Go SDK to run an embedded gateway in your Go process or connect to a gateway that is already running. This guide shows the embedded option and uses local mock providers when a provider key is unavailable.
+Use this guide when you are building a Go application and want gateway behavior inside its process. It adds the SDK, creates a gateway, and sends a chat request. If your team already runs a shared gateway, the same guide also shows how to connect a Go client to it.
 
 ## Requirements
 
@@ -19,7 +19,7 @@ Use the Go SDK to run an embedded gateway in your Go process or connect to a gat
 From your Go module:
 
 ```bash
-go get github.com/goroute-ai/ai-gateway-go/pkg/gateway@v1.5.0
+ go get github.com/goroute-ai/ai-gateway-go/pkg/gateway@v1.8.0
 ```
 
 Set a provider key if you want to send requests to a real provider:

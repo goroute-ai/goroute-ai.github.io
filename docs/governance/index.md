@@ -8,7 +8,23 @@ keywords: [AI governance, virtual API keys, LLM guardrails, RBAC OIDC, AES-256-G
 
 # AI Governance: Security, Policies & Compliance
 
-The **AI Governance** module enforces fail-closed identity, credential isolation, content safety, and network egress boundaries across every inference, tool, and control-plane request.
+GoRoute governance gives teams control over who can use AI, which models they can reach, and how requests are checked. It also protects provider credentials and limits where the gateway can send traffic. The guides below explain the safeguards and show how to configure them.
+
+```mermaid
+flowchart LR
+    request["Incoming request"] --> access{"Access allowed?"}
+    access -->|Yes| policy["Apply request policies"] --> provider["Approved provider"]
+    access -->|No| deny["Reject request"]
+    classDef appStyle fill:#153451,stroke:#60A5FA,color:#EFF6FF
+    classDef gatewayStyle fill:#0B5668,stroke:#22D3EE,color:#ECFEFF
+    classDef policyStyle fill:#1D5147,stroke:#5EEAD4,color:#ECFDF5
+    classDef serviceStyle fill:#382F6B,stroke:#A78BFA,color:#F5F3FF
+    class request appStyle
+    class access gatewayStyle
+    class policy policyStyle
+    class provider serviceStyle
+    class deny gatewayStyle
+```
 
 ---
 

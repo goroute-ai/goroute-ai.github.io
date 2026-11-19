@@ -8,7 +8,7 @@ keywords: [goroute go examples, task cookbook, runnable go demos, ai gateway rec
 
 # Go Examples & Task Cookbook
 
-These 26 runnable Go programs under `examples/` demonstrate the gateway's SDK, provider integrations, routing, MCP, A2A, and service embedding, paired with task-based links across the documentation.
+Use these runnable Go examples when you want to see how a task works in practice. Each guide connects the example to the related product documentation, so you can start with a small working path and then explore the relevant configuration.
 
 ---
 

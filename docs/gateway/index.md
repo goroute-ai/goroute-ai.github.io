@@ -8,7 +8,22 @@ keywords: [AI gateway, LLM proxy Go, model routing, load balancing, circuit brea
 
 # AI Gateway: Traffic Management & Model Routing
 
-The **AI Gateway** module is GoRoute's high-throughput, zero-allocation data plane for routing inference traffic across **73 `ProviderType` profiles** (8 native adapters, 60+ built-in/extended OpenAI-compatible profiles, and `CustomOpenAICompatible`) through a single unified API.
+The gateway is the traffic director between your application and its model providers. Your application makes requests through a consistent interface, and GoRoute handles provider selection, retries, and failover behind it. Experienced operators can also tune routing, caching, and operation-level compatibility.
+
+```mermaid
+flowchart LR
+    request["AI request"] --> router["GoRoute router"] --> provider["Selected provider"]
+    router --> fallback["Fallback provider"]
+    classDef appStyle fill:#153451,stroke:#60A5FA,color:#EFF6FF
+    classDef gatewayStyle fill:#0B5668,stroke:#22D3EE,color:#ECFEFF
+    classDef serviceStyle fill:#382F6B,stroke:#A78BFA,color:#F5F3FF
+    class request appStyle
+    class router gatewayStyle
+    class provider serviceStyle
+    class fallback serviceStyle
+```
+
+GoRoute currently provides **73 `ProviderType` profiles** (8 native adapters, 60+ built-in and extended OpenAI-compatible profiles, and `CustomOpenAICompatible`) through its unified API.
 
 ---
 

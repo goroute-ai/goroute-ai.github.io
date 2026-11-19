@@ -9,7 +9,9 @@ import ProviderCatalog from '@site/src/components/ProviderCatalog';
 
 # Providers Overview
 
-GoRoute provides a unified enterprise data plane connecting your applications to **73 `ProviderType` profiles** (plus `CustomOpenAICompatible` endpoints) through a single, normalized OpenAI-compatible API interface. Applications integrate once against standard endpoints (`/v1/chat/completions`, `/v1/embeddings`, `/v1/rerank`, etc.), while GoRoute manages protocol translation, authentication, streaming SSE normalization, credential vaulting, retries, operation enforcement, and FinOps telemetry. The provider count describes gateway integrations; it is not a fixed list of model IDs.
+GoRoute connects applications to different hosted and local AI providers through a consistent gateway interface. This means your application can keep using the same connection while you change or add providers behind it. The catalog lists supported provider integrations; model names and availability depend on the provider and your GoRoute configuration.
+
+The catalog includes **73 `ProviderType` profiles** plus `CustomOpenAICompatible` endpoints. GoRoute handles the protocol translation, authentication, credential storage, retries, and usage tracking needed for each supported integration.
 
 ```mermaid
 flowchart TD

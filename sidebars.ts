@@ -4,7 +4,7 @@ const sidebars: SidebarsConfig = {
   docsSidebar: [
     {
       type: 'category',
-      label: 'Start Here',
+      label: 'Start here',
       collapsed: false,
       items: [
         'start/overview',
@@ -16,7 +16,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'Gateway & Routing',
+      label: 'Route AI requests',
       collapsed: true,
       items: [
         'gateway/index',
@@ -27,7 +27,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'Endpoint Guides',
+      label: 'Use the API',
       collapsed: true,
       items: [
         'gateway/endpoints/chat-completions',
@@ -50,7 +50,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'Providers',
+      label: 'Choose a model provider',
       collapsed: true,
       items: [
         'providers/overview',
@@ -69,7 +69,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'Governance & Security',
+      label: 'Protect requests and control access',
       collapsed: true,
       items: [
         'governance/index',
@@ -81,7 +81,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'FinOps & Rate Limits',
+      label: 'Manage cost and usage',
       collapsed: true,
       items: [
         'finops/index',
@@ -92,7 +92,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'Agents (MCP & A2A)',
+      label: 'Connect agents and tools',
       collapsed: true,
       items: [
         'agents/index',
@@ -107,13 +107,13 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'Integrations',
+      label: 'Connect your tools',
       collapsed: true,
       items: [
         'integrations/overview',
         {
           type: 'category',
-          label: 'Coding Agents & IDEs',
+          label: 'Coding tools and IDEs',
           collapsed: false,
           items: [
             'integrations/claude-code',
@@ -123,7 +123,7 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
-          label: 'SDKs & Agent Frameworks',
+          label: 'SDKs and agent frameworks',
           collapsed: false,
           items: [
             'integrations/openai-sdks',
@@ -133,7 +133,7 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
-          label: 'Observability & Telemetry',
+          label: 'Monitoring and telemetry',
           collapsed: false,
           items: [
             'integrations/otel-and-prometheus',
@@ -143,7 +143,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'Deploy & Operate',
+      label: 'Deploy and operate GoRoute',
       collapsed: true,
       items: [
         'deploy/configuration',
@@ -163,7 +163,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'Contributing',
+      label: 'Contribute',
       collapsed: true,
       items: [
         'contributing/claude-code-and-agents',
@@ -171,7 +171,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'Release Notes',
+      label: 'What changed',
       collapsed: true,
       items: [
         'releases/index',
@@ -191,7 +191,7 @@ const sidebars: SidebarsConfig = {
   sdkSidebar: [
     {
       type: 'category',
-      label: 'Go SDK Handbook',
+      label: 'Build a Go application',
       collapsed: false,
       items: [
         'sdk/overview',
@@ -208,7 +208,7 @@ const sidebars: SidebarsConfig = {
     'examples/overview',
     {
       type: 'category',
-      label: 'Fundamentals',
+      label: 'Get a request working',
       collapsed: false,
       items: [
         'examples/hello-gateway',
@@ -221,7 +221,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'Multi-Provider',
+      label: 'Connect a model',
       collapsed: false,
       items: [
         'examples/openai-direct',
@@ -233,7 +233,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'Tools & Agents',
+      label: 'Add tools and agents',
       collapsed: false,
       items: [
         'examples/single-tool-definition',
@@ -244,7 +244,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'Routing & Resiliency',
+      label: 'Handle traffic and failures',
       collapsed: false,
       items: [
         'examples/failover-fallback-chain',
@@ -256,7 +256,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'FinOps, Protocols & Services',
+      label: 'Manage usage and operations',
       collapsed: false,
       items: [
         'examples/exact-match-cache',
@@ -272,7 +272,7 @@ const sidebars: SidebarsConfig = {
   apiSidebar: [
     {
       type: 'category',
-      label: 'API Reference',
+      label: 'API reference',
       collapsed: false,
       items: [
         'api/overview',

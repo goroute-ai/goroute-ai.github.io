@@ -9,7 +9,9 @@ import EndpointCatalog from '@site/src/components/EndpointCatalog';
 
 # API Reference Index
 
-GoRoute AI Gateway provides a comprehensive API surface combining a high-performance multi-modal data plane, an enterprise administrative control plane, a Model Context Protocol (MCP) virtual hub, and a Linux Foundation Agent-to-Agent (A2A) protocol bridge.
+Use this page when you already know which kind of connection you need. The API reference is grouped by request handling, administration, MCP tools, and A2A agents. If you are new to GoRoute, begin with the [overview](/docs/start/overview) before choosing an API.
+
+GoRoute exposes these capabilities through HTTP, WebSocket, and gRPC interfaces. The catalog below lets you search routes and narrow them by API surface.
 
 > [!NOTE]
 > All data plane, MCP, and A2A routes require a tenant-scoped Virtual API Key passed via `Authorization: Bearer sk-gw-...`.  

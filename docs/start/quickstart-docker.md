@@ -7,7 +7,7 @@ keywords: [GoRoute Docker Compose, PostgreSQL setup, Redis setup, Operator UI, q
 
 # Quickstart: Docker Compose
 
-Run GoRoute AI Gateway in a fully containerized production topology with PostgreSQL 16+ for persistent multi-tenant metadata and Redis 7+ for distributed sliding-window rate limiting.
+Use this guide if you want to run GoRoute and its supporting services together in containers. The stack includes PostgreSQL for persistent data and Redis for shared rate limits and caching. If you only want to try the gateway locally, the [standalone quickstart](/docs/start/quickstart-gateway) is a lighter path.
 
 ![GoRoute AI Gateway Architecture](/img/architecture.png)
 

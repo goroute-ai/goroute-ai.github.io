@@ -8,7 +8,7 @@ keywords: [AI FinOps, LLM cost tracking, micro-dollar ledger, token budget, slid
 
 # AI FinOps: Cost Management & Optimization
 
-The **AI FinOps** module eliminates floating-point billing drift and race-condition overspends by combining **64-bit integer micro-dollar arithmetic**, **pre-flight budget reservations**, and **atomic Redis Lua rate limiting**.
+When several applications and teams use AI, it can be difficult to see where spend comes from or keep usage within limits. GoRoute records request costs, checks budgets before sending work to a provider, and can enforce request and token limits. The detailed guides explain how this accounting works and what it means for your setup.
 
 ---
 

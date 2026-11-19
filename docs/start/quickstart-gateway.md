@@ -7,7 +7,7 @@ keywords: [GoRoute CLI quickstart, standalone AI gateway, install.sh, provider s
 
 # Quickstart: Standalone Gateway CLI
 
-Run GoRoute AI Gateway as a high-performance standalone service to provide an intelligent, multi-provider AI proxy for your engineering team or microservices architecture.
+This guide is for teams that want one shared gateway their applications can call. You will install GoRoute, configure a provider, start the service, and check that it responds. For an in-process setup inside a Go application, use the [Go SDK quickstart](/docs/start/quickstart-sdk).
 
 ![GoRoute AI Gateway Architecture](/img/architecture.png)
 
@@ -29,7 +29,7 @@ curl -fsSL https://raw.githubusercontent.com/goroute-ai/ai-gateway-go/main/insta
 To install a specific release version:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/goroute-ai/ai-gateway-go/main/install.sh | bash -s -- v1.5.0
+curl -fsSL https://raw.githubusercontent.com/goroute-ai/ai-gateway-go/main/install.sh | bash -s -- v1.8.0
 ```
 
 Verify the installation:

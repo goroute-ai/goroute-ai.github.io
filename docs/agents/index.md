@@ -8,7 +8,21 @@ keywords: [AI agent management, MCP virtual hub, A2A protocol, Agent Cards, sand
 
 # AI Agent Management: MCP, Tools & Agent Access
 
-The **AI Agent Management** module turns GoRoute into a governed control plane for **tools**, **multi-agent networks**, and **autonomous coding agents**, enforcing Virtual Key RBAC, cryptographic identity, and execution sandboxing across MCP and A2A protocols.
+Connect AI agents to tools and other agents through GoRoute. The gateway can bring tools from multiple MCP servers together, limit which callers can use them, and support communication through MCP and A2A. Start with the protocol overview that matches your setup, then follow the related configuration guides.
+
+```mermaid
+flowchart LR
+    agent["AI agent"] --> hub["GoRoute tool hub"] --> tools["Approved tools"]
+    hub --> peer["Other agents"]
+    classDef appStyle fill:#153451,stroke:#60A5FA,color:#EFF6FF
+    classDef gatewayStyle fill:#0B5668,stroke:#22D3EE,color:#ECFEFF
+    classDef policyStyle fill:#1D5147,stroke:#5EEAD4,color:#ECFDF5
+    classDef serviceStyle fill:#382F6B,stroke:#A78BFA,color:#F5F3FF
+    class agent appStyle
+    class hub gatewayStyle
+    class tools policyStyle
+    class peer serviceStyle
+```
 
 ---
 

@@ -6,7 +6,7 @@ const SITE_URL = process.env.DOCUSAURUS_URL || 'https://goroute-ai.github.io';
 
 const config: Config = {
   title: 'GoRoute AI Control Plane',
-  tagline: 'Enterprise AI Control Plane: Gateway, Governance, FinOps, Observability & Agent Management',
+  tagline: 'A clear path from AI idea to production',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
@@ -75,7 +75,7 @@ const config: Config = {
       tagName: 'meta',
       attributes: {
         name: 'theme-color',
-        content: '#000000',
+        content: '#080f1b',
       },
     },
     {
@@ -330,7 +330,7 @@ const config: Config = {
       { property: 'og:image:height', content: '630' },
       {
         property: 'og:image:alt',
-        content: 'GoRoute AI Control Plane: Enterprise AI Gateway, Governance, FinOps, Observability & Agent Management in Pure Go',
+        content: 'GoRoute AI control plane for model routing, governance, and observability',
       },
       { name: 'twitter:card', content: 'summary_large_image' },
     ],
@@ -359,13 +359,13 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'docsSidebar',
           position: 'left',
-          label: 'Docs',
+          label: 'Start here',
         },
         {
           type: 'docSidebar',
           sidebarId: 'sdkSidebar',
           position: 'left',
-          label: 'Go SDK',
+          label: 'Build with Go',
         },
         {
           type: 'docSidebar',
@@ -377,7 +377,7 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'apiSidebar',
           position: 'left',
-          label: 'API Reference',
+          label: 'API reference',
         },
         {
           href: 'https://github.com/goroute-ai/ai-gateway-go',

@@ -8,7 +8,9 @@ keywords: [goroute integrations, openai compatible endpoint, anthropic endpoint,
 
 # Integrations Overview
 
-GoRoute AI Gateway exposes drop-in **OpenAI-compatible** (`/v1/*`, `/openai/v1/*`) and **Anthropic-compatible** (`/anthropic/v1/*`, `/v1/messages`) wire endpoints, alongside **MCP** (`/mcp*`) and **A2A** (`/a2a/v1/*`) protocol planes. Any client, IDE, CLI agent, or SDK that accepts a custom base URL and API key can route through GoRoute with zero code rewrites.
+You can connect many existing SDKs, coding tools, and agent frameworks to GoRoute by changing the endpoint and credential they use. Most integrations do not need a new application flow. Choose the guide for your client below, then use the protocol details when you need to troubleshoot a connection.
+
+GoRoute supports OpenAI-compatible (`/v1/*`, `/openai/v1/*`) and Anthropic-compatible (`/anthropic/v1/*`, `/v1/messages`) endpoints, along with MCP (`/mcp*`) and A2A (`/a2a/v1/*`) protocols.
 
 ---
 

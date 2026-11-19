@@ -7,22 +7,22 @@ import styles from './styles.module.css';
 
 const GOROUTE_THEME_DARK = {
   bg: '#000000',
-  fg: '#E5E7EB',
-  line: '#38BDF8',
-  accent: '#7DD3FC',
-  muted: '#9CA3AF',
-  surface: '#0D131F',
-  border: '#253145',
+  fg: '#EAF2FB',
+  line: '#22D3EE',
+  accent: '#A78BFA',
+  muted: '#9BB0C8',
+  surface: '#0B0F13',
+  border: '#263746',
 };
 
 const GOROUTE_THEME_LIGHT = {
-  bg: '#ffffff',
-  fg: '#0f172a',
-  line: '#0284C7',
-  accent: '#0369A1',
-  muted: '#64748b',
-  surface: '#f8fafc',
-  border: '#cbd5e1',
+  bg: '#F3F7FB',
+  fg: '#10243A',
+  line: '#087B9B',
+  accent: '#6256C9',
+  muted: '#5B7088',
+  surface: '#FFFFFF',
+  border: '#C6D7E6',
 };
 
 function preprocessDiagram(input: string): string {

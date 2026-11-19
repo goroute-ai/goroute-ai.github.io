@@ -7,7 +7,27 @@ keywords: [goroute observability, prometheus metrics, opentelemetry tracing, hea
 
 # Observability, Metrics & Health Probes
 
-GoRoute AI Gateway features enterprise-grade observability across every inference call, routing decision, guardrail evaluation, and upstream deployment health check:
+Observability helps you answer practical questions: did a request reach a provider, how long did it take, and is the service healthy? GoRoute can expose metrics, pass distributed trace context, and report health information for operators and monitoring tools.
+
+```mermaid
+flowchart LR
+    app["Application"] --> gateway["GoRoute"] --> provider["AI provider"]
+    gateway --> traces["Request traces"]
+    gateway --> metrics["Service metrics"]
+    gateway --> health["Health checks"]
+    classDef appStyle fill:#153451,stroke:#60A5FA,color:#EFF6FF
+    classDef gatewayStyle fill:#0B5668,stroke:#22D3EE,color:#ECFEFF
+    classDef serviceStyle fill:#382F6B,stroke:#A78BFA,color:#F5F3FF
+    classDef signalStyle fill:#654717,stroke:#FBBF24,color:#FFFBEB
+    class app appStyle
+    class gateway gatewayStyle
+    class provider serviceStyle
+    class traces signalStyle
+    class metrics signalStyle
+    class health signalStyle
+```
+
+The detailed setup includes:
 1. **Prometheus Metrics Engine (`GET /metrics`)**: In-process Vitter Algorithm R reservoir sampling (`1,024` samples) of latencies, Time-To-First-Token (TTFT), routing overheads, cache-hit ratios, and provider spend.
 2. **OTLP/HTTP & W3C Distributed Tracing**: Exports `gen_ai.client` spans (`gen_ai.operation.name`, `gen_ai.system`, `gen_ai.request.model`, `gen_ai.usage.*`) via `tracing.otlp_endpoint` through the outbound SSRF policy, alongside `traceparent` and `X-Trace-Id` propagation.
 3. **Multi-Tier Health Probes & Policy Simulation**: Kubernetes liveness (`/healthz`), readiness (`/readyz`), active upstream deployment probing (`/admin/v1/health/*`), and the stateless Guardrails Policy Simulator (`POST /admin/v1/organizations/{orgID}/guardrails/simulate`).

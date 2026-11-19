@@ -8,6 +8,8 @@ keywords: [production checklist, ssrf firewall, fail-closed rate limits, rbac oi
 
 # Production Readiness Checklist
 
+Use this guide before making a GoRoute deployment available to your team or customers. It walks through the configuration, access controls, network boundaries, and service checks that operators should review. Follow the linked guides for details about each setting.
+
 Before promoting GoRoute AI Gateway to production traffic, verify each control below against your environment variables, `config.yaml`, and Kubernetes or container deployment manifests.
 
 ---
